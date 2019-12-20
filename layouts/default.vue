@@ -1,55 +1,36 @@
 <template>
-  <div>
-    <nuxt />
+  <div class="body">
+    <app-header />
+
+    <div class="content content-fixed">
+      <app-breadcump />
+      <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
+        <nuxt />
+      </div>
+    </div>
+
+    <app-footer />
   </div>
 </template>
 
-<style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
+<script>
+import Header from '~/layouts/part/header.vue'
+import Footer from '~/layouts/part/footer.vue'
+import Breadcump from '~/layouts/part/breadcump.vue'
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-}
+export default {
+  components: {
+    'app-header': Header,
+    'app-footer': Footer,
+    'app-breadcump': Breadcump
+  },
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
+  mounted() {
+    setTimeout(() => {
+      this.$dashboard.navBarInit()
+      this.$dashboard.navBarSearch()
+      this.$dashboard.sidebarInit()
+    }, 1000)
+  }
 }
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
-</style>
+</script>
