@@ -15,7 +15,7 @@ export default {
   },
   [SET_USER_LOGOUT](state) {
     state.user = {}
-    state.token = {}
+    state.token = null
     state.logged = false
   }
 }

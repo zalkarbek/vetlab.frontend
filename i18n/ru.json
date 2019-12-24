@@ -13,6 +13,20 @@
     "contacts": "Контакты",
     "chat": "Чат"
   },
+  "regions": {
+    "osh": {
+      "text": "Ошская область"
+    },
+    "jalal-abad": {
+      "text": "Джалал-Абадская область"
+    },
+    "batken": {
+      "text": "Баткенская область"
+    },
+    "south-region": {
+      "text": "Южный регион"
+    }
+  },
 
   "departments": {
     "one": "Отдел",
@@ -20,11 +34,77 @@
     "part": "Отдел {department}",
 
     "epidemiology": "Эпидемиология",
-    "bacteriology": "Бактериология",
-    "virology": "Вирусология",
     "serology": "Серология",
+    "bacteriology": "Бактериология",
     "parasitology": "Паразитология",
-    "food": "Продукты питания"
+    "foodSecurity": "Продукты питания",
+    "virology": "Вирусология",
+    "biochemistry": "Биохимия",
+    "toxicology": "Химтоксикология",
+    "radiology": "Радиология",
+    "mycology": "Микология",
+    "ascoly": "Асколи",
+    "leptospiros": "Лептоспироз",
+    "leukemia": "Лейкемия"
+  },
+
+  "research": {
+    "text": "Исследовано",
+    "pathologist": {
+      "specialist": "Патологоанатом",
+      "department": "Патологоанотомия",
+      "method": "Патологическая анатомический"
+    },
+    "organoleptic": {
+      "specialist": "Органолептик",
+      "department": "Органолептика",
+      "method": "Органолептический"
+    },
+    "microscopy": {
+      "specialist": "Микроскопиолог",
+      "department": "Микроскопия",
+      "method": "Микроскопический"
+    },
+    "bacteriology": {
+      "specialist": "Бактериолог",
+      "department": "Бактериология",
+      "method": "Бактериологический"
+    },
+    "microbiology": {
+      "specialist": "Микробиолог",
+      "department": "Микробиология",
+      "method": "Микробиологический"
+    },
+    "serology": {
+      "specialist": "Серолог",
+      "department": "Серология",
+      "method": "Серологический"
+    },
+    "caprology": {
+      "specialist": "Капролог",
+      "department": "Капрология",
+      "method": "Капрологический"
+    },
+    "mycology": {
+      "specialist": "Миколог",
+      "department": "Микология",
+      "method": "Мокологический"
+    },
+    "biochemistry": {
+      "specialist": "Биохимик",
+      "department": "Биохимия",
+      "method": "Биохимический"
+    },
+    "chemToxicology": {
+      "specialist": "Токсихолог",
+      "department": "Химтоксикология",
+      "method": "Химтоксикологический"
+    },
+    "radioLab": {
+      "specialist": "Радиолог",
+      "department": "Радиология",
+      "method": "Радиологический"
+    }
   },
 
   "error": {
@@ -71,5 +151,10 @@
     "year": "за этот год",
     "week": "за эту неделю",
     "day": "за сегодня"
-  }
+  },
+  "researchConducted": "Проведенные исследование",
+  "result": "Результат",
+  "completed": "Выполнен",
+  "plan": "План",
+  "percent": "Процент"
 }

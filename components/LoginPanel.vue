@@ -37,13 +37,12 @@
         Строго <strong class="text-danger">не рекомендуется</strong>
         сохранять пароль у браузера
       </div>
-      <!-- form-group -->
 
       <button @click="auth" class="btn btn-brand-01 btn-block">Вход</button>
       <div class="divider-text">язык</div>
       <locales-dropdown />
       <div class="tx-13 mg-t-20 tx-center">
-        Забыли пароль ? <a href="page-signin.html">Восстановить</a>
+        Забыли пароль ? <a href="/login">Восстановить</a>
       </div>
     </div>
   </div>

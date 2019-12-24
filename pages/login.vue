@@ -19,10 +19,11 @@
   </div>
 </template>
 <script>
-import LoginPanel from '../components/LoginPanel'
+import LoginPanel from '~/components/LoginPanel.vue'
 import NewsPanel from '~/components/NewsPanel.vue'
 
 export default {
+  middleware: ['isToken'],
   components: {
     'v-login-panel': LoginPanel,
     'v-news-panel': NewsPanel
@@ -56,6 +57,7 @@ export default {
           user: data.user,
           token: data.token
         })
+        this.$router.push({ name: 'index' })
       } else {
         this.$bvToast.toast(this.$i18n.t('error.authWrong') || '', {
           title: this.$i18n.t('error.title'),

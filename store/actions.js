@@ -24,19 +24,19 @@ export default {
     this.$i18n.locale = locale
   },
 
-  async login({ commit }, payload) {
+  login({ commit }, payload) {
     commit(types.SET_USER_LOGGED, { user: payload.user, token: payload.token })
     this.$http.setToken(payload.token, 'Bearer', [
       'post',
-      'delete',
       'put',
-      'patch'
+      'patch',
+      'delete'
     ])
-    await this.$router.push({ name: 'index' })
+    localStorage.setItem('token', payload.token)
   },
-  async logout({ commit }) {
+  logout({ commit }) {
     commit(types.SET_USER_LOGOUT)
     this.$io.closeAll()
-    await this.$router.push({ name: 'login' })
+    localStorage.removeItem('token')
   }
 }

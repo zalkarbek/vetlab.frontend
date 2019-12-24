@@ -4,9 +4,7 @@
 
     <div class="content content-fixed">
       <app-breadcump />
-      <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
-        <nuxt />
-      </div>
+      <nuxt />
     </div>
 
     <app-footer />

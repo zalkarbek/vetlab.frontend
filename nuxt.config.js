@@ -3,6 +3,10 @@ env.config()
 
 export default {
   mode: 'spa',
+  server: {
+    port: 3004, // default: 3000
+    host: '0.0.0.0' // default: localhost
+  },
   dev: process.env.NODE_ENV !== 'production',
   env: {
     isDev: process.env.NODE_ENV === 'development',
@@ -59,7 +63,8 @@ export default {
     '~/plugins/lodash.js',
     '~/plugins/moment.js',
     '~/plugins/time-out.js',
-    { src: '~/plugins/i18n.js' },
+    '~/plugins/i18n.js',
+    '~/plugins/pouchdb.js',
     '~/plugins/axios.js',
     '~/plugins/dashboard.js',
     '~/plugins/socket-client'
