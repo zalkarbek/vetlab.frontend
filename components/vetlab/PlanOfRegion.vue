@@ -4,7 +4,8 @@
       <h4>План выполнения по регионам</h4>
     </b-col>
     <b-col
-      v-for="depart in departments"
+      v-for="department in departments"
+      :key="department.key"
       cols="12"
       sm="12"
       md="6"
@@ -14,7 +15,7 @@
     >
       <div class="card">
         <div class="card-header">
-          <h6 class="mg-b-0">{{ $t(`departments.${depart}`) }}</h6>
+          <h6 class="mg-b-0">{{ $t(department) }}</h6>
         </div>
         <div class="card-body pd-10">
           <b-table
@@ -102,11 +103,12 @@ export default {
   data() {
     return {
       departments: [
-        'serology',
-        'bacteriology',
-        'parasitology',
-        'foodSecurity',
-        'virology'
+        'departments.serology',
+        'departments.bacteriology',
+        'departments.parasitology',
+        'departments.foodSecurity',
+        'departments.virology',
+        'regions.south-region.allResult'
       ],
       fields: [
         { key: 'region', label: 'Регион', i18n: 'region' },
@@ -198,9 +200,22 @@ export default {
       return Number((this.completedCount / this.planCount) * 100).toFixed(2)
     }
   },
+  mounted() {
+    setTimeout(() => {
+      this.randomRegionUp()
+    }, 6000)
+  },
   methods: {
     toPercent(max, value) {
       return Number((value / max) * 100).toFixed(2)
+    },
+    randomRegionUp() {
+      const rnd = this.$lodash.random(0, this.items.length - 1)
+      this.items[rnd].completed =
+        Number(this.items[rnd].completed) + this.$lodash.random(1, 10)
+      setTimeout(() => {
+        this.randomRegionUp()
+      }, this.$lodash.random(6000, 8000))
     }
   }
 }

@@ -29,7 +29,6 @@ export default {
     'v-news-panel': NewsPanel
   },
   layout: 'LoginLayout',
-
   mounted() {
     if (this.$route.query && this.$route.query.redirectType) {
       const redirectType = this.$route.query.redirectType
@@ -38,7 +37,6 @@ export default {
       }
     }
   },
-
   methods: {
     async login(payload) {
       const auth = this.$http.getService('auth')
@@ -57,7 +55,7 @@ export default {
           user: data.user,
           token: data.token
         })
-        this.$router.push({ name: 'index' })
+        await this.$router.push(this.localePath({ name: 'index' }))
       } else {
         this.$bvToast.toast(this.$i18n.t('error.authWrong') || '', {
           title: this.$i18n.t('error.title'),

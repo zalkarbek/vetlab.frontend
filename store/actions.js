@@ -1,10 +1,6 @@
 import * as types from '~/store/types'
 
 export default {
-  initLocaleConfig({ commit, state }, { locale }) {
-    commit(types.SET_CURRENT_LOCALE, { locale })
-  },
-
   initCurrentLocale({ commit, state }) {
     let locale = localStorage.getItem('currentLocale')
     if (
@@ -14,14 +10,12 @@ export default {
       locale = state.defaultLocale
       localStorage.setItem('currentLocale', locale)
     }
-    this.$i18n.locale = locale
     commit(types.SET_CURRENT_LOCALE, { locale })
   },
 
   setCurrentLocale({ commit }, { locale }) {
     localStorage.setItem('currentLocale', locale)
     commit(types.SET_CURRENT_LOCALE, { locale })
-    this.$i18n.locale = locale
   },
 
   login({ commit }, payload) {

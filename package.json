@@ -35,6 +35,7 @@
     "moment": "^2.24.0",
     "moment-duration-format": "^2.3.2",
     "nuxt": "^2.10.2",
+    "nuxt-i18n": "^6.4.1",
     "perfect-scrollbar": "^1.4.0",
     "portal-vue": "^2.1.6",
     "pouchdb": "^7.1.1",

@@ -4,10 +4,10 @@ env.config()
 export default {
   mode: 'spa',
   server: {
-    port: 3004, // default: 3000
-    host: '0.0.0.0' // default: localhost
+    port: Number(process.env.NUXT_PORT), // default: 3000
+    host: process.env.NUXT_HOST // default: localhost
   },
-  dev: process.env.NODE_ENV !== 'production',
+  isDev: process.env.NODE_ENV !== 'production',
   env: {
     isDev: process.env.NODE_ENV === 'development',
     isProd: process.env.NODE_ENV === 'production',
@@ -61,9 +61,9 @@ export default {
     '~/plugins/event-bus.js',
     '~/plugins/jquery.js',
     '~/plugins/lodash.js',
+    '~plugins/i18n.js',
     '~/plugins/moment.js',
     '~/plugins/time-out.js',
-    '~/plugins/i18n.js',
     '~/plugins/pouchdb.js',
     '~/plugins/axios.js',
     '~/plugins/dashboard.js',
@@ -80,6 +80,7 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
+    ['nuxt-i18n'],
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     '@nuxtjs/device',
@@ -100,11 +101,33 @@ export default {
     bootstrapCSS: false,
     bootstrapVueCSS: false
   },
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
   axios: {},
+  i18n: {
+    strategy: 'prefix_except_default',
+    defaultLocale: 'ru',
+    lazy: true,
+    langDir: 'lang/',
+    locales: [
+      {
+        code: 'en',
+        iso: 'en-US',
+        file: 'en.js',
+        name: 'EN'
+      },
+      {
+        code: 'ru',
+        iso: 'ru-RU',
+        file: 'ru.js',
+        name: 'RU'
+      },
+      {
+        code: 'kg',
+        iso: 'kg-KG',
+        file: 'kg.js',
+        name: 'KG'
+      }
+    ]
+  },
   /*
    ** Build configuration
    */

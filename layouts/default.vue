@@ -3,7 +3,6 @@
     <app-header />
 
     <div class="content content-fixed">
-      <app-breadcump />
       <nuxt />
     </div>
 
@@ -14,13 +13,14 @@
 <script>
 import Header from '~/layouts/part/header.vue'
 import Footer from '~/layouts/part/footer.vue'
-import Breadcump from '~/layouts/part/breadcump.vue'
 
 export default {
+  head() {
+    return this.$nuxtI18nSeo()
+  },
   components: {
     'app-header': Header,
-    'app-footer': Footer,
-    'app-breadcump': Breadcump
+    'app-footer': Footer
   },
 
   mounted() {

@@ -1,14 +1,16 @@
 <template>
   <div class="container-fluid page-home">
-    <main-plan />
+    <main-plan-percent />
     <plan-of-region />
+    <main-positive-material />
     <main-forma4 />
     <div class="footer-full-content"></div>
   </div>
 </template>
 
 <script>
-import MainPlan from '~/components/vetlab/MainPlan.vue'
+import MainPositiveMaterial from '~/components/vetlab/MainPositiveMaterial.vue'
+import MainPlanPercent from '~/components/vetlab/MainPlanPercent.vue'
 import MainForma4 from '~/components/vetlab/MainForma4.vue'
 import PlanOfRegion from '~/components/vetlab/PlanOfRegion.vue'
 
@@ -16,7 +18,8 @@ export default {
   middleware: ['auth'],
 
   components: {
-    MainPlan,
+    MainPositiveMaterial,
+    MainPlanPercent,
     MainForma4,
     PlanOfRegion
   },

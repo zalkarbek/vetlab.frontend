@@ -8,7 +8,15 @@
       :class="{ 'with-sub': menu.children }"
       class="nav-item"
     >
-      <a href="" class="nav-link">
+      <nuxt-link
+        v-if="menu.type === 'single' || !menu.children"
+        :to="localePath({ path: menu.to })"
+        class="nav-link"
+      >
+        <i :class="menu.icon" class="mg-r-4" /> {{ $t(menu._t) }}
+      </nuxt-link>
+
+      <a v-else href="#" class="nav-link">
         <i :class="menu.icon" class="mg-r-4" /> {{ $t(menu._t) }}
       </a>
 
@@ -19,10 +27,13 @@
             :key="index + childIndex + 200"
             class="nav-sub-item"
           >
-            <a href="" class="nav-sub-link">
+            <nuxt-link
+              :to="localePath({ path: childMenu.to })"
+              class="nav-sub-link"
+            >
               <i :class="childMenu.icon" class="mg-r-4" />
               {{ $t(childMenu._t) }}
-            </a>
+            </nuxt-link>
           </li>
         </ul>
       </template>
@@ -47,10 +58,13 @@
                   v-for="flexItems in flexMenu.items"
                   :class="flexItems.class"
                 >
-                  <a href="/" class="nav-sub-link">
+                  <nuxt-link
+                    :to="localePath({ path: flexItems.to })"
+                    class="nav-sub-link"
+                  >
                     <i :class="flexItems.icon" class="mg-r-4" />
                     {{ $t(flexItems._t) }}
-                  </a>
+                  </nuxt-link>
                 </li>
               </template>
             </ul>
@@ -65,6 +79,12 @@ export default {
   computed: {
     menus() {
       return this.$store.getters['dash/menuItems']
+    }
+  },
+
+  methods: {
+    go(link) {
+      this.$router.push(link)
     }
   }
 }

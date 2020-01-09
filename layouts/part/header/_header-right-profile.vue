@@ -47,9 +47,9 @@ export default {
     }
   },
   methods: {
-    signOut() {
-      this.$store.dispatch('logout')
-      this.$router.push({ name: 'login' })
+    async signOut() {
+      await this.$store.dispatch('logout')
+      await this.$router.push(this.localePath({ name: 'login' }))
     }
   }
 }

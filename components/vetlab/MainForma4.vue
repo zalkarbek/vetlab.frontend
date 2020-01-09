@@ -4,7 +4,8 @@
       <h4>{{ $t('researchConducted') }} Форма №4</h4>
     </b-col>
     <b-col
-      v-for="region in regions"
+      v-for="(region, regionIndex) in regions"
+      :key="regionIndex"
       cols="12"
       sm="12"
       md="6"
@@ -20,21 +21,32 @@
             <b-img left src="~/assets/img/marker.svg" width="28px" />
             {{ $t(`regions.${region.key}.text`) }}
           </h5>
-          <div class="tx-13 d-flex align-items-center">
-            <a href="" class="mg-r-8">
+          <div
+            class="tx-13 d-flex align-items-center"
+            style="font-size: 1.0rem"
+          >
+            <span class="mg-r-8 tx-success cursor-pointer">
               <span class="fal fa-file-excel fa-lg" />
-            </a>
-            <a href="" class="mg-r-8">
+            </span>
+            <span class="mg-r-8 tx-danger cursor-pointer">
               <span class="fal fa-file-pdf fa-lg" />
-            </a>
-            <a href="" class="mg-r-8">
+            </span>
+            <span class="mg-r-8 tx-teal cursor-pointer">
               <span class="fal fa-file-chart-line fa-lg" />
-            </a>
+            </span>
           </div>
         </div>
-        <div v-for="department in departments" class="card-body">
-          <h6 class="card-title tx-16 text-center">
-            {{ department.label }}
+        <div
+          v-for="(department, index) in departments"
+          :key="index"
+          class="card-body"
+        >
+          <h5 class="card-title tx-16 text-center">
+            {{ department.label }}({{ $t(`regions.${region.key}.tinyText`) }})
+          </h5>
+          <h6 class="bg-gray-1 pd-t-5 pd-b-5 pd-l-10 tx-bold">
+            Количество материалов:
+            <span class="tx-primary">18000</span>
           </h6>
           <b-table
             :fields="fields"
@@ -43,6 +55,7 @@
             small
             responsive
             caption-top
+            hover
           >
             <template v-slot:head()="data">
               <span class="text-primary">{{ data.label }}</span>
@@ -91,77 +104,77 @@ export default {
             key: 'pathologist',
             label: 'Патологоанатомиялык'
           },
-          researchCount: 100
+          researchCount: 658
         },
         {
           researchDirection: {
             key: 'organoleptic',
             label: 'Органолептикалык'
           },
-          researchCount: 100
+          researchCount: 452
         },
         {
           researchDirection: {
             key: 'microscopy',
             label: 'Микроскопиялык'
           },
-          researchCount: 100
+          researchCount: 789
         },
         {
           researchDirection: {
             key: 'bacteriology',
             label: 'Бактериологиялык'
           },
-          researchCount: 100
+          researchCount: 653
         },
         {
           researchDirection: {
             key: 'microbiology',
             label: 'Микробиологиялык'
           },
-          researchCount: 100
+          researchCount: 523
         },
         {
           researchDirection: {
             key: 'serology',
             label: 'Серологиялык'
           },
-          researchCount: 100
+          researchCount: 189
         },
         {
           researchDirection: {
             key: 'caprology',
             label: 'Капрологиялык'
           },
-          researchCount: 100
+          researchCount: 862
         },
         {
           researchDirection: {
             key: 'mycology',
             label: 'Микологиялык'
           },
-          researchCount: 100
+          researchCount: 623
         },
         {
           researchDirection: {
             key: 'biochemistry',
             label: 'Биохимиялык'
           },
-          researchCount: 100
+          researchCount: 321
         },
         {
           researchDirection: {
             key: 'chemToxicology',
             label: 'Химтоксикологиялык'
           },
-          researchCount: 100
+          researchCount: 523
         },
         {
           researchDirection: {
             key: 'radioLab',
             label: 'Радиологиялык'
           },
-          researchCount: 100
+          researchCount: 469
         }
       ]
       // fields: [
