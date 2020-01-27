@@ -9,6 +9,32 @@ export default [
     to: '/'
   },
   {
+    _t: 'menu.admin',
+    text: 'Администратор',
+    type: 'children',
+    class: '',
+    icon: '',
+    active: false,
+    children: [
+      {
+        _t: 'menu.personal.index',
+        text: 'Список Персоналов',
+        class: '',
+        icon: '',
+        active: false,
+        to: '/admin/personal/personal-index'
+      },
+      {
+        _t: 'menu.personal.add',
+        text: 'Добавить персонал',
+        class: '',
+        icon: '',
+        active: false,
+        to: '/admin/personal/personal-create'
+      }
+    ]
+  },
+  {
     _t: 'menu.direction',
     text: 'Направлении',
     type: 'single',

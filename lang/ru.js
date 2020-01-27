@@ -2,6 +2,11 @@ export default {
   welcome: 'Добро пожаловать',
 
   menu: {
+    admin: 'Админы',
+    personal: {
+      add: 'Добавление персонала',
+      index: 'Список персоналов'
+    },
     home: 'Главная',
     direction: 'Направлении',
     departments: 'Отделы',
