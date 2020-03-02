@@ -5,10 +5,10 @@ export default async ({ app, store, redirect }) => {
     return redirect('/login', { redirectType: 'no-auth' })
   }
   if (token && !store.state.logged) {
-    app.$http.setToken(token, 'Bearer', ['post', 'put', 'patch', 'delete'])
-    const authService = app.$http.getService('auth')
+    app.$api.setToken(token, 'Bearer', ['post', 'put', 'patch', 'delete'])
+    const authApi = app.$api.getApi('auth')
 
-    authService
+    authApi
       .getUserProfile()
       .then(async (data) => {
         if (!data.error && data.user) {

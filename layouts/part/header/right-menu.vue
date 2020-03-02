@@ -10,8 +10,8 @@
   </div>
 </template>
 <script>
-import HeaderRightLocale from './_header-right-locale.vue'
-import HeaderRightProfile from './_header-right-profile.vue'
+import HeaderRightLocale from './_right-locale.vue'
+import HeaderRightProfile from './_right-profile.vue'
 
 export default {
   components: {

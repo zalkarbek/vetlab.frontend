@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     async login(payload) {
-      const auth = this.$http.getService('auth')
+      const auth = this.$api.getApi('auth')
       const data = await auth.userAuth({
         email: payload.email,
         password: payload.password

@@ -1,10 +1,10 @@
 export default async ({ app, store, redirect }) => {
   const token = store.state.token || localStorage.getItem('token')
   if (token) {
-    app.$http.setToken(token, 'Bearer', ['post', 'put', 'patch', 'delete'])
-    const authService = app.$http.getService('auth')
+    app.$api.setToken(token)
+    const authApi = app.$api.getApi('auth')
 
-    authService
+    authApi
       .getUserProfile()
       .then(async ({ data }) => {
         if (!data.error && data.user) {

@@ -1,4 +1,4 @@
-import AuthApi from './authApi'
+import AuthApi from './auth'
 
 class Api {
   constructor(context) {
@@ -8,7 +8,7 @@ class Api {
     }
   }
 
-  getService(name) {
+  getApi(name) {
     return this.apiServices[name]
   }
 
@@ -16,7 +16,11 @@ class Api {
     this.context.$axios.setHeader(name, value, scopes)
   }
 
-  setToken(token, type, scopes = []) {
+  setToken(
+    token,
+    type = 'Bearer',
+    scopes = ['get', 'post', 'put', 'patch', 'delete']
+  ) {
     this.context.$axios.setToken(token, type, scopes)
   }
 }

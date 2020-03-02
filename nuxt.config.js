@@ -67,7 +67,7 @@ export default {
     '~/plugins/pouchdb.js',
     '~/plugins/axios.js',
     '~/plugins/dashboard.js',
-    '~/plugins/socket-client'
+    '~/plugins/socket'
   ],
   /*
    ** Nuxt.js dev-modules
@@ -83,6 +83,7 @@ export default {
     ['nuxt-i18n'],
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    // определитель девайса iOS, android, desktop
     '@nuxtjs/device',
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',

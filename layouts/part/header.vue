@@ -17,12 +17,13 @@
       </div>
       <header-left-menu />
     </div>
+
     <header-right-menu />
   </header>
 </template>
 <script>
-import HeaderLeftMenu from './header/header-left-menu.vue'
-import HeaderRightMenu from './header/header-right-menu.vue'
+import HeaderLeftMenu from './header/left-menu.vue'
+import HeaderRightMenu from './header/right-menu.vue'
 
 export default {
   components: {

@@ -20,7 +20,7 @@ export default {
 
   login({ commit }, payload) {
     commit(types.SET_USER_LOGGED, { user: payload.user, token: payload.token })
-    this.$http.setToken(payload.token, 'Bearer', [
+    this.$api.setToken(payload.token, 'Bearer', [
       'post',
       'put',
       'patch',
