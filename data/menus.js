@@ -22,7 +22,7 @@ export default [
         class: '',
         icon: '',
         active: false,
-        to: '/admin/personal/personal-index'
+        to: '/admin/personal/index'
       },
       {
         _t: 'menu.personal.add',
@@ -30,7 +30,7 @@ export default [
         class: '',
         icon: '',
         active: false,
-        to: '/admin/personal/personal-create'
+        to: '/admin/personal/create'
       }
     ]
   },

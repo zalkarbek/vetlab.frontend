@@ -1,7 +1,7 @@
 import api from '../api'
 
 export default (context, inject) => {
-  context.$axios.defaults.baseURL = context.env.baseUrl
+  // context.$axios.defaults.baseURL = context.env.baseUrl
   inject('api', api(context))
 
   context.$axios.onError((error) => {

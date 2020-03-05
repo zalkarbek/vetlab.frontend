@@ -1,20 +1,21 @@
 import env from 'dotenv'
 env.config()
 
+const isDev = process.env.NODE_ENV === 'development'
+const isProd = process.env.NODE_ENV !== 'development'
+const API_HOST = isDev ? process.env.HOST_DEV : process.env.HOST_PROD
+
 export default {
   mode: 'spa',
   server: {
     port: Number(process.env.NUXT_PORT), // default: 3000
     host: process.env.NUXT_HOST // default: localhost
   },
-  isDev: process.env.NODE_ENV !== 'production',
+  isDev,
   env: {
-    isDev: process.env.NODE_ENV === 'development',
-    isProd: process.env.NODE_ENV === 'production',
-    baseUrl:
-      process.env.NODE_ENV === 'development'
-        ? process.env.HOST_DEVELOP
-        : process.env.HOST_PROD
+    isDev,
+    isProd,
+    baseUrl: API_HOST
   },
   appDebug: process.env.APP_DEBUG,
   router: {
@@ -102,7 +103,13 @@ export default {
     bootstrapCSS: false,
     bootstrapVueCSS: false
   },
-  axios: {},
+  axios: {
+    proxy: true
+  },
+  proxy: {
+    '/api/v1/': API_HOST,
+    '/api/v2/': API_HOST
+  },
   i18n: {
     strategy: 'prefix_except_default',
     defaultLocale: 'ru',

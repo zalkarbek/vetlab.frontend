@@ -32,5 +32,7 @@ export default {
     commit(types.SET_USER_LOGOUT)
     this.$io.closeAll()
     localStorage.removeItem('token')
-  }
+  },
+
+  authenticate({ commit }, payload) {}
 }

@@ -40,24 +40,34 @@ export default {
   methods: {
     async login(payload) {
       const auth = this.$api.getApi('auth')
-      const data = await auth.userAuth({
-        email: payload.email,
-        password: payload.password
-      })
-      if (!data.error && data.user) {
-        this.$bvToast.toast(this.$i18n.t('success.auth') || '', {
-          title: this.$i18n.t('success.title'),
-          variant: 'success',
-          solid: true,
-          append: true
+      let data = {}
+      try {
+        data = await auth.userAuth({
+          email: payload.email,
+          password: payload.password
         })
-        await this.$store.dispatch('login', {
-          user: data.user,
-          token: data.token
-        })
-        await this.$router.push(this.localePath({ name: 'index' }))
-      } else {
-        this.$bvToast.toast(this.$i18n.t('error.authWrong') || '', {
+        if (!data.error && data.user) {
+          this.$bvToast.toast(this.$i18n.t('success.auth') || '', {
+            title: this.$i18n.t('success.title'),
+            variant: 'success',
+            solid: true,
+            append: true
+          })
+          await this.$store.dispatch('login', {
+            user: data.user,
+            token: data.token
+          })
+          await this.$router.push(this.localePath({ name: 'index' }))
+        } else {
+          this.$bvToast.toast(this.$i18n.t('error.authWrong') || '', {
+            title: this.$i18n.t('error.title'),
+            variant: 'danger',
+            solid: true,
+            append: true
+          })
+        }
+      } catch (e) {
+        this.$bvToast.toast(e.message, {
           title: this.$i18n.t('error.title'),
           variant: 'danger',
           solid: true,

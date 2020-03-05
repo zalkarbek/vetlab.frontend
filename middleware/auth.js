@@ -5,7 +5,7 @@ export default async ({ app, store, redirect }) => {
     return redirect('/login', { redirectType: 'no-auth' })
   }
   if (token && !store.state.logged) {
-    app.$api.setToken(token, 'Bearer', ['post', 'put', 'patch', 'delete'])
+    app.$api.setToken(token)
     const authApi = app.$api.getApi('auth')
 
     authApi
