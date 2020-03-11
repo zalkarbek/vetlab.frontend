@@ -1,11 +1,93 @@
 export default {
   welcome: 'Добро пожаловать',
+  list: 'список {name}',
+
+  form: {
+    add: 'добавление',
+    save: 'сохранение',
+    clear: 'очистить',
+    update: 'обновить',
+
+    label: {
+      name: 'название',
+      shortName: 'короткое навание',
+      i18n: 'ключ для локализации'
+    },
+    placeholder: {
+      name: '(кг, гр, мл, л)',
+      shortName: 'короткое название',
+      i18n: 'ключ мультиязычности'
+    }
+  },
+
+  s_mera: {
+    title: 'мера измерения',
+    add: 'добавление',
+    label: {
+      name: 'название',
+      shortName: 'короткое навание',
+      i18n: 'ключ для локализации'
+    },
+    placeholder: {
+      name: '(кг, гр, мл, л)',
+      shortName: 'короткое название',
+      i18n: 'ключ мультиязычности'
+    }
+  },
 
   menu: {
-    admin: 'Админы',
+    spravka: 'справочник',
+    admin: 'админы',
+    mera: {
+      index: 'меры'
+    },
+    region_type: {
+      index: 'типы регионов',
+      add: ''
+    },
+    regions: {
+      index: 'регионы',
+      add: ''
+    },
+    otdelenia: {
+      index: 'название отделениий',
+      add: ''
+    },
+    doljnosti: {
+      index: 'должности',
+      add: ''
+    },
+    bolezni: {
+      index: 'болезни',
+      add: ''
+    },
+    pokazately: {
+      index: 'определяемых показателей',
+      add: ''
+    },
+    materialy_type: {
+      index: 'типы материалов',
+      add: ''
+    },
+    material_animal_class: {
+      index: 'класс животных',
+      add: ''
+    },
+    material_animal_type: {
+      index: 'вид животных',
+      add: ''
+    },
+    materialy: {
+      index: 'исследуемые материалы',
+      add: ''
+    },
+    metod_isledovanie: {
+      index: 'метод ииследование',
+      add: ''
+    },
     personal: {
       add: 'Добавление персонала',
-      index: 'Список персоналов'
+      index: 'Персонал'
     },
     home: 'Главная',
     direction: 'Направлении',
@@ -132,7 +214,10 @@ export default {
     emptyField: 'Ошибка, поле пустое заполните поле',
     emptyFields: 'Ошибка, пустые поля, заполните поля',
     requireAuth: 'Требуется авторизация',
-    pleaseRequireAuth: 'Пожалуйста авторизуйтесь'
+    pleaseRequireAuth: 'Пожалуйста авторизуйтесь',
+    create: 'Ошибка создания',
+    update: 'Ошибка обновления',
+    get: 'Ошибка получения'
   },
 
   auth: {
@@ -142,11 +227,12 @@ export default {
   },
 
   success: {
-    title: 'Успех',
+    title: 'Успешно',
     auth: 'Авторизация успешно',
-    update: 'Успешно обновлено'
+    create: 'Успешно создано',
+    update: 'Успешно обновлено',
+    get: 'Успешно получено'
   },
-
   help: {
     helpCenter: 'Центр помощи'
   },

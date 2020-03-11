@@ -26,13 +26,13 @@
           </button>
         </div>
       </div>
-      <!--      СПИСОК НОВОСТЕЙ-->
+      <!--СПИСОК НОВОСТЕЙ-->
       <hr />
       <div class=" news-lists container pd-x-0 pd-lg-x-10 pd-xl-x-0">
         <div class="media d-block d-lg-flex">
           <div class="media-body">
             <div class="timeline-group tx-13">
-              <div class="timeline-label">Today</div>
+              <div class="timeline-label">Сегодня</div>
               <div class="timeline-item">
                 <div class="timeline-time">10:30pm</div>
                 <div class="timeline-body">
@@ -51,7 +51,7 @@
                 </div>
                 <!-- timeline-body -->
               </div>
-              <!-- timeline-item -->
+
               <div class="timeline-item">
                 <div class="timeline-time">08:15pm</div>
                 <div class="timeline-body">
@@ -78,7 +78,7 @@
                 </div>
                 <!-- timeline-body -->
               </div>
-              <!-- timeline-item -->
+
               <div class="timeline-item">
                 <div class="timeline-time">03:30pm</div>
                 <div class="timeline-body">
@@ -102,8 +102,8 @@
                 </div>
                 <!-- timeline-body -->
               </div>
-              <!-- timeline-item -->
-              <div class="timeline-label">Yesterday</div>
+
+              <div class="timeline-label">Вчера</div>
               <div class="timeline-item">
                 <div class="timeline-time">06:30pm</div>
                 <div class="timeline-body">
@@ -142,7 +142,7 @@
                 </div>
                 <!-- timeline-body -->
               </div>
-              <!-- timeline-item -->
+
               <div class="timeline-item">
                 <div class="timeline-time">01:15pm</div>
                 <div class="timeline-body">
@@ -163,8 +163,8 @@
                 </div>
                 <!-- timeline-body -->
               </div>
-              <!-- timeline-item -->
-              <div class="timeline-label">March 21, 2019</div>
+
+              <div class="timeline-label">Март 12, 2020</div>
               <div class="timeline-item">
                 <div class="timeline-time">11:45am</div>
                 <div class="timeline-body">
@@ -201,9 +201,7 @@
                 </div>
                 <!-- timeline-body -->
               </div>
-              <!-- timeline-item -->
             </div>
-            <!-- timeline-group -->
           </div>
         </div>
       </div>

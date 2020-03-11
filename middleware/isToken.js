@@ -3,17 +3,17 @@ export default async ({ app, store, redirect }) => {
   if (token) {
     app.$api.setToken(token)
     const authApi = app.$api.getApi('auth')
-
-    authApi
-      .getUserProfile()
-      .then(async ({ data }) => {
-        if (!data.error && data.user) {
-          await store.dispatch('login', { user: data.user, token })
-          return redirect('/index')
-        }
-      })
-      .catch(() => false)
+    try {
+      const data = await authApi.getUserProfile()
+      if (!data.error && data.user) {
+        await store.dispatch('login', { user: data.user, token })
+        redirect('/')
+        return true
+      }
+    } catch (e) {
+      await store.dispatch('logout')
+      return false
+    }
   }
-  await store.dispatch('logout')
   return false
 }

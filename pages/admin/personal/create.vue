@@ -6,16 +6,17 @@
       <div>
         <h4 class="mg-b-0 tx-spacing--1 mg-b-7">Персонал</h4>
         <b-button-group>
-          <b-button variant="primary">
+          <b-button
+            @click="go('/admin/personal')"
+            to="personal.index"
+            variant="primary"
+          >
             <i class=" fal fa-users" />
             Список персоналов
           </b-button>
-          <b-button variant="success">
-            <i class=" fal fa-user-plus" />
-            Добавление персонала
-          </b-button>
         </b-button-group>
       </div>
+
       <div class=" d-sm-block d-lg-block d-md-block"></div>
     </div>
     <b-row class="mg-t-20 row-xs">
@@ -109,5 +110,11 @@
   </div>
 </template>
 <script>
-export default {}
+export default {
+  methods: {
+    go(link) {
+      this.$router.push({ path: link })
+    }
+  }
+}
 </script>

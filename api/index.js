@@ -8,6 +8,31 @@ class Api {
     }
   }
 
+  req(req, { params, data }) {
+    return this.context.$axios({
+      method: req.method,
+      url: req.url,
+      params,
+      data
+    })
+  }
+
+  get(url, params) {
+    return this.context.$axios.$get(url, { params })
+  }
+
+  put(url, params) {
+    return this.context.$axios.$put(url, params)
+  }
+
+  post(url, params) {
+    return this.context.$axios.$post(url, params)
+  }
+
+  delete(url, params) {
+    return this.context.$axios.$delete(url, { params })
+  }
+
   getApi(name) {
     return this.apiServices[name]
   }

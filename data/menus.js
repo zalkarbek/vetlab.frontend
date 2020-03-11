@@ -11,26 +11,62 @@ export default [
   {
     _t: 'menu.admin',
     text: 'Администратор',
-    type: 'children',
+    type: 'flex',
     class: '',
     icon: '',
     active: false,
     children: [
       {
-        _t: 'menu.personal.index',
-        text: 'Список Персоналов',
         class: '',
-        icon: '',
-        active: false,
-        to: '/admin/personal/index'
-      },
-      {
-        _t: 'menu.personal.add',
-        text: 'Добавить персонал',
-        class: '',
-        icon: '',
-        active: false,
-        to: '/admin/personal/create'
+        flex: [
+          {
+            _t: 'menu.spravka',
+            text: 'Справочник',
+            class: '',
+            items: [
+              {
+                _t: 'menu.personal.index',
+                text: 'персонал',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/admin/personal'
+              },
+              {
+                _t: 'menu.mera.index',
+                text: 'меры',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/admin/mera'
+              },
+              {
+                _t: 'menu.otdelenia.index',
+                text: 'название отделении',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/admin/otdelenia'
+              },
+              {
+                _t: 'menu.region_type',
+                text: 'типы регионов',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/admin/region-type'
+              },
+              {
+                _t: 'menu.regions.index',
+                text: 'регионы',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/admin/regions'
+              }
+            ]
+          }
+        ]
       }
     ]
   },

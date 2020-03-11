@@ -14,19 +14,15 @@
         Авторизация
       </template>
     </v-login-panel>
-    <!--    NEWS PANEL-->
-    <v-news-panel />
   </div>
 </template>
 <script>
 import LoginPanel from '~/components/LoginPanel.vue'
-import NewsPanel from '~/components/NewsPanel.vue'
 
 export default {
   middleware: ['isToken'],
   components: {
-    'v-login-panel': LoginPanel,
-    'v-news-panel': NewsPanel
+    'v-login-panel': LoginPanel
   },
   layout: 'LoginLayout',
   mounted() {
