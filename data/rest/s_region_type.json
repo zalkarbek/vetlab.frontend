@@ -1,5 +1,5 @@
 {
-  "modelName": "s_otdelenia",
+  "modelName": "s_region_type",
   "rest": {
     "fields": {
       "method": "GET",
@@ -7,19 +7,19 @@
     },
     "all": {
       "method": "GET",
-      "url": "api/v1/otdelenia/all"
+      "url": "api/v1/regions/types"
     },
     "create": {
       "method": "POST",
-      "url": "api/v1/otdelenia/create"
+      "url": "api/v1/regions/types/create"
     },
     "update": {
       "method": "PUT",
-      "url": "api/v1/otdelenia/update"
+      "url": "api/v1/regions/types/update"
     },
     "destroy": {
       "method": "DELETE",
-      "url": "api/v1/otdelenia/destroy"
+      "url": "api/v1/regions/types/destroy"
     }
   },
   "fields": [

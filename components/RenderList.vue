@@ -61,10 +61,21 @@ export default {
       return this.records
     },
     fields() {
+      const id = {
+        key: 'id',
+        label: this.$t('form.field.id')
+      }
+      const actions = {
+        key: 'actions',
+        label: '#'
+      }
       const list = this.restData.fields.map((item) => {
-        return item.field
+        return {
+          key: item.key,
+          label: this.$t(`form.label.${item.key}`)
+        }
       })
-      return [...list, 'actions']
+      return [id, ...list, actions]
     }
   },
 

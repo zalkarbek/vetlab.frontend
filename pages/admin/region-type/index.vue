@@ -36,7 +36,7 @@
 <script>
 import createAndUpdateForm from '~/components/RESTCreateAndUpdateForm'
 import list from '~/components/RenderList'
-import restData from '~/data/rest/s_mera.json'
+import restData from '~/data/rest/s_region_type.json'
 
 export default {
   components: {

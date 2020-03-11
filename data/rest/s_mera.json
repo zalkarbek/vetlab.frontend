@@ -1,6 +1,5 @@
 {
   "modelName": "s_mera",
-  "title": "s_mera.title",
   "rest": {
     "fields": {
       "method": "GET",
@@ -26,15 +25,15 @@
   "fields": [
     {
       "type": "text",
-      "field": "i18n"
+      "key": "i18n"
     },
     {
       "type": "text",
-      "field": "name"
+      "key": "name"
     },
     {
       "type": "text",
-      "field": "shortName"
+      "key": "shortName"
     }
   ]
 }

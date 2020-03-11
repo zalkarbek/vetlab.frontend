@@ -4,19 +4,17 @@
     <div class="form-row">
       <template v-for="form in modelData.fields">
         <div
-          :key="form.field"
+          :key="form.key"
           class="form-group col-sm-12 col-md-4 col-xs-12 col-lg-2 mg-lg-r-50 mg-xl-r-60"
         >
-          <label :for="`${modelData.modelName}_${form.field}_id`">
-            {{ $t(`${modelData.modelName}.label.${form.field}`) }}
+          <label :for="`${modelData.modelName}_${form.key}_id`">
+            {{ $t(`form.label.${form.key}`) }}
           </label>
           <input
-            :id="`${modelData.modelName}_${form.field}_id`"
-            v-model.trim="recordItem[form.field]"
+            :id="`${modelData.modelName}_${form.key}_id`"
+            v-model.trim="recordItem[form.key]"
             :type="form.type"
-            :placeholder="
-              $t(`${modelData.modelName}.placeholder.${form.field}`)
-            "
+            :placeholder="$t(`form.placeholder.${form.key}`)"
             class="form-control"
           />
         </div>

@@ -49,7 +49,7 @@ export default [
                 to: '/admin/otdelenia'
               },
               {
-                _t: 'menu.region_type',
+                _t: 'menu.region_type.index',
                 text: 'типы регионов',
                 class: '',
                 icon: '',

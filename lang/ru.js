@@ -8,20 +8,23 @@ export default {
     clear: 'очистить',
     update: 'обновить',
 
+    field: {
+      id: 'id'
+    },
     label: {
       name: 'название',
       shortName: 'короткое навание',
       i18n: 'ключ для локализации'
     },
     placeholder: {
-      name: '(кг, гр, мл, л)',
+      name: 'название обьека',
       shortName: 'короткое название',
       i18n: 'ключ мультиязычности'
     }
   },
 
   s_mera: {
-    title: 'мера измерения',
+    title: 'мера',
     add: 'добавление',
     label: {
       name: 'название',
@@ -34,10 +37,13 @@ export default {
       i18n: 'ключ мультиязычности'
     }
   },
+  s_otdelenia: {
+    title: 'отделении'
+  },
 
   menu: {
     spravka: 'справочник',
-    admin: 'админы',
+    admin: 'админ',
     mera: {
       index: 'меры'
     },
@@ -50,7 +56,7 @@ export default {
       add: ''
     },
     otdelenia: {
-      index: 'название отделениий',
+      index: 'отделении',
       add: ''
     },
     doljnosti: {
@@ -87,7 +93,7 @@ export default {
     },
     personal: {
       add: 'Добавление персонала',
-      index: 'Персонал'
+      index: 'персонал'
     },
     home: 'Главная',
     direction: 'Направлении',
