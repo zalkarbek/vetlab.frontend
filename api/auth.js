@@ -4,7 +4,7 @@ export default ({ $axios }) => {
       return $axios.$post('api/v1/auth/user/login', payload)
     },
     getUserProfile() {
-      return $axios.$get('api/v1/user/profile')
+      return $axios.$get('api/v1/users/profile')
     }
   }
 }

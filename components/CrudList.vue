@@ -1,8 +1,8 @@
 <template>
   <div class="card card-body">
-    <h4>{{ $t('list', { name: $t(`${restData.modelName}.title`) }) }}</h4>
+    <h4>{{ $t('list', { name: $t(`${restName}.title`) }) }}</h4>
     <b-table
-      :items="recordsLists"
+      :items="recordItems"
       :fields="fields"
       striped
       responsive
@@ -40,7 +40,7 @@ export default {
     event: 'change'
   },
   props: {
-    restData: {
+    crudData: {
       type: Object,
       default() {
         return {}
@@ -57,8 +57,14 @@ export default {
     return {}
   },
   computed: {
-    recordsLists() {
+    recordItems() {
       return this.records
+    },
+    modelData() {
+      return this.crudData
+    },
+    restName() {
+      return this.modelData.restName
     },
     fields() {
       const id = {
@@ -69,7 +75,7 @@ export default {
         key: 'actions',
         label: '#'
       }
-      const list = this.restData.fields.map((item) => {
+      const list = this.modelData.fields.map((item) => {
         return {
           key: item.key,
           label: this.$t(`form.label.${item.key}`)
