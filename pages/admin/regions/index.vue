@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      crudDataName: 's_otdelenia'
+      crudDataName: 's_region'
     }
   },
   computed: {

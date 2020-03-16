@@ -7,11 +7,11 @@
           :key="form.key"
           class="form-group col-sm-12 col-md-4 col-xs-12 col-lg-2 mg-lg-r-50 mg-xl-r-60"
         >
-          <label :for="`${modelData.modelName}_${form.key}_id`">
+          <label :for="`${modelData.restName}_${form.key}_id`">
             {{ $t(`form.label.${form.key}`) }}
           </label>
           <input
-            :id="`${modelData.modelName}_${form.key}_id`"
+            :id="`${modelData.restName}_${form.key}_id`"
             v-model.trim="recordItem[form.key]"
             :type="form.type"
             :placeholder="$t(`form.placeholder.${form.key}`)"
@@ -44,7 +44,7 @@ export default {
     event: 'on-clear'
   },
   props: {
-    restData: {
+    crudData: {
       type: Object,
       default() {
         return {}
@@ -66,7 +66,7 @@ export default {
   },
   computed: {
     modelData() {
-      return this.restData
+      return this.crudData
     },
     recordItem() {
       return this.record

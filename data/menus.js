@@ -25,6 +25,62 @@ export default [
             class: '',
             items: [
               {
+                _t: 'menu.pokazatel.index',
+                text: 'определяемый показатель',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/admin/pokazatel'
+              },
+              {
+                _t: 'menu.metod.index',
+                text: 'метод исследование',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/admin/metod'
+              },
+              {
+                _t: 'menu.material_type.index',
+                text: 'тип материалов',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/admin/material-type'
+              },
+              {
+                _t: 'menu.material_animal_type.index',
+                text: 'вид животных',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/admin/material-animal-type'
+              },
+              {
+                _t: 'menu.bolezn.index',
+                text: 'болезни',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/admin/bolezn'
+              },
+              {
+                _t: 'menu.doljnost.index',
+                text: 'должности',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/admin/doljnost'
+              },
+              {
+                _t: 'menu.material.index',
+                text: 'материалы',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/admin/material'
+              },
+              {
                 _t: 'menu.personal.index',
                 text: 'персонал',
                 class: '',
