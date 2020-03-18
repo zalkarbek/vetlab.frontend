@@ -68,7 +68,8 @@ export default {
     '~/plugins/pouchdb.js',
     '~/plugins/axios.js',
     '~/plugins/dashboard.js',
-    '~/plugins/socket'
+    '~/plugins/socket',
+    '~/plugins/vue-select'
   ],
   /*
    ** Nuxt.js dev-modules

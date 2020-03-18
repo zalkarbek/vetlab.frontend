@@ -3,6 +3,8 @@ import baseApiRoutes from './baseApiRoutes'
 const restName = 's_region'
 // Превикс API маршрута
 const routePrefix = 'regions'
+// Имя набор данных которые хранится в vuex
+const datasetName = 'regions'
 
 // базовые машрутры для всех api
 const baseApi = baseApiRoutes({ routePrefix })
@@ -10,6 +12,7 @@ const baseApi = baseApiRoutes({ routePrefix })
 export default {
   restName,
   routePrefix,
+  datasetName,
   rest: {
     ...baseApi
   },
@@ -30,14 +33,16 @@ export default {
     {
       type: 'select',
       key: 'sRegionTypeId',
-      foreign: 's_region_type',
+      foreign_crud: 's_region_type',
+      foreign_dataset: 'regionTypes',
       foreign_label: 'name',
       foreign_value: 'id'
     },
     {
       type: 'autocomplete',
       key: 'parentId',
-      foreign: 's_regions',
+      foreign_crud: 's_region',
+      foreign_dataset: 'regions',
       foreign_label: 'name',
       foreign_value: 'id'
     }

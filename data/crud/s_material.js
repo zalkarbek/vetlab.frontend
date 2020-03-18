@@ -3,6 +3,8 @@ import baseApiRoutes from './baseApiRoutes'
 const restName = 's_material'
 // Превикс API маршрута
 const routePrefix = 'material'
+// Имя набор данных которые хранится в vuex
+const datasetName = 'materials'
 
 // базовые машрутры для всех api
 const baseApi = baseApiRoutes({ routePrefix })
@@ -10,6 +12,7 @@ const baseApi = baseApiRoutes({ routePrefix })
 export default {
   restName,
   routePrefix,
+  datasetName,
   rest: {
     ...baseApi
   },
@@ -30,14 +33,16 @@ export default {
     {
       type: 'autocomplete',
       key: 'sMaterialTypeId',
-      foreign: 's_material_type',
+      foreign_crud: 's_material_type',
+      foreign_dataset: 'materialTypes',
       foreign_label: 'name',
       foreign_value: 'id'
     },
     {
       type: 'select',
       key: 'sMaterialAnimalTypeId',
-      foreign: 's_material_animal_type',
+      foreign_crud: 's_material_animal_type',
+      foreign_dataset: 'materialAnimalTypes',
       foreign_label: 'name',
       foreign_value: 'id'
     },

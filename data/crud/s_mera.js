@@ -3,12 +3,15 @@ import baseApiRoutes from './baseApiRoutes'
 const restName = 's_mera'
 // Превикс API маршрута
 const routePrefix = 'mera'
+// Имя набор данных которые хранится в vuex
+const datasetName = 'mera'
 // базовые машрутры для всех api
 const baseApi = baseApiRoutes({ routePrefix })
 
 export default {
   restName,
   routePrefix,
+  datasetName,
   rest: {
     ...baseApi
   },

@@ -19,7 +19,8 @@ export default {
     placeholder: {
       name: 'название обьека',
       shortName: 'короткое название',
-      i18n: 'ключ мультиязычности'
+      i18n: 'ключ мультиязычности',
+      sRegionTypeId: 'тип региона'
     }
   },
 

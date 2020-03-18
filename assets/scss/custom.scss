@@ -1,6 +1,15 @@
+@import "variables";
+
 .cursor-pointer {
   cursor: pointer;
 }
 .footer-full-content {
   min-height: 100vh;
 }
+
+.vs__search {
+  padding: 5px 7px;
+
+  &::placeholder { color: $color-text-04; }
+}
+

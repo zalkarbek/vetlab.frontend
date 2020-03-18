@@ -41,6 +41,7 @@ export default {
           solid: true,
           append: true
         })
+        if (res.data && res.data.data) this.records.push(res.data.data)
       } catch (e) {
         const message =
           (e.response.data && e.response.data.message) || e.message
