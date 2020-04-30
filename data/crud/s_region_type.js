@@ -1,8 +1,9 @@
 import baseApiRoutes from './baseApiRoutes'
+import baseFields from '~/data/crud/baseFields'
 // Имя модели к которому привязан этот API
 const restName = 's_region_type'
 // Превикс API маршрута
-const routePrefix = 'region/type'
+const routePrefix = 'regions/type'
 // Имя набор данных которые хранится в vuex
 const datasetName = 'regionTypes'
 
@@ -17,18 +18,5 @@ export default {
     ...baseApi
   },
 
-  fields: [
-    {
-      type: 'text',
-      key: 'i18n'
-    },
-    {
-      type: 'text',
-      key: 'name'
-    },
-    {
-      type: 'text',
-      key: 'shortName'
-    }
-  ]
+  fields: [...baseFields]
 }

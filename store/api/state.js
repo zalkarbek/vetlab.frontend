@@ -1,36 +1,28 @@
 import crud from '~/data/crud'
-const keys = Object.keys(crud)
+import inputMask from '~/data/input-mask'
+import fieldTypes from '~/data/fieldTypes'
+import datasetNamesList from '~/data/dataset'
+
+const crudKeys = Object.keys(crud)
 const dataset = {}
 const datasetNames = []
 
-keys.forEach((key) => {
+crudKeys.forEach((key) => {
   const datasetName = crud[key].datasetName
   dataset[datasetName] = []
   datasetNames.push(datasetName)
+})
+
+datasetNamesList.forEach((key) => {
+  datasetNames.push(key)
+  dataset[key] = []
 })
 
 export default () => ({
   crud,
   dataset,
   datasetNames,
-  fieldTypes: [
-    'text',
-    'number',
-    'textarea',
-    'date',
-    'email',
-
-    'select',
-    'multi_select',
-    'autocomplete',
-
-    'select:preload',
-    'multi_select:preload',
-    'autocomplete:preload',
-
-    'select:search',
-    'multi_select:search',
-    'autocomplete:search',
-    'tag'
-  ]
+  database: {},
+  fieldTypes,
+  inputMask
 })

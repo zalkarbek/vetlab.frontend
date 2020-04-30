@@ -1,8 +1,4 @@
 class Maker {
-  constructor() {
-    this.name = 'maker'
-  }
-
   static makeDateId() {
     return Date.now().toString(36)
   }

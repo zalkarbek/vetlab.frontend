@@ -1,7 +1,7 @@
 import guestSocket from './guest/guest.socket'
 import io from 'socket.io-client'
 
-class Handler {
+class SocketHandler {
   constructor(host) {
     // socket сервер
     this.host = host
@@ -64,5 +64,5 @@ class Handler {
 }
 
 export default ({ host }) => {
-  return new Handler(host)
+  return new SocketHandler(host)
 }

@@ -9,7 +9,12 @@
 
 .vs__search {
   padding: 5px 7px;
-
   &::placeholder { color: $color-text-04; }
 }
-
+.hover-size-24 {
+  transition: font-size 0.3s;
+}
+.hover-size-24:hover {
+  font-size: 24px;
+  color: $pink
+}

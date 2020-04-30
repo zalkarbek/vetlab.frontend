@@ -1,4 +1,5 @@
 import baseApiRoutes from './baseApiRoutes'
+import baseFields from '~/data/crud/baseFields'
 // Имя модели к которому привязан этот API
 const restName = 's_bolezn'
 // Превикс API маршрута
@@ -17,18 +18,16 @@ export default {
     ...baseApi
   },
 
-  fields: [
-    {
-      type: 'text',
-      key: 'i18n'
-    },
-    {
-      type: 'text',
-      key: 'name'
-    },
-    {
-      type: 'text',
-      key: 'shortName'
-    }
-  ]
+  fields: [...baseFields]
 }
+// {
+//   type: 'select',
+//   key: '',
+//   foreign_crud: '',
+//   foreign_dataset: '',
+//   foreign_label: '',
+//   foreign_value: '',
+//   foreign_attributes: ['', ''],
+//   disabled: false,
+//   hidden: false
+// }

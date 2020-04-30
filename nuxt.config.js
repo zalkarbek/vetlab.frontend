@@ -48,7 +48,7 @@ export default {
    ** Global CSS
    */
   css: [
-    '@/assets/scss/dash.scss',
+    '@/assets/scss/index.scss',
     '@/assets/fonts/fontawesome-pro/scss/fontawesome.scss',
     '@/assets/fonts/fontawesome-pro/scss/duotone.scss',
     '@/assets/fonts/fontawesome-pro/scss/light.scss',
@@ -69,7 +69,13 @@ export default {
     '~/plugins/axios.js',
     '~/plugins/dashboard.js',
     '~/plugins/socket',
-    '~/plugins/vue-select'
+    '~/plugins/vue-select',
+    '~/plugins/vue-multiselect',
+    '~/plugins/vue-suggest',
+    '~/plugins/vue-calendar',
+    '~/plugins/vue-datepicker',
+    '~/plugins/global-methods',
+    '~/plugins/vue-imask'
   ],
   /*
    ** Nuxt.js dev-modules
@@ -116,6 +122,9 @@ export default {
     defaultLocale: 'ru',
     lazy: true,
     langDir: 'lang/',
+    vueI18n: {
+      silentTranslationWarn: true
+    },
     locales: [
       {
         code: 'en',

@@ -1,4 +1,5 @@
 import baseApiRoutes from './baseApiRoutes'
+import baseFields from '~/data/crud/baseFields'
 // Имя модели к которому привязан этот API
 const restName = 's_material_type'
 // Превикс API маршрута
@@ -17,18 +18,5 @@ export default {
     ...baseApi
   },
 
-  fields: [
-    {
-      type: 'text',
-      key: 'i18n'
-    },
-    {
-      type: 'text',
-      key: 'name'
-    },
-    {
-      type: 'text',
-      key: 'shortName'
-    }
-  ]
+  fields: [...baseFields]
 }

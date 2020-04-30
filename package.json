@@ -35,17 +35,26 @@
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "moment-duration-format": "^2.3.2",
+    "nedb": "^1.8.0",
     "nuxt": "^2.10.2",
     "nuxt-i18n": "^6.4.1",
     "perfect-scrollbar": "^1.4.0",
     "portal-vue": "^2.1.6",
     "pouchdb": "^7.1.1",
+    "pouchdb-find": "^7.2.1",
     "socket.io-client": "^2.3.0",
     "uuid": "^3.3.3",
+    "v-calendar": "^1.0.0-beta.23",
+    "v-dropdown": "^2.1.1",
+    "v-suggest": "^2.2.0",
     "vue": "latest",
     "vue-chartjs": "^3.5.0",
     "vue-i18n": "^8.15.1",
-    "vue-select": "^3.9.1"
+    "vue-imask": "^6.0.3",
+    "vue-multiselect": "^2.1.6",
+    "vue-select": "^3.9.1",
+    "vue2-datepicker": "^3.4.1",
+    "vuex": "latest"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",
@@ -59,6 +68,8 @@
     "lint-staged": "^8.2.1",
     "node-sass": "^4.13.0",
     "prettier": "^1.16.4",
-    "sass-loader": "^8.0.0"
+    "sass-loader": "^8.0.0",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2"
   }
 }

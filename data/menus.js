@@ -1,7 +1,7 @@
 export default [
   {
     _t: 'menu.home',
-    text: 'Главная',
+    text: 'главная',
     type: 'single',
     class: '',
     icon: '',
@@ -9,8 +9,8 @@ export default [
     to: '/'
   },
   {
-    _t: 'menu.admin',
-    text: 'Администратор',
+    _t: 'menu.spravka',
+    text: 'справочник',
     type: 'flex',
     class: '',
     icon: '',
@@ -25,44 +25,20 @@ export default [
             class: '',
             items: [
               {
-                _t: 'menu.pokazatel.index',
-                text: 'определяемый показатель',
-                class: '',
-                icon: '',
-                active: false,
-                to: '/admin/pokazatel'
-              },
-              {
-                _t: 'menu.metod.index',
-                text: 'метод исследование',
-                class: '',
-                icon: '',
-                active: false,
-                to: '/admin/metod'
-              },
-              {
-                _t: 'menu.material_type.index',
-                text: 'тип материалов',
-                class: '',
-                icon: '',
-                active: false,
-                to: '/admin/material-type'
-              },
-              {
-                _t: 'menu.material_animal_type.index',
-                text: 'вид животных',
-                class: '',
-                icon: '',
-                active: false,
-                to: '/admin/material-animal-type'
-              },
-              {
                 _t: 'menu.bolezn.index',
                 text: 'болезни',
                 class: '',
                 icon: '',
                 active: false,
-                to: '/admin/bolezn'
+                to: '/spravka/bolezn'
+              },
+              {
+                _t: 'menu.mera.index',
+                text: 'мера измерения',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/spravka/mera'
               },
               {
                 _t: 'menu.doljnost.index',
@@ -70,39 +46,55 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/admin/doljnost'
+                to: '/spravka/doljnost'
+              },
+              {
+                _t: 'menu.material_animal_type.index',
+                text: 'вид животных',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/spravka/material-animal-type'
+              },
+              {
+                _t: 'menu.material_type.index',
+                text: 'тип материалов',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/spravka/material-type'
               },
               {
                 _t: 'menu.material.index',
-                text: 'материалы',
+                text: 'исследуемые материалы',
                 class: '',
                 icon: '',
                 active: false,
-                to: '/admin/material'
+                to: '/spravka/material'
               },
               {
-                _t: 'menu.personal.index',
-                text: 'персонал',
+                _t: 'menu.pokazatel.index',
+                text: 'определяемые показатели',
                 class: '',
                 icon: '',
                 active: false,
-                to: '/admin/personal'
+                to: '/spravka/pokazatel'
               },
               {
-                _t: 'menu.mera.index',
-                text: 'меры',
+                _t: 'menu.metod.index',
+                text: 'методы исследование',
                 class: '',
                 icon: '',
                 active: false,
-                to: '/admin/mera'
+                to: '/spravka/metod'
               },
               {
                 _t: 'menu.otdelenia.index',
-                text: 'название отделении',
+                text: 'наименование отделении',
                 class: '',
                 icon: '',
                 active: false,
-                to: '/admin/otdelenia'
+                to: '/spravka/otdelenia'
               },
               {
                 _t: 'menu.region_type.index',
@@ -110,7 +102,7 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/admin/region-type'
+                to: '/spravka/region-type'
               },
               {
                 _t: 'menu.regions.index',
@@ -118,7 +110,59 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/admin/regions'
+                to: '/spravka/regions'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        class: '',
+        flex: [
+          {
+            _t: 'menu.divider',
+            text: '#',
+            class: '',
+            items: [
+              {
+                _t: 'menu.personal.index',
+                text: 'персонал',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/spravka/personal'
+              },
+              {
+                _t: 'menu.departments.index',
+                text: 'департамент',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/spravka/departments'
+              },
+              {
+                _t: 'menu.otdel.index',
+                text: 'отделы',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/spravka/otdel'
+              },
+              {
+                _t: 'menu.sub_otdel.index',
+                text: 'под отделы',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/spravka/subOtdel'
+              },
+              {
+                _t: 'menu.plan_raboty.index',
+                text: 'план работы',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/spravka/planRaboty'
               }
             ]
           }
@@ -133,11 +177,11 @@ export default [
     class: '',
     icon: '',
     active: false,
-    to: '/'
+    to: '/napravlenie'
   },
   {
-    _t: 'menu.departments',
-    text: 'Отделения',
+    _t: 'menu.epidemiology.index',
+    text: 'исследование',
     type: 'flex',
     class: '',
     icon: '',
@@ -147,41 +191,41 @@ export default [
         class: '',
         flex: [
           {
-            _t: 'departments.epidemiology',
-            text: 'Эпидемиология',
+            _t: 'menu.divider',
+            text: '#',
             class: '',
             items: [
               {
-                _t: 'menu.direction',
+                _t: 'menu.napravlenie.index',
                 text: 'Направление',
                 class: '',
                 icon: '',
                 to: '/'
               },
               {
-                _t: 'menu.reportsResult',
-                text: 'Заключение',
-                class: '',
-                icon: '',
-                to: '/'
-              }
-            ]
-          },
-          {
-            _t: 'departments.bacteriology',
-            text: 'Бактериология',
-            class: 'mg-t-20',
-            items: [
-              {
-                _t: 'menu.direction',
-                text: 'Направление',
+                _t: 'menu.isledovanie.index',
+                text: 'Исследование',
                 class: '',
                 icon: '',
                 to: '/'
               },
               {
-                _t: 'menu.reportsResult',
+                _t: 'menu.protocol_isledovanie.index',
                 text: 'Заключение',
+                class: '',
+                icon: '',
+                to: '/'
+              },
+              {
+                _t: 'menu.proby_isledovanie.index',
+                text: 'пробы на исследовании',
+                class: '',
+                icon: '',
+                to: '/'
+              },
+              {
+                _t: 'menu.proby_postup.index',
+                text: 'поступившие пробы',
                 class: '',
                 icon: '',
                 to: '/'

@@ -13,17 +13,102 @@ export default {
     },
     label: {
       name: 'название',
+      fullName: 'ФИО',
       shortName: 'короткое навание',
-      i18n: 'ключ для локализации'
+      i18n: 'ключ для локализации',
+      sort: 'сортировка',
+      search: 'поиск',
+      search_on: 'поиск по',
+      filter: 'фильтр',
+      filter_on: 'фильтр по',
+      per_page: 'количество',
+      clear: 'очистка',
+      address: 'адрес',
+      phone_1: 'телефон 1',
+      regionFullText: 'Полный адрес',
+      sMaterialTypeId: 'Вид материала',
+      sMaterialAnimalTypeId: 'вид животного',
+      sMaterialColor: 'цвет материала',
+      sRegionTypeId: 'вид региона',
+      regionParentAutocomplete: 'входит в состав',
+      departmentId: 'департамент',
+      planCount: 'количество по плану',
+      planKv: 'квартал',
+      planYear: 'год плана',
+      regionJSON: 'адрес',
+      regionFullPath: 'полный адрес',
+      departmentDataJSON: 'Дополнительная информация о департамента',
+      sOtdeleniaId: 'принадлежит к группе отдела',
+      otdelId: 'Принадлежит к отделу',
+      opPokazatelId: 'Определяемый показатель',
+      probyNapravilJSON: 'Пробу направил',
+      probyDostavilJSON: 'Пробу доставил',
+      ownerJSON: 'Владелец пробы',
+      mestoOtboraRegionJSON: 'Место отбора пробы',
+      kemOtobranJSON: 'Кем отобран',
+      lechenieInfo: 'Сведение о лечении',
+      sMaterialId: 'Проба материал',
+      materialCount: 'Количество проб (материал)',
+      sMeraId: 'Мера измерения',
+      vozrast: 'Возраст животного',
+      dateZabolivanie: 'Дата заболивания животного',
+      dateZaboya: 'Дата забоя',
+      dateOtbora: 'Дата отбора проб',
+      dateDostavki: 'Дата доставки пробы'
     },
     placeholder: {
-      name: 'название обьека',
+      name: 'название обьекта',
+      fullName: 'ФИО',
       shortName: 'короткое название',
       i18n: 'ключ мультиязычности',
-      sRegionTypeId: 'тип региона'
+      sRegionTypeId: 'вид региона',
+      sort: 'сортировка по выбранному поле',
+      search: 'поле для поиска',
+      search_on: 'поиск по',
+      filter: 'поле для фильтра',
+      filter_on: 'фильтр по',
+      per_page: 'количество',
+      address: 'адрес',
+      phone_1: 'телефон',
+      sMaterialTypeId: 'вид матриала',
+      sMaterialAnimalTypeId: '(КРС, МРС, собаки, кошки)',
+      sMaterialColor: 'цвет матриала',
+      departmentId: 'департамент',
+      planCount: 'количество по плану',
+      planKv: 'какой квартал',
+      planYear: 'выберите год плана',
+      regionJSON: 'регион обьекта',
+      regionFullPath: 'полный адрес',
+      departmentDataJSON: 'информация о департамента',
+      sOtdeleniaId: 'название группы отдела',
+      otdelId: 'выберите отдел'
+    },
+    description: {
+      sort: 'сортировка по выбранному поле',
+      search: 'поле для поиска данных',
+      search_on: 'поиск по выбранным полям',
+      filter: 'фильтры по текущим данным',
+      filter_on: 'фильтры по выбранным полям',
+      per_page: 'количество элементов на странице',
+      address: 'адрес нахождения обьекта',
+      phone_1: 'телефонный номер',
+      sMaterialTypeId: 'Кал, Кровь, Мясо, Молочный продукт и.т.д',
+      sMaterialAnimalTypeId: '(КРС, МРС, собаки, кошки)',
+      sMaterialColor: 'красный, белый, черный',
+      sRegionTypeId: 'село, район, область',
+      regionParentAutocomplete: 'родительский регион',
+      departmentId: 'департамент',
+      planCount: 'планируемое количество исследовании по плану',
+      planKv: 'к какому кварталу принадлежит план',
+      planYear: 'год плана',
+      regionJSON: 'регион обьекта',
+      regionFullPath: 'полный адрес: Область, район, село',
+      departmentDataJSON: 'дополнительная информатция о департамента',
+      sOtdeleniaId: 'биохимия, паразитология',
+      otdelId: 'Родительский отдел',
+      vozrast: 'Если материал животного произ хождения то сколько ему лет'
     }
   },
-
   s_mera: {
     title: 'мера',
     add: 'добавление',
@@ -39,17 +124,60 @@ export default {
     }
   },
   s_otdelenia: {
-    title: 'отделении'
+    title: 'Наименование отделении'
+  },
+  s_material: {
+    title: 'Исследуемые материалы'
+  },
+  s_bolezn: {
+    title: 'Болезни'
+  },
+  s_doljnost: {
+    title: 'Должности'
+  },
+  s_material_type: {
+    title: 'Вид материалов'
+  },
+  s_material_animal_type: {
+    title: 'Виды животных'
+  },
+  s_metod: {
+    title: 'Методы исследовании'
+  },
+  s_pokazatel: {
+    title: 'Определяемые показатели'
+  },
+  s_region: {
+    title: 'Регионы'
+  },
+  s_region_type: {
+    title: 'Вид региона'
+  },
+  napravlenie: {
+    title: 'Направление'
+  },
+  otdel: {
+    title: 'Отдел'
+  },
+  planRaboty: {
+    title: 'План работы'
+  },
+  pos_material: {
+    title: 'Поступившие материалы'
+  },
+  subOtdel: {
+    title: 'Под отдел'
   },
 
   menu: {
     spravka: 'справочник',
+    divider: '#######',
     admin: 'админ',
     mera: {
       index: 'меры'
     },
     region_type: {
-      index: 'типы регионов',
+      index: 'вид регионов',
       add: ''
     },
     regions: {
@@ -57,23 +185,23 @@ export default {
       add: ''
     },
     otdelenia: {
-      index: 'отделении',
+      index: 'наименование отделении',
       add: ''
     },
-    doljnosti: {
+    doljnost: {
       index: 'должности',
       add: ''
     },
-    bolezni: {
+    bolezn: {
       index: 'болезни',
       add: ''
     },
-    pokazately: {
-      index: 'определяемых показателей',
+    pokazatel: {
+      index: 'определяемый показатель',
       add: ''
     },
-    materialy_type: {
-      index: 'типы материалов',
+    material_type: {
+      index: 'вид материалов',
       add: ''
     },
     material_animal_class: {
@@ -84,30 +212,69 @@ export default {
       index: 'вид животных',
       add: ''
     },
-    materialy: {
+    material: {
       index: 'исследуемые материалы',
       add: ''
     },
-    metod_isledovanie: {
-      index: 'метод ииследование',
+    metod: {
+      index: 'методы ииследование',
       add: ''
     },
     personal: {
       add: 'Добавление персонала',
       index: 'персонал'
     },
-    home: 'Главная',
-    direction: 'Направлении',
-    departments: 'Отделы',
-    reports: 'Отчеты',
-    reportsResult: 'Заключение',
-    reportPlanOfRegion: 'Планы по регионам',
-    news: 'Новости',
-    profile: 'Профиль',
-    workers: 'Сотрудники',
-    contacts: 'Контакты',
-    chat: 'Чат',
-    form4Tiny: 'Форма4(компакт)'
+    otdel: {
+      index: 'отделы',
+      add: ''
+    },
+    sub_otdel: {
+      index: 'под отделы',
+      add: ''
+    },
+    departments: {
+      index: 'департамент',
+      add: ''
+    },
+    plan_raboty: {
+      index: 'план работы',
+      add: ''
+    },
+    isledovanie: {
+      index: 'исследование',
+      add: ''
+    },
+    analysis: {
+      index: 'анализ',
+      add: ''
+    },
+    protocol_isledovanie: {
+      index: 'заключение',
+      add: ''
+    },
+    proby_isledovanie: {
+      index: 'пробы на исследовании'
+    },
+    proby_postup: {
+      index: 'поступившие пробы'
+    },
+    epidemiology: {
+      index: 'эпидемиология'
+    },
+    napravlenie: {
+      index: 'направление'
+    },
+    home: 'главная',
+    direction: 'направлении',
+    reports: 'отчеты',
+    reportsResult: 'заключение',
+    reportPlanOfRegion: 'планы по регионам',
+    news: 'новости',
+    profile: 'профиль',
+    workers: 'сотрудники',
+    contacts: 'контакты',
+    chat: 'чат',
+    form4Tiny: 'форма4(компакт)'
   },
 
   count: 'Количество',
