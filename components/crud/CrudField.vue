@@ -4,7 +4,6 @@
     <template v-if="!form.disabled && form.type === fieldTypes.text">
       <input
         v-model.trim="formValue"
-        :id="id || defaultId(form)"
         :placeholder="placeholder || defaultPlaceholder(form)"
         type="text"
         class="form-control"
@@ -16,7 +15,6 @@
     <template v-if="!form.disabled && form.type === fieldTypes.textarea">
       <b-form-textarea
         v-model.trim="formValue"
-        :id="id || defaultId(form)"
         :placeholder="placeholder || defaultPlaceholder(form)"
         class="form-control"
       ></b-form-textarea>
@@ -27,7 +25,6 @@
     <template v-else-if="!form.disabled && form.type === fieldTypes.number">
       <input
         v-model.trim="formValue"
-        :id="id || defaultId(form)"
         :placeholder="placeholder || defaultPlaceholder(form)"
         type="number"
         class="form-control"
@@ -40,11 +37,10 @@
       <v-select
         v-model.trim="formValue"
         :reduce="(item) => item[form.foreign_value]"
-        :id="id || defaultId(form)"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :label="form.foreign_label"
         :options="datasetList[form.foreign_dataset]"
-        @search:focus="getLoadDataSet(form)"
+        @search:focus="storageLoadDataSet(form)"
       />
     </template>
     <!-- -----------------------/ FORM SELECT /----------------------- -->
@@ -56,11 +52,10 @@
       <v-select
         v-model.trim="formValue"
         :reduce="(item) => item[form.foreign_value]"
-        :id="id || defaultId(form)"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :label="form.foreign_label"
         :options="localDatasetList[form.foreign_dataset]"
-        @search:focus="preload(form)"
+        @search:focus="localLoadDataset(form)"
       />
     </template>
     <!-- -----------------------/ FORM SELECT:PRELOAD /----------------------- -->
@@ -72,7 +67,6 @@
       <v-select
         v-model.trim="formValue"
         :reduce="(item) => item[form.foreign_value]"
-        :id="id || defaultId(form)"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :label="form.foreign_label"
         :options="searchDataset[form.foreign_dataset]"
@@ -87,13 +81,12 @@
       v-else-if="!form.disabled && form.type === fieldTypes.autocomplete"
     >
       <v-suggest
-        :id="id || defaultId(form)"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :data="datasetList[form.foreign_dataset]"
         :show-field="form.foreign_label"
         v-model="formValue"
         @values="(data) => onSelect(data, form)"
-        @focus="getLoadDataSet(form)"
+        @focus="storageLoadDataSet(form)"
         @clear="clear()"
       >
       </v-suggest>
@@ -107,13 +100,12 @@
       "
     >
       <v-suggest
-        :id="id || defaultId(form)"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :data="localDatasetList[form.foreign_dataset]"
         :show-field="form.foreign_label"
         v-model="formValue"
         @values="(data) => onSelect(data, form)"
-        @focus="preload(form)"
+        @focus="localLoadDataset(form)"
         @clear="clear()"
       >
       </v-suggest>
@@ -125,7 +117,6 @@
       v-else-if="!form.disabled && form.type === fieldTypes.autocomplete_search"
     >
       <v-suggest
-        :id="id || defaultId(form)"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :data="searchDataset[form.foreign_dataset]"
         :show-field="form.foreign_label"
@@ -144,12 +135,11 @@
     >
       <multiselect
         v-model.trim="formValue"
-        :id="id || defaultId(form)"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :options="datasetList[form.foreign_dataset]"
         :label="form.foreign_label"
         :value="form.foreign_value"
-        @open="getLoadDataSet(form)"
+        @open="storageLoadDataSet(form)"
         multiple
         track-by="name"
       />
@@ -164,12 +154,11 @@
     >
       <multiselect
         v-model.trim="formValue"
-        :id="id || defaultId(form)"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :options="localDatasetList[form.foreign_dataset]"
         :label="form.foreign_label"
         :value="form.foreign_value"
-        @open="preload(form)"
+        @open="localLoadDataset(form)"
         multiple
         track-by="name"
       />
@@ -179,7 +168,6 @@
     <template v-else-if="!form.disabled && form.type === fieldTypes.date">
       <v-date-picker
         v-model.trim="formValue"
-        :id="id || defaultId(form)"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :attributes="dateAttrs"
         :locale="{
@@ -194,7 +182,6 @@
     <template v-else-if="!form.disabled && form.type === fieldTypes.datetime">
       <v-datetime-picker
         v-model.trim="formValue"
-        :id="id || defaultId(form)"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :show-second="false"
         format="DD.MM.YYYY HH:mm"
@@ -295,9 +282,9 @@ export default {
         this.$emit('input', value)
       }
     },
-    defaultId() {
-      return (form) => `${this.crudData.restName}_${form.key}_${form.type}`
-    },
+    // defaultId() {
+    //   return (form) => `${this.crudData.restName}_${form.key}_${form.type}`
+    // },
     defaultPlaceholder() {
       return (form) => this.$t(`form.placeholder.${form.key}`)
     },
@@ -416,13 +403,12 @@ export default {
         })
         this.$set(this.searchDataset, field.foreign_dataset, data || [])
       } catch (e) {
-        console.error(e)
         this.$set(this.searchDataset, field.foreign_dataset, [])
       }
       loading(false)
     }, 500),
 
-    async getLoadDataSet({
+    async storageLoadDataSet({
       foreign_dataset: datasetName,
       foreign_crud: datasetCrud,
       foreign_crud_method: datasetCrudMethod,
@@ -439,7 +425,10 @@ export default {
     },
 
     // загружает предварительные данные в локальное хранилище компонента
-    async preload({ foreign_dataset: datasetName, foreign_crud: datasetCrud }) {
+    async localLoadDataset({
+      foreign_dataset: datasetName,
+      foreign_crud: datasetCrud
+    }) {
       if (
         !this.localDataset[datasetName] ||
         !this.localDataset[datasetName].length

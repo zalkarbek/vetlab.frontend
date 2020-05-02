@@ -12,7 +12,7 @@
             "
             :key="field.key"
             :sm="(field.col && field.col.sm) || 12"
-            :md="(field.col && field.col.md) || 4"
+            :md="(field.col && field.col.md) || 3"
             :xs="(field.col && field.col.xs) || 12"
             :lg="(field.col && field.col.lg) || 3"
             class="mg-lg-r-10 mg-xl-r-10"
@@ -45,7 +45,9 @@
             "
             cols="12"
           >
-            <h5 class="mg-b-10">{{ $t(`form.label.${field.key}`) }}</h5>
+            <h5 class="mg-b-10">
+              {{ $t(field.label || `form.label.${field.key}`) }}
+            </h5>
             <crud-field-json
               v-model="recordItem[field.key]"
               :field="field"
@@ -67,12 +69,73 @@
               {{ $t(`${foreignCrud.crudName}.title`) }} &nbsp;
               <button
                 @click="
-                  addNewObjectToDataArray(recordItem, foreignCrud.crudName)
+                  addNewToForeignArray(recordItem, foreignCrud.crudName, 1)
                 "
                 type="button"
                 class="btn btn-xs btn-outline-primary"
               >
-                добавить
+                {{ $t('form.label.add') }} 1
+              </button>
+              <button
+                @click="
+                  addNewToForeignArray(recordItem, foreignCrud.crudName, 5)
+                "
+                type="button"
+                class="btn btn-xs btn-outline-primary"
+              >
+                {{ $t('form.label.add') }} 5
+              </button>
+              <button
+                @click="
+                  addNewToForeignArray(recordItem, foreignCrud.crudName, 7)
+                "
+                type="button"
+                class="btn btn-xs btn-outline-primary"
+              >
+                {{ $t('form.label.add') }} 7
+              </button>
+              <button
+                @click="
+                  addNewToForeignArray(recordItem, foreignCrud.crudName, 10)
+                "
+                type="button"
+                class="btn btn-xs btn-outline-primary"
+              >
+                {{ $t('form.label.add') }} 10
+              </button>
+              <button
+                @click="
+                  addNewToForeignArray(recordItem, foreignCrud.crudName, 13)
+                "
+                type="button"
+                class="btn btn-xs btn-outline-primary"
+              >
+                {{ $t('form.label.add') }} 13
+              </button>
+              <button
+                @click="
+                  addNewToForeignArray(recordItem, foreignCrud.crudName, 15)
+                "
+                type="button"
+                class="btn btn-xs btn-outline-primary"
+              >
+                {{ $t('form.label.add') }} 15
+              </button>
+              <button
+                @click="
+                  addNewToForeignArray(recordItem, foreignCrud.crudName, 20)
+                "
+                type="button"
+                class="btn btn-xs btn-outline-primary"
+              >
+                {{ $t('form.label.add') }} 20
+              </button>
+              <button
+                @click="clearDataArray(recordItem, foreignCrud.crudName)"
+                type="button"
+                class="btn btn-xs btn-outline-danger"
+              >
+                {{ $t('form.label.clear') }}
               </button>
             </h5>
             <div class="divider-text">
@@ -176,11 +239,9 @@ export default {
       fieldTypes: (state) => state.fieldTypes
     })
   },
-  beforeMount() {
-    this.initFields()
-  },
   mounted() {},
   methods: {
+    // attributes shares
     onMultiInput(multiValues) {
       if (multiValues && _.isObject(multiValues)) {
         const keys = Object.keys(multiValues)
@@ -191,49 +252,29 @@ export default {
     },
     createEvent() {
       this.$emit('on-create', this.recordItem)
+      this.clearEvent()
     },
     updateEvent() {
       this.$emit('on-update', this.recordItem)
     },
     clearEvent() {
-      this.initFields()
+      this.$emit('on-clear', {})
     },
-    addNewObjectToDataArray(record, crudName) {
+    addNewToForeignArray(record, crudName, count = 1) {
       const newArray = record[crudName] || []
-      newArray.push({})
+      for (let i = 0; i < count; i++) {
+        newArray.push({})
+      }
       this.$set(record, crudName, newArray)
+    },
+    clearDataArray(record, crudName) {
+      this.$set(record, crudName, [])
     },
     toLowerCase(value) {
       return _.toLower(value)
     },
     toUpperCase(value) {
       return _.toUpper(value)
-    },
-    initFields() {
-      if (this.recordItem && this.recordItem.id) {
-        delete this.recordItem.id
-      }
-      this.modelData.fields.forEach((field) => {
-        if (field.type === this.fieldTypes.json) {
-          this.$set(this.recordItem, field.key, {})
-        } else {
-          this.$set(this.recordItem, field.key, null)
-        }
-      })
-
-      if (
-        Array.isArray(this.modelData.foreign) &&
-        this.modelData.foreign.length >= 1
-      ) {
-        this.modelData.foreign.forEach((foreign) => {
-          if (foreign.type === this.fieldTypes.array) {
-            this.$set(this.recordItem, foreign.crudName, [])
-          }
-          if (foreign.type === this.fieldTypes.object) {
-            this.$set(this.recordItem, foreign.crudName, {})
-          }
-        })
-      }
     }
   }
 }

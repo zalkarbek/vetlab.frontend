@@ -11,8 +11,9 @@ import CrudComponent from '~/components/crud/CrudComponent'
 import CrudData from '~/data/crud'
 
 export default {
+  name: 'PagesSpravkaMera',
   components: {
-    CrudComponent
+    'crud-component': CrudComponent
   },
   data() {
     return {

@@ -87,10 +87,10 @@ export default {
       key: 'lechenieInfo'
     },
     {
-      type: 'select:preload',
+      type: 'select',
       key: 'sMaterialId',
       foreign_crud: 's_material',
-      foreign_dataset: 'material',
+      foreign_dataset: 'materials',
       foreign_label: 'name',
       foreign_value: 'id',
       foreign_attributes: ['name', 'id']

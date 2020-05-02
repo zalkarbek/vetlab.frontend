@@ -8,7 +8,7 @@
           class="fal fa-times cursor-pointer hover-size-24"
         ></i>
       </h5>
-      <hr />
+      <div class="divider-text">####### {{ index + 1 }} #######</div>
       <b-form-row>
         <template v-for="field in modelData.fields">
           <!--==================================================================-->

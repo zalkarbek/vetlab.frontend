@@ -22,9 +22,6 @@
             @multi-input="onMultiInput"
             :field="form"
             :crud-data="modelData"
-            :id="
-              `${modelData.restName}_${field.key}_${form.key}_crud_json_${index}`
-            "
             :placeholder="
               $t(form.placeholder || `form.placeholder.${form.key}`)
             "
@@ -70,6 +67,9 @@ export default {
     },
     recordItem: {
       get() {
+        if (_.isNil(this.value)) {
+          this.$emit('input', {})
+        }
         return this.value
       },
       set(value) {

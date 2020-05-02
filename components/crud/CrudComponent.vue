@@ -15,6 +15,7 @@
         <crud-form
           @on-create="onCreate"
           @on-update="onUpdate"
+          @on-clear="onClear"
           :crud-data="crudData"
           :record="selectedRecord"
         ></crud-form>

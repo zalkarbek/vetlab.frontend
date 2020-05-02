@@ -4,7 +4,7 @@ import baseFields from '~/data/crud/baseFields'
 const restName = 's_mera'
 // Превикс API маршрута
 const routePrefix = 'mera'
-// Имя набор данных которые хранится в vuex
+// Имя набор данных которые хранится в vuex или local (внутри компонента)
 const datasetName = 'mera'
 // базовые машрутры для всех api
 const baseApi = baseApiRoutes({ routePrefix })

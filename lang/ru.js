@@ -1,7 +1,18 @@
 export default {
   welcome: 'Добро пожаловать',
   list: 'список {name}',
-
+  button: {
+    yes: 'Да',
+    cancel: 'Отмена'
+  },
+  dialog: {
+    confirm: {
+      delete: {
+        title: '',
+        message: 'Вы действительно хотите удалить элемент ?'
+      }
+    }
+  },
   form: {
     add: 'добавление',
     save: 'сохранение',
@@ -12,6 +23,10 @@ export default {
       id: 'id'
     },
     label: {
+      add: 'добавление',
+      save: 'сохранение',
+      clear: 'очистить',
+      update: 'обновить',
       name: 'название',
       fullName: 'ФИО',
       shortName: 'короткое навание',
@@ -22,8 +37,7 @@ export default {
       filter: 'фильтр',
       filter_on: 'фильтр по',
       per_page: 'количество',
-      clear: 'очистка',
-      address: 'адрес',
+      address: 'Адрес',
       phone_1: 'телефон 1',
       regionFullText: 'Полный адрес',
       sMaterialTypeId: 'Вид материала',
@@ -167,6 +181,12 @@ export default {
   },
   subOtdel: {
     title: 'Под отдел'
+  },
+  personal: {
+    label: {
+      firstName: 'Имя сотрудника',
+      personalDataJSON: 'Дополнительные данные о сотруднике'
+    }
   },
 
   menu: {
