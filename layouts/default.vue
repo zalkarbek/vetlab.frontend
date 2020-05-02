@@ -15,6 +15,7 @@ import Header from '~/layouts/part/header.vue'
 import Footer from '~/layouts/part/footer.vue'
 
 export default {
+  middleware: ['auth'],
   head() {
     return this.$nuxtI18nSeo()
   },

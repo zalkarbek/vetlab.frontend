@@ -1,5 +1,6 @@
 export default {
   text: 'text',
+  password: 'password',
   input_mask: 'input:mask',
   number: 'number',
   textarea: 'textarea',

@@ -11,6 +11,17 @@
     </template>
     <!-- -----------------------/ FORM TEXT /----------------------- -->
 
+    <!-- ----------------------- FORM PASSWORD ----------------------- -->
+    <template v-if="!form.disabled && form.type === fieldTypes.password">
+      <input
+        v-model.trim="formValue"
+        :placeholder="placeholder || defaultPlaceholder(form)"
+        type="password"
+        class="form-control"
+      />
+    </template>
+    <!-- -----------------------/ FORM PASSWORD /----------------------- -->
+
     <!-- ----------------------- FORM TEXTAREA ----------------------- -->
     <template v-if="!form.disabled && form.type === fieldTypes.textarea">
       <b-form-textarea

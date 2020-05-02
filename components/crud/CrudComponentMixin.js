@@ -103,8 +103,10 @@ export default {
           solid: true,
           append: true
         })
-        if (res.data && res.data.data) this.crudListRecords.push(res.data.data)
-        this.selectedRecord = {}
+        if (res.data && res.data.data) {
+          this.clearForm()
+          this.crudListRecords.push(data)
+        }
       } catch (e) {
         const message =
           (e.response.data && e.response.data.message) || e.message

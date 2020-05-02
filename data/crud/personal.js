@@ -15,6 +15,14 @@ export default {
   rest: {
     ...baseApi
   },
+  foreign: [
+    {
+      type: 'object',
+      crudName: 'user',
+      // какие поля нужны для заполнения Массив название полей
+      fields: []
+    }
+  ],
   fields: [
     {
       type: 'text',

@@ -15,8 +15,6 @@ import MainForma4 from '~/components/vetlab/MainForma4.vue'
 import PlanOfRegion from '~/components/vetlab/PlanOfRegion.vue'
 
 export default {
-  middleware: ['auth'],
-
   components: {
     MainPositiveMaterial,
     MainPlanPercent,
