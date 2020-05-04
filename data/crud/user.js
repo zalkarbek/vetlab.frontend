@@ -23,6 +23,11 @@ export default {
     {
       type: 'password',
       key: 'password'
+    },
+    {
+      type: 'text',
+      key: 'name',
+      label: 'user.label.name'
     }
   ]
 }

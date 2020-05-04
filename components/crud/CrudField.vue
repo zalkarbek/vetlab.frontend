@@ -438,7 +438,7 @@ export default {
     // загружает предварительные данные в локальное хранилище компонента
     async localLoadDataset({
       foreign_dataset: datasetName,
-      foreign_crud: datasetCrud
+      foreign_crud: datasetCrudName
     }) {
       if (
         !this.localDataset[datasetName] ||
@@ -446,11 +446,11 @@ export default {
       ) {
         try {
           const { data } = await this.$store.dispatch('api/req', {
-            req: this.crud[datasetCrud].rest.all
+            req: this.crud[datasetCrudName].rest.all
           })
           this.$set(this.localDataset, datasetName, [...data])
+          this.$emit('get-init-dataset', { datasetName, datasetCrudName })
         } catch (e) {
-          console.error(e)
           this.$set(this.localDataset, datasetName, [])
         }
       }

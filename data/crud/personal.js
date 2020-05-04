@@ -27,12 +27,23 @@ export default {
     {
       type: 'text',
       key: 'firstName',
-      label: 'personal.label.firstName'
+      label: 'personal.label.firstName',
+      hidden: true
     },
 
     {
       type: 'text',
-      key: 'lastName'
+      key: 'lastName',
+      label: 'personal.label.lastName',
+      hidden: true
+    },
+
+    {
+      type: 'text',
+      key: 'fullName',
+      label: 'personal.label.fullName',
+      disabled: true,
+      hidden: false
     },
 
     {
@@ -59,6 +70,7 @@ export default {
     {
       type: 'json',
       key: 'addressLiveRegionJSON',
+      label: 'personal.label.addressLiveRegionJSON',
       json: [
         {
           type: 'text',
@@ -120,6 +132,7 @@ export default {
     {
       type: 'json',
       key: 'addressBirthRegionJSON',
+      label: 'personal.label.addressBirthRegionJSON',
       json: [
         {
           type: 'text',
@@ -181,6 +194,7 @@ export default {
     {
       type: 'select',
       key: 'sDoljnostId',
+      label: 'personal.label.sDoljnostId',
       foreign_crud: 's_doljnost',
       foreign_dataset: 'doljnost',
       foreign_label: 'name',
@@ -193,6 +207,7 @@ export default {
     {
       type: 'select',
       key: 'otdelId',
+      label: 'personal.label.otdelId',
       foreign_crud: 'otdel',
       foreign_dataset: 'otdel',
       foreign_label: 'name',
@@ -205,6 +220,7 @@ export default {
     {
       type: 'select',
       key: 'subOtdelId',
+      label: 'personal.label.subOtdel',
       foreign_crud: 'subOtdel',
       foreign_dataset: 'subOtdel',
       foreign_label: 'name',

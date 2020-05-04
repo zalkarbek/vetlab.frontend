@@ -27,7 +27,9 @@ export default {
       save: 'сохранение',
       clear: 'очистить',
       update: 'обновить',
-      name: 'название',
+      name: 'Название',
+      email: 'Почта',
+      password: 'Пароль',
       fullName: 'ФИО',
       shortName: 'короткое навание',
       i18n: 'ключ для локализации',
@@ -52,7 +54,7 @@ export default {
       regionJSON: 'адрес',
       regionFullPath: 'полный адрес',
       departmentDataJSON: 'Дополнительная информация о департамента',
-      sOtdeleniaId: 'принадлежит к группе отдела',
+      sOtdeleniaId: 'Принадлежит к группе отдела',
       otdelId: 'Принадлежит к отделу',
       opPokazatelId: 'Определяемый показатель',
       probyNapravilJSON: 'Пробу направил',
@@ -183,12 +185,25 @@ export default {
     title: 'Под отдел'
   },
   personal: {
+    title: 'Персоналы',
     label: {
-      firstName: 'Имя сотрудника',
-      personalDataJSON: 'Дополнительные данные о сотруднике'
+      firstName: 'Имя',
+      lastName: 'Отчество',
+      fullName: 'ФИО',
+      pol: 'Пол',
+      personalDataJSON: 'Дополнительная инфо-я',
+      addressLiveRegionJSON: 'Адрес проживания',
+      addressBirthRegionJSON: 'Место рождения',
+      sDoljnostId: 'Должность',
+      otdelId: 'Отдел',
+      subOtdel: 'Под отдел'
     }
   },
-
+  user: {
+    label: {
+      name: 'Ник'
+    }
+  },
   menu: {
     spravka: 'справочник',
     divider: '#######',

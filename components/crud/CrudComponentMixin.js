@@ -105,7 +105,7 @@ export default {
         })
         if (res.data && res.data.data) {
           this.clearForm()
-          this.crudListRecords.push(data)
+          this.crudListRecords.push(res.data.data)
         }
       } catch (e) {
         const message =

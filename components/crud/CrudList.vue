@@ -210,9 +210,9 @@
   </div>
 </template>
 <script>
+import CrudListViewJson from './CrudListViewJson'
 import _ from 'lodash'
 import { createNamespacedHelpers } from 'vuex'
-import CrudListViewJson from './CrudListViewJson'
 const { mapState } = createNamespacedHelpers('api')
 
 export default {
@@ -361,15 +361,16 @@ export default {
       const enabledFields = modelFields.filter((field) => {
         return !field.hidden
       })
-      const list = enabledFields.map((field) => {
+      const list = enabledFields.map(({ type, key, label, ...other }) => {
+        label = this.$t(label || `form.label.${key}`)
         return {
-          key: field.key,
-          type: field.type,
-          label: this.$t(`form.label.${field.key}`),
+          key,
+          type,
+          label,
           sortable: true,
           sortByFormatted: true,
           filterByFormatted: true,
-          ...field
+          ...other
         }
       })
       return [index, id, ...list, actions]
@@ -390,6 +391,18 @@ export default {
     pageSize(newValue) {
       this.perPageCount = newValue
     }
+  },
+  mounted() {
+    this.modelData.fields.forEach((field) => {
+      if (field.foreign_crud) {
+        this.storageLoadDataSet({
+          foreign_crud: field.foreign_crud,
+          foreign_dataset: field.foreign_dataset,
+          foreign_crud_method: field.foreign_crud_method,
+          foreign_attributes: field.foreign_attributes
+        })
+      }
+    })
   },
   methods: {
     changePaginate(page) {
@@ -474,7 +487,23 @@ export default {
 
     debounceSearchLocal: _.debounce(function(search, page, pageSize) {
       this.onSearch(search, page, pageSize)
-    }, 300)
+    }, 300),
+
+    async storageLoadDataSet({
+      foreign_dataset: datasetName,
+      foreign_crud: datasetCrud,
+      foreign_crud_method: datasetCrudMethod,
+      foreign_attributes: attributes
+    }) {
+      await this.$store.dispatch('api/getDataset', {
+        datasetName,
+        datasetCrud,
+        datasetCrudMethod,
+        params: {
+          attributes
+        }
+      })
+    }
   }
 }
 </script>
