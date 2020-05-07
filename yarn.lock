@@ -8330,13 +8330,6 @@ relateurl@0.2.x, relateurl@^0.2.7:
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
 
-relational-pouch@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/relational-pouch/-/relational-pouch-4.0.0.tgz#f2702e0f756e4cf161323e51888bd836c5956303"
-  integrity sha512-1BH3SIPMKqFAOeg6pOu/fpfEYgMQHOM24JheP6d9COCHze7FoGfgY4dC+9C/gkBLFeLVXDcuiY5oZy/U1aPZIQ==
-  dependencies:
-    uniq "^1.0.1"
-
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.1.0.tgz#c24bce2a283adad5bc3f58e0d48249b92379d8ef"
