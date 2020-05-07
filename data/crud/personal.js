@@ -13,7 +13,15 @@ export default {
   routePrefix,
   datasetName,
   rest: {
-    ...baseApi
+    ...baseApi,
+    getPersonalWithUser: {
+      url: `/api/v1/${routePrefix}/id/withUser`,
+      method: 'GET'
+    },
+    changePassword: {
+      url: `/api/v1/${routePrefix}/change-password`,
+      method: 'POST'
+    }
   },
   foreign: [
     {
@@ -23,21 +31,98 @@ export default {
       fields: []
     }
   ],
+
+  actionButtons: {
+    crudList: [
+      {
+        action: 'change-password',
+        actionMethod: 'changePassword',
+        modalId: 'personal-change-password-dialog',
+        label: 'form.label.changePassword',
+        icon: 'far fa-key',
+        variant: 'warning'
+      }
+    ],
+    crudForm: []
+  },
+  // модальные окна
+  modals: [
+    // модальное окно для сброса пароля
+    {
+      type: 'modal-form', // modal-confirm, modal-message, modal-form
+      id: 'personal-change-password-dialog',
+      class: 'personal-change-password-dialog',
+      // размер модального окна
+      size: 'lg',
+      okAction: 'changePasswordOk',
+      hiddenAction: 'changePasswordHidden',
+      modalCrud: {
+        // требуемое параметр из данных для изменения
+        modalRequireField: 'user',
+        fields: [
+          {
+            type: 'text',
+            key: 'email',
+            label: 'personal.label.email',
+            hidden: true
+          },
+          {
+            type: 'password',
+            key: 'password',
+            label: 'personal.label.password',
+            hidden: true
+          }
+        ]
+      }
+    }
+  ],
+  initConfig: {
+    // кнопка для действии
+    getEditRecord: {
+      crud: 'personal',
+      method: 'getPersonalWithUser',
+      requireAttrs: ['id']
+    }
+  },
+
   fields: [
     {
       type: 'text',
       key: 'firstName',
-      label: 'personal.label.firstName'
+      label: 'personal.label.firstName',
+      hidden: true
     },
 
     {
       type: 'text',
-      key: 'lastName'
+      key: 'lastName',
+      label: 'personal.label.lastName',
+      hidden: true
     },
 
     {
       type: 'text',
-      key: 'pol'
+      key: 'fullName',
+      label: 'personal.label.fullName',
+      disabled: true,
+      hidden: false
+    },
+
+    {
+      type: 'select:own',
+      key: 'pol',
+      foreign_label: 'label',
+      foreign_value: 'value',
+      foreign_values: [
+        {
+          label: 'form.label.male',
+          value: 'male'
+        },
+        {
+          label: 'form.label.female',
+          value: 'female'
+        }
+      ]
     },
 
     {
@@ -59,6 +144,7 @@ export default {
     {
       type: 'json',
       key: 'addressLiveRegionJSON',
+      label: 'personal.label.addressLiveRegionJSON',
       json: [
         {
           type: 'text',
@@ -120,6 +206,7 @@ export default {
     {
       type: 'json',
       key: 'addressBirthRegionJSON',
+      label: 'personal.label.addressBirthRegionJSON',
       json: [
         {
           type: 'text',
@@ -181,6 +268,7 @@ export default {
     {
       type: 'select',
       key: 'sDoljnostId',
+      label: 'personal.label.sDoljnostId',
       foreign_crud: 's_doljnost',
       foreign_dataset: 'doljnost',
       foreign_label: 'name',
@@ -193,6 +281,7 @@ export default {
     {
       type: 'select',
       key: 'otdelId',
+      label: 'personal.label.otdelId',
       foreign_crud: 'otdel',
       foreign_dataset: 'otdel',
       foreign_label: 'name',
@@ -205,6 +294,7 @@ export default {
     {
       type: 'select',
       key: 'subOtdelId',
+      label: 'personal.label.subOtdel',
       foreign_crud: 'subOtdel',
       foreign_dataset: 'subOtdel',
       foreign_label: 'name',

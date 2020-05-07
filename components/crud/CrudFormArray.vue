@@ -2,7 +2,9 @@
   <div>
     <template v-for="(item, index) in recordItems">
       <h5>
-        #{{ index + 1 }} &nbsp;
+        <span>
+          {{ $t(`${modelData.restName}.label.one`) }} №{{ index + 1 }} &nbsp;
+        </span>
         <i
           @click="removeCurrentElement(index)"
           class="fal fa-times cursor-pointer hover-size-24"
@@ -66,10 +68,10 @@
   </div>
 </template>
 <script>
-import _ from 'lodash'
-import { createNamespacedHelpers } from 'vuex'
 import CrudField from './CrudField'
 import CrudFieldJson from './CrudFieldJson'
+import _ from 'lodash'
+import { createNamespacedHelpers } from 'vuex'
 const { mapState } = createNamespacedHelpers('api')
 
 export default {

@@ -1,5 +1,6 @@
 import PouchDB from 'pouchdb'
 import PouchDBFind from 'pouchdb-find'
+
 PouchDB.plugin(PouchDBFind)
 
 export default {
@@ -20,18 +21,22 @@ export default {
   },
   async getDataset(
     { state, dispatch, commit },
-    { datasetName, datasetCrud, datasetCrudMethod, params, data }
+    { datasetName, datasetCrudName, datasetCrudMethod, params, data }
   ) {
     if (!state.dataset[datasetName] || !state.dataset[datasetName].length) {
-      const crud = state.crud[datasetCrud]
-      const req = crud.rest[datasetCrudMethod] || crud.rest.all
-      const response = await dispatch('req', {
-        req,
-        params,
-        data
-      })
-      if (response && response.data) {
-        commit('SET_DATASET', { datasetName, datalist: response.data })
+      try {
+        const crud = state.crud[datasetCrudName]
+        const req = crud.rest[datasetCrudMethod] || crud.rest.all
+        const response = await dispatch('req', {
+          req,
+          params,
+          data
+        })
+        if (response && response.data) {
+          commit('SET_DATASET', { datasetName, datalist: response.data })
+        }
+      } catch (e) {
+        console.log(state.crud[datasetCrudName], datasetCrudMethod)
       }
     }
     return state.dataset[datasetName]
@@ -72,6 +77,16 @@ export default {
       return this.$filterObjectArray(query, columnName, dataset)
     }
     return []
+  },
+
+  findElementInDataset({ state }, { datasetName, columnName, value }) {
+    const dataset = state.dataset[datasetName]
+    if (dataset && dataset.length >= 1) {
+      return dataset.find((item) => {
+        return item[columnName] === value
+      })
+    }
+    return {}
   },
 
   createDatabase(ctx, { schemaName }) {

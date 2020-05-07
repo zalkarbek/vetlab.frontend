@@ -1,7 +1,6 @@
 <template>
   <div class="card card-body">
     <b-container fluid>
-      <h4>{{ $t('list', { name: $t(`${restName}.title`) }) }}</h4>
       <!-- User Interface controls -->
       <b-row>
         <b-col lg="3" class="my-1">
@@ -186,6 +185,16 @@
             </template>
           </template>
 
+          <template v-slot:cell(status)>
+            <span class="tx-12 badge badge-primary">новый</span>
+            <br />
+            <span class="tx-12 badge badge-secondary">
+              отправлен
+            </span>
+            <br />
+            <span class="tx-12 badge badge-success">принят</span>
+          </template>
+
           <template v-slot:cell(actions)="row">
             <b-button-toolbar>
               <b-button-group class="mr-1" size="sm">
@@ -197,28 +206,12 @@
                   >
                     <i
                       :class="button.icon"
-                      class="far cursor-pointer"
+                      class="cursor-pointer"
                       aria-hidden="true"
                     ></i>
+                    {{ $t(button.label) }}
                   </b-button>
                 </template>
-                <b-button
-                  @click="onAction('edit-item', row.item)"
-                  variant="primary"
-                  title="Edit"
-                >
-                  <i class="far fa-edit cursor-pointer" aria-hidden="true"></i>
-                </b-button>
-                <b-button
-                  @click="onAction('delete-item', row.item)"
-                  variant="danger"
-                  title="Delete"
-                >
-                  <i
-                    class="far fa-trash-alt cursor-pointer"
-                    aria-hidden="true"
-                  ></i>
-                </b-button>
               </b-button-group>
             </b-button-toolbar>
           </template>
@@ -228,7 +221,7 @@
   </div>
 </template>
 <script>
-import CrudListViewJson from './CrudListViewJson'
+import CrudListViewJson from '~/components/crud/CrudListViewJson'
 import _ from 'lodash'
 import { createNamespacedHelpers } from 'vuex'
 

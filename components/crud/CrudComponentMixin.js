@@ -96,17 +96,16 @@ export default {
           data
         })
         const message = (res.data && res.data.message) || ''
-
+        if (res.data && !res.data.error && res.data.data) {
+          this.clearForm()
+          this.crudListRecords.push(res.data.data)
+        }
         this.$bvToast.toast(message, {
           title: this.$i18n.t('success.title'),
           variant: 'success',
           solid: true,
           append: true
         })
-        if (res.data && res.data.data) {
-          this.clearForm()
-          this.crudListRecords.push(data)
-        }
       } catch (e) {
         const message =
           (e.response.data && e.response.data.message) || e.message

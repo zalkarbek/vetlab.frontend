@@ -23,11 +23,17 @@ export default {
       id: 'id'
     },
     label: {
+      status: 'Статус',
+      male: 'Муж',
+      female: 'Жен',
+      pol: 'Пол',
       add: 'добавление',
       save: 'сохранение',
       clear: 'очистить',
       update: 'обновить',
-      name: 'название',
+      name: 'Название',
+      email: 'Почта',
+      password: 'Пароль',
       fullName: 'ФИО',
       shortName: 'короткое навание',
       i18n: 'ключ для локализации',
@@ -52,7 +58,7 @@ export default {
       regionJSON: 'адрес',
       regionFullPath: 'полный адрес',
       departmentDataJSON: 'Дополнительная информация о департамента',
-      sOtdeleniaId: 'принадлежит к группе отдела',
+      sOtdeleniaId: 'Принадлежит к группе отдела',
       otdelId: 'Принадлежит к отделу',
       opPokazatelId: 'Определяемый показатель',
       probyNapravilJSON: 'Пробу направил',
@@ -168,7 +174,12 @@ export default {
     title: 'Вид региона'
   },
   napravlenie: {
-    title: 'Направление'
+    title: 'Направление',
+    epic: {
+      sendToOtdel: 'направить',
+      cancel: 'отменить',
+      delete: 'удалить'
+    }
   },
   otdel: {
     title: 'Отдел'
@@ -177,18 +188,39 @@ export default {
     title: 'План работы'
   },
   pos_material: {
-    title: 'Поступившие материалы'
+    title: 'Поступившие материалы',
+    label: {
+      one: 'Поступивший материал'
+    }
   },
   subOtdel: {
     title: 'Под отдел'
   },
   personal: {
+    title: 'Персоналы',
     label: {
-      firstName: 'Имя сотрудника',
-      personalDataJSON: 'Дополнительные данные о сотруднике'
+      firstName: 'Имя',
+      lastName: 'Отчество',
+      fullName: 'ФИО',
+      pol: 'Пол',
+      personalDataJSON: 'Дополнительная инфо-я',
+      addressLiveRegionJSON: 'Адрес проживания',
+      addressBirthRegionJSON: 'Место рождения',
+      sDoljnostId: 'Должность',
+      otdelId: 'Отдел',
+      subOtdel: 'Под отдел'
     }
   },
-
+  user: {
+    label: {
+      name: 'Ник'
+    },
+    password: {
+      notPassword: 'Вы не ввели пароль',
+      lowPassword: 'Слабый пароль',
+      lowPassword4: 'Пароль склишком короткий, длина неменее 4 символов'
+    }
+  },
   menu: {
     spravka: 'справочник',
     divider: '#######',
@@ -402,6 +434,7 @@ export default {
 
   error: {
     title: 'Ошибка',
+    server: 'Ошибка на стороне сервера',
     auth: 'Ошибка авторизации логин или пароль неверны',
     authWrong: 'Логин или пароль неверны',
     connection: 'Ошибка подключение к серверу',

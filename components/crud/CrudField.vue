@@ -87,6 +87,18 @@
     </template>
     <!-- -----------------------/ FORM SELECT:SEARCH /----------------------- -->
 
+    <!-- ----------------------- FORM SELECT:OWN ----------------------- -->
+    <template v-else-if="!form.disabled && form.type === fieldTypes.select_own">
+      <v-select
+        v-model.trim="formValue"
+        :reduce="(item) => item[form.foreign_value]"
+        :placeholder="placeholder || defaultPlaceholder(form)"
+        :label="form.foreign_label"
+        :options="translateForeignValues(form.foreign_values)"
+      />
+    </template>
+    <!-- -----------------------/ FORM SELECT:OWN /----------------------- -->
+
     <!-- ----------------------- FORM AUTOCOMPLETE ----------------------- -->
     <template
       v-else-if="!form.disabled && form.type === fieldTypes.autocomplete"
@@ -307,6 +319,17 @@ export default {
     })
   },
   methods: {
+    translateForeignValues(values = []) {
+      if (values && Array.isArray(values) && values.length >= 1) {
+        return values.map((val) => {
+          return {
+            label: this.$t(val.label),
+            value: val.value
+          }
+        })
+      }
+      return []
+    },
     maskOnAccept(value) {},
     setCurrentField(field) {
       this.currentField = field
@@ -421,13 +444,13 @@ export default {
 
     async storageLoadDataSet({
       foreign_dataset: datasetName,
-      foreign_crud: datasetCrud,
+      foreign_crud: datasetCrudName,
       foreign_crud_method: datasetCrudMethod,
       foreign_attributes: attributes
     }) {
       await this.$store.dispatch('api/getDataset', {
         datasetName,
-        datasetCrud,
+        datasetCrudName,
         datasetCrudMethod,
         params: {
           attributes
@@ -438,19 +461,21 @@ export default {
     // загружает предварительные данные в локальное хранилище компонента
     async localLoadDataset({
       foreign_dataset: datasetName,
-      foreign_crud: datasetCrud
+      foreign_crud: datasetCrudName,
+      foreign_crud_method: datasetCrudMethod
     }) {
       if (
         !this.localDataset[datasetName] ||
         !this.localDataset[datasetName].length
       ) {
         try {
+          const crud = this.crud[datasetCrudName]
           const { data } = await this.$store.dispatch('api/req', {
-            req: this.crud[datasetCrud].rest.all
+            req: crud.rest[datasetCrudMethod] || crud.rest.all
           })
           this.$set(this.localDataset, datasetName, [...data])
+          this.$emit('get-init-dataset', { datasetName, datasetCrudName })
         } catch (e) {
-          console.error(e)
           this.$set(this.localDataset, datasetName, [])
         }
       }
