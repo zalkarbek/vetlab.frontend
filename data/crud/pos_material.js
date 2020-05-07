@@ -100,7 +100,7 @@ export default {
       key: 'materialCount'
     },
     {
-      type: 'select:preload',
+      type: 'select',
       key: 'sMeraId',
       foreign_crud: 's_mera',
       foreign_dataset: 'mera',

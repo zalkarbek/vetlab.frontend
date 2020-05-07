@@ -75,7 +75,8 @@ export default {
     '~/plugins/vue-calendar',
     '~/plugins/vue-datepicker',
     '~/plugins/global-methods',
-    '~/plugins/vue-imask'
+    '~/plugins/vue-imask',
+    '~/plugins/vee-validate'
   ],
   /*
    ** Nuxt.js dev-modules

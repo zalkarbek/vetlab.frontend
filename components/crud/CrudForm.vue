@@ -1,6 +1,6 @@
 <template>
   <div class="card card-body">
-    <h4>{{ $t('form.add') }}</h4>
+    <h4 v-if="crudButtonsEnabled">{{ $t('form.add') }}</h4>
     <b-container fluid>
       <!--==================================================================-->
       <b-form-row>
@@ -166,20 +166,22 @@
       </template>
     </b-container>
 
-    <b-button-group class="col-sm-12 col-md-4 col-xs-8 col-lg-4">
-      <b-button v-if="!record.id" @click="createEvent()" variant="success">
-        <i class=" fal fa-save" />
-        {{ $t('form.save') }}
-      </b-button>
-      <b-button v-if="record.id" @click="updateEvent()" variant="warning">
-        <i class=" fal fa-undo" />
-        {{ $t('form.update') }}
-      </b-button>
-      <b-button @click="clearEvent()" variant="danger">
-        <i class=" fal fa-trash-alt" />
-        {{ $t('form.clear') }}
-      </b-button>
-    </b-button-group>
+    <template v-if="crudButtonsEnabled">
+      <b-button-group class="col-sm-12 col-md-4 col-xs-8 col-lg-4">
+        <b-button v-if="!record.id" @click="createEvent()" variant="success">
+          <i class=" fal fa-save" />
+          {{ $t('form.save') }}
+        </b-button>
+        <b-button v-if="record.id" @click="updateEvent()" variant="warning">
+          <i class=" fal fa-undo" />
+          {{ $t('form.update') }}
+        </b-button>
+        <b-button @click="clearEvent()" variant="danger">
+          <i class=" fal fa-trash-alt" />
+          {{ $t('form.clear') }}
+        </b-button>
+      </b-button-group>
+    </template>
   </div>
 </template>
 <script>
@@ -212,7 +214,13 @@ export default {
     record: {
       type: Object,
       default() {
-        return null
+        return {}
+      }
+    },
+    crudButtonsEnabled: {
+      type: Boolean,
+      default() {
+        return true
       }
     }
   },
@@ -234,6 +242,13 @@ export default {
         this.$emit('input', value)
       }
     },
+    actionButtons() {
+      const buttons = this.modelData.actionButtons
+      if (buttons && buttons.crudForm) {
+        return buttons.crudForm
+      }
+      return []
+    },
     ...mapState({
       crud: (state) => state.crud,
       fieldTypes: (state) => state.fieldTypes
@@ -252,13 +267,19 @@ export default {
     },
     createEvent() {
       this.$emit('on-create', this.recordItem)
-      this.clearEvent()
     },
     updateEvent() {
       this.$emit('on-update', this.recordItem)
     },
     clearEvent() {
       this.$emit('on-clear', {})
+    },
+    actionButtonEvent(actionName, actionMethod) {
+      this.$emit('on-action', {
+        actionName,
+        actionMethod,
+        data: this.recordItem
+      })
     },
     addNewToForeignArray(record, crudName, count = 1) {
       const newArray = record[crudName] || []

@@ -23,6 +23,10 @@ export default {
       id: 'id'
     },
     label: {
+      status: 'Статус',
+      male: 'Муж',
+      female: 'Жен',
+      pol: 'Пол',
       add: 'добавление',
       save: 'сохранение',
       clear: 'очистить',
@@ -170,7 +174,12 @@ export default {
     title: 'Вид региона'
   },
   napravlenie: {
-    title: 'Направление'
+    title: 'Направление',
+    epic: {
+      sendToOtdel: 'направить',
+      cancel: 'отменить',
+      delete: 'удалить'
+    }
   },
   otdel: {
     title: 'Отдел'
@@ -179,7 +188,10 @@ export default {
     title: 'План работы'
   },
   pos_material: {
-    title: 'Поступившие материалы'
+    title: 'Поступившие материалы',
+    label: {
+      one: 'Поступивший материал'
+    }
   },
   subOtdel: {
     title: 'Под отдел'
@@ -202,6 +214,11 @@ export default {
   user: {
     label: {
       name: 'Ник'
+    },
+    password: {
+      notPassword: 'Вы не ввели пароль',
+      lowPassword: 'Слабый пароль',
+      lowPassword4: 'Пароль склишком короткий, длина неменее 4 символов'
     }
   },
   menu: {
@@ -417,6 +434,7 @@ export default {
 
   error: {
     title: 'Ошибка',
+    server: 'Ошибка на стороне сервера',
     auth: 'Ошибка авторизации логин или пароль неверны',
     authWrong: 'Логин или пароль неверны',
     connection: 'Ошибка подключение к серверу',

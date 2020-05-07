@@ -16,6 +16,37 @@ export default {
   rest: {
     ...baseApi
   },
+
+  actionButtons: {
+    crudList: [
+      {
+        action: 'change-password',
+        actionMethod: 'changePassword',
+        modalId: 'personal-change-password-dialog',
+        label: 'napravlenie.epic.sendToOtdel',
+        icon: 'far fa-paper-plane',
+        variant: 'dark'
+      },
+      {
+        action: 'change-password',
+        actionMethod: 'changePassword',
+        modalId: 'personal-change-password-dialog',
+        label: 'napravlenie.epic.cancel',
+        icon: 'far fa-recycle',
+        variant: 'warning'
+      },
+      {
+        action: 'change-password',
+        actionMethod: 'changePassword',
+        modalId: 'personal-change-password-dialog',
+        label: 'napravlenie.epic.delete',
+        icon: 'far fa-trash',
+        variant: 'danger'
+      }
+    ],
+    crudForm: []
+  },
+
   foreign: [
     {
       // тип вставки: array, object
@@ -247,6 +278,10 @@ export default {
       foreign_attributes: ['name', 'id'],
       disabled: true,
       hidden: true
+    },
+    {
+      type: 'status',
+      key: 'status'
     }
   ]
 }

@@ -24,14 +24,14 @@ export default [
             text: 'Справочник',
             class: '',
             items: [
-              {
-                _t: 'menu.bolezn.index',
-                text: 'болезни',
-                class: '',
-                icon: '',
-                active: false,
-                to: '/spravka/bolezn'
-              },
+              // {
+              //   _t: 'menu.bolezn.index',
+              //   text: 'болезни',
+              //   class: '',
+              //   icon: '',
+              //   active: false,
+              //   to: '/spravka/bolezn'
+              // },
               {
                 _t: 'menu.mera.index',
                 text: 'мера измерения',
@@ -181,7 +181,7 @@ export default [
   },
   {
     _t: 'menu.epidemiology.index',
-    text: 'исследование',
+    text: 'эпидемиология',
     type: 'flex',
     class: '',
     icon: '',
@@ -200,7 +200,7 @@ export default [
                 text: 'Направление',
                 class: '',
                 icon: '',
-                to: '/'
+                to: '/epic/napravlenie'
               },
               {
                 _t: 'menu.isledovanie.index',

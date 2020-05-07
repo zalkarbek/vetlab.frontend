@@ -2,7 +2,9 @@
   <div>
     <template v-for="(item, index) in recordItems">
       <h5>
-        #{{ index + 1 }} &nbsp;
+        <span>
+          {{ $t(`${modelData.restName}.label.one`) }} №{{ index + 1 }} &nbsp;
+        </span>
         <i
           @click="removeCurrentElement(index)"
           class="fal fa-times cursor-pointer hover-size-24"

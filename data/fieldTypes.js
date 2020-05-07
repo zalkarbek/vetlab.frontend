@@ -27,6 +27,8 @@ export default {
   autocomplete_search: 'autocomplete:search',
   tag_search: 'tag:search',
 
+  select_own: 'select:own',
+
   tag_add: 'tag:add',
   json: 'json',
   array: 'array',

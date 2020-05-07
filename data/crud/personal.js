@@ -13,7 +13,15 @@ export default {
   routePrefix,
   datasetName,
   rest: {
-    ...baseApi
+    ...baseApi,
+    getPersonalWithUser: {
+      url: `/api/v1/${routePrefix}/id/withUser`,
+      method: 'GET'
+    },
+    changePassword: {
+      url: `/api/v1/${routePrefix}/change-password`,
+      method: 'POST'
+    }
   },
   foreign: [
     {
@@ -23,6 +31,60 @@ export default {
       fields: []
     }
   ],
+
+  actionButtons: {
+    crudList: [
+      {
+        action: 'change-password',
+        actionMethod: 'changePassword',
+        modalId: 'personal-change-password-dialog',
+        label: 'form.label.changePassword',
+        icon: 'far fa-key',
+        variant: 'warning'
+      }
+    ],
+    crudForm: []
+  },
+  // модальные окна
+  modals: [
+    // модальное окно для сброса пароля
+    {
+      type: 'modal-form', // modal-confirm, modal-message, modal-form
+      id: 'personal-change-password-dialog',
+      class: 'personal-change-password-dialog',
+      // размер модального окна
+      size: 'lg',
+      okAction: 'changePasswordOk',
+      hiddenAction: 'changePasswordHidden',
+      modalCrud: {
+        // требуемое параметр из данных для изменения
+        modalRequireField: 'user',
+        fields: [
+          {
+            type: 'text',
+            key: 'email',
+            label: 'personal.label.email',
+            hidden: true
+          },
+          {
+            type: 'password',
+            key: 'password',
+            label: 'personal.label.password',
+            hidden: true
+          }
+        ]
+      }
+    }
+  ],
+  initConfig: {
+    // кнопка для действии
+    getEditRecord: {
+      crud: 'personal',
+      method: 'getPersonalWithUser',
+      requireAttrs: ['id']
+    }
+  },
+
   fields: [
     {
       type: 'text',
@@ -47,8 +109,20 @@ export default {
     },
 
     {
-      type: 'text',
-      key: 'pol'
+      type: 'select:own',
+      key: 'pol',
+      foreign_label: 'label',
+      foreign_value: 'value',
+      foreign_values: [
+        {
+          label: 'form.label.male',
+          value: 'male'
+        },
+        {
+          label: 'form.label.female',
+          value: 'female'
+        }
+      ]
     },
 
     {

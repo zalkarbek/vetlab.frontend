@@ -1,5 +1,7 @@
-import menus from '../../data/menus'
+import menus from '~/data/menus'
+import modalTypes from '~/data/modalTypes'
 
 export default () => ({
-  menus
+  menus,
+  modalTypes
 })

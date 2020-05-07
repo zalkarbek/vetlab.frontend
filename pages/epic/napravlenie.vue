@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import CrudComponent from '~/components/vetlab/personal/CrudComponent'
+import CrudComponent from '~/components/vetlab/epic/napravlenie/NapravlenieComponent'
 import CrudData from '~/data/crud'
 
 export default {
@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      crudDataName: 'personal'
+      crudDataName: 'napravlenieEpic'
     }
   },
   computed: {
