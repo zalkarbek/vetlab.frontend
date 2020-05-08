@@ -221,9 +221,9 @@
   </div>
 </template>
 <script>
-import CrudListViewJson from '~/components/crud/CrudListViewJson'
 import _ from 'lodash'
 import { createNamespacedHelpers } from 'vuex'
+import CrudListViewJson from '~/components/crud/CrudListViewJson'
 
 const { mapState, mapGetters } = createNamespacedHelpers('api')
 

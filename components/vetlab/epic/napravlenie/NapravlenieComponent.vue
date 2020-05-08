@@ -49,10 +49,10 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 import NapravlenieList from './NapravlenieList'
 import CrudMixins from '~/components/crud/CrudComponentMixin'
 import CrudFormModal from '~/components/crud/CrudFormModal'
-import { mapState } from 'vuex'
 import toastMixin from '~/mixins/toastMixin'
 
 export default {

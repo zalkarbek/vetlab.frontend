@@ -145,13 +145,8 @@ export default {
         })
       }
     },
-    async onDestroy(data) {
+    onDestroy(data) {
       try {
-        const res = await this.$store.dispatch('api/req', {
-          req: this.crudData.rest.destroy,
-          data
-        })
-        const message = (res.data && res.data.message) || ''
         this.$bvModal
           .msgBoxConfirm(this.$t('dialog.confirm.delete.message'), {
             title: this.$t('dialog.confirm.delete.title'),
@@ -163,16 +158,26 @@ export default {
             hideHeaderClose: false,
             centered: true
           })
-          .then((value) => {
-            if (res && res.data) {
-              this.crudListRecords.splice(this.crudListRecords.indexOf(data), 1)
+          .then(async (status) => {
+            if (status) {
+              const res = await this.$store.dispatch('api/req', {
+                req: this.crudData.rest.destroy,
+                data
+              })
+              const message = (res.data && res.data.message) || ''
+              if (res && res.data) {
+                this.crudListRecords.splice(
+                  this.crudListRecords.indexOf(data),
+                  1
+                )
+              }
+              this.$bvToast.toast(message, {
+                title: this.$i18n.t('success.title'),
+                variant: 'info',
+                solid: true,
+                append: true
+              })
             }
-            this.$bvToast.toast(message, {
-              title: this.$i18n.t('success.title'),
-              variant: 'info',
-              solid: true,
-              append: true
-            })
           })
       } catch (e) {
         const message =

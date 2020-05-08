@@ -60,11 +60,11 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 import CrudMixins from '~/components/crud/CrudComponentMixin'
 import CrudForm from '~/components/crud/CrudForm'
 import CrudFormModal from '~/components/crud/CrudFormModal'
 import CrudList from '~/components/crud/CrudList'
-import { mapState } from 'vuex'
 import toastMixin from '~/mixins/toastMixin'
 
 export default {
