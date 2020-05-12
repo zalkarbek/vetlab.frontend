@@ -77,7 +77,22 @@ export default {
       dateZaboya: 'Дата забоя',
       dateOtbora: 'Дата отбора проб',
       dateVremyaOtbora: 'Дата и время отбора проб',
-      dateDostavki: 'Дата доставки пробы'
+      dateDostavki: 'Дата доставки пробы',
+      dateVremyaOtpravki: 'Дата и время доставки',
+      napravlenOtdelId: 'Нарпавляется в отдел',
+      posMaterialId: 'Обьект исследования',
+      postMaterialCount: 'Количество проб',
+      isledovanieProvoditsaJSON: 'Исследование проводятся',
+      posMaterialCheckVid: 'Соответствие внешнего вида',
+      postMaterialCheck: 'Соответствует своему образу',
+      dateDeworming: 'Дата дегельминтизации',
+      anthelminticTypeJSON: 'Вид антигельминтика',
+      dateLechenia: 'Дата лечения',
+      antibioticTypeJSON: 'Вид антибиотика',
+      dateObrabotki: 'Дата обработки',
+      disinfectantTypeJSON: 'Вид дезинфектанта',
+      dateVaccination: 'Дата вакцинации животного',
+      vaccineTypeJSON: 'Вид вакцины'
     },
     placeholder: {
       name: 'название обьекта',
