@@ -199,12 +199,6 @@
 
           <template v-slot:cell(status)>
             <span class="tx-12 badge badge-primary">новый</span>
-            <br />
-            <span class="tx-12 badge badge-secondary">
-              отправлен
-            </span>
-            <br />
-            <span class="tx-12 badge badge-success">принят</span>
           </template>
 
           <template v-slot:cell(actions)="row">

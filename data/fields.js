@@ -220,7 +220,7 @@ const vnytNapravlenieFields = {
       key: 'postMaterialCheck',
       checkbox_value: true,
       checkbox_unchecked_value: false,
-      checkbox_label: 'form.label.checkVid'
+      checkbox_label: 'form.label.materialCheck'
     }
 
     // // Пробу принял (ФИО сотрудника) (JSON значение)

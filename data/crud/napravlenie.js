@@ -201,7 +201,7 @@ export default {
           key: 'fullName'
         },
         {
-          type: 'input:mask',
+          type: 'input_mask',
           key: 'phone_1',
           // свойство маска ввода для облегчения некоторых шаблонных вводов
           mask: {
@@ -221,7 +221,7 @@ export default {
           key: 'fullName'
         },
         {
-          type: 'text',
+          type: 'input_mask',
           key: 'phone_1',
           mask: {
             // если name пустой то используется custom

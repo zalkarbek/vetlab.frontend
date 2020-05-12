@@ -18,7 +18,7 @@
         :value="form.checkbox_value"
         :unchecked-value="form.checkbox_unchecked_value"
       >
-        {{ form.checkbox_label }}
+        {{ $t(form.checkbox_label) }}
       </b-form-checkbox>
     </template>
     <!-- -----------------------/ FORM CHECKBOX /----------------------- -->

@@ -178,6 +178,17 @@
                 view-type="inline"
               ></crud-list-view-json>
             </template>
+
+            <template v-else-if="data.field.type === fieldTypes.select_multi">
+              <template v-if="data.value && Array.isArray(data.value)">
+                <template v-for="(item, index) in data.value">
+                  <span :key="index" class="tx-bold">
+                    {{ viewForeignData(data.field, item) }},&nbsp;
+                  </span>
+                </template>
+              </template>
+            </template>
+
             <template v-else-if="data.field.foreign_crud">
               <span>{{ viewForeignData(data.field, data.value) }}</span>
             </template>
@@ -228,9 +239,9 @@
   </div>
 </template>
 <script>
-import CrudListViewJson from './CrudListViewJson'
 import _ from 'lodash'
 import { createNamespacedHelpers } from 'vuex'
+import CrudListViewJson from './CrudListViewJson'
 
 const { mapState, mapGetters } = createNamespacedHelpers('api')
 
