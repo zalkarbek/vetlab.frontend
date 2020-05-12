@@ -1,10 +1,12 @@
 import AuthApi from './auth'
+import OtdelApi from './otdel'
 
 class Api {
   constructor(context) {
     this.context = context
     this.apiServices = {
-      auth: AuthApi(context)
+      auth: AuthApi(context),
+      otdel: OtdelApi(context)
     }
   }
 

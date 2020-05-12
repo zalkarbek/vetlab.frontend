@@ -1,6 +1,7 @@
+import { vnytNapravlenieFields } from '../fields'
 import baseApiRoutes from './baseApiRoutes'
 // Имя модели к которому привязан этот API
-const restName = 'napravlenie'
+const restName = 'napravlenieEpic'
 // Превикс API маршрута
 const routePrefix = 'napravlenie'
 // Имя набор данных которые хранится в vuex или локально в переменной localDataset
@@ -14,31 +15,55 @@ export default {
   routePrefix,
   datasetName,
   rest: {
-    ...baseApi
+    ...baseApi,
+    getNapravlenieWithPaginate: {
+      url: `/api/v1/${routePrefix}/pos/withPaginate`,
+      method: 'GET'
+    },
+    getNapravlenie: {
+      url: `/api/v1/${routePrefix}/pos`,
+      method: 'GET'
+    },
+    sendToOtdel: {
+      method: 'POST',
+      url: `/api/v1/${routePrefix}/vnyt/sendToOtdel`
+    }
+  },
+
+  initConfig: {
+    getRecordList: {
+      datasetName: 'napravlenie',
+      // требуемые аттрибуты записей (с какими аттрибутами нужен запись)
+      // attributes: [''],
+      // paginate server or local
+      paginate: 'server', // local | server | storage
+      // изначальное настройка для количество записей на странице
+      pageSize: 10,
+      // какой rest метод нужно вызывать для получния список регионов (пагинация локально)
+      methodIfPaginateLocal: 'getNapravlenie',
+      // rest метод для получения регионов с пагинацией
+      methodIfPaginateServer: 'getNapravlenieWithPaginate',
+      // rest метод для поиска региона
+      methodOnSearch: 'getNapravlenieWithPaginate',
+      // поля по которым разрешен поиск (текст или массив полей)
+      searchColumn: ['id']
+    }
   },
 
   actionButtons: {
     crudList: [
       {
-        action: 'change-password',
-        actionMethod: 'changePassword',
-        modalId: 'personal-change-password-dialog',
+        action: 'otpravit-v-otdel',
+        actionMethod: 'openSendDialog',
+        modalId: 'send-to-otdel-dialog',
         label: 'napravlenie.epic.sendToOtdel',
         icon: 'far fa-paper-plane',
         variant: 'dark'
       },
       {
-        action: 'change-password',
-        actionMethod: 'changePassword',
-        modalId: 'personal-change-password-dialog',
-        label: 'napravlenie.epic.cancel',
-        icon: 'far fa-recycle',
-        variant: 'warning'
-      },
-      {
-        action: 'change-password',
-        actionMethod: 'changePassword',
-        modalId: 'personal-change-password-dialog',
+        action: 'delete-napravlenie',
+        actionMethod: 'deleteNapravlenie',
+        modalId: 'napravlenie-delete-dialog',
         label: 'napravlenie.epic.delete',
         icon: 'far fa-trash',
         variant: 'danger'
@@ -46,6 +71,22 @@ export default {
     ],
     crudForm: []
   },
+  // модальные окна
+  modals: [
+    // модальное окно для сброса пароля
+    {
+      type: 'modal-form', // modal-confirm, modal-message, modal-form
+      id: 'send-to-otdel-dialog',
+      class: 'send-to-otdel-dialog',
+      // размер модального окна
+      size: 'lg',
+      okAction: 'sendToOtdelOk',
+      hiddenAction: 'sendToOtdelCancel',
+      modalCrud: {
+        fields: [...vnytNapravlenieFields.fields]
+      }
+    }
+  ],
 
   foreign: [
     {
@@ -60,62 +101,6 @@ export default {
     }
   ],
   fields: [
-    {
-      type: 'select',
-      key: 'zapolnilPersonalId',
-      foreign_crud: 'personal',
-      foreign_dataset: 'personal',
-      foreign_label: 'fullName',
-      foreign_value: 'id',
-      foreign_attributes: ['fullName', 'id'],
-      disabled: true,
-      hidden: true
-    },
-    {
-      type: 'select',
-      key: 'zapolnilDepartmentId',
-      foreign_crud: 'department',
-      foreign_dataset: 'departments',
-      foreign_label: 'name',
-      foreign_value: 'id',
-      foreign_attributes: ['name', 'id'],
-      disabled: true,
-      hidden: true
-    },
-    {
-      type: 'datetime',
-      key: 'zapolnilDate',
-      disabled: true,
-      hidden: true
-    },
-    {
-      type: 'select',
-      key: 'prinyalPersonalId',
-      foreign_crud: 'personal',
-      foreign_dataset: 'personal',
-      foreign_label: 'fullName',
-      foreign_value: 'id',
-      foreign_attributes: ['fullName', 'id'],
-      disabled: true,
-      hidden: true
-    },
-    {
-      type: 'select',
-      key: 'prinyalOtdelId',
-      foreign_crud: 'otdel',
-      foreign_dataset: 'otdel',
-      foreign_label: 'name',
-      foreign_value: 'id',
-      foreign_attributes: ['name', 'id'],
-      disabled: true,
-      hidden: true
-    },
-    {
-      type: 'datetime',
-      key: 'prinyalDate',
-      disabled: true,
-      hidden: true
-    },
     {
       type: 'select',
       key: 'otdelId',
@@ -191,25 +176,14 @@ export default {
       ]
     },
     {
-      type: 'select',
-      key: 'perenapravilPersonalId',
-      foreign_crud: 'personal',
-      foreign_dataset: 'personal',
-      foreign_label: 'fullName',
-      foreign_value: 'id',
-      foreign_attributes: ['fullName', 'id'],
-      disabled: true,
-      hidden: true
-    },
-    {
       type: 'datetime',
       key: 'dataZapolnenia',
       disabled: true,
       hidden: true
     },
     {
-      type: 'select',
-      key: 'opPokazatelId',
+      type: 'select-multi',
+      key: 'opPokazatelIdJSON',
       foreign_crud: 's_pokazatel',
       foreign_dataset: 'pokazatel',
       foreign_label: 'name',
@@ -256,28 +230,6 @@ export default {
           }
         }
       ]
-    },
-    {
-      type: 'select',
-      key: 'oldPrinyalPersonalId',
-      foreign_crud: 'personal',
-      foreign_dataset: 'personal',
-      foreign_label: 'fullName',
-      foreign_value: 'id',
-      foreign_attributes: ['fullName', 'id'],
-      disabled: true,
-      hidden: true
-    },
-    {
-      type: 'select',
-      key: 'oldPrinyalOtdelId',
-      foreign_crud: 'otdel',
-      foreign_dataset: 'otdel',
-      foreign_label: 'name',
-      foreign_value: 'id',
-      foreign_attributes: ['name', 'id'],
-      disabled: true,
-      hidden: true
     },
     {
       type: 'status',

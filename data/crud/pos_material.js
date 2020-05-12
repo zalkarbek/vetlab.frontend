@@ -24,8 +24,8 @@ export default {
       disabled: true
     },
     {
-      type: 'select',
-      key: 'opPokazatelId',
+      type: 'select-multi',
+      key: 'opPokazatelIdJSON',
       foreign_crud: 's_pokazatel',
       foreign_dataset: 'pokazatel',
       foreign_label: 'name',
@@ -121,8 +121,8 @@ export default {
       key: 'dateZaboya'
     },
     {
-      type: 'date',
-      key: 'dateOtbora'
+      type: 'datetime',
+      key: 'dateVremyaOtbora'
     },
     {
       type: 'date',

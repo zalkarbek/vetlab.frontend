@@ -44,7 +44,7 @@ export default {
   setDataset({ commit }, { datasetName, datalist }) {
     commit('SET_DATASET', { datasetName, datalist })
   },
-  pushDataset({ commit }, { datasetName, data }) {
+  pushItemToDataset({ commit }, { datasetName, data }) {
     commit('PUSH_TO_DATASET', { datasetName, data })
   },
   updateItemInDataset({ commit }, { datasetName, id, data }) {

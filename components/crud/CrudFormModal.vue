@@ -92,6 +92,7 @@ export default {
       this.$emit('on-action', {
         actionMethod: this.modal.okAction,
         data: this.modalFormData,
+        modalCrud: this.modalCrud,
         cb: (validated, { message }) => {
           if (!validated) {
             event.preventDefault()

@@ -13,3 +13,5 @@
 /dist
 /assets
 !.eslintrc.js
+.vscode
+yarn.lock

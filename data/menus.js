@@ -81,6 +81,14 @@ export default [
                 to: '/spravka/pokazatel'
               },
               {
+                _t: 'menu.preparat.index',
+                text: 'антибиотики и вакцины',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/spravka/preparat'
+              },
+              {
                 _t: 'menu.metod.index',
                 text: 'методы исследование',
                 class: '',

@@ -11,6 +11,30 @@
     </template>
     <!-- -----------------------/ FORM TEXT /----------------------- -->
 
+    <!-- ----------------------- FORM CHECKBOX ----------------------- -->
+    <template v-if="!form.disabled && form.type === fieldTypes.checkbox">
+      <b-form-checkbox
+        v-model="formValue"
+        :value="form.checkbox_value"
+        :unchecked-value="form.checkbox_unchecked_value"
+      >
+        {{ form.checkbox_label }}
+      </b-form-checkbox>
+    </template>
+    <!-- -----------------------/ FORM CHECKBOX /----------------------- -->
+
+    <!-- ----------------------- FORM CHECKBOX_ARRAY ----------------------- -->
+    <template v-if="!form.disabled && form.type === fieldTypes.checkbox_array">
+      <b-form-checkbox-group
+        v-model="formValue"
+        :options="form.checkbox_options"
+        :value-field="form.checkbox_value_field"
+        :text-field="form.checkbox_text_field"
+        :disabled-field="form.checkbox_disabled_field"
+      ></b-form-checkbox-group>
+    </template>
+    <!-- -----------------------/ FORM CHECKBOX_ARRAY /----------------------- -->
+
     <!-- ----------------------- FORM PASSWORD ----------------------- -->
     <template v-if="!form.disabled && form.type === fieldTypes.password">
       <input
@@ -56,6 +80,49 @@
     </template>
     <!-- -----------------------/ FORM SELECT /----------------------- -->
 
+    <!-- ----------------------- FORM SELECT_MANY ----------------------- -->
+    <template
+      v-else-if="!form.disabled && form.type === fieldTypes.select_multi"
+    >
+      <v-select
+        v-model.trim="formValue"
+        :reduce="(item) => item[form.foreign_value]"
+        :placeholder="placeholder || defaultPlaceholder(form)"
+        :label="form.foreign_label"
+        :options="datasetList[form.foreign_dataset]"
+        @search:focus="storageLoadDataSet(form)"
+        multiple
+      />
+    </template>
+    <!-- -----------------------/ FORM SELECT_MANY /----------------------- -->
+
+    <!-- ----------------------- FORM SELECT:OWN ----------------------- -->
+    <template v-else-if="!form.disabled && form.type === fieldTypes.select_own">
+      <v-select
+        v-model.trim="formValue"
+        :reduce="(item) => item[form.foreign_value]"
+        :placeholder="placeholder || defaultPlaceholder(form)"
+        :label="form.foreign_label"
+        :options="translateForeignValues(form.foreign_values)"
+      />
+    </template>
+    <!-- -----------------------/ FORM SELECT:OWN /----------------------- -->
+
+    <!-- ----------------------- FORM SELECT_MANY:OWN ----------------------- -->
+    <template
+      v-else-if="!form.disabled && form.type === fieldTypes.select_multi_own"
+    >
+      <v-select
+        v-model.trim="formValue"
+        :reduce="(item) => item[form.foreign_value]"
+        :placeholder="placeholder || defaultPlaceholder(form)"
+        :label="form.foreign_label"
+        :options="translateForeignValues(form.foreign_values)"
+        multiple
+      />
+    </template>
+    <!-- -----------------------/ FORM SELECT_MANY:OWN /----------------------- -->
+
     <!-- ----------------------- FORM SELECT:PRELOAD ----------------------- -->
     <template
       v-else-if="!form.disabled && form.type === fieldTypes.select_preload"
@@ -86,18 +153,6 @@
       />
     </template>
     <!-- -----------------------/ FORM SELECT:SEARCH /----------------------- -->
-
-    <!-- ----------------------- FORM SELECT:OWN ----------------------- -->
-    <template v-else-if="!form.disabled && form.type === fieldTypes.select_own">
-      <v-select
-        v-model.trim="formValue"
-        :reduce="(item) => item[form.foreign_value]"
-        :placeholder="placeholder || defaultPlaceholder(form)"
-        :label="form.foreign_label"
-        :options="translateForeignValues(form.foreign_values)"
-      />
-    </template>
-    <!-- -----------------------/ FORM SELECT:OWN /----------------------- -->
 
     <!-- ----------------------- FORM AUTOCOMPLETE ----------------------- -->
     <template
@@ -358,7 +413,6 @@ export default {
         })
         this.$set(this.searchDataset, field.foreign_dataset, data || [])
       } catch (e) {
-        console.error(e)
         this.$set(this.searchDataset, field.foreign_dataset, [])
       }
     },
@@ -411,7 +465,7 @@ export default {
           )
         }
       } catch (e) {
-        console.error(e)
+        return {}
       }
     },
 
@@ -446,14 +500,22 @@ export default {
       foreign_dataset: datasetName,
       foreign_crud: datasetCrudName,
       foreign_crud_method: datasetCrudMethod,
-      foreign_attributes: attributes
+      foreign_attributes: attributes,
+      foreign_by_params: params = []
     }) {
+      const reqParams = {}
+      if (params && Array.isArray(params) && params.length >= 1) {
+        params.forEach((param) => {
+          reqParams[param.paramName] = this.record[param.parentColumnName]
+        })
+      }
       await this.$store.dispatch('api/getDataset', {
         datasetName,
         datasetCrudName,
         datasetCrudMethod,
         params: {
-          attributes
+          attributes,
+          ...reqParams
         }
       })
     },
@@ -462,22 +524,29 @@ export default {
     async localLoadDataset({
       foreign_dataset: datasetName,
       foreign_crud: datasetCrudName,
-      foreign_crud_method: datasetCrudMethod
+      foreign_crud_method: datasetCrudMethod,
+      foreign_attributes: attributes,
+      foreign_by_params: params = []
     }) {
-      if (
-        !this.localDataset[datasetName] ||
-        !this.localDataset[datasetName].length
-      ) {
-        try {
-          const crud = this.crud[datasetCrudName]
-          const { data } = await this.$store.dispatch('api/req', {
-            req: crud.rest[datasetCrudMethod] || crud.rest.all
+      try {
+        const reqParams = {}
+        if (params && Array.isArray(params) && params.length >= 1) {
+          params.forEach((param) => {
+            reqParams[param.paramName] = this.record[param.parentColumnName]
           })
-          this.$set(this.localDataset, datasetName, [...data])
-          this.$emit('get-init-dataset', { datasetName, datasetCrudName })
-        } catch (e) {
-          this.$set(this.localDataset, datasetName, [])
         }
+        const crud = this.crud[datasetCrudName]
+        const { data } = await this.$store.dispatch('api/req', {
+          req: crud.rest[datasetCrudMethod] || crud.rest.all,
+          params: {
+            attributes,
+            ...reqParams
+          }
+        })
+        this.$set(this.localDataset, datasetName, [...data])
+        this.$emit('get-init-dataset', { datasetName, datasetCrudName })
+      } catch (e) {
+        this.$set(this.localDataset, datasetName, [])
       }
     }
   }

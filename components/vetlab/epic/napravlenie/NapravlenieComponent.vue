@@ -19,7 +19,7 @@
           @on-page="onCrudListChangePage"
           @on-page-size="onCrudListChangePageSize"
           @on-search="onCrudListSearch"
-          @on-action="onAction"
+          @on-action="onListAction"
           :crud-data="crudData"
           :paginate-type="crudListPaginateType"
           :total-rows="crudListTotalRows"
@@ -31,17 +31,16 @@
     <div class="crud-dialogs">
       <template v-for="modal in modals">
         <template v-if="modal.type === modalTypes.form">
-          <crud-form-modal
+          <napravlenie-form-modal
             :id="modal.id"
             :title="$t(modal.title)"
             :size="modal.size"
             :crud-data="crudData"
             :modal="modal"
             :form-data="modalFormDataByRestName"
-            @ok-event="changePasswordOk"
             @on-action="onModalAction"
           >
-          </crud-form-modal>
+          </napravlenie-form-modal>
         </template>
       </template>
     </div>
@@ -49,83 +48,63 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
 import NapravlenieList from './NapravlenieList'
-import CrudMixins from '~/components/crud/CrudComponentMixin'
-import CrudFormModal from '~/components/crud/CrudFormModal'
+import NapravlenieCrud from './NapravlenieCrud'
+import NapravlenieFormModal from './NapravlenieFormModal'
+import _ from 'lodash'
 import toastMixin from '~/mixins/toastMixin'
 
 export default {
   components: {
     NapravlenieList,
-    CrudFormModal
+    NapravlenieFormModal
   },
-  mixins: [toastMixin, CrudMixins],
-
-  data() {
-    return {
-      modalFormData: {}
-    }
-  },
-  computed: {
-    modals() {
-      return this.crudData.modals
-    },
-    ...mapState('dash', {
-      modalTypes: (state) => state.modalTypes
-    }),
-    modalFormDataByRestName() {
-      return this.modalFormData[this.crudData.restName]
-    }
-  },
-  mounted() {},
+  mixins: [toastMixin, NapravlenieCrud],
   methods: {
-    onAction({ actionButton, data }) {
-      this[actionButton.actionMethod](actionButton, data)
-    },
-    onModalAction({ actionMethod, ...other }) {
-      this[actionMethod]({ ...other })
-    },
-
-    changePassword({ modalId }, data) {
+    openSendDialog({ modalId, ...other }, data) {
       if (modalId) {
         this.$bvModal.show(modalId)
       }
-      this.$set(this.modalFormData, this.crudData.restName, data)
+      const cloneData = _.cloneDeep(data)
+      this.$set(this.modalFormData, this.crudData.restName, cloneData)
     },
-    async changePasswordOk({ data, cb }) {
+    async sendToOtdelOk({ data, modalCrud, cb }) {
       let success = false
       let message = ''
-      if (data && !data.password) {
+      if (!data.napravlenOtdelId) {
         success = false
-        message = this.$t('user.password.notPassword')
+        message = this.$t('otdel.error.notSelected')
         cb(success, {
           ok: success,
           message
         })
         return false
       }
-      if (data && data.password && data.password.length < 4) {
+      if (!data.dateVremyaOtpravki) {
         success = false
-        message = this.$t('user.password.lowPassword4')
+        message = this.$t('otdel.error.dateVremyaOtpravkiNotSelected')
         cb(success, {
           ok: success,
           message
         })
         return false
       }
+
+      const postData = {}
+      modalCrud.fields.forEach((field) => {
+        postData[field.key] = data[field.key]
+      })
+      postData.napravlenieId = data.id
       try {
         const res = await this.$store.dispatch('api/req', {
-          req: this.crudData.rest.changePassword,
+          req: this.crudData.rest.sendToOtdel,
           data: {
-            user: data,
-            personalId: this.modalFormDataByRestName.id
+            ...postData
           }
         })
         if (res.data && !res.data.error) {
           success = true
           message = (res.data && res.data.message) || ''
-          data.password = ''
         } else {
           success = false
           message = 'error.server'
@@ -139,11 +118,6 @@ export default {
         message
       })
       return false
-    },
-    changePasswordHidden({ data, cb }) {
-      const success = true
-      data.password = ''
-      cb(success)
     }
   }
 }

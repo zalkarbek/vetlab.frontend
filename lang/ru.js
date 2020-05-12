@@ -59,8 +59,10 @@ export default {
       regionFullPath: 'полный адрес',
       departmentDataJSON: 'Дополнительная информация о департамента',
       sOtdeleniaId: 'Принадлежит к группе отдела',
-      otdelId: 'Принадлежит к отделу',
+      otdelId: 'Отдел',
+      toOtdel: 'Направляется в отдел',
       opPokazatelId: 'Определяемый показатель',
+      opPokazatelIdJSON: 'Определяемые показатели',
       probyNapravilJSON: 'Пробу направил',
       probyDostavilJSON: 'Пробу доставил',
       ownerJSON: 'Владелец пробы',
@@ -74,6 +76,7 @@ export default {
       dateZabolivanie: 'Дата заболивания животного',
       dateZaboya: 'Дата забоя',
       dateOtbora: 'Дата отбора проб',
+      dateVremyaOtbora: 'Дата и время отбора проб',
       dateDostavki: 'Дата доставки пробы'
     },
     placeholder: {
@@ -167,6 +170,9 @@ export default {
   s_pokazatel: {
     title: 'Определяемые показатели'
   },
+  s_preparat: {
+    title: 'Антибиотики, вакцины, антигельмитики'
+  },
   s_region: {
     title: 'Регионы'
   },
@@ -182,7 +188,11 @@ export default {
     }
   },
   otdel: {
-    title: 'Отдел'
+    title: 'Отдел',
+    error: {
+      notSelected: 'Вы не выбрали отдел',
+      dateVremyaOtpravkiNotSelected: 'Вы не выбрали дата и время отправки пробы'
+    }
   },
   planRaboty: {
     title: 'План работы'
@@ -251,6 +261,9 @@ export default {
     pokazatel: {
       index: 'определяемый показатель',
       add: ''
+    },
+    preparat: {
+      index: 'вакцины и препараты'
     },
     material_type: {
       index: 'вид материалов',

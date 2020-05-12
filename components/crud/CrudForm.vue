@@ -1,7 +1,7 @@
 <template>
   <div class="card card-body">
     <h4 v-if="crudButtonsEnabled">{{ $t('form.add') }}</h4>
-    <b-container fluid>
+    <b-container fluid="true">
       <!--==================================================================-->
       <b-form-row>
         <template v-for="(field, index) in modelData.fields">
@@ -24,17 +24,23 @@
                 $t(field.description || `form.description.${field.key}`)
               "
             >
-              <crud-field
-                v-model="recordItem[field.key]"
-                @multi-input="onMultiInput"
-                :record="recordItem"
-                :field="field"
-                :crud-data="modelData"
-                :id="`${modelData.restName}_${field.key}_crud_${index}`"
-                :placeholder="
-                  $t(field.placeholder || `form.placeholder.${field.key}`)
-                "
-              />
+              <slot
+                :name="field.key"
+                v-bind:field="field"
+                v-bind:item="recordItem"
+              >
+                <crud-field
+                  v-model="recordItem[field.key]"
+                  @multi-input="onMultiInput"
+                  :record="recordItem"
+                  :field="field"
+                  :crud-data="modelData"
+                  :id="`${modelData.restName}_${field.key}_crud_${index}`"
+                  :placeholder="
+                    $t(field.placeholder || `form.placeholder.${field.key}`)
+                  "
+                />
+              </slot>
             </b-form-group>
           </b-col>
           <!--==================================================================-->
@@ -48,11 +54,17 @@
             <h5 class="mg-b-10">
               {{ $t(field.label || `form.label.${field.key}`) }}
             </h5>
-            <crud-field-json
-              v-model="recordItem[field.key]"
-              :field="field"
-              :crud-data="modelData"
-            />
+            <slot
+              :name="field.key"
+              v-bind:field="field"
+              v-bind:item="recordItem"
+            >
+              <crud-field-json
+                v-model="recordItem[field.key]"
+                :field="field"
+                :crud-data="modelData"
+              />
+            </slot>
             <hr />
           </b-col>
           <!--==================================================================-->
@@ -185,12 +197,12 @@
   </div>
 </template>
 <script>
-import { createNamespacedHelpers } from 'vuex'
-import _ from 'lodash'
 import CrudField from './CrudField'
 import CrudFieldJson from './CrudFieldJson'
 import CrudFormArray from './CrudFormArray'
 import CrudFormObject from './CrudFormObject'
+import _ from 'lodash'
+import { createNamespacedHelpers } from 'vuex'
 const { mapState } = createNamespacedHelpers('api')
 
 export default {
@@ -200,10 +212,6 @@ export default {
     CrudFormArray,
     CrudFormObject
   },
-  // model: {
-  //   prop: 'record',
-  //   event: 'on-clear'
-  // },
   props: {
     crudData: {
       type: Object,

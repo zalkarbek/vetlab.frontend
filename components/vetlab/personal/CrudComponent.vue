@@ -30,7 +30,7 @@
           @on-page="onCrudListChangePage"
           @on-page-size="onCrudListChangePageSize"
           @on-search="onCrudListSearch"
-          @on-action="onAction"
+          @on-action="onListAction"
           :crud-data="crudData"
           :paginate-type="crudListPaginateType"
           :total-rows="crudListTotalRows"
@@ -49,7 +49,6 @@
             :crud-data="crudData"
             :modal="modal"
             :form-data="modalFormDataByRestName"
-            @ok-event="changePasswordOk"
             @on-action="onModalAction"
           >
           </crud-form-modal>
@@ -75,11 +74,6 @@ export default {
   },
   mixins: [toastMixin, CrudMixins],
 
-  data() {
-    return {
-      modalFormData: {}
-    }
-  },
   computed: {
     modals() {
       return this.crudData.modals
@@ -93,7 +87,7 @@ export default {
   },
   mounted() {},
   methods: {
-    onAction({ actionButton, data }) {
+    onListAction({ actionButton, data }) {
       this[actionButton.actionMethod](actionButton, data)
     },
     onModalAction({ actionMethod, ...other }) {
@@ -155,7 +149,9 @@ export default {
     },
     changePasswordHidden({ data, cb }) {
       const success = true
-      data.password = ''
+      if (data) {
+        data.password = ''
+      }
       cb(success)
     }
   }

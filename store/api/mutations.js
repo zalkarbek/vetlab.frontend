@@ -21,5 +21,8 @@ export default {
     if (elementIndex >= 0) {
       state.dataset[datasetName][elementIndex] = data
     }
+  },
+  CRUD_FIELDS_REPLACE(state, { crud, fields = [] }) {
+    crud.fields = fields
   }
 }

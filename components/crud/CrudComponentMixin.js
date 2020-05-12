@@ -1,6 +1,5 @@
 import _ from 'lodash'
-import { createNamespacedHelpers } from 'vuex'
-const { mapState } = createNamespacedHelpers('api')
+import { mapState } from 'vuex'
 
 export default {
   props: {
@@ -14,18 +13,28 @@ export default {
     }
   },
   computed: {
+    modals() {
+      return this.crudData.modals
+    },
+    modalFormDataByRestName() {
+      return this.modalFormData[this.crudData.restName]
+    },
+    ...mapState('dash', {
+      modalTypes: (state) => state.modalTypes
+    }),
+    ...mapState('api', {
+      fieldTypes: (state) => state.fieldTypes
+    }),
     crudData() {
       return this.crud[this.crudDataName]
     },
     restName() {
       return this.crudData.restName || ''
-    },
-    ...mapState({
-      fieldTypes: (state) => state.fieldTypes
-    })
+    }
   },
   data() {
     return {
+      modalFormData: {},
       dataset: {},
       selectedRecord: {},
       crudListRecords: [],
@@ -45,6 +54,13 @@ export default {
     this.selectedRecord = this.initFields({}, this.crudData)
   },
   methods: {
+    onListAction({ actionButton, data }) {
+      if (this[actionButton.actionMethod])
+        this[actionButton.actionMethod](actionButton, data)
+    },
+    onModalAction({ actionMethod, ...other }) {
+      if (this[actionMethod]) this[actionMethod]({ ...other })
+    },
     findInDataset(query, columnName, datasetName) {
       if (this.dataset && this.dataset[datasetName].length >= 1) {
         return this.$filterObjectArray(
@@ -54,6 +70,12 @@ export default {
         )
       }
       return []
+    },
+    pushDatasetItem(data, datasetName) {
+      this.$store.dispatch('api/pushItemToDataset', {
+        data,
+        datasetName
+      })
     },
     updateDatasetItem(id, data, datasetName) {
       const initConfig = this.crudData.initConfig
@@ -98,6 +120,7 @@ export default {
         const message = (res.data && res.data.message) || ''
         if (res.data && !res.data.error && res.data.data) {
           this.clearForm()
+          this.pushDatasetItem(res.data.data, this.crudData.datasetName)
           this.crudListRecords.push(res.data.data)
         }
         this.$bvToast.toast(message, {
@@ -265,7 +288,6 @@ export default {
       }
       return record
     },
-
     clearForm() {
       this.selectedRecord = this.initFields({}, this.crudData)
     },
