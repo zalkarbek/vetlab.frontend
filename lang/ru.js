@@ -23,6 +23,8 @@ export default {
       id: 'id'
     },
     label: {
+      yes: 'Да',
+      no: 'Нет',
       status: 'Статус',
       male: 'Муж',
       female: 'Жен',
@@ -99,7 +101,12 @@ export default {
       secondary: 'Вторичный',
       notApply: 'Не применимо',
       beforeProcess: 'До обработки',
-      afterProcess: 'После обработки'
+      afterProcess: 'После обработки',
+      napravlenieEpic: 'Поступившие направление',
+      vnytNapravlenie: 'Отправленные направление',
+      sendStatusCustomView: 'Отправил&Принял',
+      posMaterialCustomView: 'Обьект исследования',
+      vnytNapravlenieOptionalCustomView: 'Доп. данные'
     },
     placeholder: {
       name: 'название обьекта',
@@ -276,7 +283,9 @@ export default {
   pos_material: {
     title: 'Поступившие материалы',
     label: {
-      one: 'Поступивший материал'
+      one: 'Поступивший материал',
+      dateVremyaOtbora: 'Дата отбора пробы',
+      dateDostavki: 'Дата доставки пробы'
     }
   },
   subOtdel: {
@@ -295,6 +304,51 @@ export default {
       sDoljnostId: 'Должность',
       otdelId: 'Отдел',
       subOtdel: 'Под отдел'
+    }
+  },
+  napravlenieEpic: {
+    title: 'Поступившие Направление',
+    label: {
+      nomerNapravlenia: 'Код направления'
+    }
+  },
+  vnytNapravlenie: {
+    title: 'Внутреннее Направление',
+    label: {
+      napravilPersonal: 'Направил',
+      napravlenOtdel: 'Направлен в отдел',
+      dateVremyaOtpravki: 'Дата отправки',
+      prinyalPersonal: 'Принял',
+      prinyalOtdel: 'Принял',
+      prinyalDate: 'Дата приема',
+      opPokazatel: 'Опр-е показатели',
+      posMaterialId: 'Обьект исследования',
+      posMaterialCheckVid: 'Соответствие внешнего вида',
+      postMaterialCheck: 'Соответствует своему образу',
+      dateObrabotki: 'Дата обработки',
+      dateDeworming: 'Дата дегельминтизации',
+      dateVaccination: 'Дата вакцинации',
+      dateLechenia: 'Дата лечения',
+      anthelminticTypeJSON: 'Вид антигельминтика',
+      antibioticTypeJSON: 'Вид антибиотика',
+      disinfectantTypeJSON: 'Вид дезинфектанта',
+      vaccineTypeJSON: 'Вид вакцинации',
+      isledovanieProvoditsaJSON: 'Исследования проводятся',
+      status: {
+        pending: 'Ожидание принятии',
+        accepted: 'Принят',
+        reseach: 'На иследовании',
+        completed: 'Завершен'
+      }
+    }
+  },
+  isledovanie: {
+    label: {
+      primary: 'Первичный',
+      notApply: 'Не применимо',
+      beforeProcess: 'До обработки',
+      afterProcess: 'После обработки',
+      secondary: 'Вторичный'
     }
   },
   user: {

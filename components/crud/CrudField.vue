@@ -245,7 +245,7 @@
     <!-- ----------------------- FORM DATE ----------------------- -->
     <template v-else-if="!form.disabled && form.type === fieldTypes.date">
       <v-date-picker
-        v-model.trim="formValue"
+        v-model="formValue"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :attributes="dateAttrs"
         :locale="{
@@ -259,7 +259,7 @@
     <!-- ----------------------- FORM DATETIME ----------------------- -->
     <template v-else-if="!form.disabled && form.type === fieldTypes.datetime">
       <v-datetime-picker
-        v-model.trim="formValue"
+        v-model="formValue"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :show-second="false"
         format="DD.MM.YYYY HH:mm"
@@ -360,9 +360,6 @@ export default {
         this.$emit('input', value)
       }
     },
-    // defaultId() {
-    //   return (form) => `${this.crudData.restName}_${form.key}_${form.type}`
-    // },
     defaultPlaceholder() {
       return (form) => this.$t(`form.placeholder.${form.key}`)
     },
@@ -372,6 +369,15 @@ export default {
       inputMask: (state) => state.inputMask,
       datasetList: (state) => state.dataset
     })
+  },
+  mounted() {
+    if (this.form.type === this.fieldTypes.date && this.formValue) {
+      this.formValue = new Date(this.formValue)
+    }
+
+    if (this.form.type === this.fieldTypes.datetime && this.formValue) {
+      this.formValue = new Date(this.formValue)
+    }
   },
   methods: {
     translateForeignValues(values = []) {

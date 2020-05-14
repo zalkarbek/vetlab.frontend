@@ -253,12 +253,13 @@ export default {
       })
       if (Array.isArray(crudData.foreign) && crudData.foreign.length >= 1) {
         crudData.foreign.forEach((foreign) => {
-          if (_.isNil(record[foreign.crudName])) {
+          const foreignName = foreign.datasetName || foreign.crudName
+          if (_.isNil(record[foreignName])) {
             if (foreign.type === this.fieldTypes.array) {
-              this.$set(record, foreign.crudName, [])
+              this.$set(record, foreignName, [])
             }
             if (foreign.type === this.fieldTypes.object) {
-              this.$set(record, foreign.crudName, {})
+              this.$set(record, foreignName, {})
             }
           }
         })
@@ -279,10 +280,12 @@ export default {
       if (Array.isArray(crudData.foreign) && crudData.foreign.length >= 1) {
         crudData.foreign.forEach((foreign) => {
           if (foreign.type === this.fieldTypes.array) {
-            this.$set(record, foreign.crudName, [])
+            const name = foreign.datasetName || foreign.crudName
+            this.$set(record, name, [])
           }
           if (foreign.type === this.fieldTypes.object) {
-            this.$set(record, foreign.crudName, {})
+            const name = foreign.datasetName || foreign.crudName
+            this.$set(record, name, {})
           }
         })
       }

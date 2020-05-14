@@ -5,4 +5,6 @@ export default (context, inject) => {
   inject('filterObjectArray', GlobalMethods.filterObjectArray)
   inject('randomInt', GlobalMethods.randomInt)
   inject('toLowerCase', GlobalMethods.toLowerCase)
+  inject('firstLetter', GlobalMethods.firstLetter)
+  inject('lastLetter', GlobalMethods.lastLetter)
 }

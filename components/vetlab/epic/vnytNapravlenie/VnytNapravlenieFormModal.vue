@@ -12,18 +12,21 @@
         :crud-buttons-enabled="false"
         :crud-data="crudModalData"
         :record="modalFormData"
-      ></crud-form>
+      >
+      </crud-form>
     </b-col>
   </b-modal>
 </template>
 <script>
 import CrudForm from '~/components/crud/CrudForm'
 import toastMixin from '~/mixins/toastMixin'
+import loadDatasetMixin from '~/mixins/loadDatasetMixin'
+
 export default {
   components: {
     CrudForm
   },
-  mixins: [toastMixin],
+  mixins: [toastMixin, loadDatasetMixin],
   props: {
     id: {
       type: String,
@@ -63,7 +66,10 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      test: true,
+      formDataItem: {}
+    }
   },
   computed: {
     modalCrud() {
@@ -77,11 +83,7 @@ export default {
       }
     },
     modalFormData() {
-      let formData = this.formData
-      if (this.modalCrud && this.modalCrud.modalRequireField) {
-        formData = this.formData[this.modalCrud.modalRequireField]
-      }
-      return formData
+      return this.formData
     }
   },
 
@@ -105,6 +107,7 @@ export default {
       this.$emit('on-action', {
         actionMethod: this.modal.hiddenAction,
         data: this.modalFormData,
+        modalCrud: this.modalCrud,
         cb: (validated) => {
           if (!validated) {
             event.preventDefault()

@@ -52,6 +52,7 @@ export default {
     '@/assets/fonts/fontawesome-pro/scss/fontawesome.scss',
     '@/assets/fonts/fontawesome-pro/scss/duotone.scss',
     '@/assets/fonts/fontawesome-pro/scss/light.scss',
+    '@/assets/fonts/fontawesome-pro/scss/solid.scss',
     '@/assets/fonts/fontawesome-pro/scss/regular.scss',
     '@/assets/fonts/fontawesome-pro/scss/brands.scss'
   ],

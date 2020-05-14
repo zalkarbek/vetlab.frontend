@@ -80,70 +80,56 @@
             <h5>
               {{ $t(`${foreignCrud.crudName}.title`) }} &nbsp;
               <button
-                @click="
-                  addNewToForeignArray(recordItem, foreignCrud.crudName, 1)
-                "
+                @click="addNewToForeignArray(recordItem, foreignCrud, 1)"
                 type="button"
                 class="btn btn-xs btn-outline-primary"
               >
                 {{ $t('form.label.add') }} 1
               </button>
               <button
-                @click="
-                  addNewToForeignArray(recordItem, foreignCrud.crudName, 5)
-                "
+                @click="addNewToForeignArray(recordItem, foreignCrud, 5)"
                 type="button"
                 class="btn btn-xs btn-outline-primary"
               >
                 {{ $t('form.label.add') }} 5
               </button>
               <button
-                @click="
-                  addNewToForeignArray(recordItem, foreignCrud.crudName, 7)
-                "
+                @click="addNewToForeignArray(recordItem, foreignCrud, 7)"
                 type="button"
                 class="btn btn-xs btn-outline-primary"
               >
                 {{ $t('form.label.add') }} 7
               </button>
               <button
-                @click="
-                  addNewToForeignArray(recordItem, foreignCrud.crudName, 10)
-                "
+                @click="addNewToForeignArray(recordItem, foreignCrud, 10)"
                 type="button"
                 class="btn btn-xs btn-outline-primary"
               >
                 {{ $t('form.label.add') }} 10
               </button>
               <button
-                @click="
-                  addNewToForeignArray(recordItem, foreignCrud.crudName, 13)
-                "
+                @click="addNewToForeignArray(recordItem, foreignCrud, 13)"
                 type="button"
                 class="btn btn-xs btn-outline-primary"
               >
                 {{ $t('form.label.add') }} 13
               </button>
               <button
-                @click="
-                  addNewToForeignArray(recordItem, foreignCrud.crudName, 15)
-                "
+                @click="addNewToForeignArray(recordItem, foreignCrud, 15)"
                 type="button"
                 class="btn btn-xs btn-outline-primary"
               >
                 {{ $t('form.label.add') }} 15
               </button>
               <button
-                @click="
-                  addNewToForeignArray(recordItem, foreignCrud.crudName, 20)
-                "
+                @click="addNewToForeignArray(recordItem, foreignCrud, 20)"
                 type="button"
                 class="btn btn-xs btn-outline-primary"
               >
                 {{ $t('form.label.add') }} 20
               </button>
               <button
-                @click="clearDataArray(recordItem, foreignCrud.crudName)"
+                @click="clearDataArray(recordItem, foreignCrud)"
                 type="button"
                 class="btn btn-xs btn-outline-danger"
               >
@@ -155,9 +141,14 @@
             </div>
             <crud-form-array
               :crud-data="crud[foreignCrud.crudName]"
-              v-model="recordItem[foreignCrud.crudName]"
+              v-model="
+                recordItem[foreignCrud.datasetName || foreignCrud.crudName]
+              "
               @remove-element="
-                (index) => recordItem[foreignCrud.crudName].splice(index, 1)
+                (index) =>
+                  recordItem[
+                    foreignCrud.datasetName || foreignCrud.crudName
+                  ].splice(index, 1)
               "
             />
           </div>
@@ -197,12 +188,12 @@
   </div>
 </template>
 <script>
-import _ from 'lodash'
-import { createNamespacedHelpers } from 'vuex'
 import CrudField from './CrudField'
 import CrudFieldJson from './CrudFieldJson'
 import CrudFormArray from './CrudFormArray'
 import CrudFormObject from './CrudFormObject'
+import { createNamespacedHelpers } from 'vuex'
+import _ from 'lodash'
 const { mapState } = createNamespacedHelpers('api')
 
 export default {
@@ -289,14 +280,16 @@ export default {
         data: this.recordItem
       })
     },
-    addNewToForeignArray(record, crudName, count = 1) {
+    addNewToForeignArray(record, foreignCrud, count = 1) {
+      const crudName = foreignCrud.datasetName || foreignCrud.crudName
       const newArray = record[crudName] || []
       for (let i = 0; i < count; i++) {
         newArray.push({})
       }
       this.$set(record, crudName, newArray)
     },
-    clearDataArray(record, crudName) {
+    clearDataArray(record, foreignCrud) {
+      const crudName = foreignCrud.datasetName || foreignCrud.crudName
       this.$set(record, crudName, [])
     },
     toLowerCase(value) {

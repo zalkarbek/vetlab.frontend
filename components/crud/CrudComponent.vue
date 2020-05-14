@@ -38,7 +38,6 @@
         ></crud-list>
       </b-col>
     </b-row>
-    <div class="footer-full-content"></div>
   </div>
 </template>
 <script>

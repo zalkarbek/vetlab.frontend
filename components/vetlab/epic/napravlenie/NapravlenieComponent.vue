@@ -44,14 +44,13 @@
         </template>
       </template>
     </div>
-    <div class="footer-full-content"></div>
   </div>
 </template>
 <script>
-import _ from 'lodash'
 import NapravlenieList from './NapravlenieList'
 import NapravlenieCrud from './NapravlenieCrud'
 import NapravlenieFormModal from './NapravlenieFormModal'
+import _ from 'lodash'
 import toastMixin from '~/mixins/toastMixin'
 
 export default {

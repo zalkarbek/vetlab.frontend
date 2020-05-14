@@ -1,22 +1,34 @@
 <template>
-  <div v-bind:id="`${crudDataName}_page_id`">
-    <crud-component
-      :crud="crud"
-      :crud-data-name="crudDataName"
-    ></crud-component>
+  <div>
+    <div v-bind:id="`${napravlenieCrudDataName}_page_id`">
+      <napravlenie-component
+        :crud="crud"
+        :crud-data-name="napravlenieCrudDataName"
+      ></napravlenie-component>
+    </div>
+    <div class="mg-t-30" v-bind:id="`${napravlenieCrudDataName}_page_id`">
+      <vnyt-napravlenie-component
+        :crud="crud"
+        :crud-data-name="vnytNapravlenieCrudDataName"
+      >
+      </vnyt-napravlenie-component>
+    </div>
   </div>
 </template>
 <script>
-import CrudComponent from '~/components/vetlab/epic/napravlenie/NapravlenieComponent'
+import NapravlenieComponent from '~/components/vetlab/epic/napravlenie/NapravlenieComponent'
+import VnytNapravlenieComponent from '~/components/vetlab/epic/vnytNapravlenie/VnytNapravlenieComponent'
 import CrudData from '~/data/crud'
 
 export default {
   components: {
-    CrudComponent
+    NapravlenieComponent,
+    VnytNapravlenieComponent
   },
   data() {
     return {
-      crudDataName: 'napravlenieEpic'
+      napravlenieCrudDataName: 'napravlenieEpic',
+      vnytNapravlenieCrudDataName: 'vnytNapravlenie'
     }
   },
   computed: {

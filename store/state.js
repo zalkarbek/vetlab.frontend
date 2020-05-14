@@ -1,4 +1,5 @@
 import i18nConfig from '~/config/i18n'
+import dateFormats from '~/config/dateFormats'
 
 export default () => ({
   user: {},
@@ -10,5 +11,7 @@ export default () => ({
   cities: [],
   defaultLocale: i18nConfig.defaultLocale,
   currentLocale: i18nConfig.currentLocale,
-  supportedLocales: i18nConfig.supportedLocales
+  supportedLocales: i18nConfig.supportedLocales,
+  dateSwitchLocales: i18nConfig.dateSwitchLocales,
+  dateFormats
 })

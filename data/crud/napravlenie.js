@@ -28,6 +28,7 @@ export default {
       type: 'array',
       // название модели
       crudName: 'pos_material',
+      datasetName: 'posMaterials',
       // какие поля нужны для заполнения Массив название полей
       fields: []
     }

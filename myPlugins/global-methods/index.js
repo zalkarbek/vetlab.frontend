@@ -3,6 +3,12 @@ export default {
   toLowerCase(text) {
     return _.toLower(text)
   },
+  firstLetter(text = '') {
+    return (text && text[0]) || ''
+  },
+  lastLetter(text = '') {
+    return (text && text[text.length - 1]) || ''
+  },
   randomInt(length = 10) {
     return Math.round(Math.random() * length)
   },
