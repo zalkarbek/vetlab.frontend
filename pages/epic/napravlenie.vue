@@ -6,7 +6,7 @@
         :crud-data-name="napravlenieCrudDataName"
       ></napravlenie-component>
     </div>
-    <div class="mg-t-30" v-bind:id="`${napravlenieCrudDataName}_page_id`">
+    <div v-bind:id="`${napravlenieCrudDataName}_page_id`" class="mg-t-30">
       <vnyt-napravlenie-component
         :crud="crud"
         :crud-data-name="vnytNapravlenieCrudDataName"

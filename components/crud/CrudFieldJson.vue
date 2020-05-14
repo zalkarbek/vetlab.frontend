@@ -32,9 +32,9 @@
   </b-form-row>
 </template>
 <script>
-import CrudField from './CrudField'
 import _ from 'lodash'
 import { createNamespacedHelpers } from 'vuex'
+import CrudField from './CrudField'
 const { mapState, mapGetters } = createNamespacedHelpers('api')
 
 export default {

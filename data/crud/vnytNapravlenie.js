@@ -60,44 +60,44 @@ export default {
     {
       type: 'text',
       key: 'sendStatusCustomView',
-      columns: [
-        {
+      fields: {
+        napravilPersonalId: {
           type: 'number',
           key: 'napravilPersonalId'
         },
-        {
+        napravlenDepartmentId: {
           type: 'number',
           key: 'napravlenDepartmentId'
         },
-        {
+        napravlenOtdelId: {
           type: 'number',
           key: 'napravlenOtdelId'
         },
-        {
+        napravlenSubOtdelId: {
           type: 'number',
           key: 'napravlenSubOtdelId'
         },
-        {
+        dateVremyaOtpravki: {
           type: 'date',
           key: 'dateVremyaOtpravki'
         },
-        {
+        prinyalPersonalId: {
           type: 'number',
           key: 'prinyalPersonalId'
         },
-        {
+        prinyalOtdelId: {
           type: 'number',
           key: 'prinyalOtdelId'
         },
-        {
+        prinyalSubOtdelId: {
           type: 'number',
           key: 'prinyalSubOtdelId'
         },
-        {
+        prinyalDate: {
           type: 'datetime',
           key: 'prinyalDate'
         }
-      ]
+      }
     },
     // #===========# \ sendStatusCustomView \ #===========#
 
@@ -138,44 +138,40 @@ export default {
     {
       type: 'text',
       key: 'vnytNapravlenieOptionalCustomView',
-      columns: [
-        {
-          type: 'date',
+      fields: {
+        dateDeworming: {
+          type: 'text',
           key: 'dateDeworming'
         },
-        {
-          type: 'date',
+        dateVaccination: {
+          type: 'text',
           key: 'dateVaccination'
         },
-        {
-          type: 'date',
+        dateObrabotki: {
+          type: 'text',
           key: 'dateObrabotki'
         },
-        {
-          type: 'number',
+        dateLechenia: {
+          type: 'text',
           key: 'dateLechenia'
         },
-        {
+        anthelminticTypeJSON: {
           type: 'text',
           key: 'anthelminticTypeJSON'
         },
-        {
-          type: 'text',
-          key: 'antibioticTypeJSON'
-        },
-        {
+        disinfectantTypeJSON: {
           type: 'text',
           key: 'disinfectantTypeJSON'
         },
-        {
+        vaccineTypeJSON: {
           type: 'text',
           key: 'vaccineTypeJSON'
         },
-        {
+        isledovanieProvoditsaJSON: {
           type: 'text',
           key: 'isledovanieProvoditsaJSON'
         }
-      ]
+      }
     },
     // #===========# \ dateCustomView \ #===========#
     {

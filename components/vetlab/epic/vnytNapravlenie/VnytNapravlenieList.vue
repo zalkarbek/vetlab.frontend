@@ -572,9 +572,9 @@
   </div>
 </template>
 <script>
-import CrudListMixin from '~/components/crud/CrudListMixin'
 import { mapState } from 'vuex'
 import _ from 'lodash'
+import CrudListMixin from '~/components/crud/CrudListMixin'
 export default {
   mixins: [CrudListMixin],
   data() {

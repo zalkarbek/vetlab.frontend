@@ -1,5 +1,5 @@
-import guestSocket from './guest/guest.socket'
 import io from 'socket.io-client'
+import guestSocket from './guest/guest.socket'
 
 class SocketHandler {
   constructor(host) {
