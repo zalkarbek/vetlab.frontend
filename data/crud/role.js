@@ -25,8 +25,14 @@ export default {
     {
       type: 'text',
       key: 'role_key',
-      disabled: true,
-      hidden: true
+      disabled: false,
+      hidden: false
+    },
+    {
+      type: 'text',
+      key: 'priority',
+      disabled: false,
+      hidden: false
     },
     {
       type: 'text',

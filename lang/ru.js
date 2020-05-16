@@ -460,6 +460,9 @@ export default {
     napravlenie: {
       index: 'направление'
     },
+    role: {
+      index: 'роли пользователей'
+    },
     home: 'главная',
     direction: 'направлении',
     reports: 'отчеты',

@@ -141,6 +141,14 @@ export default [
                 to: '/spravka/personal'
               },
               {
+                _t: 'menu.role.index',
+                text: 'Роли',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/spravka/roles'
+              },
+              {
                 _t: 'menu.departments.index',
                 text: 'департамент',
                 class: '',
