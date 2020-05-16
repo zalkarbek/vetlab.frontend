@@ -266,6 +266,7 @@ export default {
     title: 'Направление',
     epic: {
       sendToOtdel: 'направить',
+      sendToOtdelTitle: 'Отправить внутреннее направление',
       cancel: 'отменить',
       delete: 'удалить'
     }

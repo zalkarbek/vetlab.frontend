@@ -78,6 +78,7 @@ export default {
       type: 'modal-form', // modal-confirm, modal-message, modal-form
       id: 'send-to-otdel-dialog',
       class: 'send-to-otdel-dialog',
+      title: 'napravlenie.epic.sendToOtdelTitle',
       // размер модального окна
       size: 'lg',
       okAction: 'sendToOtdelOk',
