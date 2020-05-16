@@ -47,10 +47,10 @@
   </div>
 </template>
 <script>
-import _ from 'lodash'
 import NapravlenieList from './NapravlenieList'
 import NapravlenieCrud from './NapravlenieCrud'
 import NapravlenieFormModal from './NapravlenieFormModal'
+import _ from 'lodash'
 import toastMixin from '~/mixins/toastMixin'
 
 export default {
@@ -104,6 +104,7 @@ export default {
         if (res.data && !res.data.error) {
           success = true
           message = (res.data && res.data.message) || ''
+          this.$eventBus.$emit('napravlenie:sendToOtdel', postData)
         } else {
           success = false
           message = 'error.server'

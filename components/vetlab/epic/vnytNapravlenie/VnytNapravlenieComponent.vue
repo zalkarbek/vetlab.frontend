@@ -47,10 +47,10 @@
   </div>
 </template>
 <script>
-import _ from 'lodash'
 import VnytNapravlenieList from './VnytNapravlenieList'
 import VnytNapravlenieFormModal from './VnytNapravlenieFormModal'
 import VnytNapravlenieComponentMixin from './VnytNapravlenieComponentMixin'
+import _ from 'lodash'
 import toastMixin from '~/mixins/toastMixin'
 
 export default {
@@ -59,6 +59,9 @@ export default {
     VnytNapravlenieFormModal
   },
   mixins: [toastMixin, VnytNapravlenieComponentMixin],
+  created() {
+    this.$eventBus.$on('napravlenie:sendToOtdel', this.onNapravlenieSendToOtdel)
+  },
   methods: {
     openDialog({ modalId, ...other }, data) {
       if (modalId) {
@@ -66,6 +69,9 @@ export default {
       }
       const cloneData = _.cloneDeep(data)
       this.$set(this.modalFormData, this.crudData.restName, cloneData)
+    },
+    onNapravlenieSendToOtdel(data) {
+      console.log('Направление ушел', data)
     }
   }
 }

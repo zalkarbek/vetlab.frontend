@@ -1,6 +1,6 @@
+import CrudListViewJson from './CrudListViewJson'
 import _ from 'lodash'
 import { createNamespacedHelpers } from 'vuex'
-import CrudListViewJson from './CrudListViewJson'
 import loadDatasetMixin from '~/mixins/loadDatasetMixin'
 
 const { mapState, mapGetters } = createNamespacedHelpers('api')

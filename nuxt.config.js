@@ -60,24 +60,24 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    '~/plugins/event-bus.js',
-    '~/plugins/jquery.js',
-    '~/plugins/lodash.js',
-    '~plugins/i18n.js',
-    '~/plugins/moment.js',
-    '~/plugins/time-out.js',
-    '~/plugins/pouchdb.js',
-    '~/plugins/axios.js',
-    '~/plugins/dashboard.js',
-    '~/plugins/socket',
-    '~/plugins/vue-select',
-    '~/plugins/vue-multiselect',
-    '~/plugins/vue-suggest',
-    '~/plugins/vue-calendar',
-    '~/plugins/vue-datepicker',
-    '~/plugins/global-methods',
-    '~/plugins/vue-imask',
-    '~/plugins/vee-validate'
+    { src: '~/plugins/event-bus.js', mode: 'client' },
+    { src: '~/plugins/lodash.js', mode: 'client' },
+    { src: '~/plugins/jquery.js', mode: 'client' },
+    { src: '~/plugins/pouchdb.js', mode: 'client' },
+    { src: '~plugins/i18n.js', mode: 'client' },
+    { src: '~/plugins/moment.js', mode: 'client' },
+    { src: '~/plugins/time-out.js', mode: 'client' },
+    { src: '~/plugins/axios.js', mode: 'client' },
+    { src: '~/plugins/dashboard.js', mode: 'client' },
+    { src: '~/plugins/socket', mode: 'client' },
+    { src: '~/plugins/vue-select', mode: 'client' },
+    { src: '~/plugins/vue-multiselect', mode: 'client' },
+    { src: '~/plugins/vue-suggest', mode: 'client' },
+    { src: '~/plugins/vue-calendar', mode: 'client' },
+    { src: '~/plugins/vue-datepicker', mode: 'client' },
+    { src: '~/plugins/global-methods', mode: 'client' },
+    { src: '~/plugins/vue-imask', mode: 'client' },
+    { src: '~/plugins/vee-validate', mode: 'client' }
   ],
   /*
    ** Nuxt.js dev-modules
