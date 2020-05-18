@@ -28,6 +28,17 @@ export default {
       type: 'text',
       key: 'name',
       label: 'user.label.name'
+    },
+    {
+      type: 'select-multi',
+      key: 'roles',
+      foreign_crud: 'role',
+      foreign_dataset: 'roles',
+      foreign_label: 'role_name',
+      foreign_value: 'id',
+      foreign_attributes: ['role_name', 'id'],
+      disabled: false,
+      hidden: false
     }
   ]
 }

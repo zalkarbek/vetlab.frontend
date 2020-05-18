@@ -80,7 +80,7 @@
     </template>
     <!-- -----------------------/ FORM SELECT /----------------------- -->
 
-    <!-- ----------------------- FORM SELECT_MANY ----------------------- -->
+    <!-- ----------------------- FORM SELECT_MULTI ----------------------- -->
     <template
       v-else-if="!form.disabled && form.type === fieldTypes.select_multi"
     >
@@ -94,7 +94,7 @@
         multiple
       />
     </template>
-    <!-- -----------------------/ FORM SELECT_MANY /----------------------- -->
+    <!-- -----------------------/ FORM SELECT_MULTI /----------------------- -->
 
     <!-- ----------------------- FORM SELECT:OWN ----------------------- -->
     <template v-else-if="!form.disabled && form.type === fieldTypes.select_own">
