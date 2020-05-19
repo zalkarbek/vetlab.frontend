@@ -47,10 +47,10 @@
   </div>
 </template>
 <script>
-import _ from 'lodash'
 import VnytNapravlenieList from './VnytNapravlenieList'
 import VnytNapravlenieFormModal from './VnytNapravlenieFormModal'
 import VnytNapravlenieComponentMixin from './VnytNapravlenieComponentMixin'
+import _ from 'lodash'
 import toastMixin from '~/mixins/toastMixin'
 
 export default {
