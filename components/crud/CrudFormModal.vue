@@ -32,10 +32,10 @@
   </b-modal>
 </template>
 <script>
+import { mapState } from 'vuex'
 import CrudForm from '~/components/crud/CrudForm'
 import toastMixin from '~/mixins/toastMixin'
 import loadDatasetMixin from '~/mixins/loadDatasetMixin'
-import { mapState } from 'vuex'
 
 export default {
   components: {

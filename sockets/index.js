@@ -1,6 +1,6 @@
+import io from 'socket.io-client'
 import guestSocket from './guest/guest.socket'
 import authorizedSocket from './authorized/authorized.socket'
-import io from 'socket.io-client'
 
 class SocketHandler {
   constructor(host) {

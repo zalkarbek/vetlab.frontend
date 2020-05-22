@@ -50,10 +50,10 @@
   </div>
 </template>
 <script>
-import CrudField from './CrudField'
-import CrudFieldJson from './CrudFieldJson'
 import _ from 'lodash'
 import { createNamespacedHelpers } from 'vuex'
+import CrudField from './CrudField'
+import CrudFieldJson from './CrudFieldJson'
 const { mapState } = createNamespacedHelpers('api')
 
 export default {

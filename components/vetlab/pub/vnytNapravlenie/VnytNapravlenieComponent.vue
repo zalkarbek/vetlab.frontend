@@ -60,12 +60,12 @@
   </div>
 </template>
 <script>
+import _ from 'lodash'
+import { mapState } from 'vuex'
 import VnytNapravlenieList from './VnytNapravlenieList'
 import ComponentMixin from './ComponentMixin'
 import CrudFormModal from '~/components/crud/CrudFormModal'
 import toastMixin from '~/mixins/toastMixin'
-import _ from 'lodash'
-import { mapState } from 'vuex'
 
 export default {
   components: {

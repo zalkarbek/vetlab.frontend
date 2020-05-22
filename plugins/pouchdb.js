@@ -1,6 +1,6 @@
-import dbConfig from '../config/db'
 import PouchDB from 'pouchdb'
 import PouchDBFind from 'pouchdb-find'
+import dbConfig from '../config/db'
 
 export default ({ app }, inject) => {
   PouchDB.plugin(PouchDBFind)

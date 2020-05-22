@@ -20,6 +20,13 @@ export default {
       url: `/api/v1/${routePrefix}/vnyt/sendToOtdel`
     }
   },
+  initConfig: {
+    getEditRecord: {
+      crud: 'napravlenie',
+      method: 'id',
+      requireAttrs: ['id']
+    }
+  },
   foreign: [
     {
       // тип вставки: array, object
