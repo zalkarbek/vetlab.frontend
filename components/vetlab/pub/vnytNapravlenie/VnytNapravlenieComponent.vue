@@ -31,7 +31,7 @@
     <div class="crud-dialogs">
       <template v-for="modal in modals">
         <template v-if="modal.type === modalTypes.form">
-          <vnyt-napravlenie-form-modal
+          <crud-form-modal
             :id="modal.id"
             :title="$t(modal.title)"
             :size="modal.size"
@@ -40,7 +40,20 @@
             :form-data="modalFormDataByRestName"
             @on-action="onModalAction"
           >
-          </vnyt-napravlenie-form-modal>
+          </crud-form-modal>
+        </template>
+
+        <template v-if="modal.type === modalTypes.confirm">
+          <crud-form-modal
+            :id="modal.id"
+            :title="$t(modal.title)"
+            :size="modal.size"
+            :crud-data="crudData"
+            :modal="modal"
+            :form-data="modalFormDataByRestName"
+            @on-action="onModalAction"
+          >
+          </crud-form-modal>
         </template>
       </template>
     </div>
@@ -48,22 +61,53 @@
 </template>
 <script>
 import VnytNapravlenieList from './VnytNapravlenieList'
-import VnytNapravlenieFormModal from './VnytNapravlenieFormModal'
-import VnytNapravlenieComponentMixin from './VnytNapravlenieComponentMixin'
+import ComponentMixin from './ComponentMixin'
+import CrudFormModal from '~/components/crud/CrudFormModal'
 import toastMixin from '~/mixins/toastMixin'
+import _ from 'lodash'
+import { mapState } from 'vuex'
 
 export default {
   components: {
     VnytNapravlenieList,
-    VnytNapravlenieFormModal
+    CrudFormModal
   },
-  mixins: [toastMixin, VnytNapravlenieComponentMixin],
+  mixins: [toastMixin, ComponentMixin],
+  computed: {
+    ...mapState({
+      busEvents: (state) => state.busEvents
+    })
+  },
   created() {
-    this.$eventBus.$on('napravlenie:sendToOtdel', this.onNapravlenieSendToOtdel)
+    this.$eventBus.$on(
+      this.busEvents.VNYT_NAPRAVLENIE_ACCEPT_SUCCESS,
+      this.acceptSuccess
+    )
+  },
+  beforeDestroy() {
+    this.$eventBus.$off(
+      this.busEvents.VNYT_NAPRAVLENIE_ACCEPT_SUCCESS,
+      this.acceptSuccess
+    )
   },
   methods: {
-    onNapravlenieSendToOtdel(data) {
-      console.log('Направление ушел', data)
+    acceptDialog({ modalId }, data) {
+      if (modalId) {
+        this.$bvModal.show(modalId)
+      }
+      const cloneData = _.cloneDeep(data)
+      this.$set(this.modalFormData, this.crudData.restName, cloneData)
+    },
+    acceptOk({ data }) {
+      const { id, napravlenieId } = data
+      this.$store.dispatch('emit/vnytNapravlenieAccept', {
+        id,
+        napravlenieId
+      })
+    },
+    acceptSuccess(data) {
+      this.toastSuccess('Направление принято')
+      this.updateDatasetItem(data.id, data, this.crudData.datasetName)
     }
   }
 }

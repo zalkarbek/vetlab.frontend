@@ -38,17 +38,35 @@
         ></crud-list>
       </b-col>
     </b-row>
+    <div class="crud-dialogs">
+      <template v-for="modal in modals">
+        <template v-if="modal.type === modalTypes.form">
+          <crud-form-modal
+            :id="modal.id"
+            :title="$t(modal.title)"
+            :size="modal.size"
+            :crud-data="crudData"
+            :modal="modal"
+            :form-data="modalFormDataByRestName"
+            @on-action="onModalAction"
+          >
+          </crud-form-modal>
+        </template>
+      </template>
+    </div>
   </div>
 </template>
 <script>
 import CrudMixins from '~/components/crud/CrudComponentMixin'
 import CrudForm from '~/components/crud/CrudForm'
 import CrudList from '~/components/crud/CrudList'
+import CrudFormModal from '~/components/crud/CrudFormModal'
 
 export default {
   components: {
     CrudForm,
-    CrudList
+    CrudList,
+    CrudFormModal
   },
   mixins: [CrudMixins]
 }

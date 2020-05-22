@@ -5,7 +5,6 @@
     :size="size"
     @ok="handleOk"
     @hidden="handleCancel"
-    size="xl"
   >
     <b-col cols="12">
       <crud-form

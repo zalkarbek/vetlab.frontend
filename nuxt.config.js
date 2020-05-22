@@ -4,6 +4,9 @@ env.config()
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = process.env.NODE_ENV !== 'development'
 const API_HOST = isDev ? process.env.HOST_DEV : process.env.HOST_PROD
+const API_HOST_HTTPS = isDev
+  ? process.env.HOST_HTTS_DEV
+  : process.env.HOST_HTTS_PROD
 
 export default {
   mode: 'spa',
@@ -15,7 +18,8 @@ export default {
   env: {
     isDev,
     isProd,
-    baseUrl: API_HOST
+    baseUrl: API_HOST,
+    baseSecureUrl: API_HOST_HTTPS
   },
   appDebug: process.env.APP_DEBUG,
   router: {
@@ -62,22 +66,22 @@ export default {
   plugins: [
     { src: '~/plugins/event-bus.js', mode: 'client' },
     { src: '~/plugins/lodash.js', mode: 'client' },
-    { src: '~/plugins/jquery.js', mode: 'client' },
-    { src: '~/plugins/pouchdb.js', mode: 'client' },
-    { src: '~plugins/i18n.js', mode: 'client' },
-    { src: '~/plugins/moment.js', mode: 'client' },
-    { src: '~/plugins/time-out.js', mode: 'client' },
-    { src: '~/plugins/axios.js', mode: 'client' },
-    { src: '~/plugins/dashboard.js', mode: 'client' },
-    { src: '~/plugins/socket', mode: 'client' },
     { src: '~/plugins/vue-select', mode: 'client' },
     { src: '~/plugins/vue-multiselect', mode: 'client' },
     { src: '~/plugins/vue-suggest', mode: 'client' },
     { src: '~/plugins/vue-calendar', mode: 'client' },
     { src: '~/plugins/vue-datepicker', mode: 'client' },
-    { src: '~/plugins/global-methods', mode: 'client' },
     { src: '~/plugins/vue-imask', mode: 'client' },
-    { src: '~/plugins/vee-validate', mode: 'client' }
+    { src: '~/plugins/vee-validate', mode: 'client' },
+    { src: '~/plugins/jquery.js', mode: 'client' },
+    { src: '~/plugins/pouchdb.js', mode: 'client' },
+    { src: '~plugins/i18n.js', mode: 'client' },
+    { src: '~/plugins/moment.js', mode: 'client' },
+    { src: '~/plugins/time-out.js', mode: 'client' },
+    { src: '~/plugins/api.js', mode: 'client' },
+    { src: '~/plugins/dashboard.js', mode: 'client' },
+    { src: '~/plugins/socket', mode: 'client' },
+    { src: '~/plugins/global-methods', mode: 'client' }
   ],
   /*
    ** Nuxt.js dev-modules

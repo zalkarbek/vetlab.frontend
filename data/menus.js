@@ -253,6 +253,15 @@ export default [
     ]
   },
   {
+    _t: 'menu.isledovanie.index',
+    text: 'Исследование',
+    type: 'single',
+    class: '',
+    icon: '',
+    active: false,
+    to: '/isledovanie'
+  },
+  {
     _t: 'menu.reports',
     text: 'Отчеты',
     type: 'children',

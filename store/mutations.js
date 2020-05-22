@@ -1,7 +1,8 @@
 import {
   SET_CURRENT_LOCALE,
   SET_USER_LOGGED,
-  SET_USER_LOGOUT
+  SET_USER_LOGOUT,
+  SET_SOCKS
 } from '~/store/types'
 
 export default {
@@ -17,5 +18,8 @@ export default {
     state.user = {}
     state.token = null
     state.logged = false
+  },
+  [SET_SOCKS](state, { socks }) {
+    state.socks = socks
   }
 }

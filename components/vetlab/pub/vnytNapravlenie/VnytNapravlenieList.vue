@@ -178,43 +178,40 @@
             </template>
           </template>
 
-          <template v-slot:cell(napravlenieId)="cellData">
-            <span class="tx-24 tx-bold">{{ cellData.value }}</span>
-          </template>
-
           <template v-slot:cell(status)="cellData">
             <span
               v-if="toLowerCase(cellData.value) === toLowerCase('pending')"
-              class="tx-16 badge badge-warning"
-            >
-              {{ $t(`vnytNapravlenie.epic.status.${cellData.value}`) }}
-            </span>
-            <span
-              v-if="toLowerCase(cellData.value) === toLowerCase('accepted')"
               class="tx-16 badge badge-primary"
             >
-              {{ $t(`vnytNapravlenie.epic.status.${cellData.value}`) }}
+              {{ $t(`vnytNapravlenie.pub.status.${cellData.value}`) }}
+            </span>
+
+            <span
+              v-if="toLowerCase(cellData.value) === toLowerCase('accepted')"
+              class="tx-16 badge badge-secondary"
+            >
+              {{ $t(`vnytNapravlenie.pub.status.${cellData.value}`) }}
             </span>
 
             <span
               v-if="toLowerCase(cellData.value) === toLowerCase('research')"
-              class="tx-16 badge badge-light"
+              class="tx-16 badge badge-info"
             >
-              {{ $t(`vnytNapravlenie.epic.status.${cellData.value}`) }}
+              {{ $t(`vnytNapravlenie.pub.status.${cellData.value}`) }}
             </span>
 
             <span
               v-if="toLowerCase(cellData.value) === toLowerCase('completed')"
               class="tx-16 badge badge-success"
             >
-              {{ $t(`vnytNapravlenie.epic.status.${cellData.value}`) }}
+              {{ $t(`vnytNapravlenie.pub.status.${cellData.value}`) }}
             </span>
 
             <span
               v-if="toLowerCase(cellData.value) === toLowerCase('rejected')"
-              class="tx-16 badge badge-danger"
+              class="tx-16 badge badge-success"
             >
-              {{ $t(`vnytNapravlenie.epic.status.${cellData.value}`) }}
+              {{ $t(`vnytNapravlenie.pub.status.${cellData.value}`) }}
             </span>
           </template>
 
@@ -237,6 +234,10 @@
                 </template>
               </b-button-group>
             </b-button-toolbar>
+          </template>
+
+          <template v-slot:cell(napravlenieId)="cellData">
+            <span class="tx-24 tx-bold">{{ cellData.value }}</span>
           </template>
 
           <template v-slot:cell(sendStatusCustomView)="cellData">

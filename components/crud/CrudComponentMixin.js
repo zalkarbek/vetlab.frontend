@@ -392,7 +392,7 @@ export default {
           const configGetRecordList = initConfig.getRecordList
           pageSize = pageSize || configGetRecordList.pageSize
           paginateType = configGetRecordList.paginate
-          const searchColumn = configGetRecordList.searchColumn
+          const searchColumn = configGetRecordList.searchColumn || ['id']
 
           if (configGetRecordList.paginate === this.PAGINATION_TYPES.SERVER) {
             const rest = this.crudData.rest

@@ -18,7 +18,24 @@ export default {
     commit(types.SET_CURRENT_LOCALE, { locale })
   },
 
-  login({ commit }, payload) {
+  openSocketConnection({ commit }, { socks, token }) {
+    commit(types.SET_SOCKS, { socks })
+    // Открываем Socket соединение
+    this.$io.open({
+      namespace: socks.NAMESPACES.AUTHORIZED,
+      context: this.app.context,
+      socks,
+      options: {
+        transports: ['websocket'],
+        rejectUnauthorized: false,
+        query: {
+          token
+        }
+      }
+    })
+  },
+
+  async login({ commit, dispatch }, payload) {
     commit(types.SET_USER_LOGGED, { user: payload.user, token: payload.token })
     this.$api.setToken(payload.token, 'Bearer', [
       'post',
@@ -27,6 +44,8 @@ export default {
       'delete'
     ])
     localStorage.setItem('token', payload.token)
+    const socks = await this.$api.getApi('option').getSocks()
+    dispatch('openSocketConnection', { socks, token: payload.token })
   },
   logout({ commit }) {
     commit(types.SET_USER_LOGOUT)

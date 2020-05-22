@@ -111,7 +111,8 @@ export default {
       role_key: 'Ключ на англ языке',
       role_priority: 'Приоритет',
       priority: 'Приоритет ролей в цифрах',
-      role_desc: 'Описание'
+      role_desc: 'Описание',
+      roles: 'Роли доступа'
     },
     placeholder: {
       name: 'название обьекта',
@@ -343,15 +344,6 @@ export default {
   s_region_type: {
     title: 'Вид региона'
   },
-  napravlenie: {
-    title: 'Направление',
-    epic: {
-      sendToOtdel: 'направить',
-      sendToOtdelTitle: 'Отправить внутреннее направление',
-      cancel: 'отменить',
-      delete: 'удалить'
-    }
-  },
   otdel: {
     title: 'Отдел',
     error: {
@@ -388,6 +380,15 @@ export default {
       subOtdel: 'Под отдел'
     }
   },
+  napravlenie: {
+    title: 'Направление',
+    epic: {
+      sendToOtdel: 'направить',
+      sendToOtdelTitle: 'Отправить внутреннее направление',
+      cancel: 'отменить',
+      delete: 'удалить'
+    }
+  },
   napravlenieEpic: {
     title: 'Поступившие Направление',
     label: {
@@ -395,6 +396,31 @@ export default {
     }
   },
   vnytNapravlenie: {
+    pub: {
+      accept: 'Принять',
+      reject: 'Отклонить',
+      status: {
+        accepted: 'Вы уже приняли',
+        pending: 'Новый',
+        research: 'Исследуется',
+        completed: 'Завершили'
+      }
+    },
+    epic: {
+      status: {
+        pending: 'Ожидание принятии',
+        accepted: 'Принят',
+        research: 'На иследовании',
+        rejected: 'Отклонен',
+        completed: 'Завершен'
+      }
+    },
+    modal: {
+      accept: {
+        title: 'Подтверждение',
+        message: 'Принять направление ?'
+      }
+    },
     title: 'Внутреннее Направление',
     label: {
       napravilPersonal: 'Направил',
@@ -419,7 +445,7 @@ export default {
       status: {
         pending: 'Ожидание принятии',
         accepted: 'Принят',
-        reseach: 'На иследовании',
+        research: 'На иследовании',
         completed: 'Завершен'
       }
     }
@@ -434,6 +460,7 @@ export default {
     }
   },
   user: {
+    title: 'Данные о пользователе',
     label: {
       name: 'Ник'
     },

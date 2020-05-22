@@ -5,25 +5,43 @@
     :size="size"
     @ok="handleOk"
     @hidden="handleCancel"
-    size="xl"
   >
     <b-col cols="12">
-      <crud-form
-        :crud-buttons-enabled="false"
-        :crud-data="crudModalData"
-        :record="modalFormData"
-      ></crud-form>
+      <template v-if="modal.type === modalTypes.form">
+        <crud-form
+          :crud-buttons-enabled="false"
+          :crud-data="crudModalData"
+          :record="modalFormData"
+        >
+        </crud-form>
+      </template>
+      <template v-if="modal.type === modalTypes.confirm">
+        <p v-if="modal.message && modal.message.length >= 1" class="h5">
+          {{ $t(modal.message) }}
+        </p>
+        <p
+          v-if="
+            modal.messageWithTranslate && modal.messageWithTranslate.length >= 1
+          "
+          class="h5"
+        >
+          {{ $t(modal.messageWithTranslate) }}
+        </p>
+      </template>
     </b-col>
   </b-modal>
 </template>
 <script>
 import CrudForm from '~/components/crud/CrudForm'
 import toastMixin from '~/mixins/toastMixin'
+import loadDatasetMixin from '~/mixins/loadDatasetMixin'
+import { mapState } from 'vuex'
+
 export default {
   components: {
     CrudForm
   },
-  mixins: [toastMixin],
+  mixins: [toastMixin, loadDatasetMixin],
   props: {
     id: {
       type: String,
@@ -66,6 +84,9 @@ export default {
     return {}
   },
   computed: {
+    ...mapState('dash', {
+      modalTypes: (state) => state.modalTypes
+    }),
     modalCrud() {
       return this.modal.modalCrud
     },
@@ -105,6 +126,7 @@ export default {
       this.$emit('on-action', {
         actionMethod: this.modal.hiddenAction,
         data: this.modalFormData,
+        modalCrud: this.modalCrud,
         cb: (validated) => {
           if (!validated) {
             event.preventDefault()

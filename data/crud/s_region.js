@@ -52,7 +52,7 @@ export default {
       // rest метод для поиска региона
       methodOnSearch: 'getRegionsFullPathKgWithPaginate',
       // поля по которым разрешен поиск (текст или массив полей)
-      searchColumn: 'regionFullPath'
+      searchColumn: ['regionFullPath']
     }
   },
 

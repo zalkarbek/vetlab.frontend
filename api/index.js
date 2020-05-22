@@ -1,12 +1,17 @@
 import AuthApi from './auth'
 import OtdelApi from './otdel'
+import { DepartmentRepository } from './DepartmentRepository'
+import { OptionRepository } from '~/api/OptionRepository'
 
 class Api {
   constructor(context) {
+    const crudApi = context.store.state.api.crud
     this.context = context
     this.apiServices = {
       auth: AuthApi(context),
-      otdel: OtdelApi(context)
+      otdel: OtdelApi(context),
+      department: new DepartmentRepository(context, crudApi.department),
+      option: new OptionRepository(context, crudApi.option)
     }
   }
 
