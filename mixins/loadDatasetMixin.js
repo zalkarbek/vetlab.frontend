@@ -3,7 +3,7 @@ export default {
   data() {
     return {
       localDataset: {},
-      searchDataset: {}
+      searchDataset: {},
     }
   },
   computed: {
@@ -11,8 +11,8 @@ export default {
       crud: (state) => state.crud,
       fieldTypes: (state) => state.fieldTypes,
       inputMask: (state) => state.inputMask,
-      datasetList: (state) => state.dataset
-    })
+      datasetList: (state) => state.dataset,
+    }),
   },
   methods: {
     async storageLoadDataSet({
@@ -20,7 +20,7 @@ export default {
       foreign_crud: datasetCrudName,
       foreign_crud_method: datasetCrudMethod,
       foreign_attributes: attributes,
-      foreign_by_params: params = []
+      foreign_by_params: params = [],
     }) {
       const reqParams = {}
       if (params && Array.isArray(params) && params.length >= 1) {
@@ -34,8 +34,8 @@ export default {
         datasetCrudMethod,
         params: {
           attributes,
-          ...reqParams
-        }
+          ...reqParams,
+        },
       })
     },
 
@@ -45,7 +45,7 @@ export default {
       foreign_crud: datasetCrudName,
       foreign_crud_method: datasetCrudMethod,
       foreign_attributes: attributes,
-      foreign_by_params: params = []
+      foreign_by_params: params = [],
     }) {
       try {
         const reqParams = {}
@@ -59,8 +59,8 @@ export default {
           req: crud.rest[datasetCrudMethod] || crud.rest.all,
           params: {
             attributes,
-            ...reqParams
-          }
+            ...reqParams,
+          },
         })
         this.$set(this.localDataset, datasetName, [...data])
         this.$emit('get-init-dataset', { datasetName, datasetCrudName })
@@ -78,13 +78,13 @@ export default {
           params: {
             search: text,
             searchColumn: field.foreign_label,
-            attributes: field.foreign_attributes
-          }
+            attributes: field.foreign_attributes,
+          },
         })
         this.$set(this.searchDataset, field.foreign_dataset, data || [])
       } catch (e) {
         this.$set(this.searchDataset, field.foreign_dataset, [])
       }
-    }
-  }
+    },
+  },
 }

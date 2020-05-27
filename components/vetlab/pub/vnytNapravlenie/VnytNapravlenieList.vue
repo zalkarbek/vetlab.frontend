@@ -3,7 +3,9 @@
     <b-container fluid>
       <!-- User Interface controls -->
       <b-row>
-        <b-col lg="3" class="my-1">
+        <b-col lg="3"
+               class="my-1"
+        >
           <b-form-group
             :label="$t('form.label.sort')"
             :description="$t('form.description.sort')"
@@ -22,7 +24,9 @@
                 class="w-75"
               >
                 <template v-slot:first>
-                  <option value="">-- none --</option>
+                  <option value="">
+                    -- none --
+                  </option>
                 </template>
               </b-form-select>
               <b-form-select
@@ -31,14 +35,20 @@
                 size="sm"
                 class="w-25"
               >
-                <option :value="false">Asc</option>
-                <option :value="true">Desc</option>
+                <option :value="false">
+                  Asc
+                </option>
+                <option :value="true">
+                  Desc
+                </option>
               </b-form-select>
             </b-input-group>
           </b-form-group>
         </b-col>
 
-        <b-col lg="9" class="my-1">
+        <b-col lg="9"
+               class="my-1"
+        >
           <b-row>
             <b-col lg="6">
               <b-form-group
@@ -54,15 +64,15 @@
                 <b-input-group size="sm">
                   <b-form-input
                     v-model="searchItem"
-                    @input="changeSearchInput"
                     :placeholder="$t('form.placeholder.search')"
-                  ></b-form-input>
+                    @input="changeSearchInput"
+                  />
                   <b-input-group-append>
                     <b-button
                       :disabled="searchItem && searchItem.trim().length < 1"
                       @click="onAction('clear')"
                     >
-                      {{ $t('form.label.clear') }}
+                      {{ $t("form.label.clear") }}
                     </b-button>
                   </b-input-group-append>
                 </b-input-group>
@@ -84,14 +94,16 @@
                     v-model="filter"
                     :placeholder="$t('form.placeholder.filter')"
                     type="search"
-                  ></b-form-input>
+                  />
                 </b-input-group>
               </b-form-group>
             </b-col>
           </b-row>
         </b-col>
 
-        <b-col lg="9" class=" mg-t-20">
+        <b-col lg="9"
+               class="mg-t-20"
+        >
           <b-row>
             <b-col lg="4">
               <b-form-group
@@ -106,24 +118,24 @@
               >
                 <b-form-select
                   id="perPageSelect"
-                  @change="changePageSize"
                   v-model="perPageCount"
                   :options="pageOptions"
                   size="sm"
-                ></b-form-select>
+                  @change="changePageSize"
+                />
               </b-form-group>
             </b-col>
             <b-col lg="8">
               <b-pagination
                 v-model="currentPage"
-                @change="changePaginate"
                 :total-rows="totalRowsCount"
                 :per-page="perPageCount"
                 limit="10"
                 align="fill"
                 size="sm"
                 class="my-0"
-              ></b-pagination>
+                @change="changePaginate"
+              />
             </b-col>
           </b-row>
         </b-col>
@@ -135,7 +147,7 @@
           :fields="fields"
           :current-page="currentPage"
           :filter="filter"
-          :filterIncludedFields="filterOn"
+          :filter-included-fields="filterOn"
           :sort-by.sync="sortBy"
           :sort-desc.sync="sortDesc"
           :sort-direction="sortDirection"
@@ -156,13 +168,15 @@
                 :field-data="data.field"
                 :data="data.item[data.field.key]"
                 view-type="inline"
-              ></crud-list-view-json>
+              />
             </template>
 
             <template v-else-if="data.field.type === fieldTypes.select_multi">
               <template v-if="data.value && Array.isArray(data.value)">
                 <template v-for="(item, index) in data.value">
-                  <span :key="index" class="tx-bold">
+                  <span :key="index"
+                        class="tx-bold"
+                  >
                     {{ viewForeignData(data.field, item) }},&nbsp;
                   </span>
                 </template>
@@ -220,15 +234,16 @@
               <b-button-group class="mr-1" size="sm">
                 <template v-for="(button, index) in actionButtons">
                   <b-button
-                    @click="onActionButton(button, row.item)"
                     :key="index"
                     :variant="button.variant || 'secondary'"
+                    :disabled="button.action === 'accept-napravlenie' && row.item.status === 'accepted'"
+                    @click="onActionButton(button, row.item)"
                   >
                     <i
                       :class="button.icon"
                       class="cursor-pointer"
                       aria-hidden="true"
-                    ></i>
+                    />
                     {{ $t(button.label) }}
                   </b-button>
                 </template>
@@ -243,7 +258,7 @@
           <template v-slot:cell(sendStatusCustomView)="cellData">
             <div v-if="cellData.item.napravilPersonal">
               <h6>
-                {{ $t('vnytNapravlenie.label.napravilPersonal') }}
+                {{ $t("vnytNapravlenie.label.napravilPersonal") }}
               </h6>
               <ul class="list-group list-group-flush tx-13">
                 <li class="list-group-item d-flex pd-sm-x-20">
@@ -252,8 +267,8 @@
                       {{
                         getProp(
                           cellData.item,
-                          'napravilPersonal.fullName',
-                          ''
+                          "napravilPersonal.fullName",
+                          ""
                         )[0]
                       }}
                     </span>
@@ -261,15 +276,15 @@
                   <div class="pd-l-10">
                     <p class="tx-medium mg-b-0">
                       {{
-                        getProp(cellData.item, 'napravilPersonal.fullName', '')
+                        getProp(cellData.item, "napravilPersonal.fullName", "")
                       }}
                     </p>
                     <small class="tx-12 tx-color-03 mg-b-0">
                       {{
                         getProp(
                           cellData.item,
-                          'napravilPersonal.sDoljnost.name',
-                          ''
+                          "napravilPersonal.sDoljnost.name",
+                          ""
                         )
                       }}
                     </small>
@@ -281,20 +296,20 @@
                   v-if="getProp(cellData.item, 'napravlenOtdel.name', '')"
                 >
                   <span class="tx-bold">
-                    {{ $t('vnytNapravlenie.label.napravlenOtdel') }}:
+                    {{ $t("vnytNapravlenie.label.napravlenOtdel") }}:
                   </span>
                   <span>
-                    {{ getProp(cellData.item, 'napravlenOtdel.name', '') }}
+                    {{ getProp(cellData.item, "napravlenOtdel.name", "") }}
                   </span>
                 </b-list-group-item>
                 <b-list-group-item v-if="cellData.item.dateVremyaOtpravki">
                   <span class="tx-bold">
-                    {{ $t('vnytNapravlenie.label.dateVremyaOtpravki') }}:
+                    {{ $t("vnytNapravlenie.label.dateVremyaOtpravki") }}:
                   </span>
                   <span>
                     {{
                       formatDateTime(
-                        getProp(cellData.item, 'dateVremyaOtpravki', '')
+                        getProp(cellData.item, "dateVremyaOtpravki", "")
                       )
                     }}
                   </span>
@@ -303,7 +318,7 @@
             </div>
             <div v-if="cellData.item.prinyalPersonal">
               <h6>
-                {{ $t('vnytNapravlenie.label.prinyalPersonal') }}
+                {{ $t("vnytNapravlenie.label.prinyalPersonal") }}
               </h6>
               <ul class="list-group list-group-flush tx-13">
                 <li class="list-group-item d-flex pd-sm-x-20">
@@ -312,8 +327,8 @@
                       {{
                         getProp(
                           cellData.item,
-                          'prinyalPersonal.fullName',
-                          ''
+                          "prinyalPersonal.fullName",
+                          ""
                         )[0]
                       }}
                     </span>
@@ -321,15 +336,15 @@
                   <div class="pd-l-10">
                     <p class="tx-medium mg-b-0">
                       {{
-                        getProp(cellData.item, 'prinyalPersonal.fullName', '')
+                        getProp(cellData.item, "prinyalPersonal.fullName", "")
                       }}
                     </p>
                     <small class="tx-12 tx-color-03 mg-b-0">
                       {{
                         getProp(
                           cellData.item,
-                          'prinyalPersonal.sDoljnost.name',
-                          ''
+                          "prinyalPersonal.sDoljnost.name",
+                          ""
                         )
                       }}
                     </small>
@@ -341,23 +356,23 @@
                   <tr>
                     <td>
                       <span class="tx-bold">
-                        {{ $t('vnytNapravlenie.label.prinyalOtdel') }}:
+                        {{ $t("vnytNapravlenie.label.prinyalOtdel") }}:
                       </span>
                     </td>
                     <td>
-                      {{ getProp(cellData.item, 'prinyalOtdel.name', '') }}
+                      {{ getProp(cellData.item, "prinyalOtdel.name", "") }}
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <span class="tx-bold">
-                        {{ $t('vnytNapravlenie.label.prinyalDate') }}:
+                        {{ $t("vnytNapravlenie.label.prinyalDate") }}:
                       </span>
                     </td>
                     <td>
                       {{
                         formatDateTime(
-                          getProp(cellData.item, 'prinyalDate', '')
+                          getProp(cellData.item, "prinyalDate", "")
                         )
                       }}
                     </td>
@@ -371,7 +386,7 @@
             <b-list-group class="list-group-flush">
               <b-list-group-item v-if="cellData.item.opPokazatelIdJSON">
                 <span class="tx-bold">
-                  {{ $t('vnytNapravlenie.label.opPokazatel') }}:
+                  {{ $t("vnytNapravlenie.label.opPokazatel") }}:
                 </span>
                 <span>
                   <template
@@ -394,14 +409,14 @@
               </b-list-group-item>
               <b-list-group-item v-if="cellData.item.posMaterial">
                 <span class="tx-bold">
-                  {{ $t('vnytNapravlenie.label.posMaterialId') }}:
+                  {{ $t("vnytNapravlenie.label.posMaterialId") }}:
                 </span>
                 <span>
                   {{
-                    getProp(cellData.item, 'posMaterial.sMaterial.name', '')
+                    getProp(cellData.item, "posMaterial.sMaterial.name", "")
                   }},
-                  {{ getProp(cellData.item, 'postMaterialCount', '') }}
-                  {{ getProp(cellData.item, 'posMaterial.sMera.name', '') }}
+                  {{ getProp(cellData.item, "postMaterialCount", "") }}
+                  {{ getProp(cellData.item, "posMaterial.sMera.name", "") }}
                 </span>
               </b-list-group-item>
               <b-list-group-item
@@ -410,14 +425,14 @@
                 "
               >
                 <span class="tx-bold">
-                  {{ $t('pos_material.label.dateVremyaOtbora') }}:
+                  {{ $t("pos_material.label.dateVremyaOtbora") }}:
                 </span>
                 <span>
                   {{
                     formatDate(
                       getProp(
                         cellData.item,
-                        'posMaterial.dateVremyaOtbora',
+                        "posMaterial.dateVremyaOtbora",
                         null
                       )
                     )
@@ -428,12 +443,12 @@
                 v-if="getProp(cellData.item, 'posMaterial.dateDostavki', null)"
               >
                 <span class="tx-bold">
-                  {{ $t('pos_material.label.dateDostavki') }}:
+                  {{ $t("pos_material.label.dateDostavki") }}:
                 </span>
                 <span>
                   {{
                     formatDate(
-                      getProp(cellData.item, 'posMaterial.dateDostavki', null)
+                      getProp(cellData.item, "posMaterial.dateDostavki", null)
                     )
                   }}
                 </span>
@@ -445,9 +460,9 @@
                   "
                   class="tx-bold"
                 >
-                  {{ $t('vnytNapravlenie.label.posMaterialCheckVid') }}:
-                  <i class="fas fa-check-circle tx-success"></i>
-                  {{ $t('form.label.yes') }}
+                  {{ $t("vnytNapravlenie.label.posMaterialCheckVid") }}:
+                  <i class="fas fa-check-circle tx-success" />
+                  {{ $t("form.label.yes") }}
                 </span>
 
                 <span
@@ -457,9 +472,9 @@
                   "
                   class="tx-bold"
                 >
-                  {{ $t('vnytNapravlenie.label.posMaterialCheckVid') }}:
-                  <i class="fas fa-check-circle tx-success"></i>
-                  {{ $t('form.label.yes') }}
+                  {{ $t("vnytNapravlenie.label.posMaterialCheckVid") }}:
+                  <i class="fas fa-check-circle tx-success" />
+                  {{ $t("form.label.yes") }}
                 </span>
               </b-list-group-item>
               <b-list-group-item>
@@ -469,9 +484,9 @@
                   "
                   class="tx-bold"
                 >
-                  {{ $t('vnytNapravlenie.label.postMaterialCheck') }}:
-                  <i class="fas fa-check-circle tx-success"></i>
-                  {{ $t('form.label.yes') }}
+                  {{ $t("vnytNapravlenie.label.postMaterialCheck") }}:
+                  <i class="fas fa-check-circle tx-success" />
+                  {{ $t("form.label.yes") }}
                 </span>
 
                 <span
@@ -480,9 +495,9 @@
                   "
                   class="tx-bold"
                 >
-                  {{ $t('vnytNapravlenie.label.postMaterialCheck') }}:
-                  <i class="fas fa-check-circle tx-success"></i>
-                  {{ $t('form.label.no') }}
+                  {{ $t("vnytNapravlenie.label.postMaterialCheck") }}:
+                  <i class="fas fa-check-circle tx-success" />
+                  {{ $t("form.label.no") }}
                 </span>
               </b-list-group-item>
             </b-list-group>
@@ -492,21 +507,21 @@
             <b-list-group class="list-group-flush">
               <b-list-group-item v-if="cellData.item.dateDeworming">
                 <span class="tx-bold">
-                  {{ $t('vnytNapravlenie.label.dateDeworming') }}:
+                  {{ $t("vnytNapravlenie.label.dateDeworming") }}:
                 </span>
                 <span>
-                  {{ formatDate(getProp(cellData.item, 'dateDeworming', '')) }}
+                  {{ formatDate(getProp(cellData.item, "dateDeworming", "")) }}
                 </span>
               </b-list-group-item>
 
               <b-list-group-item v-if="cellData.item.anthelminticTypeJSON">
                 <span class="tx-bold">
-                  {{ $t('vnytNapravlenie.label.anthelminticTypeJSON') }}:
+                  {{ $t("vnytNapravlenie.label.anthelminticTypeJSON") }}:
                 </span>
                 <span>
                   {{
                     renderJSONArrayToList(
-                      getProp(cellData.item, 'anthelminticTypeJSON', [])
+                      getProp(cellData.item, "anthelminticTypeJSON", [])
                     )
                   }}
                 </span>
@@ -514,23 +529,23 @@
 
               <b-list-group-item v-if="cellData.item.dateVaccination">
                 <span class="tx-bold">
-                  {{ $t('vnytNapravlenie.label.dateVaccination') }}:
+                  {{ $t("vnytNapravlenie.label.dateVaccination") }}:
                 </span>
                 <span>
                   {{
-                    formatDate(getProp(cellData.item, 'dateVaccination', ''))
+                    formatDate(getProp(cellData.item, "dateVaccination", ""))
                   }}
                 </span>
               </b-list-group-item>
 
               <b-list-group-item v-if="cellData.item.vaccineTypeJSON">
                 <span class="tx-bold">
-                  {{ $t('vnytNapravlenie.label.vaccineTypeJSON') }}:
+                  {{ $t("vnytNapravlenie.label.vaccineTypeJSON") }}:
                 </span>
                 <span>
                   {{
                     renderJSONArrayToList(
-                      getProp(cellData.item, 'vaccineTypeJSON', [])
+                      getProp(cellData.item, "vaccineTypeJSON", [])
                     )
                   }}
                 </span>
@@ -538,21 +553,21 @@
 
               <b-list-group-item v-if="cellData.item.dateLechenia">
                 <span class="tx-bold">
-                  {{ $t('vnytNapravlenie.label.dateLechenia') }}:
+                  {{ $t("vnytNapravlenie.label.dateLechenia") }}:
                 </span>
                 <span>
-                  {{ formatDate(getProp(cellData.item, 'dateLechenia', '')) }}
+                  {{ formatDate(getProp(cellData.item, "dateLechenia", "")) }}
                 </span>
               </b-list-group-item>
 
               <b-list-group-item v-if="cellData.item.antibioticTypeJSON">
                 <span class="tx-bold">
-                  {{ $t('vnytNapravlenie.label.antibioticTypeJSON') }}:
+                  {{ $t("vnytNapravlenie.label.antibioticTypeJSON") }}:
                 </span>
                 <span>
                   {{
                     renderJSONArrayToList(
-                      getProp(cellData.item, 'antibioticTypeJSON', [])
+                      getProp(cellData.item, "antibioticTypeJSON", [])
                     )
                   }}
                 </span>
@@ -560,21 +575,21 @@
 
               <b-list-group-item v-if="cellData.item.dateObrabotki">
                 <span class="tx-bold">
-                  {{ $t('vnytNapravlenie.label.dateObrabotki') }}:
+                  {{ $t("vnytNapravlenie.label.dateObrabotki") }}:
                 </span>
                 <span>
-                  {{ formatDate(getProp(cellData.item, 'dateObrabotki', '')) }}
+                  {{ formatDate(getProp(cellData.item, "dateObrabotki", "")) }}
                 </span>
               </b-list-group-item>
 
               <b-list-group-item v-if="cellData.item.disinfectantTypeJSON">
                 <span class="tx-bold">
-                  {{ $t('vnytNapravlenie.label.disinfectantTypeJSON') }}:
+                  {{ $t("vnytNapravlenie.label.disinfectantTypeJSON") }}:
                 </span>
                 <span>
                   {{
                     renderJSONArrayToList(
-                      getProp(cellData.item, 'disinfectantTypeJSON', [])
+                      getProp(cellData.item, "disinfectantTypeJSON", [])
                     )
                   }}
                 </span>
@@ -582,12 +597,12 @@
 
               <b-list-group-item v-if="cellData.item.isledovanieProvoditsaJSON">
                 <span class="tx-bold">
-                  {{ $t('vnytNapravlenie.label.isledovanieProvoditsaJSON') }}:
+                  {{ $t("vnytNapravlenie.label.isledovanieProvoditsaJSON") }}:
                 </span>
                 <span>
                   {{
                     renderJSONArrayToListWithTranslate(
-                      getProp(cellData.item, 'isledovanieProvoditsaJSON', [])
+                      getProp(cellData.item, "isledovanieProvoditsaJSON", [])
                     )
                   }}
                 </span>
@@ -609,15 +624,15 @@ export default {
     return {
       perPage: 3,
       total: null,
-      pageOptions: [1, 2, 3, 5, 7, 10]
+      pageOptions: [1, 2, 3, 5, 7, 10],
     }
   },
   computed: {
     ...mapState({
       currentLocale: (state) => state.currentLocale,
       dateFormats: (state) => state.dateFormats,
-      dateSwitchLocales: (state) => state.dateSwitchLocales
-    })
+      dateSwitchLocales: (state) => state.dateSwitchLocales,
+    }),
   },
   methods: {
     firstLetter(text) {
@@ -666,7 +681,7 @@ export default {
     },
     toUpperCase(value) {
       return _.toUpper(value)
-    }
-  }
+    },
+  },
 }
 </script>

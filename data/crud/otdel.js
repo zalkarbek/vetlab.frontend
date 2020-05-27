@@ -14,7 +14,7 @@ export default {
   routePrefix,
   datasetName,
   rest: {
-    ...baseApi
+    ...baseApi,
   },
   fields: [
     ...baseFields,
@@ -27,7 +27,7 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['name', 'id'],
       disabled: false,
-      hidden: false
+      hidden: false,
     },
     {
       type: 'select',
@@ -38,7 +38,7 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['name', 'id'],
       disabled: false,
-      hidden: false
-    }
-  ]
+      hidden: false,
+    },
+  ],
 }

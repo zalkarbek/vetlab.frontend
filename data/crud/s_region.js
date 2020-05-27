@@ -18,23 +18,23 @@ export default {
     ...baseApi,
     getRegionsFullPathKg: {
       url: `/api/v1/${routePrefix}/get/regionsFullPathKg`,
-      method: 'GET'
+      method: 'GET',
     },
     getRegionsFullPathKgWithPaginate: {
       url: `/api/v1/${routePrefix}/get/regionsFullPathKg/paginate`,
-      method: 'GET'
+      method: 'GET',
     },
     getRegionFullPathKgById: {
       method: 'GET',
-      url: `/api/v1/${routePrefix}/get/regionFullPathKgById`
-    }
+      url: `/api/v1/${routePrefix}/get/regionFullPathKgById`,
+    },
   },
 
   initConfig: {
     getEditRecord: {
       crud: 's_region',
       method: 'id',
-      requireAttrs: ['id']
+      requireAttrs: ['id'],
     },
     // свойство определяет изначальные настройки для получения списки регионов
     getRecordList: {
@@ -52,8 +52,8 @@ export default {
       // rest метод для поиска региона
       methodOnSearch: 'getRegionsFullPathKgWithPaginate',
       // поля по которым разрешен поиск (текст или массив полей)
-      searchColumn: ['regionFullPath']
-    }
+      searchColumn: ['regionFullPath'],
+    },
   },
 
   fields: [
@@ -66,7 +66,7 @@ export default {
       foreign_dataset: 'regionTypes',
       foreign_label: 'name',
       foreign_value: 'id',
-      foreign_attributes: ['name', 'id']
+      foreign_attributes: ['name', 'id'],
     },
     {
       type: 'autocomplete:preload',
@@ -80,25 +80,25 @@ export default {
       foreign_attributes_share: [
         {
           sourceKey: 'id',
-          destKey: 'parentId'
-        }
-      ]
-    }
+          destKey: 'parentId',
+        },
+      ],
+    },
   ],
   fieldsForTable: [
     {
       key: 'regionFullPath',
-      sortable: true
+      sortable: true,
     },
     {
       key: 'regionIds',
       sortable: false,
-      hidden: true
+      hidden: true,
     },
     {
       key: 'regionTypeName',
       sortable: true,
-      hidden: false
-    }
-  ]
+      hidden: false,
+    },
+  ],
 }

@@ -42,7 +42,9 @@ class Tasker {
 
   runTasksByGroupParallelWithPause(taskGroupName, tasks, pause) {
     if (this.taskGroupExists(taskGroupName)) {
-      this.tasksGroup.get(taskGroupName).runTasksParallelWithPause(tasks, pause)
+      this.tasksGroup
+        .get(taskGroupName)
+        .runTasksParallelWithPause(tasks, pause)
     }
   }
 
@@ -60,7 +62,9 @@ class Tasker {
 
   runTasksByGroupOneByOneWithPause(taskGroupName, tasks, pause) {
     if (this.taskGroupExists(taskGroupName)) {
-      this.tasksGroup.get(taskGroupName).runTasksOneByOneWithPause(tasks, pause)
+      this.tasksGroup
+        .get(taskGroupName)
+        .runTasksOneByOneWithPause(tasks, pause)
     }
   }
 

@@ -20,24 +20,26 @@
             "
           >
             <crud-field
+              :id="`${modelData.restName}_${field.key}_crud_${index}`"
               v-model="recordItem[field.key]"
               :field="field"
               :crud-data="modelData"
-              :id="`${modelData.restName}_${field.key}_crud_${index}`"
               :placeholder="
                 $t(field.placeholder || `form.placeholder.${field.key}`)
               "
-            >
-            </crud-field>
+            />
           </b-form-group>
         </b-col>
         <!--==================================================================-->
         <!--==================================================================-->
         <b-col
+          :key="field.key"
           v-if="!field.disabled && toLowerCase(field.type) === fieldTypes.json"
           cols="12"
         >
-          <h5 class="mg-b-10">{{ $t(field.key) }}</h5>
+          <h5 class="mg-b-10">
+            {{ $t(field.key) }}
+          </h5>
           <crud-field-json
             v-model="recordItem[field.key]"
             :field="field"
@@ -50,35 +52,35 @@
   </div>
 </template>
 <script>
-import _ from 'lodash'
-import { createNamespacedHelpers } from 'vuex'
 import CrudField from './CrudField'
 import CrudFieldJson from './CrudFieldJson'
+import _ from 'lodash'
+import { createNamespacedHelpers } from 'vuex'
 const { mapState } = createNamespacedHelpers('api')
 
 export default {
   components: {
     CrudField,
-    CrudFieldJson
+    CrudFieldJson,
   },
   props: {
     crudData: {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
     value: {
       type: Object,
       default() {
         return {}
-      }
-    }
+      },
+    },
   },
   data() {
     return {
       created: false,
-      update: false
+      update: false,
     }
   },
   computed: {
@@ -90,8 +92,8 @@ export default {
     },
     ...mapState({
       crud: (state) => state.crud,
-      fieldTypes: (state) => state.fieldTypes
-    })
+      fieldTypes: (state) => state.fieldTypes,
+    }),
   },
   beforeMount() {
     this.modelData.fields.forEach((field) => {
@@ -108,7 +110,7 @@ export default {
     },
     toUpperCase(value) {
       return _.toUpper(value)
-    }
-  }
+    },
+  },
 }
 </script>

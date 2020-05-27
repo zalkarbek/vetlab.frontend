@@ -8,40 +8,41 @@
           {{ $t(`${restName}.title`) }}
         </h4>
       </div>
-      <div class=" d-sm-block d-lg-block d-md-block"></div>
+      <div class="d-sm-block d-lg-block d-md-block" />
     </div>
     <b-row class="mg-t-20 row-xs">
       <b-col cols="12">
         <crud-form
+          :crud-data="crudData"
+          :record="selectedRecord"
           @on-create="onCreate"
           @on-update="onUpdate"
           @on-clear="onClear"
-          :crud-data="crudData"
-          :record="selectedRecord"
-        ></crud-form>
+        />
       </b-col>
     </b-row>
     <b-row class="mg-t-10 row-xs">
       <b-col cols="12">
         <crud-list
           v-model="crudListRecords"
-          @on-edit="onEditSelect"
-          @on-delete="onDestroy"
-          @on-page="onCrudListChangePage"
-          @on-page-size="onCrudListChangePageSize"
-          @on-search="onCrudListSearch"
           :crud-data="crudData"
           :paginate-type="crudListPaginateType"
           :total-rows="crudListTotalRows"
           :page-size="crudListPageSize"
           :page="crudListCurrentPage"
-        ></crud-list>
+          @on-edit="onEditSelect"
+          @on-delete="onDestroy"
+          @on-page="onCrudListChangePage"
+          @on-page-size="onCrudListChangePageSize"
+          @on-search="onCrudListSearch"
+        />
       </b-col>
     </b-row>
     <div class="crud-dialogs">
-      <template v-for="modal in modals">
+      <template v-for="(modal, index) in modals">
         <template v-if="modal.type === modalTypes.form">
           <crud-form-modal
+            :key="index"
             :id="modal.id"
             :title="$t(modal.title)"
             :size="modal.size"
@@ -49,8 +50,7 @@
             :modal="modal"
             :form-data="modalFormDataByRestName"
             @on-action="onModalAction"
-          >
-          </crud-form-modal>
+          />
         </template>
       </template>
     </div>
@@ -66,8 +66,8 @@ export default {
   components: {
     CrudForm,
     CrudList,
-    CrudFormModal
+    CrudFormModal,
   },
-  mixins: [CrudMixins]
+  mixins: [CrudMixins],
 }
 </script>

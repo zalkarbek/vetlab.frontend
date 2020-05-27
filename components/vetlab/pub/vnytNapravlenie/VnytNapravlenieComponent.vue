@@ -8,24 +8,24 @@
           {{ $t(`${restName}.title`) }}
         </h4>
       </div>
-      <div class=" d-sm-block d-lg-block d-md-block"></div>
+      <div class="d-sm-block d-lg-block d-md-block" />
     </div>
     <b-row class="mg-t-10 row-xs">
       <b-col cols="12">
         <vnyt-napravlenie-list
           v-model="crudListRecords"
+          :crud-data="crudData"
+          :paginate-type="crudListPaginateType"
+          :total-rows="crudListTotalRows"
+          :page-size="crudListPageSize"
+          :page="crudListCurrentPage"
           @on-edit="onEditSelect"
           @on-delete="onDestroy"
           @on-page="onCrudListChangePage"
           @on-page-size="onCrudListChangePageSize"
           @on-search="onCrudListSearch"
           @on-action="onListAction"
-          :crud-data="crudData"
-          :paginate-type="crudListPaginateType"
-          :total-rows="crudListTotalRows"
-          :page-size="crudListPageSize"
-          :page="crudListCurrentPage"
-        ></vnyt-napravlenie-list>
+        />
       </b-col>
     </b-row>
     <div class="crud-dialogs">
@@ -39,8 +39,7 @@
             :modal="modal"
             :form-data="modalFormDataByRestName"
             @on-action="onModalAction"
-          >
-          </crud-form-modal>
+          />
         </template>
 
         <template v-if="modal.type === modalTypes.confirm">
@@ -52,31 +51,30 @@
             :modal="modal"
             :form-data="modalFormDataByRestName"
             @on-action="onModalAction"
-          >
-          </crud-form-modal>
+          />
         </template>
       </template>
     </div>
   </div>
 </template>
 <script>
-import _ from 'lodash'
-import { mapState } from 'vuex'
 import VnytNapravlenieList from './VnytNapravlenieList'
 import ComponentMixin from './ComponentMixin'
+import _ from 'lodash'
+import { mapState } from 'vuex'
 import CrudFormModal from '~/components/crud/CrudFormModal'
 import toastMixin from '~/mixins/toastMixin'
 
 export default {
   components: {
     VnytNapravlenieList,
-    CrudFormModal
+    CrudFormModal,
   },
   mixins: [toastMixin, ComponentMixin],
   computed: {
     ...mapState({
-      busEvents: (state) => state.busEvents
-    })
+      busEvents: (state) => state.busEvents,
+    }),
   },
   created() {
     this.$eventBus.$on(
@@ -102,13 +100,13 @@ export default {
       const { id, napravlenieId } = data
       this.$store.dispatch('emit/vnytNapravlenieAccept', {
         id,
-        napravlenieId
+        napravlenieId,
       })
     },
     acceptSuccess(data) {
       this.toastSuccess('Направление принято')
-      this.updateDatasetItem(data.id, data, this.crudData.datasetName)
-    }
-  }
+      this.updateItemInDataset(data.id, data, this.crudData.datasetName)
+    },
+  },
 }
 </script>

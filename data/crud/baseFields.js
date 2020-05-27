@@ -3,14 +3,14 @@ export default [
     type: 'text',
     key: 'i18n',
     disabled: true,
-    hidden: true
+    hidden: true,
   },
   {
     type: 'text',
-    key: 'name'
+    key: 'name',
   },
   {
     type: 'text',
-    key: 'shortName'
-  }
+    key: 'shortName',
+  },
 ]

@@ -9,7 +9,7 @@ const otdelFields = [
         type: 'date',
         key: 'dateDeworming',
         disabled: false,
-        hidden: false
+        hidden: false,
       },
       // Вид антигельминтика (несколько значений)
       // отдел: паразитология
@@ -22,9 +22,9 @@ const otdelFields = [
         foreign_value: 'name',
         foreign_attributes: ['name', 'id'],
         disabled: false,
-        hidden: false
-      }
-    ]
+        hidden: false,
+      },
+    ],
   },
 
   {
@@ -38,7 +38,7 @@ const otdelFields = [
         type: 'date',
         key: 'dateLechenia',
         disabled: false,
-        hidden: false
+        hidden: false,
       },
       // Вид антибиотика (Какой антибиотик использован при лечении) (несколько значений)
       // отдел: бактериология
@@ -51,14 +51,14 @@ const otdelFields = [
         foreign_value: 'name',
         foreign_attributes: ['name', 'id'],
         disabled: false,
-        hidden: false
+        hidden: false,
       },
 
       // Дата обработки ( дата проведения дезинфекции и.т.д )
       // отдел: бактериология
       {
         type: 'date',
-        key: 'dateObrabotki'
+        key: 'dateObrabotki',
       },
 
       // Вид дезинфектанта (несколько значений)
@@ -72,10 +72,10 @@ const otdelFields = [
         foreign_value: 'name',
         foreign_attributes: ['name', 'id'],
         disabled: false,
-        hidden: false
-      }
+        hidden: false,
+      },
       // ================ БАКТЕРИОЛОГИЯ ==================//
-    ]
+    ],
   },
 
   {
@@ -87,7 +87,7 @@ const otdelFields = [
       // отдел: серология, вирусология
       {
         type: 'date',
-        key: 'dateVaccination'
+        key: 'dateVaccination',
       },
 
       // Вид вакцины (несколько значений)
@@ -101,11 +101,11 @@ const otdelFields = [
         foreign_value: 'name',
         foreign_attributes: ['name', 'id'],
         disabled: false,
-        hidden: false
-      }
+        hidden: false,
+      },
       // ================ СЕРОЛОГИЯ, ВИРУСОЛОГИЯ ==================//
-    ]
-  }
+    ],
+  },
 ]
 
 const vnytNapravlenieFields = {
@@ -123,7 +123,7 @@ const vnytNapravlenieFields = {
       type: 'datetime',
       key: 'dateVremyaOtpravki',
       disabled: false,
-      hidden: false
+      hidden: false,
     },
 
     // Направляется в отдел (одно значение)
@@ -137,7 +137,7 @@ const vnytNapravlenieFields = {
       foreign_value: 'id',
       foreign_attributes: ['name', 'id'],
       disabled: false,
-      hidden: false
+      hidden: false,
     },
 
     // Обьект исследования (одно зачение)
@@ -146,7 +146,7 @@ const vnytNapravlenieFields = {
       type: 'select:preload',
       key: 'posMaterialId',
       disabled: false,
-      hidden: false
+      hidden: false,
     },
 
     // Количество пробы цифра (одно зачение)
@@ -155,7 +155,7 @@ const vnytNapravlenieFields = {
       type: 'number',
       key: 'postMaterialCount',
       disabled: false,
-      hidden: false
+      hidden: false,
     },
 
     // Определяемые показатели (несколько значений)
@@ -169,7 +169,7 @@ const vnytNapravlenieFields = {
       foreign_value: 'id',
       foreign_attributes: ['name', 'id'],
       disabled: false,
-      hidden: false
+      hidden: false,
     },
 
     // Исследования проводятся (одно значение)
@@ -182,25 +182,25 @@ const vnytNapravlenieFields = {
       foreign_values: [
         {
           label: 'form.label.primary',
-          value: 'primary'
+          value: 'primary',
         },
         {
           label: 'form.label.secondary',
-          value: 'secondary'
+          value: 'secondary',
         },
         {
           label: 'form.label.notApply',
-          value: 'notApply'
+          value: 'notApply',
         },
         {
           label: 'form.label.beforeProcess',
-          value: 'beforeProcess'
+          value: 'beforeProcess',
         },
         {
           label: 'form.label.afterProcess',
-          value: 'afterProcess'
-        }
-      ]
+          value: 'afterProcess',
+        },
+      ],
     },
 
     // Соответствие внешнего вида пробы
@@ -210,7 +210,7 @@ const vnytNapravlenieFields = {
       key: 'posMaterialCheckVid',
       checkbox_value: true,
       checkbox_unchecked_value: false,
-      checkbox_label: 'form.label.checkVid'
+      checkbox_label: 'form.label.checkVid',
     },
 
     // Соответствие своему образу
@@ -220,8 +220,8 @@ const vnytNapravlenieFields = {
       key: 'postMaterialCheck',
       checkbox_value: true,
       checkbox_unchecked_value: false,
-      checkbox_label: 'form.label.materialCheck'
-    }
+      checkbox_label: 'form.label.materialCheck',
+    },
 
     // // Пробу принял (ФИО сотрудника) (JSON значение)
     // // отдел: общий
@@ -242,7 +242,7 @@ const vnytNapravlenieFields = {
     // {
     //   key: 'Дата и время приема пробы'
     // }
-  ]
+  ],
 }
 
 export { vnytNapravlenieFields, otdelFields }

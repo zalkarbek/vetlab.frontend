@@ -15,7 +15,7 @@ export default {
   routePrefix,
   datasetName,
   rest: {
-    ...baseApi
+    ...baseApi,
   },
 
   fields: [
@@ -26,7 +26,7 @@ export default {
       foreign_crud: 's_material_type',
       foreign_dataset: 'materialTypes',
       foreign_label: 'name',
-      foreign_value: 'id'
+      foreign_value: 'id',
     },
     {
       type: 'select',
@@ -34,11 +34,11 @@ export default {
       foreign_crud: 's_material_animal_type',
       foreign_dataset: 'materialAnimalTypes',
       foreign_label: 'name',
-      foreign_value: 'id'
+      foreign_value: 'id',
     },
     {
       type: 'text',
-      key: 'sMaterialColor'
-    }
-  ]
+      key: 'sMaterialColor',
+    },
+  ],
 }

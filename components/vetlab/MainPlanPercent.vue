@@ -11,7 +11,9 @@
           Паразитология
         </h6>
         <div class="d-flex d-lg-block d-xl-flex align-items-end">
-          <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">51%</h3>
+          <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">
+            51%
+          </h3>
           <p class="tx-11 tx-color-03 mg-b-0">
             <span class="tx-medium tx-success">
               1.2% <i class="fal fa-arrow-up" />
@@ -29,12 +31,14 @@
           Бактериология
         </h6>
         <div class="d-flex d-lg-block d-xl-flex align-items-end">
-          <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">47%</h3>
+          <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">
+            47%
+          </h3>
           <p class="tx-11 tx-color-03 mg-b-0">
             <span class="tx-medium tx-success">
               1.8% <i class="fal fa-arrow-up" />
             </span>
-            {{ $t('current.week') }}
+            {{ $t("current.week") }}
           </p>
         </div>
       </div>
@@ -47,12 +51,14 @@
           Вирусология
         </h6>
         <div class="d-flex d-lg-block d-xl-flex align-items-end">
-          <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">78%</h3>
+          <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">
+            78%
+          </h3>
           <p class="tx-11 tx-color-03 mg-b-0">
             <span class="tx-medium tx-success">
               2.4% <i class="fal fa-arrow-up" />
             </span>
-            {{ $t('current.week') }}
+            {{ $t("current.week") }}
           </p>
         </div>
       </div>
@@ -65,12 +71,14 @@
           Сериология
         </h6>
         <div class="d-flex d-lg-block d-xl-flex align-items-end">
-          <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">68%</h3>
+          <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">
+            68%
+          </h3>
           <p class="tx-11 tx-color-03 mg-b-0">
             <span class="tx-medium tx-success">
               3.2% <i class="fal fa-arrow-up" />
             </span>
-            {{ $t('current.week') }}
+            {{ $t("current.week") }}
           </p>
         </div>
       </div>
@@ -83,12 +91,14 @@
           Тамак-аш
         </h6>
         <div class="d-flex d-lg-block d-xl-flex align-items-end">
-          <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">38%</h3>
+          <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">
+            38%
+          </h3>
           <p class="tx-11 tx-color-03 mg-b-0">
             <span class="tx-medium tx-success">
               2.2% <i class="fal fa-arrow-up" />
             </span>
-            {{ $t('current.week') }}
+            {{ $t("current.week") }}
           </p>
         </div>
       </div>

@@ -30,5 +30,5 @@ export default {
       })
     }
     return heystack.filter((item) => _.toLower(item[key]).includes(query))
-  }
+  },
 }

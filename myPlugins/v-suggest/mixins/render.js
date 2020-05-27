@@ -6,12 +6,12 @@ export default {
         props: {
           disabled: this.disabled,
           border: false,
-          manual: true
+          manual: true,
         },
         on: {
-          show: this.showChange
+          show: this.showChange,
         },
-        ref: 'drop'
+        ref: 'drop',
       },
       [this.buildCaller(h), this.buildResult(h)]
     )
@@ -29,10 +29,10 @@ export default {
         attrs: {
           type: 'text',
           placeholder: this.placeholder,
-          disabled: this.disabled
+          disabled: this.disabled,
         },
         domProps: {
-          value: this.text
+          value: this.text,
         },
         on: {
           keydown: this.processControl,
@@ -40,9 +40,9 @@ export default {
           input: (e) => {
             this.text = e.target.value
             this.search(e, this.text)
-          }
+          },
         },
-        ref: 'input'
+        ref: 'input',
       }
       if (this.name) option.attrs.name = this.name
       child.push(h('input', option))
@@ -54,21 +54,21 @@ export default {
             {
               class: 'sg-clear',
               on: {
-                click: this.clear
+                click: this.clear,
               },
               directives: [
                 {
                   name: 'show',
-                  value: this.text
-                }
-              ]
+                  value: this.text,
+                },
+              ],
             },
             [h('span', '×')]
           )
         )
       }
       return h('template', { slot: 'caller' }, [
-        h('div', { class: 'v-suggest' }, child)
+        h('div', { class: 'v-suggest' }, child),
       ])
     },
     /**
@@ -83,16 +83,16 @@ export default {
         {
           class: 'sg-results',
           style: {
-            width: this.width + 'px'
+            width: this.width + 'px',
           },
-          ref: 'list'
+          ref: 'list',
         },
         this.list.map((row, index) => {
           const child = []
           const options = {
             class: {
               'sg-results__row': true,
-              'sg-over': this.highlight === index
+              'sg-over': this.highlight === index,
             },
             on: {
               click: () => {
@@ -103,24 +103,24 @@ export default {
               },
               mouseleave: () => {
                 this.highlight = -1
-              }
-            }
+              },
+            },
           }
           // scoped slot supports
           if ('default' in this.$scopedSlots) {
             child.push(
               this.$scopedSlots.default({
-                row
+                row,
               })
             )
           } else {
             options.domProps = {
-              innerHTML: this.getRow(row)
+              innerHTML: this.getRow(row),
             }
           }
           return h('li', options, child)
         })
       )
-    }
-  }
+    },
+  },
 }

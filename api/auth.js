@@ -5,6 +5,6 @@ export default ({ $axios }) => {
     },
     getUserProfile() {
       return $axios.$get('api/v1/users/profile')
-    }
+    },
   }
 }

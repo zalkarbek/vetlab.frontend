@@ -8,24 +8,24 @@
           {{ $t(`${restName}.title`) }}
         </h4>
       </div>
-      <div class=" d-sm-block d-lg-block d-md-block"></div>
+      <div class="d-sm-block d-lg-block d-md-block" />
     </div>
     <b-row class="mg-t-10 row-xs">
       <b-col cols="12">
         <napravlenie-list
           v-model="crudListRecords"
+          :crud-data="crudData"
+          :paginate-type="crudListPaginateType"
+          :total-rows="crudListTotalRows"
+          :page-size="crudListPageSize"
+          :page="crudListCurrentPage"
           @on-edit="onEditSelect"
           @on-delete="onDestroy"
           @on-page="onCrudListChangePage"
           @on-page-size="onCrudListChangePageSize"
           @on-search="onCrudListSearch"
           @on-action="onListAction"
-          :crud-data="crudData"
-          :paginate-type="crudListPaginateType"
-          :total-rows="crudListTotalRows"
-          :page-size="crudListPageSize"
-          :page="crudListCurrentPage"
-        ></napravlenie-list>
+        />
       </b-col>
     </b-row>
     <div class="crud-dialogs">
@@ -39,26 +39,35 @@
             :modal="modal"
             :form-data="modalFormDataByRestName"
             @on-action="onModalAction"
-          >
-          </napravlenie-form-modal>
+          />
         </template>
       </template>
     </div>
   </div>
 </template>
 <script>
-import _ from 'lodash'
 import NapravlenieList from './NapravlenieList'
 import NapravlenieCrud from './NapravlenieCrud'
 import NapravlenieFormModal from './NapravlenieFormModal'
+import _ from 'lodash'
 import toastMixin from '~/mixins/toastMixin'
 
 export default {
   components: {
     NapravlenieList,
-    NapravlenieFormModal
+    NapravlenieFormModal,
   },
   mixins: [toastMixin, NapravlenieCrud],
+  props: {
+    vnytNapravlenieCrudName: {
+      type: String,
+      default: () => '',
+    },
+  },
+  beforeMount() {
+    const localEvents = this.$store.state.busEvents
+    this.$eventBus.$on(localEvents.NAPRAVLENIE_SEND_TO_OTDEL_SUCCESS, this.sendNapravlenieSuccess)
+  },
   methods: {
     openSendDialog({ modalId, ...other }, data) {
       if (modalId) {
@@ -75,7 +84,7 @@ export default {
         message = this.$t('otdel.error.notSelected')
         cb(success, {
           ok: success,
-          message
+          message,
         })
         return false
       }
@@ -84,41 +93,27 @@ export default {
         message = this.$t('otdel.error.dateVremyaOtpravkiNotSelected')
         cb(success, {
           ok: success,
-          message
+          message,
         })
         return false
       }
-
       const postData = {}
       modalCrud.fields.forEach((field) => {
         postData[field.key] = data[field.key]
       })
       postData.napravlenieId = data.id
-      try {
-        const res = await this.$store.dispatch('api/req', {
-          req: this.crudData.rest.sendToOtdel,
-          data: {
-            ...postData
-          }
-        })
-        if (res.data && !res.data.error) {
-          success = true
-          message = (res.data && res.data.message) || ''
-          this.$eventBus.$emit('napravlenie:sendToOtdel', postData)
-        } else {
-          success = false
-          message = 'error.server'
-        }
-      } catch (e) {
-        success = false
-        message = (e.response.data && e.response.data.message) || e.message
-      }
-      cb(success, {
-        ok: success,
-        message
-      })
+      await this.$store.dispatch('emit/napravlenieSendToOtdel', postData)
       return false
-    }
-  }
+    },
+
+    sendNapravlenieSuccess(response) {
+      if(response && !response.error) {
+        const datasetName = this.crudData.datasetName
+        const napravlenie = this.findInDataset(response.data.napravlenieId, ['id'], datasetName)
+        if(napravlenie && napravlenie[0])
+          napravlenie[0].status = 'sended'
+      }
+    },
+  },
 }
 </script>

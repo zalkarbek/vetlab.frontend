@@ -1,10 +1,12 @@
 <template>
   <div class="card card-body">
     <b-container fluid>
-      <h4>{{ $t('list', { name: $t(`${restName}.title`) }) }}</h4>
+      <h4>{{ $t("list", { name: $t(`${restName}.title`) }) }}</h4>
       <!-- User Interface controls -->
       <b-row>
-        <b-col lg="3" class="my-1">
+        <b-col lg="3"
+               class="my-1"
+        >
           <b-form-group
             :label="$t('form.label.sort')"
             :description="$t('form.description.sort')"
@@ -23,7 +25,9 @@
                 class="w-75"
               >
                 <template v-slot:first>
-                  <option value="">-- none --</option>
+                  <option value="">
+                    -- none --
+                  </option>
                 </template>
               </b-form-select>
               <b-form-select
@@ -32,14 +36,20 @@
                 size="sm"
                 class="w-25"
               >
-                <option :value="false">Asc</option>
-                <option :value="true">Desc</option>
+                <option :value="false">
+                  Asc
+                </option>
+                <option :value="true">
+                  Desc
+                </option>
               </b-form-select>
             </b-input-group>
           </b-form-group>
         </b-col>
 
-        <b-col lg="9" class="my-1">
+        <b-col lg="9"
+               class="my-1"
+        >
           <b-row>
             <b-col lg="5">
               <b-form-group
@@ -55,15 +65,15 @@
                 <b-input-group size="sm">
                   <b-form-input
                     v-model="searchItem"
-                    @input="changeSearchInput"
                     :placeholder="$t('form.placeholder.search')"
-                  ></b-form-input>
+                    @input="changeSearchInput"
+                  />
                   <b-input-group-append>
                     <b-button
                       :disabled="searchItem && searchItem.trim().length < 1"
                       @click="onAction('clear')"
                     >
-                      {{ $t('form.label.clear') }}
+                      {{ $t("form.label.clear") }}
                     </b-button>
                   </b-input-group-append>
                 </b-input-group>
@@ -86,7 +96,7 @@
                     v-model="filter"
                     :placeholder="$t('form.placeholder.filter')"
                     type="search"
-                  ></b-form-input>
+                  />
                 </b-input-group>
               </b-form-group>
             </b-col>
@@ -99,9 +109,11 @@
                 label-class="tx-bold"
                 class="mb-0"
               >
-                <b-form-checkbox-group v-model="filterOn" class="mt-1">
-                  <template v-for="column in sortOptions">
-                    <b-form-checkbox :value="column.value">
+                <b-form-checkbox-group v-model="filterOn"
+                                       class="mt-1"
+                >
+                  <template v-for="(column, index) in sortOptions">
+                    <b-form-checkbox :key="index" :value="column.value">
                       {{ column.text }}
                     </b-form-checkbox>
                   </template>
@@ -111,7 +123,9 @@
           </b-row>
         </b-col>
 
-        <b-col lg="9" class="my-1">
+        <b-col lg="9"
+               class="my-1"
+        >
           <b-row>
             <b-col lg="4">
               <b-form-group
@@ -126,24 +140,24 @@
               >
                 <b-form-select
                   id="perPageSelect"
-                  @change="changePageSize"
                   v-model="perPageCount"
                   :options="pageOptions"
                   size="sm"
-                ></b-form-select>
+                  @change="changePageSize"
+                />
               </b-form-group>
             </b-col>
             <b-col lg="8">
               <b-pagination
                 v-model="currentPage"
-                @change="changePaginate"
                 :total-rows="totalRowsCount"
                 :per-page="perPageCount"
                 limit="10"
                 align="fill"
                 size="sm"
                 class="my-0"
-              ></b-pagination>
+                @change="changePaginate"
+              />
             </b-col>
           </b-row>
         </b-col>
@@ -155,7 +169,7 @@
           :fields="fields"
           :current-page="currentPage"
           :filter="filter"
-          :filterIncludedFields="filterOn"
+          :filter-included-fields="filterOn"
           :sort-by.sync="sortBy"
           :sort-desc.sync="sortDesc"
           :sort-direction="sortDirection"
@@ -176,13 +190,15 @@
                 :field-data="data.field"
                 :data="data.item[data.field.key]"
                 view-type="inline"
-              ></crud-list-view-json>
+              />
             </template>
 
             <template v-else-if="data.field.type === fieldTypes.select_multi">
               <template v-if="data.value && Array.isArray(data.value)">
                 <template v-for="(item, index) in data.value">
-                  <span :key="index" class="tx-bold">
+                  <span :key="index"
+                        class="tx-bold"
+                  >
                     {{ viewForeignData(data.field, item) }},&nbsp;
                   </span>
                 </template>
@@ -199,36 +215,40 @@
 
           <template v-slot:cell(actions)="row">
             <b-button-toolbar>
-              <b-button-group class="mr-1" size="sm">
+              <b-button-group class="mr-1"
+                              size="sm"
+              >
                 <template v-for="(button, index) in actionButtons">
                   <b-button
-                    @click="onActionButton(button, row.item)"
                     :key="index"
                     :variant="button.variant || 'secondary'"
+                    @click="onActionButton(button, row.item)"
                   >
                     <i
                       :class="button.icon"
                       class="far cursor-pointer"
                       aria-hidden="true"
-                    ></i>
+                    />
                   </b-button>
                 </template>
                 <b-button
-                  @click="onAction('edit-item', row.item)"
                   variant="primary"
                   title="Edit"
+                  @click="onAction('edit-item', row.item)"
                 >
-                  <i class="far fa-edit cursor-pointer" aria-hidden="true"></i>
+                  <i class="far fa-edit cursor-pointer"
+                     aria-hidden="true"
+                  />
                 </b-button>
                 <b-button
-                  @click="onAction('delete-item', row.item)"
                   variant="danger"
                   title="Delete"
+                  @click="onAction('delete-item', row.item)"
                 >
                   <i
                     class="far fa-trash-alt cursor-pointer"
                     aria-hidden="true"
-                  ></i>
+                  />
                 </b-button>
               </b-button-group>
             </b-button-toolbar>
@@ -241,6 +261,6 @@
 <script>
 import CrudListMixin from './CrudListMixin'
 export default {
-  mixins: [CrudListMixin]
+  mixins: [CrudListMixin],
 }
 </script>

@@ -30,7 +30,7 @@ export default {
         const response = await dispatch('req', {
           req,
           params,
-          data
+          data,
         })
         if (response && response.data) {
           commit('SET_DATASET', { datasetName, datalist: response.data })
@@ -49,6 +49,9 @@ export default {
   },
   updateItemInDataset({ commit }, { datasetName, id, data }) {
     commit('UPDATE_ITEM_IN_DATASET', { datasetName, id, data })
+  },
+  removeItemInDataset({ commit }, { data, datasetName }) {
+    commit('REMOVE_ITEM_IN_DATASET', { data, datasetName })
   },
   getDataInDataset({ state }, { datasetName }) {
     return state.dataset[datasetName]
@@ -97,12 +100,12 @@ export default {
     return dispatch('createDatabase', { schemaName })
   },
 
-  async storeDataToDatabase({ state, dispatch, commit }, { schemaName, data }) {
+  async storeDataToDatabase({ dispatch }, { schemaName, data }) {
     const db = await dispatch('createDatabase', { schemaName })
     return db.bulkDocs(data)
   },
 
-  async pushDataToDatabase({ state, dispatch, commit }, { schemaName, data }) {
+  async pushDataToDatabase({ dispatch }, { schemaName, data }) {
     const db = await dispatch('createDatabase', { schemaName })
     return db.put(data)
   },
@@ -121,8 +124,9 @@ export default {
     const db = await dispatch('createDatabase', { schemaName })
     return db.allDocs(options)
   },
+
   async allPaginateInDatabase({ dispatch }, { schemaName, options }) {
     const db = await dispatch('createDatabase', { schemaName })
     return db.allDocs(options)
-  }
+  },
 }

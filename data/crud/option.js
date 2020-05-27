@@ -12,7 +12,7 @@ export default {
   rest: {
     getSocks: {
       method: 'GET',
-      url: `/api/v1/${routePrefix}/socks`
-    }
-  }
+      url: `/api/v1/${routePrefix}/socks`,
+    },
+  },
 }

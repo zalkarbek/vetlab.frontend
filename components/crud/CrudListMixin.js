@@ -1,6 +1,6 @@
+import CrudListViewJson from './CrudListViewJson'
 import _ from 'lodash'
 import { createNamespacedHelpers } from 'vuex'
-import CrudListViewJson from './CrudListViewJson'
 import loadDatasetMixin from '~/mixins/loadDatasetMixin'
 
 const { mapState, mapGetters } = createNamespacedHelpers('api')
@@ -8,11 +8,11 @@ const { mapState, mapGetters } = createNamespacedHelpers('api')
 export default {
   mixins: [loadDatasetMixin],
   components: {
-    CrudListViewJson
+    CrudListViewJson,
   },
   model: {
     prop: 'records',
-    event: 'change'
+    event: 'change',
   },
   props: {
     // crud модель
@@ -20,43 +20,43 @@ export default {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
     // массив записей
     records: {
       type: Array,
       default() {
         return []
-      }
+      },
     },
     // общее количество записей
     totalRows: {
       type: Number,
       default() {
         return 0
-      }
+      },
     },
     // текущая страница
     page: {
       type: Number,
       default() {
         return 1
-      }
+      },
     },
     // количество эементов в странице
     pageSize: {
       type: Number,
       default() {
         return null
-      }
+      },
     },
     // тип пагинации local / server
     paginateType: {
       type: String,
       default() {
         return 'local'
-      }
-    }
+      },
+    },
   },
   data() {
     return {
@@ -74,13 +74,13 @@ export default {
       infoModal: {
         id: 'info-modal',
         title: '',
-        content: ''
+        content: '',
       },
       PAGINATION_TYPES: {
         LOCAL: 'local',
         SERVER: 'server',
-        STORAGE: 'storage'
-      }
+        STORAGE: 'storage',
+      },
     }
   },
   computed: {
@@ -90,7 +90,7 @@ export default {
       },
       set(value) {
         this.searchText = value
-      }
+      },
     },
     perPageCount: {
       get() {
@@ -98,7 +98,7 @@ export default {
       },
       set(value) {
         this.perPage = value
-      }
+      },
     },
     recordItems: {
       get() {
@@ -112,7 +112,7 @@ export default {
           return this.records
         }
         return _.chunk(this.records, this.perPageCount)
-      }
+      },
     },
     currentPageRecords() {
       if (this.paginateType === this.PAGINATION_TYPES.SERVER) {
@@ -145,17 +145,18 @@ export default {
     fields() {
       const index = {
         key: 'index',
-        label: '№'
+        label: '№',
       }
       const id = {
         key: 'id',
-        label: this.$t('form.field.id')
+        label: this.$t('form.field.id'),
       }
       const actions = {
         key: 'actions',
-        label: '#'
+        label: '#',
       }
-      const modelFields = this.modelData.fieldsForTable || this.modelData.fields
+      const modelFields =
+        this.modelData.fieldsForTable || this.modelData.fields
       const enabledFields = modelFields.filter((field) => {
         return !field.hidden
       })
@@ -168,7 +169,7 @@ export default {
           sortable: true,
           sortByFormatted: true,
           filterByFormatted: true,
-          ...other
+          ...other,
         }
       })
       return [index, id, ...list, actions]
@@ -182,14 +183,14 @@ export default {
     },
     ...mapState({
       crud: (state) => state.crud,
-      fieldTypes: (state) => state.fieldTypes
+      fieldTypes: (state) => state.fieldTypes,
     }),
-    ...mapGetters(['elementInDataset'])
+    ...mapGetters(['elementInDataset']),
   },
   watch: {
     pageSize(newValue) {
       this.perPageCount = newValue
-    }
+    },
   },
   mounted() {
     this.dependencyLoad(this.modelData)
@@ -221,7 +222,7 @@ export default {
       return this.$store.dispatch('api/findElementInDataset', {
         datasetName,
         columnName,
-        value
+        value,
       })
     },
     dependencyLoad(modelData) {
@@ -322,7 +323,7 @@ export default {
     onActionButton(actionButton, data) {
       this.$emit('on-action', {
         actionButton,
-        data
+        data,
       })
     },
     onEditSelect(data) {
@@ -345,12 +346,12 @@ export default {
       this.searchItem = ''
       this.$emit('on-page', { page, pageSize })
     },
-    debounceSearchServer: _.debounce(function(search, page, pageSize) {
+    debounceSearchServer: _.debounce(function (search, page, pageSize) {
       this.onSearch(search, page, pageSize)
     }, 1000),
 
-    debounceSearchLocal: _.debounce(function(search, page, pageSize) {
+    debounceSearchLocal: _.debounce(function (search, page, pageSize) {
       this.onSearch(search, page, pageSize)
-    }, 300)
-  }
+    }, 300),
+  },
 }

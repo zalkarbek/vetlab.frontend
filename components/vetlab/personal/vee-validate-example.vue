@@ -1,10 +1,12 @@
 <template>
   <div>
-    <validation-observer ref="observer" v-slot="{ handleSubmit }">
+    <validation-observer ref="observer"
+                         v-slot="{ handleSubmit }"
+    >
       <b-form @submit.stop.prevent="handleSubmit(onSubmit)">
         <validation-provider
-          :rules="{ required: true, min: 3 }"
           v-slot="validationContext"
+          :rules="{ required: true, min: 3 }"
           name="Name"
         >
           <b-form-group
@@ -18,17 +20,17 @@
               :state="getValidationState(validationContext)"
               name="example-input-1"
               aria-describedby="input-1-live-feedback"
-            ></b-form-input>
+            />
 
-            <b-form-invalid-feedback id="input-1-live-feedback">{{
-              validationContext.errors[0]
-            }}</b-form-invalid-feedback>
+            <b-form-invalid-feedback id="input-1-live-feedback">
+              {{ validationContext.errors[0] }}
+            </b-form-invalid-feedback>
           </b-form-group>
         </validation-provider>
 
         <validation-provider
-          :rules="{ required: true }"
           v-slot="validationContext"
+          :rules="{ required: true }"
           name="Food"
         >
           <b-form-group
@@ -43,16 +45,22 @@
               :state="getValidationState(validationContext)"
               name="example-input-2"
               aria-describedby="input-2-live-feedback"
-            ></b-form-select>
+            />
 
-            <b-form-invalid-feedback id="input-2-live-feedback">{{
-              validationContext.errors[0]
-            }}</b-form-invalid-feedback>
+            <b-form-invalid-feedback id="input-2-live-feedback">
+              {{ validationContext.errors[0] }}
+            </b-form-invalid-feedback>
           </b-form-group>
         </validation-provider>
 
-        <b-button type="submit" variant="primary">Submit</b-button>
-        <b-button @click="resetForm()" class="ml-2">Reset</b-button>
+        <b-button type="submit"
+                  variant="primary"
+        >
+          Submit
+        </b-button>
+        <b-button class="ml-2" @click="resetForm()">
+          Reset
+        </b-button>
       </b-form>
     </validation-observer>
   </div>
@@ -71,12 +79,12 @@ export default {
       foods: [
         { value: null, text: 'Choose...' },
         { value: 'apple', text: 'Apple' },
-        { value: 'orange', text: 'Orange' }
+        { value: 'orange', text: 'Orange' },
       ],
       form: {
         name: null,
-        food: null
-      }
+        food: null,
+      },
     }
   },
   methods: {
@@ -86,7 +94,7 @@ export default {
     resetForm() {
       this.form = {
         name: null,
-        food: null
+        food: null,
       }
 
       this.$nextTick(() => {
@@ -95,7 +103,7 @@ export default {
     },
     onSubmit() {
       alert('Form submitted!')
-    }
-  }
+    },
+  },
 }
 </script>

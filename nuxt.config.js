@@ -12,18 +12,18 @@ export default {
   mode: 'spa',
   server: {
     port: Number(process.env.NUXT_PORT), // default: 3000
-    host: process.env.NUXT_HOST // default: localhost
+    host: process.env.NUXT_HOST, // default: localhost
   },
   isDev,
   env: {
     isDev,
     isProd,
     baseUrl: API_HOST,
-    baseSecureUrl: API_HOST_HTTPS
+    baseSecureUrl: API_HOST_HTTPS,
   },
   appDebug: process.env.APP_DEBUG,
   router: {
-    middleware: ['userAgent', 'localization']
+    middleware: ['userAgent', 'localization'],
   },
   /*
    ** Headers of the page
@@ -36,13 +36,13 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+        content: process.env.npm_package_description || '',
+      },
     ],
     bodyAttrs: {
-      class: ['page-profile', 'df-roboto']
+      class: ['page-profile', 'df-roboto'],
     },
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   /*
    ** Customize the progress-bar color
@@ -58,7 +58,7 @@ export default {
     '@/assets/fonts/fontawesome-pro/scss/light.scss',
     '@/assets/fonts/fontawesome-pro/scss/solid.scss',
     '@/assets/fonts/fontawesome-pro/scss/regular.scss',
-    '@/assets/fonts/fontawesome-pro/scss/brands.scss'
+    '@/assets/fonts/fontawesome-pro/scss/brands.scss',
   ],
   /*
    ** Plugins to load before mounting the App
@@ -81,14 +81,15 @@ export default {
     { src: '~/plugins/api.js', mode: 'client' },
     { src: '~/plugins/dashboard.js', mode: 'client' },
     { src: '~/plugins/socket', mode: 'client' },
-    { src: '~/plugins/global-methods', mode: 'client' }
+    { src: '~/plugins/global-methods', mode: 'client' },
+    { src: '~/plugins/events', mode: 'client' },
   ],
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
   ],
   /*
    ** Nuxt.js modules
@@ -105,23 +106,23 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/toast',
     // Doc : https://pwa.nuxtjs.org/setup.html
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
   ],
   toast: {
     position: 'bottom-right',
     duration: 5000,
-    containerClass: ['alert']
+    containerClass: ['alert'],
   },
   bootstrapVue: {
     bootstrapCSS: false,
-    bootstrapVueCSS: false
+    bootstrapVueCSS: false,
   },
   axios: {
-    proxy: true
+    proxy: true,
   },
   proxy: {
     '/api/v1/': API_HOST,
-    '/api/v2/': API_HOST
+    '/api/v2/': API_HOST,
   },
   i18n: {
     strategy: 'prefix_except_default',
@@ -129,28 +130,28 @@ export default {
     lazy: true,
     langDir: 'lang/',
     vueI18n: {
-      silentTranslationWarn: true
+      silentTranslationWarn: true,
     },
     locales: [
       {
         code: 'en',
         iso: 'en-US',
         file: 'en.js',
-        name: 'EN'
+        name: 'EN',
       },
       {
         code: 'ru',
         iso: 'ru-RU',
         file: 'ru.js',
-        name: 'RU'
+        name: 'RU',
       },
       {
         code: 'kg',
         iso: 'kg-KG',
         file: 'kg.js',
-        name: 'KG'
-      }
-    ]
+        name: 'KG',
+      },
+    ],
   },
   /*
    ** Build configuration
@@ -159,6 +160,6 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
-  }
+    extend(config, ctx) {},
+  },
 }

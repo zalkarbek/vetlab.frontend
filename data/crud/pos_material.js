@@ -14,14 +14,14 @@ export default {
   routePrefix,
   datasetName,
   rest: {
-    ...baseApi
+    ...baseApi,
   },
 
   fields: [
     {
       type: 'number',
       key: 'napravlenieId',
-      disabled: true
+      disabled: true,
     },
     {
       type: 'select-multi',
@@ -30,7 +30,7 @@ export default {
       foreign_dataset: 'pokazatel',
       foreign_label: 'name',
       foreign_value: 'id',
-      foreign_attributes: ['name', 'id']
+      foreign_attributes: ['name', 'id'],
     },
     {
       type: 'json',
@@ -38,13 +38,13 @@ export default {
       json: [
         {
           type: 'text',
-          key: 'fullName'
+          key: 'fullName',
         },
         {
           type: 'text',
-          key: 'phone_1'
-        }
-      ]
+          key: 'phone_1',
+        },
+      ],
     },
     {
       type: 'json',
@@ -52,13 +52,13 @@ export default {
       json: [
         {
           type: 'text',
-          key: 'fullName'
+          key: 'fullName',
         },
         {
           type: 'text',
-          key: 'phone_1'
-        }
-      ]
+          key: 'phone_1',
+        },
+      ],
     },
     {
       type: 'json',
@@ -68,23 +68,23 @@ export default {
           type: 'text',
           key: 'regionId',
           disabled: true,
-          hidden: true
+          hidden: true,
         },
         {
           type: 'text',
-          key: 'regionFullText'
+          key: 'regionFullText',
         },
         {
           type: 'array',
           key: 'regions',
           disabled: true,
-          hidden: true
-        }
-      ]
+          hidden: true,
+        },
+      ],
     },
     {
       type: 'text',
-      key: 'lechenieInfo'
+      key: 'lechenieInfo',
     },
     {
       type: 'select',
@@ -93,11 +93,11 @@ export default {
       foreign_dataset: 'materials',
       foreign_label: 'name',
       foreign_value: 'id',
-      foreign_attributes: ['name', 'id']
+      foreign_attributes: ['name', 'id'],
     },
     {
       type: 'number',
-      key: 'materialCount'
+      key: 'materialCount',
     },
     {
       type: 'select',
@@ -106,27 +106,27 @@ export default {
       foreign_dataset: 'mera',
       foreign_label: 'name',
       foreign_value: 'id',
-      foreign_attributes: ['name', 'id']
+      foreign_attributes: ['name', 'id'],
     },
     {
       type: 'number',
-      key: 'vozrast'
+      key: 'vozrast',
     },
     {
       type: 'date',
-      key: 'dateZabolivanie'
+      key: 'dateZabolivanie',
     },
     {
       type: 'date',
-      key: 'dateZaboya'
+      key: 'dateZaboya',
     },
     {
       type: 'datetime',
-      key: 'dateVremyaOtbora'
+      key: 'dateVremyaOtbora',
     },
     {
       type: 'date',
-      key: 'dateDostavki'
-    }
-  ]
+      key: 'dateDostavki',
+    },
+  ],
 }

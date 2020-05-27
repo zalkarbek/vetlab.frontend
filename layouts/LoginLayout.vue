@@ -12,11 +12,11 @@
 import HeaderPanel from '../components/HeaderPanel'
 
 export default {
+  components: {
+    'app-header': HeaderPanel,
+  },
   head() {
     return this.$nuxtI18nSeo()
   },
-  components: {
-    'app-header': HeaderPanel
-  }
 }
 </script>

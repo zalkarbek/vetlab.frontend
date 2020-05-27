@@ -14,7 +14,7 @@ export default {
   routePrefix,
   datasetName,
   rest: {
-    ...baseApi
+    ...baseApi,
   },
   fields: [
     ...baseFields,
@@ -27,25 +27,25 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['name', 'id'],
       disabled: false,
-      hidden: false
+      hidden: false,
     },
     {
       type: 'number',
       key: 'planCount',
       disabled: false,
-      hidden: false
+      hidden: false,
     },
     {
       type: 'number',
       key: 'planKv',
       disabled: false,
-      hidden: false
+      hidden: false,
     },
     {
       type: 'number',
       key: 'planYear',
       disabled: false,
-      hidden: false
-    }
-  ]
+      hidden: false,
+    },
+  ],
 }

@@ -61,7 +61,7 @@ import { vnytNapravlenieFields, otdelFields } from '~/data/fields'
 
 export default {
   components: {
-    CrudForm
+    CrudForm,
   },
   mixins: [toastMixin, loadDatasetMixin],
   props: {
@@ -69,49 +69,49 @@ export default {
       type: String,
       default() {
         return ''
-      }
+      },
     },
     title: {
       type: String,
       default() {
         return ''
-      }
+      },
     },
     size: {
       type: String,
       default() {
         return 'md'
-      }
+      },
     },
     formData: {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
     crudData: {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
     modal: {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
     selectData: {
       type: Object,
       default() {
         return {}
-      }
-    }
+      },
+    },
   },
   data() {
     return {
       test: true,
-      formDataItem: {}
+      formDataItem: {},
     }
   },
   computed: {
@@ -122,12 +122,12 @@ export default {
       const { restName, ...other } = this.modalCrud
       return {
         restName: restName || this.crudData.restName,
-        ...other
+        ...other,
       }
     },
     modalFormData() {
       return this.formData
-    }
+    },
   },
 
   methods: {
@@ -148,13 +148,13 @@ export default {
             crud: this.modal.modalCrud,
             fields: [
               ...vnytNapravlenieFields.fields,
-              ...findedOtdelField.fields
-            ]
+              ...findedOtdelField.fields,
+            ],
           })
         } else {
           this.$store.commit('api/CRUD_FIELDS_REPLACE', {
             crud: this.modal.modalCrud,
-            fields: [...vnytNapravlenieFields.fields]
+            fields: [...vnytNapravlenieFields.fields],
           })
         }
       }
@@ -172,7 +172,7 @@ export default {
           } else {
             this.toastSuccess(message)
           }
-        }
+        },
       })
     },
     handleCancel(event) {
@@ -184,9 +184,9 @@ export default {
           if (!validated) {
             event.preventDefault()
           }
-        }
+        },
       })
-    }
-  }
+    },
+  },
 }
 </script>

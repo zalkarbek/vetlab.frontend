@@ -10,21 +10,7 @@ class TaskGroup {
     this.tasks = new Map()
     this.timer = new TimeOut()
     this.taskGroupName = taskGroupName
-    if (Array.isArray(tasks) && tasks.length >= 1) {
-      tasks.forEach((task) => {
-        const name = task.name || Maker.uniqueId()
-        const once = task.once || 0
-        const { func } = task
-        this.tasks.set(
-          name,
-          new AsyncTask({
-            name,
-            once,
-            func
-          })
-        )
-      })
-    }
+    this.addTasks(tasks)
     return taskGroupName
   }
 
@@ -78,7 +64,7 @@ class TaskGroup {
       new AsyncTask({
         name,
         once,
-        func
+        func,
       })
     )
     return name
@@ -94,14 +80,7 @@ class TaskGroup {
         const name = task.name || Maker.uniqueId()
         const once = task.once || 0
         const { func } = task
-        this.tasks.set(
-          name,
-          new AsyncTask({
-            name,
-            once,
-            func
-          })
-        )
+        this.addTask(name, once, func)
       })
     }
   }
@@ -129,7 +108,6 @@ class TaskGroup {
    * @param params
    * @returns {Promise<*>}
    */
-  // eslint-disable-next-line require-await
   async runTaskByName(name, params = {}) {
     if (this.taskExists(name)) {
       return this.tasks.get(name).run(params)
@@ -137,7 +115,6 @@ class TaskGroup {
     return false
   }
 
-  // eslint-disable-next-line require-await
   async runTaskByNameDebounce(name, wait, params = {}) {
     if (this.taskExists(name)) {
       return this.tasks.get(name).runDebounce(params, wait)
@@ -145,7 +122,6 @@ class TaskGroup {
     return false
   }
 
-  // eslint-disable-next-line require-await
   async runTasksParallel(tasks) {
     if (Array.isArray(tasks) && tasks.length >= 1) {
       tasks.forEach((task) => {
@@ -156,7 +132,6 @@ class TaskGroup {
     return true
   }
 
-  // eslint-disable-next-line require-await
   async runTasksParallelDebounce(tasks) {
     if (Array.isArray(tasks) && tasks.length >= 1) {
       tasks.forEach((task) => {
@@ -173,8 +148,8 @@ class TaskGroup {
       const filtered = tasks.filter((task, index) => index !== 0)
       if (this.taskExists(name)) {
         await this.timer.pause(pause)
-        this.runTaskByName(name, params)
-        this.runTasksParallelWithPause(filtered, pause)
+        await this.runTaskByName(name, params)
+        await this.runTasksParallelWithPause(filtered, pause)
       }
     }
     return true
@@ -191,7 +166,7 @@ class TaskGroup {
       const filtered = tasks.filter((task, index) => index !== 0)
       if (this.taskExists(name)) {
         await this.runTaskByName(name, params)
-        this.runTasksOneByOne(filtered)
+        await this.runTasksOneByOne(filtered)
       }
     }
     return true
@@ -208,7 +183,7 @@ class TaskGroup {
       const filtered = tasks.filter((task, index) => index !== 0)
       if (this.taskExists(name)) {
         await this.runTaskByNameDebounce(name, wait, params)
-        this.runTasksOneByOneDebounce(filtered)
+        await this.runTasksOneByOneDebounce(filtered)
       }
     }
     return true
@@ -227,7 +202,7 @@ class TaskGroup {
       if (this.taskExists(name)) {
         await this.timer.pause(pause)
         await this.runTaskByName(name, params)
-        this.runTasksOneByOneWithPause(filtered, pause)
+        await this.runTasksOneByOneWithPause(filtered, pause)
       }
     }
     return true
@@ -246,9 +221,9 @@ class TaskGroup {
     if (this.taskExists(name)) {
       try {
         const result = await this.runTaskByName(name, params)
-        if (result) this.runTasksOneByOne(tasks)
+        if (result) await this.runTasksOneByOne(tasks)
       } catch (e) {
-        throw e
+        return false
       }
     }
     return true
@@ -267,9 +242,9 @@ class TaskGroup {
     if (this.taskExists(name)) {
       try {
         const result = await this.runTaskByNameDebounce(name, wait, params)
-        if (result) this.runTasksOneByOne(tasks)
+        if (result) await this.runTasksOneByOne(tasks)
       } catch (e) {
-        throw e
+        return false
       }
     }
     return true
@@ -293,9 +268,9 @@ class TaskGroup {
       try {
         const result = await this.runTaskByNameDebounce(name, wait, params)
         await this.timer.pause(pause || 4)
-        if (result) this.runTasksOneByOne(tasks)
+        if (result) await this.runTasksOneByOne(tasks)
       } catch (e) {
-        throw e
+        return false
       }
     }
     return true
@@ -310,24 +285,13 @@ class TaskGroup {
     return true
   }
 
-  async runAllTasksParallelWithPause(pause, tasks) {
-    tasks = tasks || this.tasks
-    if (Array.isArray(tasks) && tasks.length === 0) return true
-    const firstTask = this.firstTask(tasks)
-    const filteredTasks = this.getTasksExcept(tasks, firstTask)
-    await this.timer.pause(pause)
-    this.runTaskByName(firstTask.Name)
-    this.runAllTasksParallelWithPause(pause, filteredTasks)
-    return true
-  }
-
   async runAllTasksOneByOne(tasks) {
     tasks = tasks || this.tasks
     if (Array.isArray(tasks) && tasks.length === 0) return true
     const firstTask = this.firstTask(tasks)
     const filteredTasks = this.getTasksExcept(tasks, firstTask)
     await this.runTaskByName(firstTask.Name)
-    this.runAllTasksOneByOne(filteredTasks)
+    await this.runAllTasksOneByOne(filteredTasks)
     return true
   }
 
@@ -338,7 +302,7 @@ class TaskGroup {
     const filteredTasks = this.getTasksExcept(tasks, firstTask)
     await this.timer.pause(pause)
     await this.runTaskByName(firstTask.Name)
-    this.runAllTasksOneByOneWithPause(pause, filteredTasks)
+    await this.runAllTasksOneByOneWithPause(pause, filteredTasks)
     return true
   }
 }

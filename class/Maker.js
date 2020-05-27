@@ -4,9 +4,7 @@ class Maker {
   }
 
   static makeId() {
-    return Math.random()
-      .toString(36)
-      .substr(2, 9)
+    return Math.random().toString(36).substr(2, 9)
   }
 
   static uniqueId(_prefix) {
@@ -26,7 +24,7 @@ class Maker {
           duplicate: gen,
           indexCreated: hash[gen],
           indexDuplicated: idx,
-          duplicateCount: dupe.filter((cur) => cur.duplicate === gen).length
+          duplicateCount: dupe.filter((cur) => cur.duplicate === gen).length,
         })
       }
       hash[gen] = idx

@@ -9,7 +9,7 @@ class BaseRepository {
   }
   id(id) {
     return this.ctx.$axios.$get(this.restApi.id.url, {
-      params: { id }
+      params: { id },
     })
   }
   create(data = {}) {

@@ -3,9 +3,9 @@
  * License - https://fontawesome.com/license (Commercial License)
  */
 ! function() {
-    "use strict";
+    "use strict"
     var a = {},
-        h = {};
+        h = {}
     try {
         "undefined" != typeof window && (a = window), "undefined" != typeof document && (h = document)
     } catch (a) {}
@@ -20,26 +20,26 @@
             } catch (a) {
                 return !1
             }
-        }();
-    var H = v || {};
-    H[M] || (H[M] = {}), H[M].styles || (H[M].styles = {}), H[M].hooks || (H[M].hooks = {}), H[M].shims || (H[M].shims = []);
-    var V = H[M];
+        }()
+    var H = v || {}
+    H[M] || (H[M] = {}), H[M].styles || (H[M].styles = {}), H[M].hooks || (H[M].hooks = {}), H[M].shims || (H[M].shims = [])
+    var V = H[M]
 
     function L(a, l) {
         var h = (2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : {}).skipHooks,
             z = void 0 !== h && h,
             v = Object.keys(l).reduce(function(a, h) {
-                var z = l[h];
-                return !!z.icon ? a[z.iconName] = z.icon : a[h] = z, a
-            }, {});
+                var z = l[h]
+                return z.icon ? a[z.iconName] = z.icon : a[h] = z, a
+            }, {})
         "function" != typeof V.hooks.addPack || z ? V.styles[a] = function(v) {
             for (var a = 1; a < arguments.length; a++) {
                 var c = null != arguments[a] ? arguments[a] : {},
-                    h = Object.keys(c);
+                    h = Object.keys(c)
                 "function" == typeof Object.getOwnPropertySymbols && (h = h.concat(Object.getOwnPropertySymbols(c).filter(function(a) {
                     return Object.getOwnPropertyDescriptor(c, a).enumerable
                 }))), h.forEach(function(a) {
-                    var h, z, l;
+                    var h, z, l
                     h = v, l = c[z = a], z in h ? Object.defineProperty(h, z, {
                         value: l,
                         enumerable: !0,
@@ -1781,7 +1781,7 @@
         "x-ray": [640, 512, [], "f497", ["M624 448H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h608a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-448H16A16 16 0 0 0 0 16v32a16 16 0 0 0 16 16h608a16 16 0 0 0 16-16V16a16 16 0 0 0-16-16zM168 192a8 8 0 0 0-8 8v16a8 8 0 0 0 8 8h136v32H200a8 8 0 0 0-8 8v16a8 8 0 0 0 8 8h104v32h-64a48 48 0 1 0 48 48v-16h64v16a48 48 0 1 0 48-48h-64v-32h104a8 8 0 0 0 8-8v-16a8 8 0 0 0-8-8H336v-32h136a8 8 0 0 0 8-8v-16a8 8 0 0 0-8-8H336v-32h104a8 8 0 0 0 8-8v-16a8 8 0 0 0-8-8H336v-24a8 8 0 0 0-8-8h-16a8 8 0 0 0-8 8v24H200a8 8 0 0 0-8 8v16a8 8 0 0 0 8 8h104v32zm72 192a16 16 0 1 1 16-16 16 16 0 0 1-16 16zm160-32a16 16 0 1 1-16 16 16 16 0 0 1 16-16z", "M240 352a16 16 0 1 0 16 16 16 16 0 0 0-16-16zm160 32a16 16 0 1 0-16-16 16 16 0 0 0 16 16zM64 64v384h512V64zm416 152a8 8 0 0 1-8 8H336v32h104a8 8 0 0 1 8 8v16a8 8 0 0 1-8 8H336v32h64a48 48 0 1 1-48 48v-16h-64v16a48 48 0 1 1-48-48h64v-32H200a8 8 0 0 1-8-8v-16a8 8 0 0 1 8-8h104v-32H168a8 8 0 0 1-8-8v-16a8 8 0 0 1 8-8h136v-32H200a8 8 0 0 1-8-8v-16a8 8 0 0 1 8-8h104v-24a8 8 0 0 1 8-8h16a8 8 0 0 1 8 8v24h104a8 8 0 0 1 8 8v16a8 8 0 0 1-8 8H336v32h136a8 8 0 0 1 8 8z"]],
         "yen-sign": [384, 512, [], "f157", ["M32.18 332v32a12 12 0 0 0 12 12h108v-56h-108a12 12 0 0 0-12 12zm308-12h-108v56h108a12 12 0 0 0 12-12v-32a12 12 0 0 0-12-12zm-296-64h88.17l-29.83-56H44.19a12 12 0 0 0-12 12v32a12 12 0 0 0 12 12zm296-56h-58.37L252 256h88.19a12 12 0 0 0 12-12v-32a12 12 0 0 0-12-12z", "M362 49.6L232.18 293.2V468a12 12 0 0 1-12 12h-56a12 12 0 0 1-12-12V293.2L22.39 49.6A12 12 0 0 1 33 32h65.2a12 12 0 0 1 10.8 6.7l55.4 113.2c14.5 34.7 27.1 71.9 27.1 71.9h1.3s12.6-37.2 27.1-71.9l55.4-113.2a12 12 0 0 1 10.8-6.7h65.3A12 12 0 0 1 362 49.6z"]],
         "yin-yang": [496, 512, [], "f6ad", ["M248,8C111,8,0,119,0,256S111,504,248,504a124,124,0,0,1,0-248A124,124,0,0,0,248,8Zm0,152a32,32,0,1,1,32-32A32,32,0,0,1,248,160Zm0,192a32,32,0,1,0,32,32A32,32,0,0,0,248,352Z", "M248,160a32,32,0,1,0-32-32A32,32,0,0,0,248,160ZM248,8a124,124,0,0,1,0,248,124,124,0,0,0,0,248c137,0,248-111,248-248S385,8,248,8Zm0,408a32,32,0,1,1,32-32A32,32,0,0,1,248,416Z"]]
-    };
+    }
     ! function(a) {
         try {
             a()
@@ -1791,4 +1791,4 @@
     }(function() {
         L("fad", A)
     })
-}();
+}()

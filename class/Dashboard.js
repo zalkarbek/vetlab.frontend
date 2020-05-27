@@ -20,7 +20,7 @@ class Dashboard {
     let psNavbar
     if (window.matchMedia('(max-width: 991px)').matches) {
       psNavbar = new this.PerfectScrollbar('#navbarMenu', {
-        suppressScrollX: true
+        suppressScrollX: true,
       })
     }
 
@@ -33,15 +33,10 @@ class Dashboard {
     $('body').append('<div class="backdrop"></div>')
 
     // Showing sub menu of navbar menu while hiding other siblings
-    $('.navbar-menu .with-sub .nav-link').on('click', function(e) {
+    $('.navbar-menu .with-sub .nav-link').on('click', function (e) {
       e.preventDefault()
-      $(this)
-        .parent()
-        .toggleClass('show')
-      $(this)
-        .parent()
-        .siblings()
-        .removeClass('show')
+      $(this).parent().toggleClass('show')
+      $(this).parent().siblings().removeClass('show')
 
       if (window.matchMedia('(max-width: 991px)').matches) {
         psNavbar.update()
@@ -49,7 +44,7 @@ class Dashboard {
     })
 
     // Closing dropdown menu of navbar menu
-    $(document).on('click touchstart', function(e) {
+    $(document).on('click touchstart', function (e) {
       e.stopPropagation()
       // closing nav sub menu of header when clicking outside of it
       if (window.matchMedia('(min-width: 992px)').matches) {
@@ -60,12 +55,12 @@ class Dashboard {
       }
     })
 
-    $('#mainMenuClose').on('click', function(e) {
+    $('#mainMenuClose').on('click', function (e) {
       e.preventDefault()
       $('body').removeClass('navbar-nav-show')
     })
 
-    $('#sidebarMenuOpen').on('click', function(e) {
+    $('#sidebarMenuOpen').on('click', function (e) {
       e.preventDefault()
       $('body').addClass('sidebar-show')
     })
@@ -74,13 +69,13 @@ class Dashboard {
   navBarSearch() {
     const $ = this.$jquery
     // Navbar Search
-    $('#navbarSearch').on('click', function(e) {
+    $('#navbarSearch').on('click', function (e) {
       e.preventDefault()
       $('.navbar-search').addClass('visible')
       $('.backdrop').addClass('show')
     })
 
-    $('#navbarSearchClose').on('click', function(e) {
+    $('#navbarSearchClose').on('click', function (e) {
       e.preventDefault()
       $('.navbar-search').removeClass('visible')
       $('.backdrop').removeClass('show')
@@ -94,32 +89,30 @@ class Dashboard {
     const $ = this.$jquery
     if ($('#sidebarMenu').length) {
       psSidebar = new this.PerfectScrollbar('#sidebarMenu', {
-        suppressScrollX: true
+        suppressScrollX: true,
       })
 
       // Showing sub menu in sidebar
-      $('.sidebar-nav .with-sub').on('click', function(e) {
+      $('.sidebar-nav .with-sub').on('click', function (e) {
         e.preventDefault()
-        $(this)
-          .parent()
-          .toggleClass('show')
+        $(this).parent().toggleClass('show')
 
         psSidebar.update()
       })
     }
 
-    $('#mainMenuOpen').on('click touchstart', function(e) {
+    $('#mainMenuOpen').on('click touchstart', function (e) {
       e.preventDefault()
       $('body').addClass('navbar-nav-show')
     })
 
-    $('#sidebarMenuClose').on('click', function(e) {
+    $('#sidebarMenuClose').on('click', function (e) {
       e.preventDefault()
       $('body').removeClass('sidebar-show')
     })
 
     // hide sidebar when clicking outside of it
-    $(document).on('click touchstart', function(e) {
+    $(document).on('click touchstart', function (e) {
       e.stopPropagation()
 
       // closing of sidebar menu when clicking outside of it

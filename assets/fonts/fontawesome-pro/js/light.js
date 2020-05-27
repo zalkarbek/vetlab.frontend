@@ -3,9 +3,9 @@
  * License - https://fontawesome.com/license (Commercial License)
  */
 ! function() {
-    "use strict";
+    "use strict"
     var c = {},
-        l = {};
+        l = {}
     try {
         "undefined" != typeof window && (c = window), "undefined" != typeof document && (l = document)
     } catch (c) {}
@@ -20,26 +20,26 @@
             } catch (c) {
                 return !1
             }
-        }();
-    var H = v || {};
-    H[m] || (H[m] = {}), H[m].styles || (H[m].styles = {}), H[m].hooks || (H[m].hooks = {}), H[m].shims || (H[m].shims = []);
-    var s = H[m];
+        }()
+    var H = v || {}
+    H[m] || (H[m] = {}), H[m].styles || (H[m].styles = {}), H[m].hooks || (H[m].hooks = {}), H[m].shims || (H[m].shims = [])
+    var s = H[m]
 
     function V(c, z) {
         var l = (2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : {}).skipHooks,
             h = void 0 !== l && l,
             v = Object.keys(z).reduce(function(c, l) {
-                var h = z[l];
-                return !!h.icon ? c[h.iconName] = h.icon : c[l] = h, c
-            }, {});
+                var h = z[l]
+                return h.icon ? c[h.iconName] = h.icon : c[l] = h, c
+            }, {})
         "function" != typeof s.hooks.addPack || h ? s.styles[c] = function(v) {
             for (var c = 1; c < arguments.length; c++) {
                 var a = null != arguments[c] ? arguments[c] : {},
-                    l = Object.keys(a);
+                    l = Object.keys(a)
                 "function" == typeof Object.getOwnPropertySymbols && (l = l.concat(Object.getOwnPropertySymbols(a).filter(function(c) {
                     return Object.getOwnPropertyDescriptor(a, c).enumerable
                 }))), l.forEach(function(c) {
-                    var l, h, z;
+                    var l, h, z
                     l = v, z = a[h = c], h in l ? Object.defineProperty(l, h, {
                         value: z,
                         enumerable: !0,
@@ -1781,7 +1781,7 @@
         "x-ray": [640, 512, [], "f497", "M168 224h136v32H200c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h104v32h-64c-26.5 0-48 21.5-48 48s21.5 48 48 48 48-21.5 48-48v-16h64v16c0 26.5 21.5 48 48 48s48-21.5 48-48-21.5-48-48-48h-64v-32h104c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H336v-32h136c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H336v-32h104c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H336v-24c0-4.4-3.6-8-8-8h-16c-4.4 0-8 3.6-8 8v24H200c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h104v32H168c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8zm72 160c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16-7.2 16-16 16zm160-32c8.8 0 16 7.2 16 16s-7.2 16-16 16-16-7.2-16-16 7.2-16 16-16zM632 32c4.4 0 8-3.6 8-8V8c0-4.4-3.6-8-8-8H8C3.6 0 0 3.6 0 8v16c0 4.4 3.6 8 8 8h56v448H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h624c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8h-56V32h56zm-88 448H96V32h448v448z"],
         "yen-sign": [320, 512, [], "f157", "M307.982 32h-22.525a12 12 0 0 0-10.398 6.01l-87.337 153.306c-13.382 25.492-27.402 56.718-27.402 56.718h-1.274s-14.02-31.226-27.403-56.718L45.038 38.042A12 12 0 0 0 34.621 32H12.018c-9.237 0-15.01 9.998-10.394 17.998L100.974 224H44c-6.627 0-12 5.373-12 12v8c0 6.627 5.373 12 12 12h75.442l18.573 32.182V320H44c-6.627 0-12 5.373-12 12v8c0 6.627 5.373 12 12 12h94.014v116c0 6.627 5.373 12 12 12h20.608c6.627 0 12-5.373 12-12V352H276c6.627 0 12-5.373 12-12v-8c0-6.627-5.373-12-12-12h-93.377v-31.818l17.7-32.182H276c6.627 0 12-5.373 12-12v-8c0-6.627-5.373-12-12-12h-58.062L318.35 50.042c4.662-8-1.109-18.042-10.368-18.042z"],
         "yin-yang": [496, 512, [], "f6ad", "M232 192c26.47 0 48-21.53 48-48s-21.53-48-48-48-48 21.53-48 48 21.53 48 48 48zm0-64c8.81 0 16 7.17 16 16s-7.19 16-16 16-16-7.17-16-16 7.19-16 16-16zm32 192c-26.47 0-48 21.53-48 48s21.53 48 48 48 48-21.53 48-48-21.53-48-48-48zm0 64c-8.81 0-16-7.17-16-16s7.19-16 16-16 16 7.17 16 16-7.19 16-16 16zM248 8C111.03 8 0 119.03 0 256s111.03 248 248 248c136.75 0 248-111.25 248-248S384.75 8 248 8zM32 256c0-119.1 96.9-216 216-216 55.12 0 100 44.86 100 100s-44.88 100-100 100c-72.78 0-132 59.22-132 132 0 24.96 7.37 48.08 19.46 68.01C73.53 401.99 32 333.84 32 256zm216 216c-55.12 0-100-44.86-100-100s44.88-100 100-100c72.78 0 132-59.22 132-132 0-24.83-6.88-48.08-18.84-67.94C422.81 110.14 464 178.34 464 256c0 119.11-96.91 216-216 216z"]
-    };
+    }
     ! function(c) {
         try {
             c()
@@ -1791,4 +1791,4 @@
     }(function() {
         V("fal", C)
     })
-}();
+}()

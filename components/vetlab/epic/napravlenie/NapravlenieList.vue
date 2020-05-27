@@ -3,7 +3,9 @@
     <b-container fluid>
       <!-- User Interface controls -->
       <b-row>
-        <b-col lg="3" class="my-1">
+        <b-col lg="3"
+               class="my-1"
+        >
           <b-form-group
             :label="$t('form.label.sort')"
             :description="$t('form.description.sort')"
@@ -22,7 +24,9 @@
                 class="w-75"
               >
                 <template v-slot:first>
-                  <option value="">-- none --</option>
+                  <option value="">
+                    -- none --
+                  </option>
                 </template>
               </b-form-select>
               <b-form-select
@@ -31,14 +35,20 @@
                 size="sm"
                 class="w-25"
               >
-                <option :value="false">Asc</option>
-                <option :value="true">Desc</option>
+                <option :value="false">
+                  Asc
+                </option>
+                <option :value="true">
+                  Desc
+                </option>
               </b-form-select>
             </b-input-group>
           </b-form-group>
         </b-col>
 
-        <b-col lg="9" class="my-1">
+        <b-col lg="9"
+               class="my-1"
+        >
           <b-row>
             <b-col lg="5">
               <b-form-group
@@ -54,15 +64,15 @@
                 <b-input-group size="sm">
                   <b-form-input
                     v-model="searchItem"
-                    @input="changeSearchInput"
                     :placeholder="$t('form.placeholder.search')"
-                  ></b-form-input>
+                    @input="changeSearchInput"
+                  />
                   <b-input-group-append>
                     <b-button
                       :disabled="searchItem && searchItem.trim().length < 1"
                       @click="onAction('clear')"
                     >
-                      {{ $t('form.label.clear') }}
+                      {{ $t("form.label.clear") }}
                     </b-button>
                   </b-input-group-append>
                 </b-input-group>
@@ -85,7 +95,7 @@
                     v-model="filter"
                     :placeholder="$t('form.placeholder.filter')"
                     type="search"
-                  ></b-form-input>
+                  />
                 </b-input-group>
               </b-form-group>
             </b-col>
@@ -98,7 +108,9 @@
                 label-class="tx-bold"
                 class="mb-0"
               >
-                <b-form-checkbox-group v-model="filterOn" class="mt-1">
+                <b-form-checkbox-group v-model="filterOn"
+                                       class="mt-1"
+                >
                   <template v-for="column in sortOptions">
                     <b-form-checkbox :value="column.value">
                       {{ column.text }}
@@ -110,7 +122,9 @@
           </b-row>
         </b-col>
 
-        <b-col lg="9" class="my-1">
+        <b-col lg="9"
+               class="my-1"
+        >
           <b-row>
             <b-col lg="4">
               <b-form-group
@@ -125,24 +139,24 @@
               >
                 <b-form-select
                   id="perPageSelect"
-                  @change="changePageSize"
                   v-model="perPageCount"
                   :options="pageOptions"
                   size="sm"
-                ></b-form-select>
+                  @change="changePageSize"
+                />
               </b-form-group>
             </b-col>
             <b-col lg="8">
               <b-pagination
                 v-model="currentPage"
-                @change="changePaginate"
                 :total-rows="totalRowsCount"
                 :per-page="perPageCount"
                 limit="10"
                 align="fill"
                 size="sm"
                 class="my-0"
-              ></b-pagination>
+                @change="changePaginate"
+              />
             </b-col>
           </b-row>
         </b-col>
@@ -154,7 +168,7 @@
           :fields="fields"
           :current-page="currentPage"
           :filter="filter"
-          :filterIncludedFields="filterOn"
+          :filter-included-fields="filterOn"
           :sort-by.sync="sortBy"
           :sort-desc.sync="sortDesc"
           :sort-direction="sortDirection"
@@ -175,13 +189,15 @@
                 :field-data="data.field"
                 :data="data.item[data.field.key]"
                 view-type="inline"
-              ></crud-list-view-json>
+              />
             </template>
 
             <template v-else-if="data.field.type === fieldTypes.select_multi">
               <template v-if="data.value && Array.isArray(data.value)">
                 <template v-for="(item, index) in data.value">
-                  <span :key="index" class="tx-bold">
+                  <span :key="index"
+                        class="tx-bold"
+                  >
                     {{ viewForeignData(data.field, item) }},&nbsp;
                   </span>
                 </template>
@@ -197,24 +213,35 @@
             </template>
           </template>
 
-          <template v-slot:cell(status)>
-            <span class="tx-12 badge badge-primary">новый</span>
+          <template v-slot:cell(status)="cellData">
+            <span v-if="toLowerCase(cellData.value) === toLowerCase('new')"
+              class="tx-13 badge badge-primary"
+            >
+              {{ $t(`napravlenie.epic.status.${cellData.value}`) }}
+            </span>
+            <span v-if="toLowerCase(cellData.value) === toLowerCase('sended')"
+                  class="tx-13 badge badge-success"
+            >
+              {{ $t(`napravlenie.epic.status.${cellData.value}`) }}
+            </span>
           </template>
 
           <template v-slot:cell(actions)="row">
             <b-button-toolbar>
-              <b-button-group class="mr-1" size="sm">
+              <b-button-group class="mr-1"
+                              size="sm"
+              >
                 <template v-for="(button, index) in actionButtons">
                   <b-button
-                    @click="onActionButton(button, row.item)"
                     :key="index"
                     :variant="button.variant || 'secondary'"
+                    @click="onActionButton(button, row.item)"
                   >
                     <i
                       :class="button.icon"
                       class="cursor-pointer"
                       aria-hidden="true"
-                    ></i>
+                    />
                     {{ $t(button.label) }}
                   </b-button>
                 </template>
@@ -235,11 +262,11 @@ const { mapState, mapGetters } = createNamespacedHelpers('api')
 
 export default {
   components: {
-    CrudListViewJson
+    CrudListViewJson,
   },
   model: {
     prop: 'records',
-    event: 'change'
+    event: 'change',
   },
   props: {
     // crud модель
@@ -247,43 +274,43 @@ export default {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
     // массив записей
     records: {
       type: Array,
       default() {
         return []
-      }
+      },
     },
     // общее количество записей
     totalRows: {
       type: Number,
       default() {
         return 0
-      }
+      },
     },
     // текущая страница
     page: {
       type: Number,
       default() {
         return 1
-      }
+      },
     },
     // количество эементов в странице
     pageSize: {
       type: Number,
       default() {
         return null
-      }
+      },
     },
     // тип пагинации local / server
     paginateType: {
       type: String,
       default() {
         return 'local'
-      }
-    }
+      },
+    },
   },
   data() {
     return {
@@ -301,13 +328,13 @@ export default {
       infoModal: {
         id: 'info-modal',
         title: '',
-        content: ''
+        content: '',
       },
       PAGINATION_TYPES: {
         LOCAL: 'local',
         SERVER: 'server',
-        STORAGE: 'storage'
-      }
+        STORAGE: 'storage',
+      },
     }
   },
   computed: {
@@ -317,7 +344,7 @@ export default {
       },
       set(value) {
         this.searchText = value
-      }
+      },
     },
     perPageCount: {
       get() {
@@ -325,7 +352,7 @@ export default {
       },
       set(value) {
         this.perPage = value
-      }
+      },
     },
     recordItems: {
       get() {
@@ -339,7 +366,7 @@ export default {
           return this.records
         }
         return _.chunk(this.records, this.perPageCount)
-      }
+      },
     },
     currentPageRecords() {
       if (this.paginateType === this.PAGINATION_TYPES.SERVER) {
@@ -372,17 +399,18 @@ export default {
     fields() {
       const index = {
         key: 'index',
-        label: '№'
+        label: '№',
       }
       const id = {
         key: 'id',
-        label: this.$t('form.field.id')
+        label: this.$t('form.field.id'),
       }
       const actions = {
         key: 'actions',
-        label: '#'
+        label: '#',
       }
-      const modelFields = this.modelData.fieldsForTable || this.modelData.fields
+      const modelFields =
+        this.modelData.fieldsForTable || this.modelData.fields
       const enabledFields = modelFields.filter((field) => {
         return !field.hidden
       })
@@ -395,7 +423,7 @@ export default {
           sortable: true,
           sortByFormatted: true,
           filterByFormatted: true,
-          ...other
+          ...other,
         }
       })
       return [index, id, ...list, actions]
@@ -409,14 +437,14 @@ export default {
     },
     ...mapState({
       crud: (state) => state.crud,
-      fieldTypes: (state) => state.fieldTypes
+      fieldTypes: (state) => state.fieldTypes,
     }),
-    ...mapGetters(['elementInDataset'])
+    ...mapGetters(['elementInDataset']),
   },
   watch: {
     pageSize(newValue) {
       this.perPageCount = newValue
-    }
+    },
   },
   mounted() {
     this.dependencyLoad(this.modelData)
@@ -448,7 +476,7 @@ export default {
       return this.$store.dispatch('api/findElementInDataset', {
         datasetName,
         columnName,
-        value
+        value,
       })
     },
     dependencyLoad(modelData) {
@@ -549,7 +577,7 @@ export default {
     onActionButton(actionButton, data) {
       this.$emit('on-action', {
         actionButton,
-        data
+        data,
       })
     },
     onEditSelect(data) {
@@ -572,11 +600,11 @@ export default {
       this.searchItem = ''
       this.$emit('on-page', { page, pageSize })
     },
-    debounceSearchServer: _.debounce(function(search, page, pageSize) {
+    debounceSearchServer: _.debounce(function (search, page, pageSize) {
       this.onSearch(search, page, pageSize)
     }, 1000),
 
-    debounceSearchLocal: _.debounce(function(search, page, pageSize) {
+    debounceSearchLocal: _.debounce(function (search, page, pageSize) {
       this.onSearch(search, page, pageSize)
     }, 300),
 
@@ -585,7 +613,7 @@ export default {
       foreign_crud: datasetCrudName,
       foreign_crud_method: datasetCrudMethod,
       foreign_attributes: attributes,
-      params = {}
+      params = {},
     }) {
       await this.$store.dispatch('api/getDataset', {
         datasetName,
@@ -593,10 +621,16 @@ export default {
         datasetCrudMethod,
         params: {
           attributes,
-          ...params
-        }
+          ...params,
+        },
       })
-    }
-  }
+    },
+    toLowerCase(value) {
+      return _.toLower(value)
+    },
+    toUpperCase(value) {
+      return _.toUpper(value)
+    },
+  },
 }
 </script>

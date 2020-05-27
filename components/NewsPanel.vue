@@ -3,11 +3,17 @@
     <div class="mx-lg-wd-500 mx-xl-wd-550">
       <div class="d-sm-flex align-items-center justify-content-between">
         <div class="col-sm-6">
-          <h4 class="mg-b-0">Последние новости</h4>
+          <h4 class="mg-b-0">
+            Последние новости
+          </h4>
         </div>
         <div class="col-sm-6 search-form mg-t-20 mg-sm-t-0">
-          <input type="search" class="form-control" placeholder="Поиск" />
-          <button class="btn" type="button">
+          <input
+            type="search" class="form-control" placeholder="Поиск"
+          >
+          <button class="btn"
+                  type="button"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -20,23 +26,33 @@
               stroke-linejoin="round"
               class="feather feather-search"
             >
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <circle
+                cx="11" cy="11" r="8"
+              />
+              <line
+                x1="21" y1="21" x2="16.65" y2="16.65"
+              />
             </svg>
           </button>
         </div>
       </div>
       <!--СПИСОК НОВОСТЕЙ-->
-      <hr />
-      <div class=" news-lists container pd-x-0 pd-lg-x-10 pd-xl-x-0">
+      <hr>
+      <div class="news-lists container pd-x-0 pd-lg-x-10 pd-xl-x-0">
         <div class="media d-block d-lg-flex">
           <div class="media-body">
             <div class="timeline-group tx-13">
-              <div class="timeline-label">Сегодня</div>
+              <div class="timeline-label">
+                Сегодня
+              </div>
               <div class="timeline-item">
-                <div class="timeline-time">10:30pm</div>
+                <div class="timeline-time">
+                  10:30pm
+                </div>
                 <div class="timeline-body">
-                  <h6 class="mg-b-0">Building a Simple User Interface</h6>
+                  <h6 class="mg-b-0">
+                    Building a Simple User Interface
+                  </h6>
                   <p><a href="">Elisse Joson</a> San Francisco, CA</p>
 
                   <p>
@@ -45,17 +61,25 @@
                     responds when the
                   </p>
                   <nav class="nav nav-row mg-t-15">
-                    <a href="" class="nav-link">Like</a>
-                    <a href="" class="nav-link">Comment</a>
+                    <a href=""
+                       class="nav-link"
+                    >Like</a>
+                    <a href=""
+                       class="nav-link"
+                    >Comment</a>
                   </nav>
                 </div>
                 <!-- timeline-body -->
               </div>
 
               <div class="timeline-item">
-                <div class="timeline-time">08:15pm</div>
+                <div class="timeline-time">
+                  08:15pm
+                </div>
                 <div class="timeline-body">
-                  <h6 class="mg-b-0">Blueberry Cheesecake Dessert Recipe</h6>
+                  <h6 class="mg-b-0">
+                    Blueberry Cheesecake Dessert Recipe
+                  </h6>
                   <p><a href="">Katherine Lumaad</a> Oakland, CA</p>
 
                   <p>
@@ -64,23 +88,28 @@
                     natoque penatibus et magnis dis parturient montes.
                   </p>
 
-                  <a href="" class="d-block wd-lg-50p"
-                    ><img
-                      src="https://via.placeholder.com/1000x667"
-                      class="img-fluid"
-                      alt=""
-                  /></a>
+                  <a href="" class="d-block wd-lg-50p"><img
+                    src="https://via.placeholder.com/1000x667"
+                    class="img-fluid"
+                    alt=""
+                  ></a>
 
                   <nav class="nav nav-row mg-t-15">
-                    <a href="" class="nav-link">Like</a>
-                    <a href="" class="nav-link">Comment</a>
+                    <a href=""
+                       class="nav-link"
+                    >Like</a>
+                    <a href=""
+                       class="nav-link"
+                    >Comment</a>
                   </nav>
                 </div>
                 <!-- timeline-body -->
               </div>
 
               <div class="timeline-item">
-                <div class="timeline-time">03:30pm</div>
+                <div class="timeline-time">
+                  03:30pm
+                </div>
                 <div class="timeline-body">
                   <h6 class="mg-b-0">
                     Your Finances Don't Have to Be Perfect to Work
@@ -96,16 +125,24 @@
                     montes.
                   </p>
                   <nav class="nav nav-row mg-t-15">
-                    <a href="" class="nav-link">Like</a>
-                    <a href="" class="nav-link">Comment</a>
+                    <a href=""
+                       class="nav-link"
+                    >Like</a>
+                    <a href=""
+                       class="nav-link"
+                    >Comment</a>
                   </nav>
                 </div>
                 <!-- timeline-body -->
               </div>
 
-              <div class="timeline-label">Вчера</div>
+              <div class="timeline-label">
+                Вчера
+              </div>
               <div class="timeline-item">
-                <div class="timeline-time">06:30pm</div>
+                <div class="timeline-time">
+                  06:30pm
+                </div>
                 <div class="timeline-body">
                   <h6 class="mg-b-0">
                     An Engineer Explains Why You Should Always Order the Larger
@@ -124,27 +161,33 @@
                         src="https://via.placeholder.com/500"
                         class="img-fluid"
                         alt=""
-                      />
+                      >
                     </div>
                     <div class="col">
                       <img
                         src="https://via.placeholder.com/500x281"
                         class="img-fluid"
                         alt=""
-                      />
+                      >
                     </div>
                   </div>
 
                   <nav class="nav nav-row mg-t-15">
-                    <a href="" class="nav-link">Like</a>
-                    <a href="" class="nav-link">Comment</a>
+                    <a href=""
+                       class="nav-link"
+                    >Like</a>
+                    <a href=""
+                       class="nav-link"
+                    >Comment</a>
                   </nav>
                 </div>
                 <!-- timeline-body -->
               </div>
 
               <div class="timeline-item">
-                <div class="timeline-time">01:15pm</div>
+                <div class="timeline-time">
+                  01:15pm
+                </div>
                 <div class="timeline-body">
                   <h6 class="mg-b-0">
                     The Strange Persistence of First Languages
@@ -157,16 +200,24 @@
                     responds when the world.
                   </p>
                   <nav class="nav nav-row mg-t-15">
-                    <a href="" class="nav-link">Like</a>
-                    <a href="" class="nav-link">Comment</a>
+                    <a href=""
+                       class="nav-link"
+                    >Like</a>
+                    <a href=""
+                       class="nav-link"
+                    >Comment</a>
                   </nav>
                 </div>
                 <!-- timeline-body -->
               </div>
 
-              <div class="timeline-label">Март 12, 2020</div>
+              <div class="timeline-label">
+                Март 12, 2020
+              </div>
               <div class="timeline-item">
-                <div class="timeline-time">11:45am</div>
+                <div class="timeline-time">
+                  11:45am
+                </div>
                 <div class="timeline-body">
                   <h6 class="mg-b-0">
                     How to Win Your Next Political Argument
@@ -195,8 +246,12 @@
                     when the world.
                   </p>
                   <nav class="nav nav-row mg-t-15">
-                    <a href="" class="nav-link">Like</a>
-                    <a href="" class="nav-link">Comment</a>
+                    <a href=""
+                       class="nav-link"
+                    >Like</a>
+                    <a href=""
+                       class="nav-link"
+                    >Comment</a>
                   </nav>
                 </div>
                 <!-- timeline-body -->
@@ -207,7 +262,7 @@
       </div>
     </div>
     <div class="pos-absolute b-0 r-0 tx-12">
-      <hr />
+      <hr>
       Последнее обновление: <b>29.12.2019 15:30</b>
     </div>
   </div>

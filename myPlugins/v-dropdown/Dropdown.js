@@ -8,43 +8,43 @@ export default {
      */
     align: {
       type: String,
-      default: 'left'
+      default: 'left',
     },
     /**
      * dropdown layer embedded to page/component
      */
     embed: {
       type: Boolean,
-      default: false
+      default: false,
     },
     border: {
       type: Boolean,
-      default: true
+      default: true,
     },
     /**
      * mouse right click caller area to display dropdown
      */
     rightClick: {
       type: Boolean,
-      default: false
+      default: false,
     },
     /**
      * click caller and display dropdown, the caller click again whether to close dropdown
      */
     toggle: {
       type: Boolean,
-      default: true
+      default: true,
     },
     /**
      * manual show / close the dropdown
      */
     manual: {
       type: Boolean,
-      default: false
+      default: false,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     /**
      * open / close dropdown animation
@@ -54,7 +54,7 @@ export default {
      */
     animated: {
       type: [String, Boolean],
-      default: true
+      default: true,
     },
     /**
      * the width of drop down menu
@@ -68,8 +68,8 @@ export default {
      */
     fullWidth: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -78,7 +78,7 @@ export default {
       dropdownClass: 'v-dropdown-container',
       dropUp: false,
       x: null,
-      y: null
+      y: null,
     }
   },
   computed: {
@@ -87,7 +87,7 @@ export default {
       if (!this.embed && this.animated)
         return this.dropUp ? 'animate-up' : 'animate-down'
       return ''
-    }
+    },
   },
   render(h) {
     // console.log(this.animate)
@@ -102,8 +102,8 @@ export default {
         'transition',
         {
           props: {
-            name: this.animate
-          }
+            name: this.animate,
+          },
         },
         [
           h(
@@ -112,7 +112,7 @@ export default {
               class: {
                 [this.dropdownClass]: true,
                 'v-dropdown-embed': this.embed,
-                'v-dropdown-no-border': !this.border
+                'v-dropdown-no-border': !this.border,
               },
               style: this.styleSheet,
               directives: [{ name: 'show', value: this.show }],
@@ -121,11 +121,11 @@ export default {
                 mousedown: (e) => {
                   // do not close dropdown container layer when do some operations in that
                   e.stopPropagation()
-                }
-              }
+                },
+              },
             },
             this.$slots.default
-          )
+          ),
         ]
       )
     )
@@ -135,7 +135,7 @@ export default {
       {
         class: {
           'v-dropdown-caller': true,
-          'v-dropdown-caller--full-width': this.fullWidth
+          'v-dropdown-caller--full-width': this.fullWidth,
         },
         on: {
           click: (e) => {
@@ -153,8 +153,8 @@ export default {
             this.x = e.pageX || e.clientX + info.x
             this.y = e.pageY || e.clientY + info.y
             this.visible()
-          }
-        }
+          },
+        },
       },
       children
     )
@@ -285,7 +285,7 @@ export default {
           ? window.pageYOffset
           : isCSS1Compat
           ? document.documentElement.scrollTop
-          : document.body.scrollTop
+          : document.body.scrollTop,
       }
     },
     /**
@@ -307,7 +307,7 @@ export default {
         path.push(document)
       if (!path.includes(window)) path.push(window)
       return path
-    }
+    },
   },
   mounted() {
     if (this.width) this.styleSheet.width = this.width + 'px'
@@ -326,5 +326,5 @@ export default {
   },
   destroyed() {
     if (!this.embed) this.$el.remove()
-  }
+  },
 }

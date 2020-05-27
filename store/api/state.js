@@ -24,5 +24,5 @@ export default () => ({
   datasetNames,
   database: {},
   fieldTypes,
-  inputMask
+  inputMask,
 })

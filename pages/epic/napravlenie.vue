@@ -1,17 +1,17 @@
 <template>
   <div>
-    <div v-bind:id="`${napravlenieCrudDataName}_page_id`">
+    <div :id="`${napravlenieCrudDataName}_page_id`">
       <napravlenie-component
         :crud="crud"
         :crud-data-name="napravlenieCrudDataName"
-      ></napravlenie-component>
+        :vnyt-napravlenie-crud-name="vnytNapravlenieCrudDataName"
+      />
     </div>
-    <div v-bind:id="`${napravlenieCrudDataName}_page_id`" class="mg-t-30">
+    <div :id="`${napravlenieCrudDataName}_page_id`" class="mg-t-30">
       <vnyt-napravlenie-component
         :crud="crud"
         :crud-data-name="vnytNapravlenieCrudDataName"
-      >
-      </vnyt-napravlenie-component>
+      />
     </div>
   </div>
 </template>
@@ -23,18 +23,19 @@ import CrudData from '~/data/crud'
 export default {
   components: {
     NapravlenieComponent,
-    VnytNapravlenieComponent
+    VnytNapravlenieComponent,
   },
   data() {
     return {
       napravlenieCrudDataName: 'napravlenieEpic',
-      vnytNapravlenieCrudDataName: 'vnytNapravlenie'
+      vnytNapravlenieCrudDataName: 'vnytNapravlenie',
     }
   },
   computed: {
     crud() {
       return CrudData
-    }
-  }
+    },
+  },
+  mounted() {}
 }
 </script>

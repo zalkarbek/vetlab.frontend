@@ -8,29 +8,29 @@ export default {
     name: String,
     keyField: {
       type: String,
-      default: 'id'
+      default: 'id',
     },
     showField: {
       type: [String, Function],
-      default: 'name'
+      default: 'name',
     },
     placeholder: String,
     delay: {
       type: Number,
-      default: 0.2
+      default: 0.2,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     maxLength: {
       type: Number,
-      default: 0
+      default: 0,
     },
     fullList: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -39,7 +39,7 @@ export default {
       highlight: -1,
       width: 0,
       show: false,
-      lastInputTime: -1
+      lastInputTime: -1,
     }
   },
   watch: {
@@ -48,6 +48,6 @@ export default {
     },
     text(val) {
       this.$emit('input', val)
-    }
-  }
+    },
+  },
 }

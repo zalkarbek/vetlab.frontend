@@ -1,18 +1,20 @@
 <template>
   <div>
     <template v-for="(item, index) in recordItems">
-      <h5>
+      <h5 :key="index">
         <span>
           {{ $t(`${modelData.restName}.label.one`) }} №{{ index + 1 }} &nbsp;
         </span>
         <i
-          @click="removeCurrentElement(index)"
           class="fal fa-times cursor-pointer hover-size-24"
-        ></i>
+          @click="removeCurrentElement(index)"
+        />
       </h5>
-      <div class="divider-text">####### {{ index + 1 }} #######</div>
-      <b-form-row>
-        <template v-for="field in modelData.fields">
+      <div :key="index" class="divider-text">
+        ####### {{ index + 1 }} #######
+      </div>
+      <b-form-row :key="index">
+        <template v-for="(field) in modelData.fields">
           <!--==================================================================-->
           <b-col
             v-if="
@@ -33,20 +35,20 @@
               "
             >
               <crud-field
+                :id="`${modelData.restName}_${field.key}_crud_${index}`"
                 v-model="item[field.key]"
                 :field="field"
                 :crud-data="modelData"
-                :id="`${modelData.restName}_${field.key}_crud_${index}`"
                 :placeholder="
                   $t(field.placeholder || `form.placeholder.${field.key}`)
                 "
-              >
-              </crud-field>
+              />
             </b-form-group>
           </b-col>
           <!--==================================================================-->
           <!--==================================================================-->
           <b-col
+            :key="field.key"
             v-if="
               !field.disabled && toLowerCase(field.type) === fieldTypes.json
             "
@@ -68,35 +70,35 @@
   </div>
 </template>
 <script>
-import _ from 'lodash'
-import { createNamespacedHelpers } from 'vuex'
 import CrudField from './CrudField'
 import CrudFieldJson from './CrudFieldJson'
+import _ from 'lodash'
+import { createNamespacedHelpers } from 'vuex'
 const { mapState } = createNamespacedHelpers('api')
 
 export default {
   components: {
     CrudField,
-    CrudFieldJson
+    CrudFieldJson,
   },
   props: {
     crudData: {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
     value: {
       type: Array,
       default() {
         return []
-      }
-    }
+      },
+    },
   },
   data() {
     return {
       created: false,
-      update: false
+      update: false,
     }
   },
   computed: {
@@ -108,8 +110,8 @@ export default {
     },
     ...mapState({
       crud: (state) => state.crud,
-      fieldTypes: (state) => state.fieldTypes
-    })
+      fieldTypes: (state) => state.fieldTypes,
+    }),
   },
   beforeMount() {
     this.initJsonFields()
@@ -137,7 +139,7 @@ export default {
     },
     removeCurrentElement(index) {
       this.$emit('remove-element', { index })
-    }
-  }
+    },
+  },
 }
 </script>

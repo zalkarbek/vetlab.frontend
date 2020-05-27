@@ -13,32 +13,32 @@ export default {
   routePrefix,
   datasetName,
   rest: {
-    ...baseApi
+    ...baseApi,
   },
   fields: [
     {
       type: 'text',
       key: 'role_name',
       disabled: false,
-      hidden: false
+      hidden: false,
     },
     {
       type: 'text',
       key: 'role_key',
       disabled: false,
-      hidden: false
+      hidden: false,
     },
     {
       type: 'text',
       key: 'priority',
       disabled: false,
-      hidden: false
+      hidden: false,
     },
     {
       type: 'text',
       key: 'role_desc',
       disabled: false,
-      hidden: false
-    }
-  ]
+      hidden: false,
+    },
+  ],
 }

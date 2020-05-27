@@ -16,20 +16,20 @@ export default {
       type: Array,
       default() {
         return {}
-      }
+      },
     },
     fieldData: {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
     viewType: {
       type: String,
       default() {
         return 'inline'
-      }
-    }
+      },
+    },
   },
   data() {
     return {
@@ -39,8 +39,8 @@ export default {
         table: 'table',
         tableWithKey: 'tableWithKey',
         inline: 'inline',
-        inlineWithKey: 'inlineWithKey'
-      }
+        inlineWithKey: 'inlineWithKey',
+      },
     }
   },
   computed: {
@@ -49,7 +49,7 @@ export default {
     },
     dataItem() {
       return this.data
-    }
-  }
+    },
+  },
 }
 </script>

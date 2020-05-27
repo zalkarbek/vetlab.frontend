@@ -29,9 +29,9 @@ export default {
         transports: ['websocket'],
         rejectUnauthorized: false,
         query: {
-          token
-        }
-      }
+          token,
+        },
+      },
     })
   },
 
@@ -41,7 +41,7 @@ export default {
       'post',
       'put',
       'patch',
-      'delete'
+      'delete',
     ])
     localStorage.setItem('token', payload.token)
     const socks = await this.$api.getApi('option').getSocks()
@@ -53,5 +53,5 @@ export default {
     localStorage.removeItem('token')
   },
 
-  authenticate({ commit }, payload) {}
+  authenticate({ commit }, payload) {},
 }

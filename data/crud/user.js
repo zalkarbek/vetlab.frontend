@@ -13,21 +13,21 @@ export default {
   routePrefix,
   datasetName,
   rest: {
-    ...baseApi
+    ...baseApi,
   },
   fields: [
     {
       type: 'text',
-      key: 'email'
+      key: 'email',
     },
     {
       type: 'password',
-      key: 'password'
+      key: 'password',
     },
     {
       type: 'text',
       key: 'name',
-      label: 'user.label.name'
+      label: 'user.label.name',
     },
     {
       type: 'select-multi',
@@ -38,7 +38,7 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['role_name', 'id'],
       disabled: false,
-      hidden: false
-    }
-  ]
+      hidden: false,
+    },
+  ],
 }

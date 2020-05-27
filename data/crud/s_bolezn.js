@@ -15,10 +15,10 @@ export default {
   routePrefix,
   datasetName,
   rest: {
-    ...baseApi
+    ...baseApi,
   },
 
-  fields: [...baseFields]
+  fields: [...baseFields],
 }
 // {
 //   type: 'select',

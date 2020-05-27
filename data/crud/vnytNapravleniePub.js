@@ -17,8 +17,8 @@ export default {
     ...baseApi,
     getAllVnytNapravlenieRel: {
       method: 'GET',
-      url: `/api/v1/${routePrefix}/rel/paginate`
-    }
+      url: `/api/v1/${routePrefix}/rel/paginate`,
+    },
   },
 
   initConfig: {
@@ -27,8 +27,8 @@ export default {
       paginate: 'server',
       pageSize: 10,
       methodIfPaginateServer: 'getAllVnytNapravlenieRel',
-      searchColumn: ['napravlenieId']
-    }
+      searchColumn: ['napravlenieId'],
+    },
   },
 
   actionButtons: {
@@ -39,7 +39,7 @@ export default {
         modalId: 'accept-napravlenie-dialog',
         label: 'vnytNapravlenie.pub.accept',
         icon: 'far fa-paper-plane',
-        variant: 'primary'
+        variant: 'primary',
       },
       {
         action: 'delete-napravlenie',
@@ -47,10 +47,10 @@ export default {
         modalId: 'reject-napravlenie-dialog',
         label: 'vnytNapravlenie.pub.reject',
         icon: 'far fa-ban',
-        variant: 'danger'
-      }
+        variant: 'danger',
+      },
     ],
-    crudForm: []
+    crudForm: [],
   },
 
   modals: [
@@ -64,8 +64,8 @@ export default {
       // размер модального окна
       size: 'md',
       okAction: 'acceptOk',
-      hiddenAction: 'acceptCancel'
-    }
+      hiddenAction: 'acceptCancel',
+    },
   ],
   foreign: [],
   fields: [
@@ -77,14 +77,14 @@ export default {
       foreign_label: 'name',
       foreign_value: 'id',
       disabled: false,
-      hidden: false
-    }
+      hidden: false,
+    },
   ],
   fieldsForTable: [
     {
       type: 'number',
       key: 'napravlenieId',
-      label: 'napravlenieEpic.label.nomerNapravlenia'
+      label: 'napravlenieEpic.label.nomerNapravlenia',
     },
 
     // #===========# / sendStatusCustomView / #===========#
@@ -94,41 +94,41 @@ export default {
       fields: {
         napravilPersonalId: {
           type: 'number',
-          key: 'napravilPersonalId'
+          key: 'napravilPersonalId',
         },
         napravlenDepartmentId: {
           type: 'number',
-          key: 'napravlenDepartmentId'
+          key: 'napravlenDepartmentId',
         },
         napravlenOtdelId: {
           type: 'number',
-          key: 'napravlenOtdelId'
+          key: 'napravlenOtdelId',
         },
         napravlenSubOtdelId: {
           type: 'number',
-          key: 'napravlenSubOtdelId'
+          key: 'napravlenSubOtdelId',
         },
         dateVremyaOtpravki: {
           type: 'date',
-          key: 'dateVremyaOtpravki'
+          key: 'dateVremyaOtpravki',
         },
         prinyalPersonalId: {
           type: 'number',
-          key: 'prinyalPersonalId'
+          key: 'prinyalPersonalId',
         },
         prinyalOtdelId: {
           type: 'number',
-          key: 'prinyalOtdelId'
+          key: 'prinyalOtdelId',
         },
         prinyalSubOtdelId: {
           type: 'number',
-          key: 'prinyalSubOtdelId'
+          key: 'prinyalSubOtdelId',
         },
         prinyalDate: {
           type: 'datetime',
-          key: 'prinyalDate'
-        }
-      }
+          key: 'prinyalDate',
+        },
+      },
     },
     // #===========# \ sendStatusCustomView \ #===========#
 
@@ -143,25 +143,25 @@ export default {
           foreign_crud: 's_pokazatel',
           foreign_dataset: 'pokazatel',
           foreign_label: 'name',
-          foreign_value: 'id'
+          foreign_value: 'id',
         },
         posMaterialId: {
           type: 'number',
-          key: 'posMaterialId'
+          key: 'posMaterialId',
         },
         postMaterialCount: {
           type: 'number',
-          key: 'postMaterialCount'
+          key: 'postMaterialCount',
         },
         posMaterialCheckVid: {
           type: 'boolean',
-          key: 'posMaterialCheckVid'
+          key: 'posMaterialCheckVid',
         },
         postMaterialCheck: {
           type: 'number',
-          key: 'postMaterialCheck'
-        }
-      }
+          key: 'postMaterialCheck',
+        },
+      },
     },
     // #===========# \ posMaterialCustomView \ #===========#
 
@@ -172,42 +172,42 @@ export default {
       fields: {
         dateDeworming: {
           type: 'text',
-          key: 'dateDeworming'
+          key: 'dateDeworming',
         },
         dateVaccination: {
           type: 'text',
-          key: 'dateVaccination'
+          key: 'dateVaccination',
         },
         dateObrabotki: {
           type: 'text',
-          key: 'dateObrabotki'
+          key: 'dateObrabotki',
         },
         dateLechenia: {
           type: 'text',
-          key: 'dateLechenia'
+          key: 'dateLechenia',
         },
         anthelminticTypeJSON: {
           type: 'text',
-          key: 'anthelminticTypeJSON'
+          key: 'anthelminticTypeJSON',
         },
         disinfectantTypeJSON: {
           type: 'text',
-          key: 'disinfectantTypeJSON'
+          key: 'disinfectantTypeJSON',
         },
         vaccineTypeJSON: {
           type: 'text',
-          key: 'vaccineTypeJSON'
+          key: 'vaccineTypeJSON',
         },
         isledovanieProvoditsaJSON: {
           type: 'text',
-          key: 'isledovanieProvoditsaJSON'
-        }
-      }
+          key: 'isledovanieProvoditsaJSON',
+        },
+      },
     },
     // #===========# \ dateCustomView \ #===========#
     {
       type: 'text',
-      key: 'status'
-    }
-  ]
+      key: 'status',
+    },
+  ],
 }

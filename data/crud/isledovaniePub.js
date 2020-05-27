@@ -14,8 +14,8 @@ export default {
   routePrefix,
   datasetName,
   rest: {
-    ...baseApi
+    ...baseApi,
   },
   foreign: [],
-  fields: []
+  fields: [],
 }

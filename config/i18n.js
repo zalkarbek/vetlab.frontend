@@ -5,6 +5,6 @@ export default {
   dateSwitchLocales: {
     ru: 'ru',
     kg: 'ky',
-    en: 'en'
-  }
+    en: 'en',
+  },
 }

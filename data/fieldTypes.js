@@ -36,5 +36,5 @@ export default {
   json: 'json',
   json_array: 'json-array',
   array: 'array',
-  object: 'object'
+  object: 'object',
 }

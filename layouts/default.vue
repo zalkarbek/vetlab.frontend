@@ -16,12 +16,9 @@ import Footer from '~/layouts/part/footer.vue'
 
 export default {
   middleware: ['auth'],
-  head() {
-    return this.$nuxtI18nSeo()
-  },
   components: {
     'app-header': Header,
-    'app-footer': Footer
+    'app-footer': Footer,
   },
 
   mounted() {
@@ -30,6 +27,9 @@ export default {
       this.$dashboard.navBarSearch()
       this.$dashboard.sidebarInit()
     }, 1000)
-  }
+  },
+  head() {
+    return this.$nuxtI18nSeo()
+  },
 }
 </script>

@@ -1,8 +1,14 @@
 <template>
   <div class="nuxt-error">
-    <error-403 v-if="statusCode === 403" :error="error" />
-    <error-404 v-else-if="statusCode === 404" :error="error" />
-    <error-500 v-else :error="error" />
+    <error-403 v-if="statusCode === 403"
+               :error="error"
+    />
+    <error-404 v-else-if="statusCode === 404"
+               :error="error"
+    />
+    <error-500 v-else
+               :error="error"
+    />
   </div>
 </template>
 <script>
@@ -12,28 +18,16 @@ import error500 from '~/components/error/500.vue'
 
 export default {
   layout: 'ErrorLayout',
-  head() {
-    return {
-      title: this.message,
-      meta: [
-        {
-          name: 'viewport',
-          content:
-            'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no'
-        }
-      ]
-    }
-  },
   components: {
     error404,
     error403,
-    error500
+    error500,
   },
   props: {
     error: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   computed: {
     statusCode() {
@@ -41,7 +35,19 @@ export default {
     },
     message() {
       return this.error.message
+    },
+  },
+  head() {
+    return {
+      title: this.message,
+      meta: [
+        {
+          name: 'viewport',
+          content:
+            'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no',
+        },
+      ],
     }
-  }
+  },
 }
 </script>

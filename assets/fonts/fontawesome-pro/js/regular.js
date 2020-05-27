@@ -3,9 +3,9 @@
  * License - https://fontawesome.com/license (Commercial License)
  */
 ! function() {
-    "use strict";
+    "use strict"
     var c = {},
-        h = {};
+        h = {}
     try {
         "undefined" != typeof window && (c = window), "undefined" != typeof document && (h = document)
     } catch (c) {}
@@ -20,26 +20,26 @@
             } catch (c) {
                 return !1
             }
-        }();
-    var H = v || {};
-    H[m] || (H[m] = {}), H[m].styles || (H[m].styles = {}), H[m].hooks || (H[m].hooks = {}), H[m].shims || (H[m].shims = []);
-    var V = H[m];
+        }()
+    var H = v || {}
+    H[m] || (H[m] = {}), H[m].styles || (H[m].styles = {}), H[m].hooks || (H[m].hooks = {}), H[m].shims || (H[m].shims = [])
+    var V = H[m]
 
     function s(c, z) {
         var h = (2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : {}).skipHooks,
             l = void 0 !== h && h,
             v = Object.keys(z).reduce(function(c, h) {
-                var l = z[h];
-                return !!l.icon ? c[l.iconName] = l.icon : c[h] = l, c
-            }, {});
+                var l = z[h]
+                return l.icon ? c[l.iconName] = l.icon : c[h] = l, c
+            }, {})
         "function" != typeof V.hooks.addPack || l ? V.styles[c] = function(v) {
             for (var c = 1; c < arguments.length; c++) {
                 var a = null != arguments[c] ? arguments[c] : {},
-                    h = Object.keys(a);
+                    h = Object.keys(a)
                 "function" == typeof Object.getOwnPropertySymbols && (h = h.concat(Object.getOwnPropertySymbols(a).filter(function(c) {
                     return Object.getOwnPropertyDescriptor(a, c).enumerable
                 }))), h.forEach(function(c) {
-                    var h, l, z;
+                    var h, l, z
                     h = v, z = a[l = c], l in h ? Object.defineProperty(h, l, {
                         value: z,
                         enumerable: !0,
@@ -1781,7 +1781,7 @@
         "x-ray": [640, 512, [], "f497", "M168 224h128v32h-96c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h96v32h-56c-26.5 0-48 21.5-48 48s21.5 48 48 48 48-21.5 48-48h64c0 26.5 21.5 48 48 48s48-21.5 48-48-21.5-48-48-48h-56v-32h96c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8h-96v-32h128c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H344v-32h96c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8h-96V88c0-4.4-3.6-8-8-8h-32c-4.4 0-8 3.6-8 8v40h-96c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h96v32H168c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8zm56 144c0-21.2 32-21.2 32 0s-32 21.1-32 0zm192 0c0 21.2-32 21.1-32 0 0-21.2 32-21.2 32 0zM632 48c4.4 0 8-3.6 8-8V8c0-4.4-3.6-8-8-8H8C3.6 0 0 3.6 0 8v32c0 4.4 3.6 8 8 8h56v416H8c-4.4 0-8 3.6-8 8v32c0 4.4 3.6 8 8 8h624c4.4 0 8-3.6 8-8v-32c0-4.4-3.6-8-8-8h-56V48h56zM528 464H112V48h416v416z"],
         "yen-sign": [384, 512, [], "f157", "M347.983 32h-44.065a12.001 12.001 0 0 0-10.555 6.291l-73.76 133.313c-13.96 29.825-27.286 64.725-27.286 64.725h-1.269s-13.326-34.901-27.287-64.725L90.689 38.328A12 12 0 0 0 80.115 32H36.017c-9.157 0-14.94 9.844-10.481 17.843L119.746 216H68c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h77.18l14.775 26.267V312H68c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h91.955v108c0 6.627 5.373 12 12 12h39.456c6.627 0 12-5.373 12-12V360H316c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-92.589v-21.733L238.185 264H316c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-52.367L358.45 49.87c4.485-7.999-1.296-17.87-10.467-17.87z"],
         "yin-yang": [496, 512, [], "f6ad", "M263.9 332c-19.88 0-35.99 16.12-35.99 36s16.11 36 35.99 36 35.99-16.12 35.99-36-16.11-36-35.99-36zm-31.99-152c19.88 0 35.99-16.12 35.99-36s-16.11-36-35.99-36-35.99 16.12-35.99 36c.01 19.88 16.12 36 35.99 36zm16-172C110.99 8 0 119.03 0 256s110.99 248 247.91 248v-.02c.06 0 .12.02.19.02C384.79 504 496 392.75 496 256S384.6 8 247.91 8zM119.05 408.67C75.65 371.95 47.98 317.18 47.98 256c0-110.28 89.68-200 199.92-200 48.51 0 88.15 39.47 88.15 88s-39.45 88-87.97 88c-74.97 0-135.95 61.02-135.95 136 .02 14.26 2.83 27.75 6.92 40.67zM248.09 456c-48.51 0-87.97-39.47-87.97-88s39.45-88 87.97-88c74.97 0 135.95-61.02 135.95-136 0-13.84-2.09-27.22-5.94-39.83 42.77 36.72 69.91 91.16 69.91 151.83.01 110.28-89.68 200-199.92 200z"]
-    };
+    }
     ! function(c) {
         try {
             c()
@@ -1791,4 +1791,4 @@
     }(function() {
         s("far", C)
     })
-}();
+}()

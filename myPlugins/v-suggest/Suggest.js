@@ -6,5 +6,5 @@ import render from './mixins/render'
 
 export default {
   name: 'v-suggest',
-  mixins: [data, methods, render]
+  mixins: [data, methods, render],
 }

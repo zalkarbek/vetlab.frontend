@@ -6,7 +6,7 @@ export default [
     class: '',
     icon: '',
     active: false,
-    to: '/'
+    to: '/',
   },
   {
     _t: 'menu.spravka',
@@ -38,7 +38,7 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/spravka/mera'
+                to: '/spravka/mera',
               },
               {
                 _t: 'menu.doljnost.index',
@@ -46,7 +46,7 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/spravka/doljnost'
+                to: '/spravka/doljnost',
               },
               {
                 _t: 'menu.material_animal_type.index',
@@ -54,7 +54,7 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/spravka/material-animal-type'
+                to: '/spravka/material-animal-type',
               },
               {
                 _t: 'menu.material_type.index',
@@ -62,7 +62,7 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/spravka/material-type'
+                to: '/spravka/material-type',
               },
               {
                 _t: 'menu.material.index',
@@ -70,7 +70,7 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/spravka/material'
+                to: '/spravka/material',
               },
               {
                 _t: 'menu.pokazatel.index',
@@ -78,7 +78,7 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/spravka/pokazatel'
+                to: '/spravka/pokazatel',
               },
               {
                 _t: 'menu.preparat.index',
@@ -86,7 +86,7 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/spravka/preparat'
+                to: '/spravka/preparat',
               },
               {
                 _t: 'menu.metod.index',
@@ -94,7 +94,7 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/spravka/metod'
+                to: '/spravka/metod',
               },
               {
                 _t: 'menu.otdelenia.index',
@@ -102,7 +102,7 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/spravka/otdelenia'
+                to: '/spravka/otdelenia',
               },
               {
                 _t: 'menu.region_type.index',
@@ -110,7 +110,7 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/spravka/region-type'
+                to: '/spravka/region-type',
               },
               {
                 _t: 'menu.regions.index',
@@ -118,11 +118,11 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/spravka/regions'
-              }
-            ]
-          }
-        ]
+                to: '/spravka/regions',
+              },
+            ],
+          },
+        ],
       },
       {
         class: '',
@@ -138,7 +138,7 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/spravka/personal'
+                to: '/spravka/personal',
               },
               {
                 _t: 'menu.role.index',
@@ -146,7 +146,7 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/spravka/roles'
+                to: '/spravka/roles',
               },
               {
                 _t: 'menu.departments.index',
@@ -154,7 +154,7 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/spravka/departments'
+                to: '/spravka/departments',
               },
               {
                 _t: 'menu.otdel.index',
@@ -162,7 +162,7 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/spravka/otdel'
+                to: '/spravka/otdel',
               },
               {
                 _t: 'menu.sub_otdel.index',
@@ -170,7 +170,7 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/spravka/subOtdel'
+                to: '/spravka/subOtdel',
               },
               {
                 _t: 'menu.plan_raboty.index',
@@ -178,13 +178,13 @@ export default [
                 class: '',
                 icon: '',
                 active: false,
-                to: '/spravka/planRaboty'
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                to: '/spravka/planRaboty',
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     _t: 'menu.direction',
@@ -193,7 +193,7 @@ export default [
     class: '',
     icon: '',
     active: false,
-    to: '/napravlenie'
+    to: '/napravlenie',
   },
   {
     _t: 'menu.epidemiology.index',
@@ -216,41 +216,41 @@ export default [
                 text: 'Направление',
                 class: '',
                 icon: '',
-                to: '/epic/napravlenie'
+                to: '/epic/napravlenie',
               },
               {
                 _t: 'menu.isledovanie.index',
                 text: 'Исследование',
                 class: '',
                 icon: '',
-                to: '/'
+                to: '/',
               },
               {
                 _t: 'menu.protocol_isledovanie.index',
                 text: 'Заключение',
                 class: '',
                 icon: '',
-                to: '/'
+                to: '/',
               },
               {
                 _t: 'menu.proby_isledovanie.index',
                 text: 'пробы на исследовании',
                 class: '',
                 icon: '',
-                to: '/'
+                to: '/',
               },
               {
                 _t: 'menu.proby_postup.index',
                 text: 'поступившие пробы',
                 class: '',
                 icon: '',
-                to: '/'
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                to: '/',
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     _t: 'menu.isledovanie.index',
@@ -259,7 +259,7 @@ export default [
     class: '',
     icon: '',
     active: false,
-    to: '/isledovanie'
+    to: '/isledovanie',
   },
   {
     _t: 'menu.reports',
@@ -275,7 +275,7 @@ export default [
         class: '',
         icon: '',
         active: false,
-        to: '/reports/plan'
+        to: '/reports/plan',
       },
       {
         _t: 'menu.form4Tiny',
@@ -283,9 +283,9 @@ export default [
         class: '',
         icon: '',
         active: false,
-        to: '/reports/form4Tiny'
-      }
-    ]
+        to: '/reports/form4Tiny',
+      },
+    ],
   },
   {
     _t: 'menu.news',
@@ -294,7 +294,7 @@ export default [
     class: '',
     icon: '',
     active: false,
-    to: '/'
+    to: '/',
   },
   {
     _t: 'menu.workers',
@@ -303,7 +303,7 @@ export default [
     class: '',
     icon: '',
     active: false,
-    to: '/'
+    to: '/',
   },
   {
     _t: 'menu.contacts',
@@ -312,8 +312,8 @@ export default [
     class: '',
     icon: '',
     active: false,
-    to: '/'
-  }
+    to: '/',
+  },
   // {
   //   _t: 'menu.home',
   //   type: 'children',

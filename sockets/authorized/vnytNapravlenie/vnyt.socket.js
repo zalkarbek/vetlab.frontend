@@ -1,4 +1,4 @@
-import handler from './handler'
+import handler from './vnyt.handler'
 
 export default ({ socket, context, socks }) => {
   const { EVENTS } = socks

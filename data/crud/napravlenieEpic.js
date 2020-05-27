@@ -18,16 +18,16 @@ export default {
     ...baseApi,
     getNapravlenieWithPaginate: {
       url: `/api/v1/${routePrefix}/pos/withPaginate`,
-      method: 'GET'
+      method: 'GET',
     },
     getNapravlenie: {
       url: `/api/v1/${routePrefix}/pos`,
-      method: 'GET'
+      method: 'GET',
     },
     sendToOtdel: {
       method: 'POST',
-      url: `/api/v1/${routePrefix}/vnyt/sendToOtdel`
-    }
+      url: `/api/v1/${routePrefix}/vnyt/sendToOtdel`,
+    },
   },
 
   initConfig: {
@@ -36,7 +36,7 @@ export default {
       // требуемые аттрибуты записей (с какими аттрибутами нужен запись)
       // attributes: [''],
       // paginate server or local
-      paginate: 'server', // local | server | storage
+      paginate: 'server', // local | server | storage | local
       // изначальное настройка для количество записей на странице
       pageSize: 10,
       // какой rest метод нужно вызывать для получния список регионов (пагинация локально)
@@ -46,8 +46,8 @@ export default {
       // rest метод для поиска региона
       methodOnSearch: 'getNapravlenieWithPaginate',
       // поля по которым разрешен поиск (текст или массив полей)
-      searchColumn: ['id']
-    }
+      searchColumn: ['id'],
+    },
   },
 
   actionButtons: {
@@ -58,7 +58,7 @@ export default {
         modalId: 'send-to-otdel-dialog',
         label: 'napravlenie.epic.sendToOtdel',
         icon: 'far fa-paper-plane',
-        variant: 'dark'
+        variant: 'dark',
       },
       {
         action: 'delete-napravlenie',
@@ -66,10 +66,10 @@ export default {
         modalId: 'napravlenie-delete-dialog',
         label: 'napravlenie.epic.delete',
         icon: 'far fa-trash',
-        variant: 'danger'
-      }
+        variant: 'danger',
+      },
     ],
-    crudForm: []
+    crudForm: [],
   },
   // модальные окна
   modals: [
@@ -80,13 +80,13 @@ export default {
       class: 'send-to-otdel-dialog',
       title: 'napravlenie.epic.sendToOtdelTitle',
       // размер модального окна
-      size: 'lg',
+      size: 'xl',
       okAction: 'sendToOtdelOk',
       hiddenAction: 'sendToOtdelCancel',
       modalCrud: {
-        fields: [...vnytNapravlenieFields.fields]
-      }
-    }
+        fields: [...vnytNapravlenieFields.fields],
+      },
+    },
   ],
 
   foreign: [
@@ -98,8 +98,8 @@ export default {
       // название модели
       crudName: 'pos_material',
       // какие поля нужны для заполнения Массив название полей
-      fields: []
-    }
+      fields: [],
+    },
   ],
   fields: [
     {
@@ -111,7 +111,7 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['name', 'id'],
       disabled: false,
-      hidden: false
+      hidden: false,
     },
     {
       type: 'json',
@@ -123,7 +123,7 @@ export default {
           // не показывает на поле ввода
           disabled: true,
           // скрывает на поле показа списка
-          hidden: true
+          hidden: true,
         },
         {
           type: 'autocomplete',
@@ -131,7 +131,7 @@ export default {
           // col настраивает макет сетки ввода (ширина поля ввода) md, sm, xs, lg
           col: {
             md: 6,
-            lg: 4
+            lg: 4,
           },
           // api модель от которой нужны данные автозаполнения
           foreign_crud: 's_region',
@@ -165,22 +165,22 @@ export default {
                 // изначальное название свойства
                 sourceKey: 'id',
                 // новое название свойства
-                destKey: 'id'
+                destKey: 'id',
               },
               {
                 sourceKey: 'regionIds',
-                destKey: 'regionIds'
-              }
-            ]
-          }
-        }
-      ]
+                destKey: 'regionIds',
+              },
+            ],
+          },
+        },
+      ],
     },
     {
       type: 'datetime',
       key: 'dataZapolnenia',
       disabled: true,
-      hidden: true
+      hidden: true,
     },
     {
       type: 'select-multi',
@@ -191,7 +191,7 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['name', 'id'],
       disabled: false,
-      hidden: false
+      hidden: false,
     },
     {
       type: 'json',
@@ -199,7 +199,7 @@ export default {
       json: [
         {
           type: 'text',
-          key: 'fullName'
+          key: 'fullName',
         },
         {
           type: 'input:mask',
@@ -208,10 +208,10 @@ export default {
           mask: {
             // если name пустой то используется custom
             name: 'mask_phone',
-            custom: null
-          }
-        }
-      ]
+            custom: null,
+          },
+        },
+      ],
     },
     {
       type: 'json',
@@ -219,7 +219,7 @@ export default {
       json: [
         {
           type: 'text',
-          key: 'fullName'
+          key: 'fullName',
         },
         {
           type: 'text',
@@ -227,14 +227,14 @@ export default {
           mask: {
             // если name пустой то используется custom
             name: 'mask_phone',
-            custom: null
-          }
-        }
-      ]
+            custom: null,
+          },
+        },
+      ],
     },
     {
       type: 'status',
-      key: 'status'
-    }
-  ]
+      key: 'status',
+    },
+  ],
 }

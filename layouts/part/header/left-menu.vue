@@ -1,6 +1,8 @@
 <template>
   <ul class="nav navbar-menu">
-    <li class="nav-label pd-l-20 pd-lg-l-25 d-lg-none">Навигация</li>
+    <li class="nav-label pd-l-20 pd-lg-l-25 d-lg-none">
+      Навигация
+    </li>
 
     <li
       v-for="(menu, index) in menus"
@@ -13,11 +15,17 @@
         :to="localePath({ path: menu.to })"
         class="nav-link"
       >
-        <i :class="menu.icon" class="mg-r-4" /> {{ $t(menu._t) }}
+        <i :class="menu.icon"
+           class="mg-r-4"
+        /> {{ $t(menu._t) }}
       </nuxt-link>
 
-      <a v-else href="#" class="nav-link">
-        <i :class="menu.icon" class="mg-r-4" /> {{ $t(menu._t) }}
+      <a v-else
+         href="#" class="nav-link"
+      >
+        <i :class="menu.icon"
+           class="mg-r-4"
+        /> {{ $t(menu._t) }}
       </a>
 
       <template v-if="menu.type === 'children' && menu.children">
@@ -31,7 +39,9 @@
               :to="localePath({ path: childMenu.to })"
               class="nav-sub-link"
             >
-              <i :class="childMenu.icon" class="mg-r-4" />
+              <i :class="childMenu.icon"
+                 class="mg-r-4"
+              />
               {{ $t(childMenu._t) }}
             </nuxt-link>
           </li>
@@ -55,14 +65,17 @@
                   {{ $t(flexMenu._t) }}
                 </li>
                 <li
-                  v-for="flexItems in flexMenu.items"
-                  :class="flexItems.class"
+                  v-for="(flexItems, index) in flexMenu.items"
+                  :key="index"
+                  v-bind:class="flexItems.class"
                 >
                   <nuxt-link
                     :to="localePath({ path: flexItems.to })"
                     class="nav-sub-link"
                   >
-                    <i :class="flexItems.icon" class="mg-r-4" />
+                    <i :class="flexItems.icon"
+                       class="mg-r-4"
+                    />
                     {{ $t(flexItems._t) }}
                   </nuxt-link>
                 </li>
@@ -79,13 +92,13 @@ export default {
   computed: {
     menus() {
       return this.$store.getters['dash/menuItems']
-    }
+    },
   },
 
   methods: {
     go(link) {
       this.$router.push(link)
-    }
-  }
+    },
+  },
 }
 </script>

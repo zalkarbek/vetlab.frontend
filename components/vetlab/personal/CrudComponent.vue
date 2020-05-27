@@ -8,35 +8,35 @@
           {{ $t(`${restName}.title`) }}
         </h4>
       </div>
-      <div class=" d-sm-block d-lg-block d-md-block"></div>
+      <div class="d-sm-block d-lg-block d-md-block" />
     </div>
     <b-row class="mg-t-20 row-xs">
       <b-col cols="12">
         <crud-form
+          :crud-data="crudData"
+          :record="selectedRecord"
           @on-create="onCreate"
           @on-update="onUpdate"
           @on-clear="onClear"
-          :crud-data="crudData"
-          :record="selectedRecord"
-        ></crud-form>
+        />
       </b-col>
     </b-row>
     <b-row class="mg-t-10 row-xs">
       <b-col cols="12">
         <crud-list
           v-model="crudListRecords"
+          :crud-data="crudData"
+          :paginate-type="crudListPaginateType"
+          :total-rows="crudListTotalRows"
+          :page-size="crudListPageSize"
+          :page="crudListCurrentPage"
           @on-edit="onEditSelect"
           @on-delete="onDestroy"
           @on-page="onCrudListChangePage"
           @on-page-size="onCrudListChangePageSize"
           @on-search="onCrudListSearch"
           @on-action="onListAction"
-          :crud-data="crudData"
-          :paginate-type="crudListPaginateType"
-          :total-rows="crudListTotalRows"
-          :page-size="crudListPageSize"
-          :page="crudListCurrentPage"
-        ></crud-list>
+        />
       </b-col>
     </b-row>
     <div class="crud-dialogs">
@@ -50,12 +50,11 @@
             :modal="modal"
             :form-data="modalFormDataByRestName"
             @on-action="onModalAction"
-          >
-          </crud-form-modal>
+          />
         </template>
       </template>
     </div>
-    <div class="footer-full-content"></div>
+    <div class="footer-full-content" />
   </div>
 </template>
 <script>
@@ -70,7 +69,7 @@ export default {
   components: {
     CrudForm,
     CrudList,
-    CrudFormModal
+    CrudFormModal,
   },
   mixins: [toastMixin, CrudMixins],
 
@@ -79,11 +78,11 @@ export default {
       return this.crudData.modals
     },
     ...mapState('dash', {
-      modalTypes: (state) => state.modalTypes
+      modalTypes: (state) => state.modalTypes,
     }),
     modalFormDataByRestName() {
       return this.modalFormData[this.crudData.restName]
-    }
+    },
   },
   mounted() {},
   methods: {
@@ -108,7 +107,7 @@ export default {
         message = this.$t('user.password.notPassword')
         cb(success, {
           ok: success,
-          message
+          message,
         })
         return false
       }
@@ -117,7 +116,7 @@ export default {
         message = this.$t('user.password.lowPassword4')
         cb(success, {
           ok: success,
-          message
+          message,
         })
         return false
       }
@@ -126,8 +125,8 @@ export default {
           req: this.crudData.rest.changePassword,
           data: {
             user: data,
-            personalId: this.modalFormDataByRestName.id
-          }
+            personalId: this.modalFormDataByRestName.id,
+          },
         })
         if (res.data && !res.data.error) {
           success = true
@@ -143,7 +142,7 @@ export default {
       }
       cb(success, {
         ok: success,
-        message
+        message,
       })
       return false
     },
@@ -153,7 +152,7 @@ export default {
         data.password = ''
       }
       cb(success)
-    }
-  }
+    },
+  },
 }
 </script>

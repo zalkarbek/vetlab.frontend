@@ -16,5 +16,5 @@ export default () => ({
   currentLocale: i18nConfig.currentLocale,
   supportedLocales: i18nConfig.supportedLocales,
   dateSwitchLocales: i18nConfig.dateSwitchLocales,
-  dateFormats
+  dateFormats,
 })

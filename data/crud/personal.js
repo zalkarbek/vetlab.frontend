@@ -16,20 +16,20 @@ export default {
     ...baseApi,
     getPersonalWithUser: {
       url: `/api/v1/${routePrefix}/id/withUser`,
-      method: 'GET'
+      method: 'GET',
     },
     changePassword: {
       url: `/api/v1/${routePrefix}/change-password`,
-      method: 'POST'
-    }
+      method: 'POST',
+    },
   },
   foreign: [
     {
       type: 'object',
       crudName: 'user',
       // какие поля нужны для заполнения Массив название полей
-      fields: []
-    }
+      fields: [],
+    },
   ],
 
   actionButtons: {
@@ -40,10 +40,10 @@ export default {
         modalId: 'personal-change-password-dialog',
         label: 'form.label.changePassword',
         icon: 'far fa-key',
-        variant: 'warning'
-      }
+        variant: 'warning',
+      },
     ],
-    crudForm: []
+    crudForm: [],
   },
   // модальные окна
   modals: [
@@ -64,25 +64,25 @@ export default {
             type: 'text',
             key: 'email',
             label: 'personal.label.email',
-            hidden: true
+            hidden: true,
           },
           {
             type: 'password',
             key: 'password',
             label: 'personal.label.password',
-            hidden: true
-          }
-        ]
-      }
-    }
+            hidden: true,
+          },
+        ],
+      },
+    },
   ],
   initConfig: {
     // кнопка для действии
     getEditRecord: {
       crud: 'personal',
       method: 'getPersonalWithUser',
-      requireAttrs: ['id']
-    }
+      requireAttrs: ['id'],
+    },
   },
 
   fields: [
@@ -90,14 +90,14 @@ export default {
       type: 'text',
       key: 'firstName',
       label: 'personal.label.firstName',
-      hidden: true
+      hidden: true,
     },
 
     {
       type: 'text',
       key: 'lastName',
       label: 'personal.label.lastName',
-      hidden: true
+      hidden: true,
     },
 
     {
@@ -105,7 +105,7 @@ export default {
       key: 'fullName',
       label: 'personal.label.fullName',
       disabled: true,
-      hidden: false
+      hidden: false,
     },
 
     {
@@ -116,13 +116,13 @@ export default {
       foreign_values: [
         {
           label: 'form.label.male',
-          value: 'male'
+          value: 'male',
         },
         {
           label: 'form.label.female',
-          value: 'female'
-        }
-      ]
+          value: 'female',
+        },
+      ],
     },
 
     {
@@ -132,13 +132,13 @@ export default {
       json: [
         {
           type: 'text',
-          key: 'address'
+          key: 'address',
         },
         {
           type: 'text',
-          key: 'phone_1'
-        }
-      ]
+          key: 'phone_1',
+        },
+      ],
     },
 
     {
@@ -152,7 +152,7 @@ export default {
           // не показывает на поле ввода
           disabled: true,
           // скрывает на поле показа списка
-          hidden: true
+          hidden: true,
         },
         {
           type: 'text',
@@ -160,7 +160,7 @@ export default {
           // не показывает на поле ввода
           disabled: true,
           // скрывает на поле показа списка
-          hidden: true
+          hidden: true,
         },
         {
           type: 'autocomplete',
@@ -168,7 +168,7 @@ export default {
           // col настраивает макет сетки ввода (ширина поля ввода) md, sm, xs, lg
           col: {
             md: 6,
-            lg: 4
+            lg: 4,
           },
           // api модель от которой нужны данные автозаполнения
           foreign_crud: 's_region',
@@ -188,19 +188,19 @@ export default {
               // изначальное название свойства
               sourceKey: 'id',
               // новое название свойства
-              destKey: 'id'
+              destKey: 'id',
             },
             {
               sourceKey: 'regionIds',
-              destKey: 'regionIds'
+              destKey: 'regionIds',
             },
             {
               sourceKey: 'regionFullPath',
-              destKey: 'regionFullPath'
-            }
-          ]
-        }
-      ]
+              destKey: 'regionFullPath',
+            },
+          ],
+        },
+      ],
     },
 
     {
@@ -214,7 +214,7 @@ export default {
           // не показывает на поле ввода
           disabled: true,
           // скрывает на поле показа списка
-          hidden: true
+          hidden: true,
         },
         {
           type: 'text',
@@ -222,7 +222,7 @@ export default {
           // не показывает на поле ввода
           disabled: true,
           // скрывает на поле показа списка
-          hidden: true
+          hidden: true,
         },
         {
           type: 'autocomplete',
@@ -230,7 +230,7 @@ export default {
           // col настраивает макет сетки ввода (ширина поля ввода) md, sm, xs, lg
           col: {
             md: 6,
-            lg: 4
+            lg: 4,
           },
           // api модель от которой нужны данные автозаполнения
           foreign_crud: 's_region',
@@ -250,19 +250,19 @@ export default {
               // изначальное название свойства
               sourceKey: 'id',
               // новое название свойства
-              destKey: 'id'
+              destKey: 'id',
             },
             {
               sourceKey: 'regionIds',
-              destKey: 'regionIds'
+              destKey: 'regionIds',
             },
             {
               sourceKey: 'regionFullPath',
-              destKey: 'regionFullPath'
-            }
-          ]
-        }
-      ]
+              destKey: 'regionFullPath',
+            },
+          ],
+        },
+      ],
     },
 
     {
@@ -275,7 +275,7 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['name', 'id'],
       disabled: false,
-      hidden: false
+      hidden: false,
     },
 
     {
@@ -288,7 +288,7 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['name', 'id'],
       disabled: false,
-      hidden: false
+      hidden: false,
     },
 
     {
@@ -301,7 +301,7 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['name', 'id'],
       disabled: false,
-      hidden: false
-    }
-  ]
+      hidden: false,
+    },
+  ],
 }

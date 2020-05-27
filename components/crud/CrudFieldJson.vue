@@ -12,19 +12,17 @@
       >
         <b-form-group
           :label="$t(form.label || `form.label.${form.key}`)"
-          :label-for="
-            `${modelData.restName}_${field.key}_${form.key}_crud_json_${index}`
-          "
+          :label-for="`${modelData.restName}_${field.key}_${form.key}_crud_json_${index}`"
           :description="$t(form.description || `form.description.${form.key}`)"
         >
           <crud-field
             v-model="recordItem[form.key]"
-            @multi-input="onMultiInput"
             :field="form"
             :crud-data="modelData"
             :placeholder="
               $t(form.placeholder || `form.placeholder.${form.key}`)
             "
+            @multi-input="onMultiInput"
           />
         </b-form-group>
       </b-col>
@@ -32,34 +30,34 @@
   </b-form-row>
 </template>
 <script>
+import CrudField from './CrudField'
 import _ from 'lodash'
 import { createNamespacedHelpers } from 'vuex'
-import CrudField from './CrudField'
 const { mapState, mapGetters } = createNamespacedHelpers('api')
 
 export default {
   components: {
-    CrudField
+    CrudField,
   },
   props: {
     crudData: {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
     field: {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
     value: {
       type: Object,
       default() {
         return {}
-      }
-    }
+      },
+    },
   },
   computed: {
     modelData() {
@@ -74,15 +72,15 @@ export default {
       },
       set(value) {
         this.$emit('input', value)
-      }
+      },
     },
     ...mapState({
       crud: (state) => state.crud,
-      fieldTypes: (state) => state.fieldTypes
+      fieldTypes: (state) => state.fieldTypes,
     }),
     ...mapGetters({
-      datasetList: 'dataset'
-    })
+      datasetList: 'dataset',
+    }),
   },
   methods: {
     onMultiInput(multiValues) {
@@ -98,7 +96,7 @@ export default {
     },
     toUpperCase(value) {
       return _.toUpper(value)
-    }
-  }
+    },
+  },
 }
 </script>

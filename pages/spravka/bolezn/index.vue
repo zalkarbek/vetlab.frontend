@@ -1,9 +1,8 @@
 <template>
-  <div v-bind:id="`${crudDataName}_page_id`">
-    <crud-component
-      :crud="crud"
-      :crud-data-name="crudDataName"
-    ></crud-component>
+  <div :id="`${crudDataName}_page_id`">
+    <crud-component :crud="crud"
+                    :crud-data-name="crudDataName"
+    />
   </div>
 </template>
 <script>
@@ -12,17 +11,17 @@ import CrudData from '~/data/crud'
 
 export default {
   components: {
-    CrudComponent
+    CrudComponent,
   },
   data() {
     return {
-      crudDataName: 's_bolezn'
+      crudDataName: 's_bolezn',
     }
   },
   computed: {
     crud() {
       return CrudData
-    }
-  }
+    },
+  },
 }
 </script>

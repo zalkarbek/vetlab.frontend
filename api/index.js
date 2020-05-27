@@ -11,7 +11,7 @@ class Api {
       auth: AuthApi(context),
       otdel: OtdelApi(context),
       department: new DepartmentRepository(context, crudApi.department),
-      option: new OptionRepository(context, crudApi.option)
+      option: new OptionRepository(context, crudApi.option),
     }
   }
 
@@ -20,7 +20,7 @@ class Api {
       method: req.method,
       url: req.url,
       params,
-      data
+      data,
     })
   }
 

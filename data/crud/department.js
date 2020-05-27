@@ -14,7 +14,7 @@ export default {
   routePrefix,
   datasetName,
   rest: {
-    ...baseApi
+    ...baseApi,
   },
   fields: [
     ...baseFields,
@@ -28,7 +28,7 @@ export default {
           // не показывает на поле ввода
           disabled: true,
           // скрывает на поле показа списка
-          hidden: true
+          hidden: true,
         },
         {
           type: 'text',
@@ -36,7 +36,7 @@ export default {
           // не показывает на поле ввода
           disabled: true,
           // скрывает на поле показа списка
-          hidden: true
+          hidden: true,
         },
         {
           type: 'autocomplete',
@@ -44,7 +44,7 @@ export default {
           // col настраивает макет сетки ввода (ширина поля ввода) md, sm, xs, lg
           col: {
             md: 6,
-            lg: 4
+            lg: 4,
           },
           // api модель от которой нужны данные автозаполнения
           foreign_crud: 's_region',
@@ -64,19 +64,19 @@ export default {
               // изначальное название свойства
               sourceKey: 'id',
               // новое название свойства
-              destKey: 'id'
+              destKey: 'id',
             },
             {
               sourceKey: 'regionIds',
-              destKey: 'regionIds'
+              destKey: 'regionIds',
             },
             {
               sourceKey: 'regionFullPath',
-              destKey: 'regionFullPath'
-            }
-          ]
-        }
-      ]
+              destKey: 'regionFullPath',
+            },
+          ],
+        },
+      ],
     },
     {
       type: 'json',
@@ -84,13 +84,13 @@ export default {
       json: [
         {
           type: 'text',
-          key: 'address'
+          key: 'address',
         },
         {
           type: 'text',
-          key: 'phone_1'
-        }
-      ]
-    }
-  ]
+          key: 'phone_1',
+        },
+      ],
+    },
+  ],
 }

@@ -13,31 +13,31 @@ export default {
     workers: 'Сотрудники',
     contacts: 'Контакты',
     chat: 'Чат',
-    form4Tiny: 'Форма4(компакт)'
+    form4Tiny: 'Форма4(компакт)',
   },
 
   count: 'Количество',
   material: {
-    count: 'Количество материалов'
+    count: 'Количество материалов',
   },
   regions: {
     osh: {
       text: 'Ошская область',
-      tinyText: 'Ош'
+      tinyText: 'Ош',
     },
     'jalal-abad': {
       text: 'Джалал-Абадская область',
-      tinyText: 'Джалал-Абад'
+      tinyText: 'Джалал-Абад',
     },
     batken: {
       text: 'Баткенская область',
-      tinyText: 'Баткен'
+      tinyText: 'Баткен',
     },
     'south-region': {
       text: 'Южный регион',
       tinyText: 'Юг',
-      allResult: 'Все результаты по Южному региону'
-    }
+      allResult: 'Все результаты по Южному региону',
+    },
   },
 
   departments: {
@@ -57,7 +57,7 @@ export default {
     mycology: 'Микология',
     ascoly: 'Асколи',
     leptospiros: 'Лептоспироз',
-    leukemia: 'Лейкемия'
+    leukemia: 'Лейкемия',
   },
 
   research: {
@@ -65,58 +65,58 @@ export default {
     pathologist: {
       specialist: 'Патологоанатом',
       department: 'Патологоанотомия',
-      method: 'Патологическая анатомический'
+      method: 'Патологическая анатомический',
     },
     organoleptic: {
       specialist: 'Органолептик',
       department: 'Органолептика',
-      method: 'Органолептический'
+      method: 'Органолептический',
     },
     microscopy: {
       specialist: 'Микроскопиолог',
       department: 'Микроскопия',
-      method: 'Микроскопический'
+      method: 'Микроскопический',
     },
     bacteriology: {
       specialist: 'Бактериолог',
       department: 'Бактериология',
-      method: 'Бактериологический'
+      method: 'Бактериологический',
     },
     microbiology: {
       specialist: 'Микробиолог',
       department: 'Микробиология',
-      method: 'Микробиологический'
+      method: 'Микробиологический',
     },
     serology: {
       specialist: 'Серолог',
       department: 'Серология',
-      method: 'Серологический'
+      method: 'Серологический',
     },
     caprology: {
       specialist: 'Капролог',
       department: 'Капрология',
-      method: 'Капрологический'
+      method: 'Капрологический',
     },
     mycology: {
       specialist: 'Миколог',
       department: 'Микология',
-      method: 'Мокологический'
+      method: 'Мокологический',
     },
     biochemistry: {
       specialist: 'Биохимик',
       department: 'Биохимия',
-      method: 'Биохимический'
+      method: 'Биохимический',
     },
     chemToxicology: {
       specialist: 'Токсихолог',
       department: 'Химтоксикология',
-      method: 'Химтоксикологический'
+      method: 'Химтоксикологический',
     },
     radioLab: {
       specialist: 'Радиолог',
       department: 'Радиология',
-      method: 'Радиологический'
-    }
+      method: 'Радиологический',
+    },
   },
 
   error: {
@@ -127,46 +127,46 @@ export default {
     emptyField: 'Ошибка, поле пустое заполните поле',
     emptyFields: 'Ошибка, пустые поля, заполните поля',
     requireAuth: 'Требуется авторизация',
-    pleaseRequireAuth: 'Пожалуйста авторизуйтесь'
+    pleaseRequireAuth: 'Пожалуйста авторизуйтесь',
   },
 
   auth: {
     signIn: 'Войти',
     signOut: 'Выйти',
-    endSession: 'Завершить сеанс'
+    endSession: 'Завершить сеанс',
   },
 
   success: {
     title: 'Успех',
     auth: 'Авторизация успешно',
-    update: 'Успешно обновлено'
+    update: 'Успешно обновлено',
   },
 
   help: {
-    helpCenter: 'Центр помощи'
+    helpCenter: 'Центр помощи',
   },
   profile: {
     edit: 'Редактировать профиль',
     view: 'Просмотр профиля',
-    delete: 'Удалить профиль'
+    delete: 'Удалить профиль',
   },
   placeholder: {
     enterEmail: 'Введите email',
-    enterPassword: 'Введите пароль'
+    enterPassword: 'Введите пароль',
   },
   require: {
     title: 'Требуется',
     email: 'Пожалуйста введите email',
-    password: 'Пожалуйста введите пароль'
+    password: 'Пожалуйста введите пароль',
   },
   current: {
     year: 'за этот год',
     week: 'за эту неделю',
-    day: 'за сегодня'
+    day: 'за сегодня',
   },
   researchConducted: 'Проведенные исследование',
   result: 'Результат',
   completed: 'Выполнен',
   plan: 'План',
-  percent: 'Процент'
+  percent: 'Процент',
 }

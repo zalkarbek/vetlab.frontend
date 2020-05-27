@@ -154,6 +154,6 @@ export default {
         const dist = curPos.top - listPos.top
         if (dist < 0) list.scrollTop += dist
       })
-    }
-  }
+    },
+  },
 }

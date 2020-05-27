@@ -4,7 +4,9 @@
     <h1>This page doesn’t exist</h1>
     <p>The link you clicked on may be broken or no longer exist.</p>
     <p>
-      <button @click="back()" class="btn btn-brand-01 btn-block">Back</button>
+      <button class="btn btn-brand-01 btn-block" @click="back()">
+        Back
+      </button>
     </p>
   </div>
 </template>
@@ -14,13 +16,13 @@ export default {
   props: {
     error: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   methods: {
     back() {
       this.$router.go(-1)
-    }
-  }
+    },
+  },
 }
 </script>

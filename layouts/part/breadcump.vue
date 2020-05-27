@@ -3,7 +3,9 @@
     class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30"
   >
     <div>
-      <h4 class="mg-b-0 tx-spacing--1">{{ $t('menu.home') }}</h4>
+      <h4 class="mg-b-0 tx-spacing--1">
+        {{ $t("menu.home") }}
+      </h4>
     </div>
     <div class="d-none d-md-block">
       <button class="btn btn-sm pd-x-15 btn-white btn-uppercase">
@@ -22,7 +24,7 @@
           <path
             d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
           />
-          <polyline points="22,6 12,13 2,6"></polyline>
+          <polyline points="22,6 12,13 2,6" />
         </svg>
         Email
       </button>
@@ -39,11 +41,13 @@
           stroke-linejoin="round"
           class="feather feather-printer wd-10 mg-r-5"
         >
-          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <polyline points="6 9 6 2 18 2 18 9" />
           <path
             d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
-          ></path>
-          <rect x="6" y="14" width="12" height="8"></rect>
+          />
+          <rect x="6"
+                y="14" width="12" height="8"
+          />
         </svg>
         Print
       </button>
@@ -62,8 +66,8 @@
         >
           <path
             d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"
-          ></path>
-          <polyline points="13 2 13 9 20 9"></polyline>
+          />
+          <polyline points="13 2 13 9 20 9" />
         </svg>
         Generate Report
       </button>

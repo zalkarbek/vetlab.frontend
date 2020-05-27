@@ -7,7 +7,7 @@
         :placeholder="placeholder || defaultPlaceholder(form)"
         type="text"
         class="form-control"
-      />
+      >
     </template>
     <!-- -----------------------/ FORM TEXT /----------------------- -->
 
@@ -31,7 +31,7 @@
         :value-field="form.checkbox_value_field"
         :text-field="form.checkbox_text_field"
         :disabled-field="form.checkbox_disabled_field"
-      ></b-form-checkbox-group>
+      />
     </template>
     <!-- -----------------------/ FORM CHECKBOX_ARRAY /----------------------- -->
 
@@ -42,7 +42,7 @@
         :placeholder="placeholder || defaultPlaceholder(form)"
         type="password"
         class="form-control"
-      />
+      >
     </template>
     <!-- -----------------------/ FORM PASSWORD /----------------------- -->
 
@@ -52,7 +52,7 @@
         v-model.trim="formValue"
         :placeholder="placeholder || defaultPlaceholder(form)"
         class="form-control"
-      ></b-form-textarea>
+      />
     </template>
     <!-- -----------------------/ FORM TEXTAREA /----------------------- -->
 
@@ -63,7 +63,7 @@
         :placeholder="placeholder || defaultPlaceholder(form)"
         type="number"
         class="form-control"
-      />
+      >
     </template>
     <!-- -----------------------/ FORM NUMBER /----------------------- -->
 
@@ -90,8 +90,8 @@
         :placeholder="placeholder || defaultPlaceholder(form)"
         :label="form.foreign_label"
         :options="datasetList[form.foreign_dataset]"
-        @search:focus="storageLoadDataSet(form)"
         multiple
+        @search:focus="storageLoadDataSet(form)"
       />
     </template>
     <!-- -----------------------/ FORM SELECT_MULTI /----------------------- -->
@@ -159,15 +159,14 @@
       v-else-if="!form.disabled && form.type === fieldTypes.autocomplete"
     >
       <v-suggest
+        v-model="formValue"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :data="datasetList[form.foreign_dataset]"
         :show-field="form.foreign_label"
-        v-model="formValue"
         @values="(data) => onSelect(data, form)"
         @focus="storageLoadDataSet(form)"
         @clear="clear()"
-      >
-      </v-suggest>
+      />
     </template>
     <!-- -----------------------/ FORM AUTOCOMPLETE /----------------------- -->
 
@@ -178,15 +177,14 @@
       "
     >
       <v-suggest
+        v-model="formValue"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :data="localDatasetList[form.foreign_dataset]"
         :show-field="form.foreign_label"
-        v-model="formValue"
         @values="(data) => onSelect(data, form)"
         @focus="localLoadDataset(form)"
         @clear="clear()"
-      >
-      </v-suggest>
+      />
     </template>
     <!-- -----------------------/ FORM AUTOCOMPLETE:PRELOAD /----------------------- -->
 
@@ -195,15 +193,14 @@
       v-else-if="!form.disabled && form.type === fieldTypes.autocomplete_search"
     >
       <v-suggest
+        v-model="formValue"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :data="searchDataset[form.foreign_dataset]"
         :show-field="form.foreign_label"
-        v-model="formValue"
         @values="(data) => onSelect(data, form)"
         @search="(text) => search(text, form)"
         @clear="clear()"
-      >
-      </v-suggest>
+      />
     </template>
     <!-- -----------------------/ FORM AUTOCOMPLETE:SEARCH /----------------------- -->
 
@@ -217,9 +214,9 @@
         :options="datasetList[form.foreign_dataset]"
         :label="form.foreign_label"
         :value="form.foreign_value"
-        @open="storageLoadDataSet(form)"
         multiple
         track-by="name"
+        @open="storageLoadDataSet(form)"
       />
     </template>
     <!-- -----------------------/ FORM MULTI-SELECT /----------------------- -->
@@ -236,9 +233,9 @@
         :options="localDatasetList[form.foreign_dataset]"
         :label="form.foreign_label"
         :value="form.foreign_value"
-        @open="localLoadDataset(form)"
         multiple
         track-by="name"
+        @open="localLoadDataset(form)"
       />
     </template>
     <!-- -----------------------/ FORM MULTI-SELECT:PRELOAD /----------------------- -->
@@ -251,7 +248,7 @@
         :locale="{
           id: 'ru-RU',
           firstDayOfWeek: 2,
-          masks: { weekdays: 'WW' }
+          masks: { weekdays: 'WW' },
         }"
       />
     </template>
@@ -272,12 +269,12 @@
     <!-- ----------------------- FORM MASK ----------------------- -->
     <template v-else-if="!form.disabled && form.type === fieldTypes.input_mask">
       <imask-input
-        @accept="maskOnAccept"
         v-model="formValue"
         :mask="inputMask[form.mask.name] || form.mask.custom"
         :unmask="true"
         :placeholder="placeholder || defaultPlaceholder(form)"
         class="form-control"
+        @accept="maskOnAccept"
       />
     </template>
     <!-- -----------------------/ FORM MASK /----------------------- -->
@@ -295,30 +292,30 @@ export default {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
     field: {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
     id: {
       type: String,
       default() {
         return null
-      }
+      },
     },
     placeholder: {
       type: String,
       default() {
         return null
-      }
+      },
     },
     // eslint-disable-next-line vue/require-default-prop
     value: [String, Number, Boolean, Array, Object, Date, Function],
     // eslint-disable-next-line vue/require-default-prop
-    record: [Object, Array, String]
+    record: [Object, Array, String],
   },
   data() {
     return {
@@ -332,14 +329,14 @@ export default {
           key: 'today',
           highlight: {
             color: 'blue',
-            fillMode: 'none'
+            fillMode: 'none',
           },
           dates: new Date(),
           popover: {
-            label: 'Сегодня!'
-          }
-        }
-      ]
+            label: 'Сегодня!',
+          },
+        },
+      ],
     }
   },
   computed: {
@@ -358,7 +355,7 @@ export default {
       },
       set(value) {
         this.$emit('input', value)
-      }
+      },
     },
     defaultPlaceholder() {
       return (form) => this.$t(`form.placeholder.${form.key}`)
@@ -367,8 +364,8 @@ export default {
       crud: (state) => state.crud,
       fieldTypes: (state) => state.fieldTypes,
       inputMask: (state) => state.inputMask,
-      datasetList: (state) => state.dataset
-    })
+      datasetList: (state) => state.dataset,
+    }),
   },
   mounted() {
     if (this.form.type === this.fieldTypes.date && this.formValue) {
@@ -385,7 +382,7 @@ export default {
         return values.map((val) => {
           return {
             label: this.$t(val.label),
-            value: val.value
+            value: val.value,
           }
         })
       }
@@ -402,7 +399,7 @@ export default {
       return this.$store.dispatch('api/req', {
         req,
         params,
-        data
+        data,
       })
     },
     async search(text, field) {
@@ -414,8 +411,8 @@ export default {
           params: {
             search: text,
             searchColumn: field.foreign_label,
-            attributes: field.foreign_attributes
-          }
+            attributes: field.foreign_attributes,
+          },
         })
         this.$set(this.searchDataset, field.foreign_dataset, data || [])
       } catch (e) {
@@ -460,7 +457,7 @@ export default {
 
       const params = {
         attributes: field.foreign_attributes,
-        ...requestParams
+        ...requestParams,
       }
       try {
         const { data } = await this.request({ req, params })
@@ -483,7 +480,7 @@ export default {
       return values
     },
 
-    fetchSearch: _.debounce(async function(search, loading) {
+    fetchSearch: _.debounce(async function (search, loading) {
       loading(true)
       const field = this.currentField
       try {
@@ -492,8 +489,8 @@ export default {
           params: {
             search,
             searchColumn: field.foreign_label,
-            attributes: field.foreign_attributes
-          }
+            attributes: field.foreign_attributes,
+          },
         })
         this.$set(this.searchDataset, field.foreign_dataset, data || [])
       } catch (e) {
@@ -507,7 +504,7 @@ export default {
       foreign_crud: datasetCrudName,
       foreign_crud_method: datasetCrudMethod,
       foreign_attributes: attributes,
-      foreign_by_params: params = []
+      foreign_by_params: params = [],
     }) {
       const reqParams = {}
       if (params && Array.isArray(params) && params.length >= 1) {
@@ -521,8 +518,8 @@ export default {
         datasetCrudMethod,
         params: {
           attributes,
-          ...reqParams
-        }
+          ...reqParams,
+        },
       })
     },
 
@@ -532,7 +529,7 @@ export default {
       foreign_crud: datasetCrudName,
       foreign_crud_method: datasetCrudMethod,
       foreign_attributes: attributes,
-      foreign_by_params: params = []
+      foreign_by_params: params = [],
     }) {
       try {
         const reqParams = {}
@@ -546,15 +543,15 @@ export default {
           req: crud.rest[datasetCrudMethod] || crud.rest.all,
           params: {
             attributes,
-            ...reqParams
-          }
+            ...reqParams,
+          },
         })
         this.$set(this.localDataset, datasetName, [...data])
         this.$emit('get-init-dataset', { datasetName, datasetCrudName })
       } catch (e) {
         this.$set(this.localDataset, datasetName, [])
       }
-    }
-  }
+    },
+  },
 }
 </script>

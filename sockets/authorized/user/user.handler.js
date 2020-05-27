@@ -11,5 +11,5 @@ export default {
     return (profile) => {
       console.log(profile)
     }
-  }
+  },
 }

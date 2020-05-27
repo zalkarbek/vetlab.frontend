@@ -9,5 +9,5 @@ export default {
   mediumDateTimeFormat: 'DD MMM YYYY HH:mm:ss',
 
   longDateFormat: 'DD MMMM YYYY',
-  longDateTimeFormat: 'DD MMMM YYYY HH:mm:ss'
+  longDateTimeFormat: 'DD MMMM YYYY HH:mm:ss',
 }

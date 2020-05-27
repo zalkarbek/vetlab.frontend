@@ -17,15 +17,15 @@ export default {
     ...baseApi,
     sendToOtdel: {
       method: 'POST',
-      url: `/api/v1/${routePrefix}/vnyt/sendToOtdel`
-    }
+      url: `/api/v1/${routePrefix}/vnyt/sendToOtdel`,
+    },
   },
   initConfig: {
     getEditRecord: {
       crud: 'napravlenie',
       method: 'id',
-      requireAttrs: ['id']
-    }
+      requireAttrs: ['id'],
+    },
   },
   foreign: [
     {
@@ -37,8 +37,8 @@ export default {
       crudName: 'pos_material',
       datasetName: 'posMaterials',
       // какие поля нужны для заполнения Массив название полей
-      fields: []
-    }
+      fields: [],
+    },
   ],
   fields: [
     {
@@ -50,7 +50,7 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['fullName', 'id'],
       disabled: true,
-      hidden: true
+      hidden: true,
     },
     {
       type: 'select',
@@ -61,13 +61,13 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['name', 'id'],
       disabled: true,
-      hidden: true
+      hidden: true,
     },
     {
       type: 'datetime',
       key: 'zapolnilDate',
       disabled: true,
-      hidden: true
+      hidden: true,
     },
     {
       type: 'select',
@@ -78,7 +78,7 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['fullName', 'id'],
       disabled: true,
-      hidden: true
+      hidden: true,
     },
     {
       type: 'select',
@@ -89,13 +89,13 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['name', 'id'],
       disabled: true,
-      hidden: true
+      hidden: true,
     },
     {
       type: 'datetime',
       key: 'prinyalDate',
       disabled: true,
-      hidden: true
+      hidden: true,
     },
     {
       type: 'select',
@@ -107,7 +107,7 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['name', 'id'],
       disabled: false,
-      hidden: false
+      hidden: false,
     },
     {
       type: 'json',
@@ -119,7 +119,7 @@ export default {
           // не показывает на поле ввода
           disabled: true,
           // скрывает на поле показа списка
-          hidden: true
+          hidden: true,
         },
         {
           type: 'autocomplete',
@@ -127,7 +127,7 @@ export default {
           // col настраивает макет сетки ввода (ширина поля ввода) md, sm, xs, lg
           col: {
             md: 6,
-            lg: 4
+            lg: 4,
           },
           // api модель от которой нужны данные автозаполнения
           foreign_crud: 's_region',
@@ -161,16 +161,16 @@ export default {
                 // изначальное название свойства
                 sourceKey: 'id',
                 // новое название свойства
-                destKey: 'id'
+                destKey: 'id',
               },
               {
                 sourceKey: 'regionIds',
-                destKey: 'regionIds'
-              }
-            ]
-          }
-        }
-      ]
+                destKey: 'regionIds',
+              },
+            ],
+          },
+        },
+      ],
     },
     {
       type: 'select',
@@ -181,13 +181,13 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['fullName', 'id'],
       disabled: true,
-      hidden: true
+      hidden: true,
     },
     {
       type: 'datetime',
       key: 'dataZapolnenia',
       disabled: true,
-      hidden: true
+      hidden: true,
     },
     {
       type: 'select-multi',
@@ -198,7 +198,7 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['name', 'id'],
       disabled: false,
-      hidden: false
+      hidden: false,
     },
     {
       type: 'json',
@@ -206,7 +206,7 @@ export default {
       json: [
         {
           type: 'text',
-          key: 'fullName'
+          key: 'fullName',
         },
         {
           type: 'input_mask',
@@ -215,10 +215,10 @@ export default {
           mask: {
             // если name пустой то используется custom
             name: 'mask_phone',
-            custom: null
-          }
-        }
-      ]
+            custom: null,
+          },
+        },
+      ],
     },
     {
       type: 'json',
@@ -226,7 +226,7 @@ export default {
       json: [
         {
           type: 'text',
-          key: 'fullName'
+          key: 'fullName',
         },
         {
           type: 'input_mask',
@@ -234,10 +234,10 @@ export default {
           mask: {
             // если name пустой то используется custom
             name: 'mask_phone',
-            custom: null
-          }
-        }
-      ]
+            custom: null,
+          },
+        },
+      ],
     },
     {
       type: 'select',
@@ -248,7 +248,7 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['fullName', 'id'],
       disabled: true,
-      hidden: true
+      hidden: true,
     },
     {
       type: 'select',
@@ -259,7 +259,7 @@ export default {
       foreign_value: 'id',
       foreign_attributes: ['name', 'id'],
       disabled: true,
-      hidden: true
-    }
-  ]
+      hidden: true,
+    },
+  ],
 }

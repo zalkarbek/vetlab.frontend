@@ -4,7 +4,7 @@
     <plan-of-region />
     <main-positive-material />
     <main-forma4 />
-    <div class="footer-full-content"></div>
+    <div class="footer-full-content" />
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
     MainPositiveMaterial,
     MainPlanPercent,
     MainForma4,
-    PlanOfRegion
+    PlanOfRegion,
   },
 
   mounted() {
@@ -27,7 +27,7 @@ export default {
       this.$nuxt.$loading.start()
       setTimeout(() => this.$nuxt.$loading.finish(), 3000)
     })
-  }
+  },
 }
 </script>
 

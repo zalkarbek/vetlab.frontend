@@ -1,5 +1,5 @@
 const getters = {
-  menuItems: (state) => state.menus
+  menuItems: (state) => state.menus,
 }
 
 export default getters

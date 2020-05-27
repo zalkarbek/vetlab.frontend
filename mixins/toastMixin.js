@@ -7,24 +7,24 @@ export default {
         variant: 'default',
         solid: true,
         append: true,
-        ...opt
+        ...opt,
       }
       this.$bvToast.toast(message, {
         title: this.$i18n.t(title),
-        ...options
+        ...options,
       })
     },
     toastPrimary(msg, ttl, opt) {
       const options = {
         variant: 'primary',
-        ...opt
+        ...opt,
       }
       this.toast(msg, ttl, options)
     },
     toastSecond(msg, ttl, opt) {
       const options = {
         variant: 'secondary',
-        ...opt
+        ...opt,
       }
       this.toast(msg, ttl, options)
     },
@@ -33,7 +33,7 @@ export default {
       const message = msg || 'error.message'
       const options = {
         variant: 'danger',
-        ...opt
+        ...opt,
       }
       this.toast(message, title, options)
     },
@@ -42,7 +42,7 @@ export default {
       const message = msg || 'warning.message'
       const options = {
         variant: 'warning',
-        ...opt
+        ...opt,
       }
       this.toast(message, title, options)
     },
@@ -51,16 +51,16 @@ export default {
       const message = msg || 'success.message'
       const options = {
         variant: 'success',
-        ...opt
+        ...opt,
       }
       this.toast(message, title, options)
     },
     toastInfo(msg, ttl, opt) {
       const options = {
         variant: 'info',
-        ...opt
+        ...opt,
       }
       this.toast(msg, ttl, options)
-    }
-  }
+    },
+  },
 }

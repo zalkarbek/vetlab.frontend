@@ -10,5 +10,5 @@ export default {
     }
 
     Vue.component(Suggest.name, Suggest)
-  }
+  },
 }

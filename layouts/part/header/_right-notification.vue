@@ -8,7 +8,9 @@
     no-caret
   >
     <template v-slot:button-content>
-      <a href="" class="dropdown-link new-indicator">
+      <a href=""
+         class="dropdown-link new-indicator"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -28,11 +30,15 @@
         <span>2</span>
       </a>
     </template>
-    <div class="dropdown-header">Notifications</div>
+    <div class="dropdown-header">
+      Notifications
+    </div>
     <b-dropdown-item>
       <div class="media">
         <div class="avatar avatar-sm avatar-online">
-          <img src="~/assets/img/user.svg" class="rounded-circle" alt="" />
+          <img
+            src="~/assets/img/user.svg" class="rounded-circle" alt=""
+          >
         </div>
         <div class="media-body mg-l-15">
           <p>
@@ -44,6 +50,8 @@
       </div>
       <!-- media -->
     </b-dropdown-item>
-    <div class="dropdown-footer"><a href="">View all Notifications</a></div>
+    <div class="dropdown-footer">
+      <a href="">View all Notifications</a>
+    </div>
   </b-dropdown>
 </template>

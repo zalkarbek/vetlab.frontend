@@ -1,3 +1,3 @@
 export default {
-  dbName: 'vetdb'
+  dbName: 'vetdb',
 }

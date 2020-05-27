@@ -16,8 +16,8 @@ import HeaderRightProfile from './_right-profile.vue'
 export default {
   components: {
     'header-right-profile': HeaderRightProfile,
-    'header-right-locale': HeaderRightLocale
-  }
+    'header-right-locale': HeaderRightLocale,
+  },
 }
 </script>
 <style>

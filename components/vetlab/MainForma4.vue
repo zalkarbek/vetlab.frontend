@@ -1,7 +1,7 @@
 <template>
   <b-row class="mg-t-20 row-xs">
     <b-col cols="12">
-      <h4>{{ $t('researchConducted') }} Форма №4</h4>
+      <h4>{{ $t("researchConducted") }} Форма №4</h4>
     </b-col>
     <b-col
       v-for="(region, regionIndex) in regions"
@@ -17,14 +17,13 @@
         <div
           class="card-header d-flex align-items-start justify-content-between"
         >
-          <h5 class="mg-b-0 ">
-            <b-img left src="~/assets/img/marker.svg" width="28px" />
+          <h5 class="mg-b-0">
+            <b-img left
+                   src="~/assets/img/marker.svg" width="28px"
+            />
             {{ $t(`regions.${region.key}.text`) }}
           </h5>
-          <div
-            class="tx-13 d-flex align-items-center"
-            style="font-size: 1.0rem"
-          >
+          <div class="tx-13 d-flex align-items-center" style="font-size: 1rem;">
             <span class="mg-r-8 tx-success cursor-pointer">
               <span class="fal fa-file-excel fa-lg" />
             </span>
@@ -77,7 +76,7 @@ export default {
         { key: 'osh' },
         { key: 'jalal-abad' },
         { key: 'batken' },
-        { key: 'south-region' }
+        { key: 'south-region' },
       ],
       departments: [
         { label: 'Түштүк РБВДжЭБ' },
@@ -92,91 +91,91 @@ export default {
         { label: 'Асколи' },
         { label: 'Радиология' },
         { label: 'Биохимия' },
-        { label: 'Лейкоз' }
+        { label: 'Лейкоз' },
       ],
       fields: [
         { key: 'researchDirection', label: 'Исследование' },
-        { key: 'researchCount', label: 'Исследовано' }
+        { key: 'researchCount', label: 'Исследовано' },
       ],
       items: [
         {
           researchDirection: {
             key: 'pathologist',
-            label: 'Патологоанатомиялык'
+            label: 'Патологоанатомиялык',
           },
-          researchCount: 658
+          researchCount: 658,
         },
         {
           researchDirection: {
             key: 'organoleptic',
-            label: 'Органолептикалык'
+            label: 'Органолептикалык',
           },
-          researchCount: 452
+          researchCount: 452,
         },
         {
           researchDirection: {
             key: 'microscopy',
-            label: 'Микроскопиялык'
+            label: 'Микроскопиялык',
           },
-          researchCount: 789
+          researchCount: 789,
         },
         {
           researchDirection: {
             key: 'bacteriology',
-            label: 'Бактериологиялык'
+            label: 'Бактериологиялык',
           },
-          researchCount: 653
+          researchCount: 653,
         },
         {
           researchDirection: {
             key: 'microbiology',
-            label: 'Микробиологиялык'
+            label: 'Микробиологиялык',
           },
-          researchCount: 523
+          researchCount: 523,
         },
         {
           researchDirection: {
             key: 'serology',
-            label: 'Серологиялык'
+            label: 'Серологиялык',
           },
-          researchCount: 189
+          researchCount: 189,
         },
         {
           researchDirection: {
             key: 'caprology',
-            label: 'Капрологиялык'
+            label: 'Капрологиялык',
           },
-          researchCount: 862
+          researchCount: 862,
         },
         {
           researchDirection: {
             key: 'mycology',
-            label: 'Микологиялык'
+            label: 'Микологиялык',
           },
-          researchCount: 623
+          researchCount: 623,
         },
         {
           researchDirection: {
             key: 'biochemistry',
-            label: 'Биохимиялык'
+            label: 'Биохимиялык',
           },
-          researchCount: 321
+          researchCount: 321,
         },
         {
           researchDirection: {
             key: 'chemToxicology',
-            label: 'Химтоксикологиялык'
+            label: 'Химтоксикологиялык',
           },
-          researchCount: 523
+          researchCount: 523,
         },
         {
           researchDirection: {
             key: 'radioLab',
-            label: 'Радиологиялык'
+            label: 'Радиологиялык',
           },
-          researchCount: 469
-        }
-      ]
+          researchCount: 469,
+        },
+      ],
       // fields: [
       //   { key: 'otdel', label: 'Отдел' },
       //   { key: 'materialCount', label: 'Түшкөн матери-алдын саны' },
@@ -209,7 +208,7 @@ export default {
       //   { otdel: 'Лейкоз' }
       // ]
     }
-  }
+  },
 }
 </script>
 <style>

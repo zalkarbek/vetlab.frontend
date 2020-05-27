@@ -16,13 +16,19 @@ export default {
   },
   UPDATE_ITEM_IN_DATASET(state, { datasetName, id, data }) {
     const elementIndex = this.$lodash.findIndex(state.dataset[datasetName], {
-      id
+      id,
     })
     if (elementIndex >= 0) {
       state.dataset[datasetName][elementIndex] = data
     }
   },
+  REMOVE_ITEM_IN_DATASET(state, { data, datasetName }) {
+    const dataset = state.dataset[datasetName]
+    if(dataset) {
+      dataset.splice(dataset.indexOf(data), 1)
+    }
+  },
   CRUD_FIELDS_REPLACE(state, { crud, fields = [] }) {
     crud.fields = fields
-  }
+  },
 }

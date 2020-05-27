@@ -12,11 +12,12 @@
           :crud-buttons-enabled="false"
           :crud-data="crudModalData"
           :record="modalFormData"
-        >
-        </crud-form>
+        />
       </template>
       <template v-if="modal.type === modalTypes.confirm">
-        <p v-if="modal.message && modal.message.length >= 1" class="h5">
+        <p v-if="modal.message && modal.message.length >= 1"
+           class="h5"
+        >
           {{ $t(modal.message) }}
         </p>
         <p
@@ -39,7 +40,7 @@ import loadDatasetMixin from '~/mixins/loadDatasetMixin'
 
 export default {
   components: {
-    CrudForm
+    CrudForm,
   },
   mixins: [toastMixin, loadDatasetMixin],
   props: {
@@ -47,45 +48,45 @@ export default {
       type: String,
       default() {
         return ''
-      }
+      },
     },
     title: {
       type: String,
       default() {
         return ''
-      }
+      },
     },
     size: {
       type: String,
       default() {
         return 'md'
-      }
+      },
     },
     formData: {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
     crudData: {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
     modal: {
       type: Object,
       default() {
         return {}
-      }
-    }
+      },
+    },
   },
   data() {
     return {}
   },
   computed: {
     ...mapState('dash', {
-      modalTypes: (state) => state.modalTypes
+      modalTypes: (state) => state.modalTypes,
     }),
     modalCrud() {
       return this.modal.modalCrud
@@ -94,7 +95,7 @@ export default {
       const { restName, ...other } = this.modalCrud
       return {
         restName: restName || this.crudData.restName,
-        ...other
+        ...other,
       }
     },
     modalFormData() {
@@ -103,7 +104,7 @@ export default {
         formData = this.formData[this.modalCrud.modalRequireField]
       }
       return formData
-    }
+    },
   },
 
   methods: {
@@ -119,7 +120,7 @@ export default {
           } else {
             this.toastSuccess(message)
           }
-        }
+        },
       })
     },
     handleCancel(event) {
@@ -131,9 +132,9 @@ export default {
           if (!validated) {
             event.preventDefault()
           }
-        }
+        },
       })
-    }
-  }
+    },
+  },
 }
 </script>

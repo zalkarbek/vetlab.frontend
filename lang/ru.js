@@ -3,15 +3,15 @@ export default {
   list: 'список {name}',
   button: {
     yes: 'Да',
-    cancel: 'Отмена'
+    cancel: 'Отмена',
   },
   dialog: {
     confirm: {
       delete: {
         title: '',
-        message: 'Вы действительно хотите удалить элемент ?'
-      }
-    }
+        message: 'Вы действительно хотите удалить элемент ?',
+      },
+    },
   },
   form: {
     add: 'добавление',
@@ -20,7 +20,7 @@ export default {
     update: 'обновить',
 
     field: {
-      id: 'id'
+      id: 'id',
     },
     label: {
       yes: 'Да',
@@ -112,7 +112,7 @@ export default {
       role_priority: 'Приоритет',
       priority: 'Приоритет ролей в цифрах',
       role_desc: 'Описание',
-      roles: 'Роли доступа'
+      roles: 'Роли доступа',
     },
     placeholder: {
       name: 'название обьекта',
@@ -205,7 +205,7 @@ export default {
       vnytNapravlenie: 'Отправленные направление',
       sendStatusCustomView: 'Отправил&Принял',
       posMaterialCustomView: 'Обьект исследования',
-      vnytNapravlenieOptionalCustomView: 'Доп. данные'
+      vnytNapravlenieOptionalCustomView: 'Доп. данные',
     },
     description: {
       firstName: 'Имя',
@@ -294,8 +294,8 @@ export default {
       vnytNapravlenie: 'Отправленные направление',
       sendStatusCustomView: 'Отправил&Принял',
       posMaterialCustomView: 'Обьект исследования',
-      vnytNapravlenieOptionalCustomView: 'Доп. данные'
-    }
+      vnytNapravlenieOptionalCustomView: 'Доп. данные',
+    },
   },
   s_mera: {
     title: 'мера',
@@ -303,67 +303,68 @@ export default {
     label: {
       name: 'название',
       shortName: 'короткое навание',
-      i18n: 'ключ для локализации'
+      i18n: 'ключ для локализации',
     },
     placeholder: {
       name: '(кг, гр, мл, л)',
       shortName: 'короткое название',
-      i18n: 'ключ мультиязычности'
-    }
+      i18n: 'ключ мультиязычности',
+    },
   },
   s_otdelenia: {
-    title: 'Наименование отделении'
+    title: 'Наименование отделении',
   },
   s_material: {
-    title: 'Исследуемые материалы'
+    title: 'Исследуемые материалы',
   },
   s_bolezn: {
-    title: 'Болезни'
+    title: 'Болезни',
   },
   s_doljnost: {
-    title: 'Должности'
+    title: 'Должности',
   },
   s_material_type: {
-    title: 'Вид материалов'
+    title: 'Вид материалов',
   },
   s_material_animal_type: {
-    title: 'Виды животных'
+    title: 'Виды животных',
   },
   s_metod: {
-    title: 'Методы исследовании'
+    title: 'Методы исследовании',
   },
   s_pokazatel: {
-    title: 'Определяемые показатели'
+    title: 'Определяемые показатели',
   },
   s_preparat: {
-    title: 'Антибиотики, вакцины, антигельмитики'
+    title: 'Антибиотики, вакцины, антигельмитики',
   },
   s_region: {
-    title: 'Регионы'
+    title: 'Регионы',
   },
   s_region_type: {
-    title: 'Вид региона'
+    title: 'Вид региона',
   },
   otdel: {
     title: 'Отдел',
     error: {
       notSelected: 'Вы не выбрали отдел',
-      dateVremyaOtpravkiNotSelected: 'Вы не выбрали дата и время отправки пробы'
-    }
+      dateVremyaOtpravkiNotSelected:
+        'Вы не выбрали дата и время отправки пробы',
+    },
   },
   planRaboty: {
-    title: 'План работы'
+    title: 'План работы',
   },
   pos_material: {
     title: 'Поступившие материалы',
     label: {
       one: 'Поступивший материал',
       dateVremyaOtbora: 'Дата отбора пробы',
-      dateDostavki: 'Дата доставки пробы'
-    }
+      dateDostavki: 'Дата доставки пробы',
+    },
   },
   subOtdel: {
-    title: 'Под отдел'
+    title: 'Под отдел',
   },
   personal: {
     title: 'Персоналы',
@@ -377,8 +378,8 @@ export default {
       addressBirthRegionJSON: 'Место рождения',
       sDoljnostId: 'Должность',
       otdelId: 'Отдел',
-      subOtdel: 'Под отдел'
-    }
+      subOtdel: 'Под отдел',
+    },
   },
   napravlenie: {
     title: 'Направление',
@@ -386,13 +387,19 @@ export default {
       sendToOtdel: 'направить',
       sendToOtdelTitle: 'Отправить внутреннее направление',
       cancel: 'отменить',
-      delete: 'удалить'
-    }
+      delete: 'удалить',
+
+      status: {
+        new: 'Новый',
+        sended: 'Отправлен',
+        redirected: 'Перенаправлен',
+      }
+    },
   },
   napravlenieEpic: {
     title: 'Поступившие Направление',
     label: {
-      nomerNapravlenia: 'Код направления'
+      nomerNapravlenia: 'Код направления',
     }
   },
   vnytNapravlenie: {
@@ -400,11 +407,11 @@ export default {
       accept: 'Принять',
       reject: 'Отклонить',
       status: {
-        accepted: 'Вы уже приняли',
+        accepted: 'Принято',
         pending: 'Новый',
         research: 'Исследуется',
-        completed: 'Завершили'
-      }
+        completed: 'Завершили',
+      },
     },
     epic: {
       status: {
@@ -412,14 +419,14 @@ export default {
         accepted: 'Принят',
         research: 'На иследовании',
         rejected: 'Отклонен',
-        completed: 'Завершен'
-      }
+        completed: 'Завершен',
+      },
     },
     modal: {
       accept: {
         title: 'Подтверждение',
-        message: 'Принять направление ?'
-      }
+        message: 'Принять направление ?',
+      },
     },
     title: 'Внутреннее Направление',
     label: {
@@ -446,9 +453,9 @@ export default {
         pending: 'Ожидание принятии',
         accepted: 'Принят',
         research: 'На иследовании',
-        completed: 'Завершен'
-      }
-    }
+        completed: 'Завершен',
+      },
+    },
   },
   isledovanie: {
     label: {
@@ -456,120 +463,120 @@ export default {
       notApply: 'Не применимо',
       beforeProcess: 'До обработки',
       afterProcess: 'После обработки',
-      secondary: 'Вторичный'
-    }
+      secondary: 'Вторичный',
+    },
   },
   user: {
     title: 'Данные о пользователе',
     label: {
-      name: 'Ник'
+      name: 'Ник',
     },
     password: {
       notPassword: 'Вы не ввели пароль',
       lowPassword: 'Слабый пароль',
-      lowPassword4: 'Пароль склишком короткий, длина неменее 4 символов'
-    }
+      lowPassword4: 'Пароль склишком короткий, длина неменее 4 символов',
+    },
   },
   menu: {
     spravka: 'справочник',
     divider: '#######',
     admin: 'админ',
     mera: {
-      index: 'меры'
+      index: 'меры',
     },
     region_type: {
       index: 'вид регионов',
-      add: ''
+      add: '',
     },
     regions: {
       index: 'регионы',
-      add: ''
+      add: '',
     },
     otdelenia: {
       index: 'наименование отделении',
-      add: ''
+      add: '',
     },
     doljnost: {
       index: 'должности',
-      add: ''
+      add: '',
     },
     bolezn: {
       index: 'болезни',
-      add: ''
+      add: '',
     },
     pokazatel: {
       index: 'определяемый показатель',
-      add: ''
+      add: '',
     },
     preparat: {
-      index: 'вакцины и препараты'
+      index: 'вакцины и препараты',
     },
     material_type: {
       index: 'вид материалов',
-      add: ''
+      add: '',
     },
     material_animal_class: {
       index: 'класс животных',
-      add: ''
+      add: '',
     },
     material_animal_type: {
       index: 'вид животных',
-      add: ''
+      add: '',
     },
     material: {
       index: 'исследуемые материалы',
-      add: ''
+      add: '',
     },
     metod: {
       index: 'методы ииследование',
-      add: ''
+      add: '',
     },
     personal: {
       add: 'Добавление персонала',
-      index: 'персонал'
+      index: 'персонал',
     },
     otdel: {
       index: 'отделы',
-      add: ''
+      add: '',
     },
     sub_otdel: {
       index: 'под отделы',
-      add: ''
+      add: '',
     },
     departments: {
       index: 'департамент',
-      add: ''
+      add: '',
     },
     plan_raboty: {
       index: 'план работы',
-      add: ''
+      add: '',
     },
     isledovanie: {
       index: 'исследование',
-      add: ''
+      add: '',
     },
     analysis: {
       index: 'анализ',
-      add: ''
+      add: '',
     },
     protocol_isledovanie: {
       index: 'заключение',
-      add: ''
+      add: '',
     },
     proby_isledovanie: {
-      index: 'пробы на исследовании'
+      index: 'пробы на исследовании',
     },
     proby_postup: {
-      index: 'поступившие пробы'
+      index: 'поступившие пробы',
     },
     epidemiology: {
-      index: 'эпидемиология'
+      index: 'эпидемиология',
     },
     napravlenie: {
-      index: 'направление'
+      index: 'направление',
     },
     role: {
-      index: 'роли пользователей'
+      index: 'роли пользователей',
     },
     home: 'главная',
     direction: 'направлении',
@@ -581,31 +588,31 @@ export default {
     workers: 'сотрудники',
     contacts: 'контакты',
     chat: 'чат',
-    form4Tiny: 'форма4(компакт)'
+    form4Tiny: 'форма4(компакт)',
   },
 
   count: 'Количество',
   material: {
-    count: 'Количество материалов'
+    count: 'Количество материалов',
   },
   regions: {
     osh: {
       text: 'Ошская область',
-      tinyText: 'Ош'
+      tinyText: 'Ош',
     },
     'jalal-abad': {
       text: 'Джалал-Абадская область',
-      tinyText: 'Джалал-Абад'
+      tinyText: 'Джалал-Абад',
     },
     batken: {
       text: 'Баткенская область',
-      tinyText: 'Баткен'
+      tinyText: 'Баткен',
     },
     'south-region': {
       text: 'Южный регион',
       tinyText: 'Юг',
-      allResult: 'Все результаты по Южному региону'
-    }
+      allResult: 'Все результаты по Южному региону',
+    },
   },
 
   departments: {
@@ -625,7 +632,7 @@ export default {
     mycology: 'Микология',
     ascoly: 'Асколи',
     leptospiros: 'Лептоспироз',
-    leukemia: 'Лейкемия'
+    leukemia: 'Лейкемия',
   },
 
   research: {
@@ -633,58 +640,58 @@ export default {
     pathologist: {
       specialist: 'Патологоанатом',
       department: 'Патологоанотомия',
-      method: 'Патологическая анатомический'
+      method: 'Патологическая анатомический',
     },
     organoleptic: {
       specialist: 'Органолептик',
       department: 'Органолептика',
-      method: 'Органолептический'
+      method: 'Органолептический',
     },
     microscopy: {
       specialist: 'Микроскопиолог',
       department: 'Микроскопия',
-      method: 'Микроскопический'
+      method: 'Микроскопический',
     },
     bacteriology: {
       specialist: 'Бактериолог',
       department: 'Бактериология',
-      method: 'Бактериологический'
+      method: 'Бактериологический',
     },
     microbiology: {
       specialist: 'Микробиолог',
       department: 'Микробиология',
-      method: 'Микробиологический'
+      method: 'Микробиологический',
     },
     serology: {
       specialist: 'Серолог',
       department: 'Серология',
-      method: 'Серологический'
+      method: 'Серологический',
     },
     caprology: {
       specialist: 'Капролог',
       department: 'Капрология',
-      method: 'Капрологический'
+      method: 'Капрологический',
     },
     mycology: {
       specialist: 'Миколог',
       department: 'Микология',
-      method: 'Мокологический'
+      method: 'Мокологический',
     },
     biochemistry: {
       specialist: 'Биохимик',
       department: 'Биохимия',
-      method: 'Биохимический'
+      method: 'Биохимический',
     },
     chemToxicology: {
       specialist: 'Токсихолог',
       department: 'Химтоксикология',
-      method: 'Химтоксикологический'
+      method: 'Химтоксикологический',
     },
     radioLab: {
       specialist: 'Радиолог',
       department: 'Радиология',
-      method: 'Радиологический'
-    }
+      method: 'Радиологический',
+    },
   },
 
   error: {
@@ -699,13 +706,13 @@ export default {
     pleaseRequireAuth: 'Пожалуйста авторизуйтесь',
     create: 'Ошибка создания',
     update: 'Ошибка обновления',
-    get: 'Ошибка получения'
+    get: 'Ошибка получения',
   },
 
   auth: {
     signIn: 'Войти',
     signOut: 'Выйти',
-    endSession: 'Завершить сеанс'
+    endSession: 'Завершить сеанс',
   },
 
   success: {
@@ -713,33 +720,33 @@ export default {
     auth: 'Авторизация успешно',
     create: 'Успешно создано',
     update: 'Успешно обновлено',
-    get: 'Успешно получено'
+    get: 'Успешно получено',
   },
   help: {
-    helpCenter: 'Центр помощи'
+    helpCenter: 'Центр помощи',
   },
   profile: {
     edit: 'Редактировать профиль',
     view: 'Просмотр профиля',
-    delete: 'Удалить профиль'
+    delete: 'Удалить профиль',
   },
   placeholder: {
     enterEmail: 'Введите email',
-    enterPassword: 'Введите пароль'
+    enterPassword: 'Введите пароль',
   },
   require: {
     title: 'Требуется',
     email: 'Пожалуйста введите email',
-    password: 'Пожалуйста введите пароль'
+    password: 'Пожалуйста введите пароль',
   },
   current: {
     year: 'за этот год',
     week: 'за эту неделю',
-    day: 'за сегодня'
+    day: 'за сегодня',
   },
   researchConducted: 'Проведенные исследование',
   result: 'Результат',
   completed: 'Выполнен',
   plan: 'План',
-  percent: 'Процент'
+  percent: 'Процент',
 }

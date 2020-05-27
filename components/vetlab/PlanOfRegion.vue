@@ -15,7 +15,9 @@
     >
       <div class="card">
         <div class="card-header">
-          <h6 class="mg-b-0">{{ $t(department) }}</h6>
+          <h6 class="mg-b-0">
+            {{ $t(department) }}
+          </h6>
         </div>
         <div class="card-body pd-10">
           <b-table
@@ -31,7 +33,7 @@
               <span class="tx-bold">{{ data.label }}</span>
             </template>
             <template v-slot:foot(region)>
-              <i class="tx-bold">{{ $t('result') }}</i>
+              <i class="tx-bold">{{ $t("result") }}</i>
             </template>
             <template v-slot:foot(plan)>
               <i class="tx-bold">{{ planCount }}</i>
@@ -108,81 +110,81 @@ export default {
         'departments.parasitology',
         'departments.foodSecurity',
         'departments.virology',
-        'regions.south-region.allResult'
+        'regions.south-region.allResult',
       ],
       fields: [
         { key: 'region', label: 'Регион', i18n: 'region' },
         { key: 'plan', label: 'План', i18n: 'plan' },
         { key: 'completed', label: 'Выполнен', i18n: 'completed' },
         // Virtual column
-        { key: 'percent', label: '%%', i18n: 'percent' }
+        { key: 'percent', label: '%%', i18n: 'percent' },
       ],
       items: [
         {
           region: 'ТРБВДжЭБ',
           plan: '70673',
-          completed: '37185'
+          completed: '37185',
         },
         { region: 'Ноокат', plan: '34935', completed: '37789' },
         {
           region: 'Алай РВЛ',
           plan: '20180',
-          completed: '22499'
+          completed: '22499',
         },
         {
           region: 'Чон-Алай',
           plan: '15525',
-          completed: '3698'
+          completed: '3698',
         },
         {
           region: 'Кара-Кулжа РВЛ',
           plan: '20570',
-          completed: '16932'
+          completed: '16932',
         },
         {
           region: 'Кызыл-Жар',
           plan: '4860',
-          completed: '1230'
+          completed: '1230',
         },
         {
           region: 'Озгон РВЛ',
           plan: '43070',
-          completed: '9865'
+          completed: '9865',
         },
         {
           region: 'Жалал-Абад РВЛ',
           plan: '24845',
-          completed: '24210'
+          completed: '24210',
         },
         {
           region: 'Базар-Коргон',
           plan: '43470',
-          completed: '35698'
+          completed: '35698',
         },
         {
           region: 'Ала-Бука РВЛ',
           plan: '20815',
-          completed: '12654'
+          completed: '12654',
         },
         { region: 'Аксы', plan: '28790', completed: '29275' },
         { region: 'Чаткал', plan: '9580', completed: '10079' },
         {
           region: 'Сузак РВЛ',
           plan: '50855',
-          completed: '35987'
+          completed: '35987',
         },
         {
           region: 'Баткен ЗВЛ',
           plan: '27745',
-          completed: '18745'
+          completed: '18745',
         },
         { region: 'Лейлек', plan: '33900', completed: '35032' },
         {
           region: 'Кадамжай РВЛ',
           plan: '28360',
-          completed: '32984'
-        }
-      ]
+          completed: '32984',
+        },
+      ],
     }
   },
   computed: {
@@ -198,7 +200,7 @@ export default {
     },
     completedPercent() {
       return Number((this.completedCount / this.planCount) * 100).toFixed(2)
-    }
+    },
   },
   mounted() {
     setTimeout(() => {
@@ -216,7 +218,7 @@ export default {
       setTimeout(() => {
         this.randomRegionUp()
       }, this.$lodash.random(6000, 8000))
-    }
-  }
+    },
+  },
 }
 </script>
