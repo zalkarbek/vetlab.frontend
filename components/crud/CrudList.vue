@@ -105,9 +105,7 @@
                 label-class="tx-bold"
                 class="mb-0"
               >
-                <b-form-checkbox-group v-model="filterOn"
-                                       class="mt-1"
-                >
+                <b-form-checkbox-group v-model="filterOn" class="mt-1">
                   <template v-for="(column, index) in sortOptions">
                     <b-form-checkbox :key="index" :value="column.value">
                       {{ column.text }}

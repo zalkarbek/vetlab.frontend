@@ -3,11 +3,13 @@ import _ from 'lodash'
 import { createNamespacedHelpers } from 'vuex'
 import loadDatasetMixin from '~/mixins/loadDatasetMixin'
 import utilMixin from '~/mixins/utilMixin'
+import dateFormatMixin from '~/mixins/dateFormatMixin'
+import renderFunctionMixin from '~/mixins/renderFunctionMixin'
 
 const { mapState, mapGetters } = createNamespacedHelpers('api')
 
 export default {
-  mixins: [loadDatasetMixin, utilMixin],
+  mixins: [loadDatasetMixin, utilMixin, dateFormatMixin, renderFunctionMixin],
   components: {
     CrudListViewJson,
   },
