@@ -162,6 +162,10 @@
             {{ data.index + 1 }}
           </template>
 
+          <template v-slot:cell(id)="cellData">
+            <span class="tx-24 tx-bold">{{ cellData.value }}</span>
+          </template>
+
           <template v-slot:cell()="data">
             <template v-if="data.field.type === fieldTypes.json">
               <crud-list-view-json
@@ -251,10 +255,6 @@
             </b-button-toolbar>
           </template>
 
-          <template v-slot:cell(napravlenieId)="cellData">
-            <span class="tx-24 tx-bold">{{ cellData.value }}</span>
-          </template>
-
           <template v-slot:cell(sendStatusCustomView)="cellData">
             <div v-if="cellData.item.napravilPersonal">
               <h6>
@@ -308,7 +308,19 @@
                   </span>
                   <span>
                     {{
-                      formatDateTime(
+                      formatDate(
+                        getProp(cellData.item, "dateVremyaOtpravki", "")
+                      )
+                    }}
+                  </span>
+                </b-list-group-item>
+                <b-list-group-item v-if="cellData.item.dateVremyaOtpravki">
+                  <span class="tx-bold">
+                    {{ $t("vnytNapravlenie.label.vremyaOtpravki") }}:
+                  </span>
+                  <span>
+                    {{
+                      formatTime(
                         getProp(cellData.item, "dateVremyaOtpravki", "")
                       )
                     }}
@@ -371,9 +383,23 @@
                     </td>
                     <td>
                       {{
-                        formatDateTime(
+                        formatDate(
                           getProp(cellData.item, "prinyalDate", "")
                         )
+                      }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="tx-bold">
+                        {{ $t("vnytNapravlenie.label.prinyalTime") }}:
+                      </span>
+                    </td>
+                    <td>
+                      {{
+                      formatTime(
+                      getProp(cellData.item, "prinyalDate", "")
+                      )
                       }}
                     </td>
                   </tr>
@@ -390,19 +416,21 @@
                 </span>
                 <span>
                   <template
-                    v-for="pokazatelId in getProp(
+                    v-for="(pokazatelId, index) in getProp(
                       cellData.item,
                       'opPokazatelIdJSON',
                       []
                     )"
                   >
                     <span :key="pokazatelId">
+                      <br />
+                      <span class="tx-bold">{{ index + 1 }}: </span>
                       {{
                         viewForeignData(
                           cellData.field.fields.opPokazatelIdJSON,
                           pokazatelId
                         )
-                      }},
+                      }}.
                     </span>
                   </template>
                 </span>
@@ -412,18 +440,19 @@
                   {{ $t("vnytNapravlenie.label.posMaterialId") }}:
                 </span>
                 <span>
-                  {{
-                    getProp(cellData.item, "posMaterial.sMaterial.name", "")
-                  }},
+                  {{ getProp(cellData.item, "posMaterial.sMaterial.name", "") }}
+                </span>
+              </b-list-group-item>
+              <b-list-group-item v-if="cellData.item.posMaterial">
+                <span class="tx-bold">
+                  {{ $t("vnytNapravlenie.label.posMaterialCount") }}:
+                </span>
+                <span>
                   {{ getProp(cellData.item, "postMaterialCount", "") }}
                   {{ getProp(cellData.item, "posMaterial.sMera.name", "") }}
                 </span>
               </b-list-group-item>
-              <b-list-group-item
-                v-if="
-                  getProp(cellData.item, 'posMaterial.dateVremyaOtbora', null)
-                "
-              >
+              <b-list-group-item v-if="getProp(cellData.item, 'posMaterial.dateVremyaOtbora', null)">
                 <span class="tx-bold">
                   {{ $t("pos_material.label.dateVremyaOtbora") }}:
                 </span>
@@ -615,8 +644,6 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
-import _ from 'lodash'
 import CrudListMixin from '~/components/crud/CrudListMixin'
 export default {
   mixins: [CrudListMixin],
@@ -626,62 +653,6 @@ export default {
       total: null,
       pageOptions: [1, 2, 3, 5, 7, 10],
     }
-  },
-  computed: {
-    ...mapState({
-      currentLocale: (state) => state.currentLocale,
-      dateFormats: (state) => state.dateFormats,
-      dateSwitchLocales: (state) => state.dateSwitchLocales,
-    }),
-  },
-  methods: {
-    firstLetter(text) {
-      return this.$firstLetter(text)
-    },
-    getObjectIfNull(object) {
-      return object || {}
-    },
-    getProp(object, path, defaultValue = '') {
-      return _.get(object, path, defaultValue)
-    },
-    checkIcon(condition) {},
-    formatDate(date) {
-      const dateLocale = this.dateSwitchLocales[this.currentLocale]
-      return this.$moment(date)
-        .locale(dateLocale)
-        .format(this.dateFormats.mediumDateFormat)
-    },
-    formatDateTime(date) {
-      const dateLocale = this.dateSwitchLocales[this.currentLocale]
-      return this.$moment(date)
-        .locale(dateLocale)
-        .format(this.dateFormats.mediumDateTimeFormat)
-    },
-    renderJSONArrayToList(array = []) {
-      let listText = ''
-      if (array && Array.isArray(array) && array.length >= 1) {
-        array.forEach((item) => {
-          listText = `${listText} ${item}`
-        })
-      }
-      return listText
-    },
-    renderJSONArrayToListWithTranslate(array = [], prefix = 'form.label') {
-      let listText = ''
-      if (array && Array.isArray(array) && array.length >= 1) {
-        array.forEach((item) => {
-          const translate = this.$t(`${prefix}.${item}`)
-          listText = `${listText} ${translate}`
-        })
-      }
-      return listText
-    },
-    toLowerCase(value) {
-      return _.toLower(value)
-    },
-    toUpperCase(value) {
-      return _.toUpper(value)
-    },
-  },
+  }
 }
 </script>

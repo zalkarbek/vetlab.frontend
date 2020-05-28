@@ -132,11 +132,15 @@ export default {
       json: [
         {
           type: 'text',
-          key: 'address',
+          key: 'phone_1',
         },
         {
           type: 'text',
-          key: 'phone_1',
+          key: 'phone_2',
+        },
+        {
+          type: 'text',
+          key: 'phone_3',
         },
       ],
     },
@@ -167,8 +171,8 @@ export default {
           key: 'regionFullPath',
           // col настраивает макет сетки ввода (ширина поля ввода) md, sm, xs, lg
           col: {
-            md: 6,
-            lg: 4,
+            md: 8,
+            lg: 6,
           },
           // api модель от которой нужны данные автозаполнения
           foreign_crud: 's_region',
@@ -229,8 +233,8 @@ export default {
           key: 'regionFullPath',
           // col настраивает макет сетки ввода (ширина поля ввода) md, sm, xs, lg
           col: {
-            md: 6,
-            lg: 4,
+            md: 8,
+            lg: 6,
           },
           // api модель от которой нужны данные автозаполнения
           foreign_crud: 's_region',

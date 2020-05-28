@@ -2,11 +2,12 @@ import CrudListViewJson from './CrudListViewJson'
 import _ from 'lodash'
 import { createNamespacedHelpers } from 'vuex'
 import loadDatasetMixin from '~/mixins/loadDatasetMixin'
+import utilMixin from '~/mixins/utilMixin'
 
 const { mapState, mapGetters } = createNamespacedHelpers('api')
 
 export default {
-  mixins: [loadDatasetMixin],
+  mixins: [loadDatasetMixin, utilMixin],
   components: {
     CrudListViewJson,
   },
@@ -145,11 +146,7 @@ export default {
     fields() {
       const index = {
         key: 'index',
-        label: '№',
-      }
-      const id = {
-        key: 'id',
-        label: this.$t('form.field.id'),
+        label: '№'
       }
       const actions = {
         key: 'actions',
@@ -172,7 +169,7 @@ export default {
           ...other,
         }
       })
-      return [index, id, ...list, actions]
+      return [index, ...list, actions]
     },
     sortOptions() {
       return this.fields
@@ -352,6 +349,6 @@ export default {
 
     debounceSearchLocal: _.debounce(function (search, page, pageSize) {
       this.onSearch(search, page, pageSize)
-    }, 300),
+    }, 300)
   },
 }

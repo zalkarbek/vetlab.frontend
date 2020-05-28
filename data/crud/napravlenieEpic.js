@@ -103,6 +103,11 @@ export default {
   ],
   fields: [
     {
+      type: 'number',
+      key: 'id',
+      label: 'napravlenieEpic.label.nomerNapravlenia'
+    },
+    {
       type: 'select',
       key: 'otdelId',
       foreign_crud: 'otdel',

@@ -2,6 +2,8 @@ export default {
   text: 'text',
   checkbox: 'checkbox',
   checkbox_array: 'checkbox_array',
+  switch: 'switch',
+  switch_array: 'switch_array',
   password: 'password',
   input_mask: 'input_mask',
   number: 'number',

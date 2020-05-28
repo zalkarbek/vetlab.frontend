@@ -170,6 +170,10 @@ const vnytNapravlenieFields = {
       foreign_attributes: ['name', 'id'],
       disabled: false,
       hidden: false,
+      col: {
+        md: 8,
+        lg: 6
+      }
     },
 
     // Исследования проводятся (одно значение)

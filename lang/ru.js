@@ -23,6 +23,11 @@ export default {
       id: 'id',
     },
     label: {
+      gosStandard: 'ГОС стандарт (НД)',
+      boolean_true: 'Да',
+      boolean_false: 'Нет',
+      description: 'Примечание',
+      pokazatel: 'Показатель',
       yes: 'Да',
       no: 'Нет',
       status: 'Статус',
@@ -47,6 +52,11 @@ export default {
       per_page: 'количество',
       address: 'Адрес',
       phone_1: 'телефон 1',
+      phone_2: 'телефон 2',
+      phone_3: 'телефон 3',
+      phone_4: 'телефон 4',
+      phone_5: 'телефон 5',
+      phone_6: 'телефон 6',
       regionFullText: 'Полный адрес',
       sMaterialTypeId: 'Вид материала',
       sMaterialAnimalTypeId: 'вид животного',
@@ -115,6 +125,11 @@ export default {
       roles: 'Роли доступа',
     },
     placeholder: {
+      gosStandard: 'ГОС стандарт или НД документ',
+      boolean_true: 'Да',
+      boolean_false: 'Нет',
+      description: 'Примечание',
+      pokazatel: 'Показатель',
       name: 'название обьекта',
       fullName: 'ФИО',
       firstName: 'Имя',
@@ -208,6 +223,13 @@ export default {
       vnytNapravlenieOptionalCustomView: 'Доп. данные',
     },
     description: {
+      boolean_true: 'Да',
+      boolean_false: 'Нет',
+      description: 'Примечание',
+      pokazatel: 'Показатель',
+      gosStandard: 'ГОС Стандарт или Нормативный документ',
+      name: 'Название или наименование',
+      shortName: 'Короткое название',
       firstName: 'Имя',
       lastName: 'Фамилия',
       sort: 'сортировка по выбранному поле',
@@ -346,6 +368,12 @@ export default {
   },
   otdel: {
     title: 'Отдел',
+    label: {
+      nonSpecOtdel: 'Не профильный отдел'
+    },
+    description: {
+      nonSpecOtdel: 'Не принадлежит к не профильному отделу'
+    },
     error: {
       notSelected: 'Вы не выбрали отдел',
       dateVremyaOtpravkiNotSelected:
@@ -397,9 +425,9 @@ export default {
     },
   },
   napravlenieEpic: {
-    title: 'Поступившие Направление',
+    title: 'Поступившие внешнее Направление',
     label: {
-      nomerNapravlenia: 'Код направления',
+      nomerNapravlenia: '№ Заказа',
     }
   },
   vnytNapravlenie: {
@@ -430,13 +458,17 @@ export default {
     },
     title: 'Внутреннее Направление',
     label: {
+      nomerNapravlenia: '№ Заказа',
       napravilPersonal: 'Направил',
       napravlenOtdel: 'Направлен в отдел',
       dateVremyaOtpravki: 'Дата отправки',
+      vremyaOtpravki: 'Время отправки',
       prinyalPersonal: 'Принял',
       prinyalOtdel: 'Принял',
       prinyalDate: 'Дата приема',
+      prinyalTime: 'Время приема',
       opPokazatel: 'Опр-е показатели',
+      posMaterialCount: 'Количество проб',
       posMaterialId: 'Обьект исследования',
       posMaterialCheckVid: 'Соответствие внешнего вида',
       postMaterialCheck: 'Соответствует своему образу',

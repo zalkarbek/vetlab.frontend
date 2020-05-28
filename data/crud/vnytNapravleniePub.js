@@ -83,8 +83,8 @@ export default {
   fieldsForTable: [
     {
       type: 'number',
-      key: 'napravlenieId',
-      label: 'napravlenieEpic.label.nomerNapravlenia',
+      key: 'id',
+      label: 'vnytNapravlenie.label.nomerNapravlenia',
     },
 
     // #===========# / sendStatusCustomView / #===========#

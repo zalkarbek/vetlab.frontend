@@ -84,12 +84,16 @@ export default {
       json: [
         {
           type: 'text',
-          key: 'address',
+          key: 'phone_1',
         },
         {
           type: 'text',
-          key: 'phone_1',
+          key: 'phone_2',
         },
+        {
+          type: 'text',
+          key: 'phone_3',
+        }
       ],
     },
   ],

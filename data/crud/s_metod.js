@@ -18,5 +18,15 @@ export default {
     ...baseApi,
   },
 
-  fields: [...baseFields],
+  fields: [
+    ...baseFields,
+    {
+      type: 'textarea',
+      key: 'gosStandard'
+    },
+    {
+      type: 'textarea',
+      key: 'description'
+    }
+  ],
 }

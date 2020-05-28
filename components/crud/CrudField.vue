@@ -17,6 +17,7 @@
         v-model="formValue"
         :value="form.checkbox_value"
         :unchecked-value="form.checkbox_unchecked_value"
+        :size="form.size"
       >
         {{ $t(form.checkbox_label) }}
       </b-form-checkbox>
@@ -31,9 +32,38 @@
         :value-field="form.checkbox_value_field"
         :text-field="form.checkbox_text_field"
         :disabled-field="form.checkbox_disabled_field"
+        :size="form.size"
       />
     </template>
     <!-- -----------------------/ FORM CHECKBOX_ARRAY /----------------------- -->
+
+    <!-- ----------------------- FORM SWITCH ----------------------- -->
+    <template v-if="!form.disabled && form.type === fieldTypes.switch">
+      <b-form-checkbox
+        v-model="formValue"
+        :value="form.checkbox_value"
+        :unchecked-value="form.checkbox_unchecked_value"
+        :size="form.size"
+        switch
+      >
+        {{ $t(form.checkbox_label) }}
+      </b-form-checkbox>
+    </template>
+    <!-- -----------------------/ FORM SWITCH /----------------------- -->
+
+    <!-- ----------------------- FORM SWITCH_ARRAY ----------------------- -->
+    <template v-if="!form.disabled && form.type === fieldTypes.switch_array">
+      <b-form-checkbox-group
+        v-model="formValue"
+        :options="form.checkbox_options"
+        :value-field="form.checkbox_value_field"
+        :text-field="form.checkbox_text_field"
+        :disabled-field="form.checkbox_disabled_field"
+        :size="form.size"
+        switch
+      />
+    </template>
+    <!-- -----------------------/ FORM SWITCH_ARRAY /----------------------- -->
 
     <!-- ----------------------- FORM PASSWORD ----------------------- -->
     <template v-if="!form.disabled && form.type === fieldTypes.password">

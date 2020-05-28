@@ -18,5 +18,15 @@ export default {
     ...baseApi,
   },
 
-  fields: [...baseFields],
+  fields: [
+    ...baseFields,
+    {
+      type: 'text',
+      key: 'pokazatel',
+    },
+    {
+      type: 'textarea',
+      key: 'description',
+    },
+  ],
 }

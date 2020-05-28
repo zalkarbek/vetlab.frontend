@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       napravlenieCrudDataName: 'napravlenieEpic',
-      vnytNapravlenieCrudDataName: 'vnytNapravlenie',
+      vnytNapravlenieCrudDataName: 'vnytNapravlenieEpic',
     }
   },
   computed: {

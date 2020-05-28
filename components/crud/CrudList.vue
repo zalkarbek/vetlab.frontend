@@ -4,9 +4,7 @@
       <h4>{{ $t("list", { name: $t(`${restName}.title`) }) }}</h4>
       <!-- User Interface controls -->
       <b-row>
-        <b-col lg="3"
-               class="my-1"
-        >
+        <b-col lg="3" class="my-1">
           <b-form-group
             :label="$t('form.label.sort')"
             :description="$t('form.description.sort')"
@@ -47,9 +45,7 @@
           </b-form-group>
         </b-col>
 
-        <b-col lg="9"
-               class="my-1"
-        >
+        <b-col lg="9" class="my-1">
           <b-row>
             <b-col lg="5">
               <b-form-group
@@ -123,9 +119,7 @@
           </b-row>
         </b-col>
 
-        <b-col lg="9"
-               class="my-1"
-        >
+        <b-col lg="9" class="my-1">
           <b-row>
             <b-col lg="4">
               <b-form-group
@@ -192,21 +186,20 @@
                 view-type="inline"
               />
             </template>
-
             <template v-else-if="data.field.type === fieldTypes.select_multi">
               <template v-if="data.value && Array.isArray(data.value)">
                 <template v-for="(item, index) in data.value">
-                  <span :key="index"
-                        class="tx-bold"
-                  >
+                  <span :key="index" class="tx-bold">
                     {{ viewForeignData(data.field, item) }},&nbsp;
                   </span>
                 </template>
               </template>
             </template>
-
             <template v-else-if="data.field.foreign_crud">
               <span>{{ viewForeignData(data.field, data.value) }}</span>
+            </template>
+            <template v-else-if="data.field.type === fieldTypes.checkbox">
+              <span>{{ $t(`form.label.boolean_${data.value}`) }}</span>
             </template>
             <template v-else>
               {{ data.value }}

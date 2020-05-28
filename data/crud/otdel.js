@@ -28,6 +28,10 @@ export default {
       foreign_attributes: ['name', 'id'],
       disabled: false,
       hidden: false,
+      col: {
+        md: 6,
+        lg: 4,
+      },
     },
     {
       type: 'select',
@@ -40,5 +44,11 @@ export default {
       disabled: false,
       hidden: false,
     },
+    {
+      type: 'checkbox',
+      key: 'nonSpecOtdel',
+      label: 'otdel.label.nonSpecOtdel',
+      description: 'otdel.description.nonSpecOtdel'
+    }
   ],
 }
