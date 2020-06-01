@@ -11,4 +11,9 @@ export default ({ socket, context, socks }) => {
     EVENTS.CLIENT_VNYT_NAPRAVLENIE_REJECT,
     handler.onReject({ socket, context, socks })
   )
+
+  socket.on(
+    EVENTS.CLIENT_START_ISLEDOVANIE,
+    handler.onStartIsledovanieResponse({ socket, context, socks })
+  )
 }

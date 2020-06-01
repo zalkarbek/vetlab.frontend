@@ -15,5 +15,11 @@ export default {
     const io = ctx.app.$io.getSocket()
     const socketEvents = ctx.app.$io.getSocksEvents()
     io.emit(socketEvents.SERVER_VNYT_NAPRAVLENIE_REJECT, data)
+  },
+
+  onVnytNapravlenieStartIsledovanie(ctx, data) {
+    const io = ctx.app.$io.getSocket()
+    const socketEvents = ctx.app.$io.getSocksEvents()
+    io.emit(socketEvents.SERVER_START_ISLEDOVANIE, data)
   }
 }

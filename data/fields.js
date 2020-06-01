@@ -318,6 +318,9 @@ const researchStartFields = {
     {
       type: 'select-multi',
       key: 'metodIdJSON',
+      label: 'vnytNapravlenie.label.researchMetodJSON',
+      description: 'vnytNapravlenie.description.researchMetodJSON',
+      placeholder: 'vnytNapravlenie.placeholder.researchMetodJSON',
       foreign_crud: 's_metod',
       foreign_dataset: 'metod',
       foreign_label: 'name',

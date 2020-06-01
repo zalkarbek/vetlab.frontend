@@ -122,6 +122,13 @@ export default {
       }
       return []
     },
+
+    findItemInDataset(query, columnName, datasetName) {
+      const items = this.findInDataset(query, columnName, datasetName)
+      if(items && items[0])
+        return items[0]
+      return null
+    },
     pushItemInDataset(data, datasetName) {
       datasetName = this.getStandDatasetName(datasetName)
       if (this.getPaginationType() === this.PAGINATION_TYPES.STORAGE) {
@@ -204,6 +211,47 @@ export default {
         this.dataset[datasetName].splice(this.dataset[datasetName].indexOf(data), 1)
         this.crudListRecords = this.dataset[datasetName]
       }
+    },
+
+    pushValueToItemInDataset(id, key, value, datasetName) {
+      const dtName = datasetName || this.crudData.datasetName
+      const item = this.findItemInDataset(id, 'id', dtName)
+      if(!item) {
+        return false
+      }
+
+      if(!item[key]) {
+        item[key] = []
+      }
+      item[key].push(value)
+      return item
+    },
+
+    pushValuesToItemInDataset(id, key, values, datasetName) {
+      const dtName = datasetName || this.crudData.datasetName
+      const item = this.findItemInDataset(id, 'id', dtName)
+      if(!item)
+        return false
+
+      if(!item[key]) {
+        item[key] = []
+      }
+      if(Array.isArray(values)) {
+        item[key] = [...item[key], ...values]
+      } else {
+        item[key].push(values)
+      }
+      return item
+    },
+
+    updateValueToItemInDataset(id, key, value, datasetName) {
+      const dtName = datasetName || this.crudData.datasetName
+      const item = this.findItemInDataset(id, 'id', dtName)
+      if(!item)
+        return false
+
+      item[key] = value
+      return item
     },
 
     async onCreate(data) {

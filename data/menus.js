@@ -225,7 +225,7 @@ export default [
         text: 'поступившие направления',
         class: '',
         icon: '',
-        to: '/pos-proby',
+        to: '/napravlenie-pub',
       },
       {
         _t: 'menu.isledovanie.index',

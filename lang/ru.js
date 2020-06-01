@@ -487,7 +487,9 @@ export default {
   },
   vnytNapravlenie: {
     error: {
-      rejectDescriptionNotWritten: 'Пожалуйста напишите причину отклонения'
+      rejectDescriptionNotWritten: 'Пожалуйста напишите причину отклонения',
+      metodNotSelected: 'Вы не выбрали НД документ для исследования',
+      opPokazatelNotSelected: 'Вы не выбрали ни одного определяемого показателя'
     },
     pub: {
       researchStart: 'К исследованию',
@@ -526,6 +528,7 @@ export default {
     },
     title: 'Внутреннее Направление',
     label: {
+      researchMetodJSON: 'Методическое указание (НД)',
       rejectionDescription: 'Причина отклонения',
       count: 'Кол-во',
       outerNomerNapravlenia: 'Внешний №',
@@ -566,6 +569,12 @@ export default {
         completed: 'Завершен',
       },
     },
+    description: {
+      researchMetodJSON: 'Какой ГОС стандарт(НД) используется для исследования',
+    },
+    placeholder: {
+      researchMetodJSON: 'Нормативный документ',
+    }
   },
   isledovanie: {
     label: {

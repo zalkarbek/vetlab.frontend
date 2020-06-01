@@ -79,6 +79,12 @@ export default {
       this.busEvents.VNYT_NAPRAVLENIE_REJECT_FINISH,
       this.rejectSuccess
     )
+
+    this.$eventBus.$on(
+      this.busEvents.VNYT_NAPRAVLENIE_START_ISLEDOVANIE_RESPONSE,
+      this.reSearchResponse
+    )
+
   },
   beforeDestroy() {
     this.$eventBus.$off(
@@ -89,6 +95,11 @@ export default {
     this.$eventBus.$on(
       this.busEvents.VNYT_NAPRAVLENIE_REJECT_FINISH,
       this.rejectSuccess
+    )
+
+    this.$eventBus.$off(
+      this.busEvents.VNYT_NAPRAVLENIE_START_ISLEDOVANIE_RESPONSE,
+      this.reSearchResponse
     )
   },
   methods: {
@@ -133,8 +144,46 @@ export default {
       this.updateItemInDataset(data.id, data, this.crudData.datasetName)
     },
 
-    reSearchOk({ data }) {
-      console.log(data)
+    reSearchOk({ data, cb }) {
+      const {
+        id:vnytNapravlenieId,
+        napravlenieId,
+        metodIdJSON,
+        opPokazatelIdJSON,
+      } = data
+
+      let success = false
+      if(!metodIdJSON || Array.isArray(metodIdJSON) && metodIdJSON.length === 0) {
+        success = false
+        cb(success, {
+          ok: success,
+          message: this.$t('vnytNapravlenie.error.metodNotSelected'),
+        })
+        return false
+      }
+
+      if(!opPokazatelIdJSON || Array.isArray(opPokazatelIdJSON) && opPokazatelIdJSON.length === 0) {
+        success = false
+        cb(success, {
+          ok: success,
+          message: this.$t('vnytNapravlenie.error.opPokazatelNotSelected'),
+        })
+        return false
+      }
+
+      this.$store.dispatch('emit/vnytNapravlenieStartIsledovanie', {
+        vnytNapravlenieId,
+        napravlenieId,
+        metodIdJSON,
+        opPokazatelIdJSON
+      })
+    },
+
+    reSearchResponse(data) {
+      if(data && data.id && data.vnytNapravlenieId) {
+        this.pushValueToItemInDataset(data.vnytNapravlenieId, 'isledovanies', data)
+        this.toastSuccess('Проба успешно перемещен на исследование')
+      }
     }
   },
 }
