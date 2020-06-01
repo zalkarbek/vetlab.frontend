@@ -19,14 +19,30 @@
           :crud-buttons-enabled="false"
           :crud-data="crudModalData"
           :record="modalFormData"
-        />
+        >
+          <template v-slot:posMaterialId="props">
+            <v-select
+              v-model.trim="modalFormData[props.field.key]"
+              :reduce="(item) => item.id"
+              :placeholder="$t(props.field.placeholder || `form.placeholder.${props.field.key}`)"
+              :options="[props.item.posMaterial]"
+              label="id"
+            >
+              <template #option="option">
+                <span>{{ option.sMaterial.name }}</span>
+              </template>
+              <template #selected-option="option">
+                <strong>{{ option.sMaterial.name }}</strong>
+              </template>
+            </v-select>
+          </template>
+        </crud-form>
       </template>
       <template v-if="modal.type === modalTypes.confirm">
         <p v-if="modal.message && modal.message.length >= 1" class="h5">
           {{ $t(modal.message) }}
         </p>
-        <p
-          v-if="modal.messageWithTranslate && modal.messageWithTranslate.length >= 1"
+        <p v-if="modal.messageWithTranslate && modal.messageWithTranslate.length >= 1"
           class="h5"
         >
           {{ $t(modal.messageWithTranslate) }}
@@ -37,7 +53,6 @@
 </template>
 <script>
 import CrudFormModalMixin from '~/components/crud/CrudFormModalMixin'
-
 export default {
   mixins: [CrudFormModalMixin]
 }

@@ -1,13 +1,7 @@
 <template>
   <div class="crud">
-    <div
-      class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30"
-    >
-      <div>
-        <h4 class="mg-b-0 tx-spacing--1 mg-b-7">
-          {{ $t(`${restName}.title`) }}
-        </h4>
-      </div>
+    <div class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
+      <h4 class="mg-b-0 tx-spacing--1 mg-b-7">{{ $t(`${restName}.title`) }}</h4>
       <div class="d-sm-block d-lg-block d-md-block" />
     </div>
     <b-row class="mg-t-10 row-xs">
@@ -41,7 +35,6 @@
             @on-action="onModalAction"
           />
         </template>
-
         <template v-if="modal.type === modalTypes.confirm">
           <crud-form-modal
             :id="modal.id"
@@ -59,10 +52,10 @@
 </template>
 <script>
 import VnytNapravlenieList from './VnytNapravlenieList'
-import ComponentMixin from './ComponentMixin'
+import VnytNapravlenieComponentMixin from './VnytNapravlenieComponentMixin'
 import _ from 'lodash'
 import { mapState } from 'vuex'
-import CrudFormModal from '~/components/crud/CrudFormModal'
+import CrudFormModal from './VnytNapravlenieFormModal'
 import toastMixin from '~/mixins/toastMixin'
 
 export default {
@@ -70,7 +63,7 @@ export default {
     VnytNapravlenieList,
     CrudFormModal,
   },
-  mixins: [toastMixin, ComponentMixin],
+  mixins: [toastMixin, VnytNapravlenieComponentMixin],
   computed: {
     ...mapState({
       busEvents: (state) => state.busEvents,
@@ -81,15 +74,25 @@ export default {
       this.busEvents.VNYT_NAPRAVLENIE_ACCEPT_SUCCESS,
       this.acceptSuccess
     )
+
+    this.$eventBus.$on(
+      this.busEvents.VNYT_NAPRAVLENIE_REJECT_FINISH,
+      this.rejectSuccess
+    )
   },
   beforeDestroy() {
     this.$eventBus.$off(
       this.busEvents.VNYT_NAPRAVLENIE_ACCEPT_SUCCESS,
       this.acceptSuccess
     )
+
+    this.$eventBus.$on(
+      this.busEvents.VNYT_NAPRAVLENIE_REJECT_FINISH,
+      this.rejectSuccess
+    )
   },
   methods: {
-    acceptDialog({ modalId }, data) {
+    openDialog({ modalId }, data) {
       if (modalId) {
         this.$bvModal.show(modalId)
       }
@@ -107,6 +110,32 @@ export default {
       this.toastSuccess('Направление принято')
       this.updateItemInDataset(data.id, data, this.crudData.datasetName)
     },
+
+    rejectOk({ data, cb }) {
+      const { id, napravlenieId, rejectionDescription } = data
+      if (!rejectionDescription || rejectionDescription && rejectionDescription.length <= 0) {
+        const success = false
+        const message = this.$t('vnytNapravlenie.error.rejectDescriptionNotWritten')
+        cb(success, {
+          ok: success,
+          message,
+        })
+        return false
+      }
+      this.$store.dispatch('emit/vnytNapravlenieReject', {
+        id,
+        napravlenieId,
+        rejectionDescription
+      })
+    },
+    rejectSuccess(data) {
+      this.toastSuccess('Направление отклонено')
+      this.updateItemInDataset(data.id, data, this.crudData.datasetName)
+    },
+
+    reSearchOk({ data }) {
+      console.log(data)
+    }
   },
 }
 </script>

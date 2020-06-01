@@ -30,5 +30,12 @@ export default {
       return _.toUpper(value)
     },
 
+    has(object, property) {
+      return _.has(object, property)
+    },
+
+    isObject(prop) {
+      return _.isObject(prop)
+    }
   },
 }

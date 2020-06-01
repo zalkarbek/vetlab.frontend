@@ -151,6 +151,7 @@
           :sort-by.sync="sortBy"
           :sort-desc.sync="sortDesc"
           :sort-direction="sortDirection"
+          :tbody-tr-class="rowStatusBasedColor"
           show-empty
           small
           stacked="md"
@@ -227,7 +228,7 @@
 
             <span
               v-if="toLowerCase(cellData.value) === toLowerCase('rejected')"
-              class="tx-16 badge badge-success"
+              class="tx-16 badge badge-danger"
             >
               {{ $t(`vnytNapravlenie.pub.status.${cellData.value}`) }}
             </span>
@@ -240,7 +241,11 @@
                   <b-button
                     :key="index"
                     :variant="button.variant || 'secondary'"
-                    :disabled="button.action === 'accept-napravlenie' && row.item.status === 'accepted'"
+                    :disabled="
+                      (button.action === 'accept' || button.action === 'reject')
+                      &&
+                      (row.item.status === 'accepted' || row.item.status === 'rejected')
+                    "
                     @click="onActionButton(button, row.item)"
                   >
                     <i
@@ -328,6 +333,7 @@
                 </b-list-group-item>
               </b-list-group>
             </div>
+
             <div v-if="cellData.item.prinyalPersonal">
               <h6>
                 {{ $t("vnytNapravlenie.label.prinyalPersonal") }}
@@ -406,6 +412,71 @@
                 </tbody>
               </table>
             </div>
+
+            <div v-if="cellData.item.rejectPersonal">
+              <h6>
+                {{ $t("vnytNapravlenie.label.rejectPersonal") }}
+              </h6>
+              <ul class="list-group list-group-flush tx-13">
+                <li class="list-group-item d-flex pd-sm-x-20">
+                  <div class="avatar">
+                    <span class="avatar-initial rounded-circle bg-primary">
+                      {{
+                        getProp(
+                          cellData.item,
+                          "rejectPersonal.fullName",
+                          ""
+                        )[0]
+                      }}
+                    </span>
+                  </div>
+                  <div class="pd-l-10">
+                    <p class="tx-medium mg-b-0">
+                      {{
+                        getProp(cellData.item, "rejectPersonal.fullName", "")
+                      }}
+                    </p>
+                    <small class="tx-12 tx-color-03 mg-b-0">
+                      {{ getProp(cellData.item, "rejectPersonal.sDoljnost.name", "") }}
+                    </small>
+                  </div>
+                </li>
+              </ul>
+              <table class="table table-responsive">
+                <tbody>
+                <tr>
+                  <td>
+                    <span class="tx-bold">
+                      {{ $t("vnytNapravlenie.label.rejectOtdel") }}:
+                    </span>
+                  </td>
+                  <td>
+                    {{ getProp(cellData.item, "rejectOtdel.name", "") }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="tx-bold">
+                      {{ $t("vnytNapravlenie.label.rejectDate") }}:
+                    </span>
+                  </td>
+                  <td>
+                    {{ formatDate(getProp(cellData.item, "rejectDate", "")) }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="tx-bold">
+                      {{ $t("vnytNapravlenie.label.rejectTime") }}:
+                    </span>
+                  </td>
+                  <td>
+                    {{ formatTime(getProp(cellData.item, "rejectDate", "")) }}
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </template>
 
           <template v-slot:cell(posMaterialCustomView)="cellData">
@@ -414,26 +485,20 @@
                 <span class="tx-bold">
                   {{ $t("vnytNapravlenie.label.opPokazatel") }}:
                 </span>
-                <span>
+                <ul>
                   <template
-                    v-for="(pokazatelId, index) in getProp(
-                      cellData.item,
-                      'opPokazatelIdJSON',
-                      []
-                    )"
+                      v-for="pokazatelId in getProp(cellData.item,'opPokazatelIdJSON',[])"
                   >
-                    <span :key="pokazatelId">
-                      <br />
-                      <span class="tx-bold">{{ index + 1 }}: </span>
+                    <li :key="pokazatelId">
                       {{
-                        viewForeignData(
-                          cellData.field.fields.opPokazatelIdJSON,
-                          pokazatelId
-                        )
-                      }}.
-                    </span>
+                      viewForeignData(
+                      cellData.field.fields.opPokazatelIdJSON,
+                      pokazatelId
+                      )
+                      }}
+                    </li>
                   </template>
-                </span>
+                </ul>
               </b-list-group-item>
               <b-list-group-item v-if="cellData.item.posMaterial">
                 <span class="tx-bold">
@@ -469,7 +534,7 @@
                 </span>
               </b-list-group-item>
               <b-list-group-item
-                v-if="getProp(cellData.item, 'posMaterial.dateDostavki', null)"
+                  v-if="getProp(cellData.item, 'posMaterial.dateDostavki', null)"
               >
                 <span class="tx-bold">
                   {{ $t("pos_material.label.dateDostavki") }}:
@@ -484,10 +549,10 @@
               </b-list-group-item>
               <b-list-group-item>
                 <span
-                  v-if="
+                    v-if="
                     getProp(cellData.item, 'posMaterialCheckVid', null) === true
                   "
-                  class="tx-bold"
+                    class="tx-bold"
                 >
                   {{ $t("vnytNapravlenie.label.posMaterialCheckVid") }}:
                   <i class="fas fa-check-circle tx-success" />
@@ -495,11 +560,11 @@
                 </span>
 
                 <span
-                  v-if="
+                    v-if="
                     getProp(cellData.item, 'posMaterialCheckVid', null) ===
                       false
                   "
-                  class="tx-bold"
+                    class="tx-bold"
                 >
                   {{ $t("vnytNapravlenie.label.posMaterialCheckVid") }}:
                   <i class="fas fa-check-circle tx-success" />
@@ -508,10 +573,10 @@
               </b-list-group-item>
               <b-list-group-item>
                 <span
-                  v-if="
+                    v-if="
                     getProp(cellData.item, 'postMaterialCheck', null) === true
                   "
-                  class="tx-bold"
+                    class="tx-bold"
                 >
                   {{ $t("vnytNapravlenie.label.postMaterialCheck") }}:
                   <i class="fas fa-check-circle tx-success" />
@@ -519,10 +584,10 @@
                 </span>
 
                 <span
-                  v-if="
+                    v-if="
                     getProp(cellData.item, 'postMaterialCheck', null) === false
                   "
-                  class="tx-bold"
+                    class="tx-bold"
                 >
                   {{ $t("vnytNapravlenie.label.postMaterialCheck") }}:
                   <i class="fas fa-check-circle tx-success" />
@@ -636,6 +701,15 @@
                   }}
                 </span>
               </b-list-group-item>
+
+              <b-list-group-item v-if="cellData.item.rejectionDescription">
+                <span class="tx-bold">
+                  {{ $t("vnytNapravlenie.label.rejectionDescription") }}:
+                </span>
+                <span>
+                  {{ getProp(cellData.item, "rejectionDescription", '') }}
+                </span>
+              </b-list-group-item>
             </b-list-group>
           </template>
         </b-table>
@@ -652,6 +726,11 @@ export default {
       perPage: 3,
       total: null,
       pageOptions: [1, 2, 3, 5, 7, 10],
+    }
+  },
+  methods: {
+    rowStatusBasedColor(item, type) {
+      if (!item || type !== 'row') return false
     }
   }
 }

@@ -3,9 +3,7 @@
     <b-container fluid>
       <!-- User Interface controls -->
       <b-row>
-        <b-col lg="3"
-               class="my-1"
-        >
+        <b-col lg="3" class="my-1">
           <b-form-group
             :label="$t('form.label.sort')"
             :description="$t('form.description.sort')"
@@ -45,10 +43,7 @@
             </b-input-group>
           </b-form-group>
         </b-col>
-
-        <b-col lg="9"
-               class="my-1"
-        >
+        <b-col lg="9" class="my-1">
           <b-row>
             <b-col lg="6">
               <b-form-group
@@ -100,10 +95,7 @@
             </b-col>
           </b-row>
         </b-col>
-
-        <b-col lg="9"
-               class="mg-t-20"
-        >
+        <b-col lg="9" class="mg-t-20">
           <b-row>
             <b-col lg="4">
               <b-form-group
@@ -332,6 +324,7 @@
                 </b-list-group-item>
               </b-list-group>
             </div>
+
             <div v-if="cellData.item.prinyalPersonal">
               <h6>
                 {{ $t("vnytNapravlenie.label.prinyalPersonal") }}
@@ -410,6 +403,71 @@
                 </tbody>
               </table>
             </div>
+
+            <div v-if="cellData.item.rejectPersonal">
+              <h6>
+                {{ $t("vnytNapravlenie.label.rejectPersonal") }}
+              </h6>
+              <ul class="list-group list-group-flush tx-13">
+                <li class="list-group-item d-flex pd-sm-x-20">
+                  <div class="avatar">
+                    <span class="avatar-initial rounded-circle bg-primary">
+                      {{
+                        getProp(
+                          cellData.item,
+                          "rejectPersonal.fullName",
+                          ""
+                        )[0]
+                      }}
+                    </span>
+                  </div>
+                  <div class="pd-l-10">
+                    <p class="tx-medium mg-b-0">
+                      {{
+                      getProp(cellData.item, "rejectPersonal.fullName", "")
+                      }}
+                    </p>
+                    <small class="tx-12 tx-color-03 mg-b-0">
+                      {{ getProp(cellData.item, "rejectPersonal.sDoljnost.name", "") }}
+                    </small>
+                  </div>
+                </li>
+              </ul>
+              <table class="table table-responsive">
+                <tbody>
+                <tr>
+                  <td>
+                    <span class="tx-bold">
+                      {{ $t("vnytNapravlenie.label.rejectOtdel") }}:
+                    </span>
+                  </td>
+                  <td>
+                    {{ getProp(cellData.item, "rejectOtdel.name", "") }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="tx-bold">
+                      {{ $t("vnytNapravlenie.label.rejectDate") }}:
+                    </span>
+                  </td>
+                  <td>
+                    {{ formatDate(getProp(cellData.item, "rejectDate", "")) }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="tx-bold">
+                      {{ $t("vnytNapravlenie.label.rejectTime") }}:
+                    </span>
+                  </td>
+                  <td>
+                    {{ formatTime(getProp(cellData.item, "rejectDate", "")) }}
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </template>
 
           <template v-slot:cell(posMaterialCustomView)="cellData">
@@ -418,26 +476,20 @@
                 <span class="tx-bold">
                   {{ $t("vnytNapravlenie.label.opPokazatel") }}:
                 </span>
-                <span>
+                <ul>
                   <template
-                      v-for="(pokazatelId, index) in getProp(
-                      cellData.item,
-                      'opPokazatelIdJSON',
-                      []
-                    )"
+                    v-for="pokazatelId in getProp(cellData.item,'opPokazatelIdJSON',[])"
                   >
-                    <span :key="pokazatelId">
-                      <br />
-                      <span class="tx-bold">{{ index + 1 }}: </span>
+                    <li :key="pokazatelId">
                       {{
                         viewForeignData(
                           cellData.field.fields.opPokazatelIdJSON,
                           pokazatelId
                         )
-                      }}.
-                    </span>
+                      }}
+                    </li>
                   </template>
-                </span>
+                </ul>
               </b-list-group-item>
               <b-list-group-item v-if="cellData.item.posMaterial">
                 <span class="tx-bold">
@@ -640,6 +692,15 @@
                   }}
                 </span>
               </b-list-group-item>
+
+              <b-list-group-item v-if="cellData.item.rejectionDescription">
+                <span class="tx-bold">
+                  {{ $t("vnytNapravlenie.label.rejectionDescription") }}:
+                </span>
+                <span>
+                  {{ getProp(cellData.item, "rejectionDescription", '') }}
+                </span>
+              </b-list-group-item>
             </b-list-group>
           </template>
         </b-table>
@@ -658,6 +719,32 @@ export default {
       total: null,
       pageOptions: [1, 2, 3, 5, 7, 10],
     }
+  },
+  computed: {
+    fields() {
+      const actions = {
+        key: 'actions',
+        label: '#',
+      }
+      const modelFields =
+        this.modelData.fieldsForTable || this.modelData.fields
+      const enabledFields = modelFields.filter((field) => {
+        return !field.hidden
+      })
+      const list = enabledFields.map(({ type, key, label, ...other }) => {
+        label = this.$t(label || `form.label.${key}`)
+        return {
+          key,
+          type,
+          label,
+          sortable: true,
+          sortByFormatted: true,
+          filterByFormatted: true,
+          ...other,
+        }
+      })
+      return [...list, actions]
+    },
   }
 }
 </script>

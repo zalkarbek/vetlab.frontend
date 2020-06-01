@@ -1,7 +1,7 @@
 <template>
   <div>
     <template v-for="(item, index) in recordItems">
-      <h5 :key="index">
+      <h5>
         <span>
           {{ $t(`${modelData.restName}.label.one`) }} №{{ index + 1 }} &nbsp;
         </span>
@@ -10,21 +10,20 @@
           @click="removeCurrentElement(index)"
         />
       </h5>
-      <div :key="index" class="divider-text">
+      <div class="divider-text">
         ####### {{ index + 1 }} #######
       </div>
-      <b-form-row :key="index">
+      <b-form-row>
         <template v-for="(field) in modelData.fields">
           <!--==================================================================-->
           <b-col
-            v-if="
-              !field.disabled && toLowerCase(field.type) !== fieldTypes.json
-            "
+            v-if="!field.disabled && toLowerCase(field.type) !== fieldTypes.json"
             :key="field.key"
             :sm="(field.col && field.col.sm) || 12"
             :md="(field.col && field.col.md) || 4"
             :xs="(field.col && field.col.xs) || 12"
             :lg="(field.col && field.col.lg) || 3"
+            :xl="(field.col && field.col.xl) || 3"
             class="mg-lg-r-10 mg-xl-r-10"
           >
             <b-form-group
@@ -46,24 +45,43 @@
             </b-form-group>
           </b-col>
           <!--==================================================================-->
-          <!--==================================================================-->
-          <b-col
-            :key="field.key"
-            v-if="
-              !field.disabled && toLowerCase(field.type) === fieldTypes.json
-            "
-            cols="12"
+
+          <!--======================FIELD TYPE JSON=============================-->
+          <template
+            v-if="!field.disabled
+            && item[field.key]
+            && toLowerCase(field.type) === fieldTypes.json"
           >
-            <h5 class="mg-b-10">
-              {{ field.label || $t(`form.label.${field.key}`) }}
-            </h5>
-            <crud-field-json
-              v-model="item[field.key]"
-              :field="field"
-              :crud-data="modelData"
-            />
-          </b-col>
+            <template v-for="(form, index) in field.json">
+              <b-col
+                v-if="!form.disabled && isObject(item[field.key])"
+                :sm="(form.col && form.col.sm) || 12"
+                :md="(form.col && form.col.md) || 4"
+                :xs="(form.col && form.col.xs) || 12"
+                :lg="(form.col && form.col.lg) || 3"
+                :xl="(form.col && form.col.xl) || 3"
+                class="mg-lg-r-10 mg-xl-r-10"
+              >
+                <b-form-group
+                  :label="$t(form.label || `form.label.${form.key}`)"
+                  :label-for="`${modelData.restName}_${field.key}_${form.key}_crud_json_${index}`"
+                  :description="$t(form.description || `form.description.${form.key}`)"
+                >
+                  <slot :name="form.key" :field="form" :item="item[field.key]">
+                    <crud-field
+                      v-model="item[field.key][form.key]"
+                      :field="form"
+                      :crud-data="modelData"
+                      :placeholder="$t(form.placeholder || `form.placeholder.${form.key}`)"
+                      @multi-input="(multiValues) => onMultiInputItem(item[field.key], multiValues)"
+                    />
+                  </slot>
+                </b-form-group>
+              </b-col>
+            </template>
+          </template>
           <!--==================================================================-->
+
         </template>
       </b-form-row>
     </template>
@@ -71,15 +89,15 @@
 </template>
 <script>
 import CrudField from './CrudField'
-import CrudFieldJson from './CrudFieldJson'
+import utilMixin from '~/mixins/utilMixin'
 import _ from 'lodash'
 import { createNamespacedHelpers } from 'vuex'
 const { mapState } = createNamespacedHelpers('api')
 
 export default {
+  mixins: [utilMixin],
   components: {
-    CrudField,
-    CrudFieldJson,
+    CrudField
   },
   props: {
     crudData: {
@@ -114,23 +132,37 @@ export default {
     }),
   },
   beforeMount() {
-    this.initJsonFields()
-  },
-  beforeUpdate() {
-    this.initJsonFields()
+    this.initFields()
   },
   methods: {
-    initJsonFields() {
-      this.modelData.fields.forEach((field) => {
-        if (field.type === this.fieldTypes.json) {
-          this.recordItems.forEach((record) => {
+    initFields() {
+      this.recordItems.forEach((record) => {
+        this.modelData.fields.forEach((field) => {
+          if (!field.disabled && field.type === this.fieldTypes.json) {
             if (record && !record[field.key]) {
               this.$set(record, field.key, {})
+              if(field.json && field.json.length >= 1) {
+                field.json.forEach((jsonField) => {
+                  this.$set(record[field.key], jsonField.key, null)
+                })
+              }
             }
-          })
-        }
+          } else if(!field.disabled) {
+            this.$set(record, field.key, null)
+          }
+        })
       })
     },
+
+    onMultiInputItem(item, multiValues) {
+      if (multiValues && _.isObject(multiValues)) {
+        const keys = Object.keys(multiValues)
+        keys.forEach((key) => {
+          this.$set(item, key, multiValues[key])
+        })
+      }
+    },
+
     toLowerCase(value) {
       return _.toLower(value)
     },

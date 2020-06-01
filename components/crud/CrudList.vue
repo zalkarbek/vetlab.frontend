@@ -206,20 +206,14 @@
 
           <template v-slot:cell(actions)="row">
             <b-button-toolbar>
-              <b-button-group class="mr-1"
-                              size="sm"
-              >
+              <b-button-group class="mr-1" size="sm">
                 <template v-for="(button, index) in actionButtons">
                   <b-button
                     :key="index"
                     :variant="button.variant || 'secondary'"
                     @click="onActionButton(button, row.item)"
                   >
-                    <i
-                      :class="button.icon"
-                      class="far cursor-pointer"
-                      aria-hidden="true"
-                    />
+                    <i :class="button.icon" class="far cursor-pointer"/>
                   </b-button>
                 </template>
                 <b-button
@@ -227,19 +221,14 @@
                   title="Edit"
                   @click="onAction('edit-item', row.item)"
                 >
-                  <i class="far fa-edit cursor-pointer"
-                     aria-hidden="true"
-                  />
+                  <i class="far fa-edit cursor-pointer"/>
                 </b-button>
                 <b-button
                   variant="danger"
                   title="Delete"
                   @click="onAction('delete-item', row.item)"
                 >
-                  <i
-                    class="far fa-trash-alt cursor-pointer"
-                    aria-hidden="true"
-                  />
+                  <i class="far fa-trash-alt cursor-pointer"/>
                 </b-button>
               </b-button-group>
             </b-button-toolbar>

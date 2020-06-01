@@ -27,6 +27,8 @@ export default {
       paginate: 'server',
       pageSize: 3,
       methodIfPaginateServer: 'getAllVnytNapravlenieRel',
+      methodOnSearch: 'getAllVnytNapravlenieRel',
+      earchColumn: ['id'],
     },
   },
 
@@ -50,6 +52,11 @@ export default {
     },
   ],
   fieldsForTable: [
+    {
+      type: 'number',
+      key: 'napravlenieId',
+      label: 'vnytNapravlenie.label.outerNomerNapravlenia',
+    },
     {
       type: 'number',
       key: 'id',

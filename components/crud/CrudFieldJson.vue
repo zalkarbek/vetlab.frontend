@@ -19,9 +19,7 @@
             v-model="recordItem[form.key]"
             :field="form"
             :crud-data="modelData"
-            :placeholder="
-              $t(form.placeholder || `form.placeholder.${form.key}`)
-            "
+            :placeholder="$t(form.placeholder || `form.placeholder.${form.key}`)"
             @multi-input="onMultiInput"
           />
         </b-form-group>

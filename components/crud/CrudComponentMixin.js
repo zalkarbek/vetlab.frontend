@@ -1,7 +1,9 @@
 import _ from 'lodash'
 import { mapState } from 'vuex'
+import toastMixin from '~/mixins/toastMixin'
 
 export default {
+  mixins: [toastMixin],
   props: {
     crud: {
       type: Object,
@@ -16,8 +18,13 @@ export default {
     modals() {
       return this.crudData.modals
     },
-    modalFormDataByRestName() {
-      return this.modalFormData[this.crudData.restName]
+    modalFormDataByRestName: {
+      get() {
+        return this.modalFormData[this.crudData.restName]
+      },
+      set(value) {
+        this.$set(this.modalFormData, this.crudData.restName, value)
+      }
     },
     ...mapState('dash', {
       modalTypes: (state) => state.modalTypes,
@@ -36,7 +43,7 @@ export default {
     return {
       modalFormData: {},
       dataset: {},
-      selectedRecord: {},
+      selectedRecord: null,
       crudListRecords: [],
       crudListCurrentPage: 1,
       crudListTotalRows: 0,
@@ -50,7 +57,7 @@ export default {
       },
     }
   },
-  async beforeMount() {
+  async created() {
     await this.crudListGetRecordsInit()
     this.selectedRecord = this.initFields({}, this.crudData)
   },
@@ -134,6 +141,29 @@ export default {
         return false
       }
     },
+
+    pushItemInDatasetFirst(data, datasetName) {
+      datasetName = this.getStandDatasetName(datasetName)
+      if (this.getPaginationType() === this.PAGINATION_TYPES.STORAGE) {
+        this.$store.dispatch('api/pushItemToDatasetFirst', {
+          data,
+          datasetName,
+        })
+        return false
+      }
+      else if(this.getPaginationType() === this.PAGINATION_TYPES.SERVER) {
+        this.crudListRecords.unshift(data)
+        return false
+      }
+      else {
+        if(this.dataset[datasetName] && Array.isArray(this.dataset[datasetName])) {
+          this.dataset[datasetName].unshift(data)
+          this.crudListRecords = this.dataset[datasetName]
+        }
+        return false
+      }
+    },
+
     updateItemInDataset(id, data, datasetName) {
       datasetName = this.getStandDatasetName(datasetName)
       if (this.getPaginationType() === this.PAGINATION_TYPES.STORAGE) {
@@ -185,7 +215,7 @@ export default {
         const message = (res.data && res.data.message) || ''
         if (res.data && !res.data.error && res.data.data) {
           this.clearForm()
-          this.pushItemInDataset(res.data.data, this.crudData.datasetName)
+          this.pushItemInDatasetFirst(res.data.data, this.crudData.datasetName)
         }
         this.$bvToast.toast(message, {
           title: this.$i18n.t('success.title'),
@@ -332,9 +362,14 @@ export default {
         this.$delete(record, 'id')
       }
       crudData.fields.forEach((field) => {
-        if (field.type === this.fieldTypes.json) {
+        if (!field.disabled && field.type === this.fieldTypes.json) {
           this.$set(record, field.key, {})
-        } else {
+          if(field.json && field.json.length >= 1) {
+            field.json.forEach((jsonField) => {
+              this.$set(record[field.key], jsonField.key, null)
+            })
+          }
+        } else if(!field.disabled) {
           this.$set(record, field.key, null)
         }
       })

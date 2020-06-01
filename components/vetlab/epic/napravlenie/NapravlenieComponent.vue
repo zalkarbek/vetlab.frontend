@@ -1,13 +1,7 @@
 <template>
   <div class="crud">
-    <div
-      class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30"
-    >
-      <div>
-        <h4 class="mg-b-0 tx-spacing--1 mg-b-7">
-          {{ $t(`${restName}.title`) }}
-        </h4>
-      </div>
+    <div class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
+      <h4 class="mg-b-0 tx-spacing--1 mg-b-7">{{ $t(`${restName}.title`) }}</h4>
       <div class="d-sm-block d-lg-block d-md-block" />
     </div>
     <b-row class="mg-t-10 row-xs">
@@ -47,7 +41,7 @@
 </template>
 <script>
 import NapravlenieList from './NapravlenieList'
-import NapravlenieCrud from './NapravlenieCrud'
+import NapravlenieComponentMixin from './NapravlenieComponentMixin'
 import NapravlenieFormModal from './NapravlenieFormModal'
 import _ from 'lodash'
 import toastMixin from '~/mixins/toastMixin'
@@ -57,7 +51,7 @@ export default {
     NapravlenieList,
     NapravlenieFormModal,
   },
-  mixins: [toastMixin, NapravlenieCrud],
+  mixins: [toastMixin, NapravlenieComponentMixin],
   props: {
     vnytNapravlenieCrudName: {
       type: String,
@@ -73,8 +67,7 @@ export default {
       if (modalId) {
         this.$bvModal.show(modalId)
       }
-      const cloneData = _.cloneDeep(data)
-      this.$set(this.modalFormData, this.crudData.restName, cloneData)
+      this.modalFormDataByRestName = _.cloneDeep(data)
     },
     async sendToOtdelOk({ data, modalCrud, cb }) {
       let success = false
@@ -108,6 +101,7 @@ export default {
 
     sendNapravlenieSuccess(response) {
       if(response && !response.error) {
+        this.toastSuccess('napravlenieEpic.label.sendToOtdelSuccess')
         const datasetName = this.crudData.datasetName
         const napravlenie = this.findInDataset(response.data.napravlenieId, ['id'], datasetName)
         if(napravlenie && napravlenie[0])

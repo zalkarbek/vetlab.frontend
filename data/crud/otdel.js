@@ -15,7 +15,22 @@ export default {
   datasetName,
   rest: {
     ...baseApi,
+    getWithNonSpec: {
+      method: 'GET',
+      url: `/api/v1/${routePrefix}/with/nonspec`,
+    },
   },
+
+  initConfig: {
+    getRecordList: {
+      datasetName: 'otdel',
+      paginate: 'local',
+      pageSize: 10,
+      methodIfPaginateServer: 'getWithNonSpec',
+      methodIfPaginateLocal: 'getWithNonSpec'
+    },
+  },
+
   fields: [
     ...baseFields,
     {

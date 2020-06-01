@@ -11,4 +11,9 @@ export default (ctx) => {
     busEvents.VNYT_NAPRAVLENIE_ACCEPT_START,
     handler.onVnytNapravlenieAccept.bind(null, ctx)
   )
+
+  eventBus.$on(
+    busEvents.VNYT_NAPRAVLENIE_REJECT_START,
+    handler.onVnytNapravlenieReject.bind(null, ctx)
+  )
 }

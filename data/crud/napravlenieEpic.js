@@ -16,6 +16,10 @@ export default {
   datasetName,
   rest: {
     ...baseApi,
+    getNapravlenieWithPaginateAndVnyt: {
+      url: `/api/v1/${routePrefix}/pos/withPaginateAndVnyt`,
+      method: 'GET',
+    },
     getNapravlenieWithPaginate: {
       url: `/api/v1/${routePrefix}/pos/withPaginate`,
       method: 'GET',
@@ -42,9 +46,9 @@ export default {
       // какой rest метод нужно вызывать для получния список регионов (пагинация локально)
       methodIfPaginateLocal: 'getNapravlenie',
       // rest метод для получения регионов с пагинацией
-      methodIfPaginateServer: 'getNapravlenieWithPaginate',
+      methodIfPaginateServer: 'getNapravlenieWithPaginateAndVnyt',
       // rest метод для поиска региона
-      methodOnSearch: 'getNapravlenieWithPaginate',
+      methodOnSearch: 'getNapravlenieWithPaginateAndVnyt',
       // поля по которым разрешен поиск (текст или массив полей)
       searchColumn: ['id'],
     },
@@ -59,15 +63,7 @@ export default {
         label: 'napravlenie.epic.sendToOtdel',
         icon: 'far fa-paper-plane',
         variant: 'dark',
-      },
-      {
-        action: 'delete-napravlenie',
-        actionMethod: 'deleteNapravlenie',
-        modalId: 'napravlenie-delete-dialog',
-        label: 'napravlenie.epic.delete',
-        icon: 'far fa-trash',
-        variant: 'danger',
-      },
+      }
     ],
     crudForm: [],
   },

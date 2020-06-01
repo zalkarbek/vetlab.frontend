@@ -1,4 +1,5 @@
 import baseApiRoutes from './baseApiRoutes'
+import { researchStartFields } from '../fields'
 // Имя модели к которому привязан этот API
 const restName = 'vnytNapravlenie'
 // Превикс API маршрута
@@ -25,7 +26,7 @@ export default {
     getRecordList: {
       datasetName: 'vnytNapravlenie',
       paginate: 'server',
-      pageSize: 10,
+      pageSize: 3,
       methodIfPaginateServer: 'getAllVnytNapravlenieRel',
       searchColumn: ['napravlenieId'],
     },
@@ -34,20 +35,29 @@ export default {
   actionButtons: {
     crudList: [
       {
-        action: 'accept-napravlenie',
-        actionMethod: 'acceptDialog',
+        action: 'accept',
+        actionMethod: 'openDialog',
         modalId: 'accept-napravlenie-dialog',
         label: 'vnytNapravlenie.pub.accept',
         icon: 'far fa-paper-plane',
         variant: 'primary',
       },
       {
-        action: 'delete-napravlenie',
-        actionMethod: 'deleteNapravlenie',
+        action: 'reject',
+        actionMethod: 'openDialog',
         modalId: 'reject-napravlenie-dialog',
         label: 'vnytNapravlenie.pub.reject',
         icon: 'far fa-ban',
         variant: 'danger',
+      },
+
+      {
+        action: 'research',
+        actionMethod: 'openDialog',
+        modalId: 'research-start-dialog',
+        label: 'vnytNapravlenie.pub.researchStart',
+        icon: 'far fa-biohazard',
+        variant: 'dark',
       },
     ],
     crudForm: [],
@@ -66,6 +76,51 @@ export default {
       okAction: 'acceptOk',
       hiddenAction: 'acceptCancel',
     },
+
+    {
+      type: 'modal-form', // modal-confirm, modal-message, modal-form
+      id: 'reject-napravlenie-dialog',
+      class: 'reject-napravlenie-dialog',
+      title: 'vnytNapravlenie.modal.reject.title',
+      headerBgVariant: 'warning',
+      headerTextVariant: 'light',
+      // размер модального окна
+      size: 'lg',
+      okAction: 'rejectOk',
+      hiddenAction: 'rejectCancel',
+      modalCrud: {
+        fields: [
+          {
+            type: 'textarea',
+            key: 'rejectionDescription',
+            col: {
+              sm: 12,
+              xs: 12,
+              md: 10,
+              lg: 10,
+              xl: 10
+            }
+          }
+        ],
+      },
+    },
+
+    {
+      type: 'modal-form',
+      id: 'research-start-dialog',
+      class: 'research-start-dialog',
+      title: 'vnytNapravlenie.modal.researchStart.title',
+      headerBgVariant: 'light',
+      size: 'xl',
+      okAction: 'reSearchOk',
+      hiddenAction: 'reSearchCancel',
+      modalCrud: {
+        fields: [
+          ...researchStartFields.fields
+        ]
+      }
+    }
+
   ],
   foreign: [],
   fields: [
@@ -125,6 +180,23 @@ export default {
           key: 'prinyalSubOtdelId',
         },
         prinyalDate: {
+          type: 'datetime',
+          key: 'prinyalDate',
+        },
+
+        rejectPersonalId: {
+          type: 'number',
+          key: 'prinyalPersonalId',
+        },
+        rejectOtdelId: {
+          type: 'number',
+          key: 'prinyalOtdelId',
+        },
+        rejectSubOtdelId: {
+          type: 'number',
+          key: 'prinyalSubOtdelId',
+        },
+        rejectDate: {
           type: 'datetime',
           key: 'prinyalDate',
         },

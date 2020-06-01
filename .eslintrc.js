@@ -22,6 +22,7 @@ module.exports = {
     // 'prettier/prettier': ['error', { 'semi': false }]
     quotes: ['error', 'single'],
     'no-unused-vars': ['error', { 'vars': 'all', 'args': 'none', 'ignoreRestSiblings': false }],
-    'vue/valid-v-for': 'off'
+    'vue/valid-v-for': 'off',
+    'vue/require-v-for-key': 'off'
   },
 }

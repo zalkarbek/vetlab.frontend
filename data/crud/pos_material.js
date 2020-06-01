@@ -24,6 +24,43 @@ export default {
       disabled: true,
     },
     {
+      type: 'select',
+      key: 'sMaterialId',
+      foreign_crud: 's_material',
+      foreign_dataset: 'materials',
+      foreign_label: 'name',
+      foreign_value: 'id',
+      foreign_attributes: ['name', 'id'],
+      col: {
+        md: 5,
+        lg: 4,
+        xl: 3
+      },
+    },
+    {
+      type: 'number',
+      key: 'materialCount',
+      col: {
+        md: 3,
+        lg: 3,
+        xl: 2
+      },
+    },
+    {
+      type: 'select',
+      key: 'sMeraId',
+      foreign_crud: 's_mera',
+      foreign_dataset: 'mera',
+      foreign_label: 'name',
+      foreign_value: 'id',
+      foreign_attributes: ['name', 'id'],
+      col: {
+        md: 3,
+        lg: 3,
+        xl: 2
+      },
+    },
+    {
       type: 'select-multi',
       key: 'opPokazatelIdJSON',
       foreign_crud: 's_pokazatel',
@@ -31,6 +68,12 @@ export default {
       foreign_label: 'name',
       foreign_value: 'id',
       foreign_attributes: ['name', 'id'],
+      // col настраивает макет сетки ввода (ширина поля ввода) md, sm, xs, lg
+      col: {
+        md: 11,
+        lg: 9,
+        xl: 4
+      },
     },
     {
       type: 'json',
@@ -39,10 +82,22 @@ export default {
         {
           type: 'text',
           key: 'fullName',
+          label: 'owner.label.fullName',
+          col: {
+            md: 5,
+            lg: 4,
+            xl: 3
+          },
         },
         {
           type: 'text',
           key: 'phone_1',
+          label: 'owner.label.phone_1',
+          col: {
+            md: 4,
+            lg: 4,
+            xl: 3
+          },
         },
       ],
     },
@@ -53,10 +108,22 @@ export default {
         {
           type: 'text',
           key: 'fullName',
+          label: 'kemOtobran.label.fullName',
+          col: {
+            md: 5,
+            lg: 4,
+            xl: 3
+          },
         },
         {
           type: 'text',
           key: 'phone_1',
+          label: 'kemOtobran.label.phone_1',
+          col: {
+            md: 4,
+            lg: 4,
+            xl: 2
+          },
         },
       ],
     },
@@ -65,68 +132,86 @@ export default {
       key: 'mestoOtboraRegionJSON',
       json: [
         {
-          type: 'text',
-          key: 'regionId',
+          type: 'number',
+          key: 'id',
           disabled: true,
           hidden: true,
         },
         {
-          type: 'text',
-          key: 'regionFullText',
+          type: 'textarea',
+          key: 'regionFullPath',
+          label: 'mestoOtbora.label.regionFullPath',
+          col: {
+            md: 4,
+            lg: 4,
+            xl: 3
+          },
         },
         {
           type: 'array',
-          key: 'regions',
+          key: 'regionIds',
           disabled: true,
           hidden: true,
         },
       ],
     },
     {
-      type: 'text',
+      type: 'textarea',
       key: 'lechenieInfo',
-    },
-    {
-      type: 'select',
-      key: 'sMaterialId',
-      foreign_crud: 's_material',
-      foreign_dataset: 'materials',
-      foreign_label: 'name',
-      foreign_value: 'id',
-      foreign_attributes: ['name', 'id'],
-    },
-    {
-      type: 'number',
-      key: 'materialCount',
-    },
-    {
-      type: 'select',
-      key: 'sMeraId',
-      foreign_crud: 's_mera',
-      foreign_dataset: 'mera',
-      foreign_label: 'name',
-      foreign_value: 'id',
-      foreign_attributes: ['name', 'id'],
-    },
-    {
-      type: 'number',
-      key: 'vozrast',
+      col: {
+        md: 4,
+        lg: 4,
+        xl: 3
+      },
     },
     {
       type: 'date',
       key: 'dateZabolivanie',
+      col: {
+        md: 4,
+        lg: 3,
+        xl: 3
+      },
+    },
+    {
+      type: 'number',
+      key: 'vozrast',
+      col: {
+        md: 4,
+        lg: 3,
+        xl: 2
+      },
     },
     {
       type: 'date',
       key: 'dateZaboya',
-    },
-    {
-      type: 'datetime',
-      key: 'dateVremyaOtbora',
+      col: {
+        md: 4,
+        lg: 3,
+        xl: 3
+      },
     },
     {
       type: 'date',
       key: 'dateDostavki',
+      col: {
+        md: 4,
+        lg: 3,
+        xl: 3
+      },
+    },
+    {
+      type: 'datetime',
+      key: 'dateVremyaOtbora',
+      col: {
+        md: 4,
+        lg: 3,
+        xl: 3
+      },
+    },
+    {
+      type: 'textarea',
+      key: 'description',
     },
   ],
 }

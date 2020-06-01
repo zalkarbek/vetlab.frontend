@@ -146,10 +146,10 @@ export default {
       return []
     },
     fields() {
-      const index = {
-        key: 'index',
-        label: '№'
-      }
+      // const index = {
+      //   key: 'index',
+      //   label: '№'
+      // }
       const actions = {
         key: 'actions',
         label: '#',
@@ -171,7 +171,7 @@ export default {
           ...other,
         }
       })
-      return [index, ...list, actions]
+      return [...list, actions]
     },
     sortOptions() {
       return this.fields

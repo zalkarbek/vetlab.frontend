@@ -9,9 +9,7 @@
         <template v-for="(field, index) in modelData.fields">
           <!--==============================FIELD TYPE OTHER====================================-->
           <b-col
-            v-if="!field.disabled
-              && toLowerCase(field.type) !== fieldTypes.json
-              && isObject(recordItem)"
+            v-if="!field.disabled && toLowerCase(field.type) !== fieldTypes.json"
             :key="field.key"
             :sm="(field.col && field.col.sm) || 12"
             :md="(field.col && field.col.md) || 6"
@@ -23,23 +21,16 @@
             <b-form-group
               :label="$t(field.label || `form.label.${field.key}`)"
               :label-for="`${modelData.restName}_${field.key}_crud_${index}`"
-              :description="
-                $t(field.description || `form.description.${field.key}`)
-              "
+              :description="$t(field.description || `form.description.${field.key}`)"
             >
-              <slot
-                :name="field.key" :field="field"
-                :item="recordItem"
-              >
+              <slot :name="field.key" :field="field" :item="recordItem">
                 <crud-field
                   :id="`${modelData.restName}_${field.key}_crud_${index}`"
                   v-model="recordItem[field.key]"
                   :record="recordItem"
                   :field="field"
                   :crud-data="modelData"
-                  :placeholder="
-                    $t(field.placeholder || `form.placeholder.${field.key}`)
-                  "
+                  :placeholder="$t(field.placeholder || `form.placeholder.${field.key}`)"
                   @multi-input="onMultiInput"
                 />
               </slot>
@@ -49,8 +40,8 @@
           <!--================================FIELD TYPE JSON==================================-->
           <template
             v-if="!field.disabled
-            && isObject(recordItem[field.key])
-            && toLowerCase(field.type) === fieldTypes.json"
+              && recordItem[field.key]
+              && toLowerCase(field.type) === fieldTypes.json"
           >
             <template v-for="(form, index) in field.json">
               <b-col
@@ -84,70 +75,63 @@
         </template>
       </b-form-row>
       <!--================================FOREIGN MODELS==================================-->
-      <template
-        v-if="Array.isArray(modelData.foreign) && modelData.foreign.length >= 1"
-      >
+      <template v-if="Array.isArray(modelData.foreign) && modelData.foreign.length >= 1">
         <template v-for="(foreignCrud, index) in modelData.foreign">
+
           <!-- ============================FOREIGN ARRAY======================================-->
           <div :key="index" v-if="foreignCrud.type === fieldTypes.array" class="mg-b-20">
             <h5>
               {{ $t(`${foreignCrud.crudName}.title`) }} &nbsp;
-              <button
-                type="button"
-                class="btn btn-xs btn-outline-primary"
-                @click="addNewToForeignArray(recordItem, foreignCrud, 1)"
-              >
-                {{ $t("form.label.add") }} 1
-              </button>
-              <button
-                type="button"
-                class="btn btn-xs btn-outline-primary"
-                @click="addNewToForeignArray(recordItem, foreignCrud, 5)"
-              >
-                {{ $t("form.label.add") }} 5
-              </button>
-              <button
-                type="button"
-                class="btn btn-xs btn-outline-primary"
-                @click="addNewToForeignArray(recordItem, foreignCrud, 7)"
-              >
-                {{ $t("form.label.add") }} 7
-              </button>
-              <button
-                type="button"
-                class="btn btn-xs btn-outline-primary"
-                @click="addNewToForeignArray(recordItem, foreignCrud, 10)"
-              >
-                {{ $t("form.label.add") }} 10
-              </button>
-              <button
-                type="button"
-                class="btn btn-xs btn-outline-primary"
-                @click="addNewToForeignArray(recordItem, foreignCrud, 13)"
-              >
-                {{ $t("form.label.add") }} 13
-              </button>
-              <button
-                type="button"
-                class="btn btn-xs btn-outline-primary"
-                @click="addNewToForeignArray(recordItem, foreignCrud, 15)"
-              >
-                {{ $t("form.label.add") }} 15
-              </button>
-              <button
-                type="button"
-                class="btn btn-xs btn-outline-primary"
-                @click="addNewToForeignArray(recordItem, foreignCrud, 20)"
-              >
-                {{ $t("form.label.add") }} 20
-              </button>
-              <button
-                type="button"
-                class="btn btn-xs btn-outline-danger"
-                @click="clearDataArray(recordItem, foreignCrud)"
-              >
-                {{ $t("form.label.clear") }}
-              </button>
+              <b-button-group>
+                <b-button
+                  @click="addNewToForeignArray(recordItem, foreignCrud, 1)"
+                  variant="outline-primary"
+                  size="xs"
+                >
+                  {{ $t("form.label.add") }} 1
+                </b-button>
+
+                <b-button
+                  @click="addNewToForeignArray(recordItem, foreignCrud, 3)"
+                  variant="outline-primary"
+                  size="xs"
+                >
+                  {{ $t("form.label.add") }} 3
+                </b-button>
+
+                <b-button
+                  @click="addNewToForeignArray(recordItem, foreignCrud, 5)"
+                  variant="outline-primary"
+                  size="xs"
+                >
+                  {{ $t("form.label.add") }} 5
+                </b-button>
+
+                <b-button
+                  @click="addNewToForeignArray(recordItem, foreignCrud, 10)"
+                  variant="outline-primary"
+                  size="xs"
+                >
+                  {{ $t("form.label.add") }} 10
+                </b-button>
+
+                <b-button
+                  @click="addNewToForeignArray(recordItem, foreignCrud, 20)"
+                  variant="outline-primary"
+                  size="xs"
+                >
+                  {{ $t("form.label.add") }} 20
+                </b-button>
+
+                <b-button
+                  @click="clearDataArray(recordItem, foreignCrud)"
+                  variant="outline-danger"
+                  size="xs"
+                >
+                  {{ $t("form.label.clear") }}
+                </b-button>
+
+              </b-button-group>
             </h5>
             <div class="divider-text">
               {{ $t(`${foreignCrud.crudName}.title`) }}
@@ -156,10 +140,11 @@
               v-model="recordItem[foreignCrud.datasetName || foreignCrud.crudName]"
               :crud-data="crud[foreignCrud.crudName]"
               @remove-element="
-                (index) =>recordItem[foreignCrud.datasetName || foreignCrud.crudName].splice(index, 1)"
+              (index) =>recordItem[foreignCrud.datasetName || foreignCrud.crudName].splice(index, 1)"
             />
           </div>
           <!--==================================================================-->
+
           <!--============================FOREIGN OBJECT======================================-->
           <div :key="index" v-if="foreignCrud.type === fieldTypes.object" class="mg-b-20">
             <h5 class="mg-b-10">
@@ -169,8 +154,8 @@
               {{ $t(`${foreignCrud.crudName}.title`) }}
             </div>
             <crud-form-object
-              v-model="recordItem[foreignCrud.crudName]"
-              :crud-data="crud[foreignCrud.crudName]"
+                v-model="recordItem[foreignCrud.crudName]"
+                :crud-data="crud[foreignCrud.crudName]"
             />
           </div>
           <!--==================================================================-->
@@ -196,10 +181,10 @@
   </div>
 </template>
 <script>
-
 import CrudFormMixin from '~/components/crud/CrudFormMixin'
 
 export default {
-  mixins: [CrudFormMixin]
+  mixins: [CrudFormMixin],
+  methods: {}
 }
 </script>

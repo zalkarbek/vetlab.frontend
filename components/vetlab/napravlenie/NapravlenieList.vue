@@ -3,25 +3,23 @@
     <b-container fluid>
       <!-- User Interface controls -->
       <b-row>
-        <b-col lg="3"
-               class="my-1"
-        >
+        <b-col lg="3" class="my-1">
           <b-form-group
-            :label="$t('form.label.sort')"
-            :description="$t('form.description.sort')"
-            label-cols-sm="3"
-            label-align-sm="right"
-            label-size="sm"
-            label-for="sortBySelect"
-            label-class="tx-bold"
-            class="mb-0"
+              :label="$t('form.label.sort')"
+              :description="$t('form.description.sort')"
+              label-cols-sm="3"
+              label-align-sm="right"
+              label-size="sm"
+              label-for="sortBySelect"
+              label-class="tx-bold"
+              class="mb-0"
           >
             <b-input-group size="sm">
               <b-form-select
-                id="sortBySelect"
-                v-model="sortBy"
-                :options="sortOptions"
-                class="w-75"
+                  id="sortBySelect"
+                  v-model="sortBy"
+                  :options="sortOptions"
+                  class="w-75"
               >
                 <template v-slot:first>
                   <option value="">
@@ -30,10 +28,10 @@
                 </template>
               </b-form-select>
               <b-form-select
-                v-model="sortDesc"
-                :disabled="!sortBy"
-                size="sm"
-                class="w-25"
+                  v-model="sortDesc"
+                  :disabled="!sortBy"
+                  size="sm"
+                  class="w-25"
               >
                 <option :value="false">
                   Asc
@@ -45,30 +43,29 @@
             </b-input-group>
           </b-form-group>
         </b-col>
-
         <b-col lg="9" class="my-1">
           <b-row>
             <b-col lg="5">
               <b-form-group
-                :label="$t('form.label.search')"
-                :description="$t('form.description.search')"
-                label-cols-sm="2"
-                label-align-sm="right"
-                label-size="sm"
-                label-for="filterInput"
-                label-class="tx-bold"
-                class="mb-0"
+                  :label="$t('form.label.search')"
+                  :description="$t('form.description.search')"
+                  label-cols-sm="2"
+                  label-align-sm="right"
+                  label-size="sm"
+                  label-for="filterInput"
+                  label-class="tx-bold"
+                  class="mb-0"
               >
                 <b-input-group size="sm">
                   <b-form-input
-                    v-model="searchItem"
-                    :placeholder="$t('form.placeholder.search')"
-                    @input="changeSearchInput"
+                      v-model="searchItem"
+                      :placeholder="$t('form.placeholder.search')"
+                      @input="changeSearchInput"
                   />
                   <b-input-group-append>
                     <b-button
-                      :disabled="searchItem && searchItem.trim().length < 1"
-                      @click="onAction('clear')"
+                        :disabled="searchItem && searchItem.trim().length < 1"
+                        @click="onAction('clear')"
                     >
                       {{ $t("form.label.clear") }}
                     </b-button>
@@ -78,32 +75,32 @@
             </b-col>
             <b-col lg="4">
               <b-form-group
-                :label="$t('form.label.filter')"
-                :description="$t('form.description.filter')"
-                label-cols-sm="2"
-                label-align-sm="right"
-                label-size="sm"
-                label-for="filterInput"
-                label-class="tx-bold"
-                class="mb-0"
+                  :label="$t('form.label.filter')"
+                  :description="$t('form.description.filter')"
+                  label-cols-sm="2"
+                  label-align-sm="right"
+                  label-size="sm"
+                  label-for="filterInput"
+                  label-class="tx-bold"
+                  class="mb-0"
               >
                 <b-input-group size="sm">
                   <b-form-input
-                    v-model="filter"
-                    :placeholder="$t('form.placeholder.filter')"
-                    type="search"
+                      v-model="filter"
+                      :placeholder="$t('form.placeholder.filter')"
+                      type="search"
                   />
                 </b-input-group>
               </b-form-group>
             </b-col>
             <b-col lg="3">
               <b-form-group
-                :label="$t('form.label.filter_on')"
-                :description="$t('form.description.filter_on')"
-                label-cols-sm="3"
-                label-align-sm="right"
-                label-class="tx-bold"
-                class="mb-0"
+                  :label="$t('form.label.filter_on')"
+                  :description="$t('form.description.filter_on')"
+                  label-cols-sm="3"
+                  label-align-sm="right"
+                  label-class="tx-bold"
+                  class="mb-0"
               >
                 <b-form-checkbox-group v-model="filterOn"
                                        class="mt-1"
@@ -118,39 +115,38 @@
             </b-col>
           </b-row>
         </b-col>
-
         <b-col lg="9" class="my-1">
           <b-row>
             <b-col lg="4">
               <b-form-group
-                :label="$t('form.label.per_page')"
-                :description="$t('form.description.per_page')"
-                label-cols-sm="3"
-                label-align-sm="right"
-                label-size="sm"
-                label-for="perPageSelect"
-                label-class="tx-bold"
-                class="mb-0"
+                  :label="$t('form.label.per_page')"
+                  :description="$t('form.description.per_page')"
+                  label-cols-sm="3"
+                  label-align-sm="right"
+                  label-size="sm"
+                  label-for="perPageSelect"
+                  label-class="tx-bold"
+                  class="mb-0"
               >
                 <b-form-select
-                  id="perPageSelect"
-                  v-model="perPageCount"
-                  :options="pageOptions"
-                  size="sm"
-                  @change="changePageSize"
+                    id="perPageSelect"
+                    v-model="perPageCount"
+                    :options="pageOptions"
+                    size="sm"
+                    @change="changePageSize"
                 />
               </b-form-group>
             </b-col>
             <b-col lg="8">
               <b-pagination
-                v-model="currentPage"
-                :total-rows="totalRowsCount"
-                :per-page="perPageCount"
-                limit="10"
-                align="fill"
-                size="sm"
-                class="my-0"
-                @change="changePaginate"
+                  v-model="currentPage"
+                  :total-rows="totalRowsCount"
+                  :per-page="perPageCount"
+                  limit="10"
+                  align="fill"
+                  size="sm"
+                  class="my-0"
+                  @change="changePaginate"
               />
             </b-col>
           </b-row>
@@ -185,9 +181,9 @@
           <template v-slot:cell()="data">
             <template v-if="data.field.type === fieldTypes.json">
               <crud-list-view-json
-                :field-data="data.field"
-                :data="data.item[data.field.key]"
-                view-type="inline"
+                  :field-data="data.field"
+                  :data="data.item[data.field.key]"
+                  view-type="inline"
               />
             </template>
 
@@ -211,46 +207,45 @@
             </template>
           </template>
 
-          <template v-slot:cell(opPokazatelIdJSON)="cellData">
-            <span class="tx-bold">
-              {{ $t("vnytNapravlenie.label.posMaterialId") }}:
-            </span>
-            <ul>
-              <template v-for="posMaterial in cellData.item.posMaterials">
-                <li v-if="getProp(posMaterial, 'sMaterial.name', '')">
+          <template v-slot:cell(probaCustomView)="cellData">
+            <template v-for="posMaterial in cellData.item.posMaterials">
+              <b-list-group class="list-group-flush">
+                <b-list-group-item v-if="getProp(posMaterial, 'sMaterial.name', '')">
+                  <span class="tx-bold">
+                    {{ $t("vnytNapravlenie.label.posMaterialId") }}:
+                  </span>
                   <span>
                     {{ getProp(posMaterial, "sMaterial.name", "") }}
                   </span>
-                  <br>
-                  <span v-if="posMaterial.materialCount">
-                    <span class="tx-bold">{{ $t("vnytNapravlenie.label.count") }}:</span>
+                </b-list-group-item>
+                <b-list-group-item v-if="posMaterial.materialCount">
+                  <span class="tx-bold">
+                    {{ $t("vnytNapravlenie.label.posMaterialCount") }}:
+                  </span>
+                  <span>
                     {{ getProp(posMaterial, 'materialCount', '') }}
-                    {{ getProp(posMaterial, 'sMera.name', '') }}
+                    <span>{{ getProp(posMaterial, 'sMera.name', '') }}</span>
                   </span>
-                  <br>
-                  <span class="tx-bolder">
-                    {{ $t('form.label.opPokazatelShort') }}:
-                  </span>
-                  <template
-                    v-if="posMaterial.opPokazatelIdJSON
-                      && Array.isArray(posMaterial.opPokazatelIdJSON)">
-                    <ul>
-                      <template v-for="(item, index) in posMaterial.opPokazatelIdJSON">
-                        <li :key="index">
-                          {{ viewForeignData(cellData.field, item) }}
-                        </li>
-                      </template>
-                    </ul>
-                  </template>
-                </li>
-              </template>
-            </ul>
+                </b-list-group-item>
+              </b-list-group>
+            </template>
+          </template>
 
+          <template v-slot:cell(opPokazatelIdJSON)="data">
+            <template v-if="data.value && Array.isArray(data.value)">
+              <template v-for="(item, index) in data.value">
+                <span :key="index">
+                  <span class="tx-bold">{{ index + 1 }}: </span>
+                  {{ viewForeignData(data.field, item) }}.
+                  <br>
+                </span>
+              </template>
+            </template>
           </template>
 
           <template v-slot:cell(status)="cellData">
             <span v-if="toLowerCase(cellData.value) === toLowerCase('new')"
-              class="tx-13 badge badge-primary"
+                  class="tx-13 badge badge-primary"
             >
               {{ $t(`napravlenie.epic.status.${cellData.value}`) }}
             </span>
@@ -270,14 +265,17 @@
                     :variant="button.variant || 'secondary'"
                     @click="onActionButton(button, row.item)"
                   >
-                    <i
-                      :class="button.icon"
-                      class="cursor-pointer"
-                      aria-hidden="true"
-                    />
+                    <i :class="button.icon" class="cursor-pointer"/>
                     {{ $t(button.label) }}
                   </b-button>
                 </template>
+                <b-button
+                  variant="primary"
+                  title="Edit"
+                  @click="onAction('edit-item', row.item)"
+                >
+                  <i class="far fa-edit cursor-pointer"/>
+                </b-button>
                 <b-button
                   variant="danger"
                   title="Delete"
@@ -295,13 +293,11 @@
   </div>
 </template>
 <script>
-import CrudListMixin from '~/components/crud/CrudListMixin'
-
-export default {
-  mixins: [CrudListMixin]
-}
+  import CrudListMixin from '~/components/crud/CrudListMixin'
+  export default {
+    mixins: [CrudListMixin]
+  }
 </script>
-
 <style>
   .margin-both-minus-10 {
     margin-left: -10px;

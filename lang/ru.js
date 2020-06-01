@@ -23,6 +23,7 @@ export default {
       id: 'id',
     },
     label: {
+      rejectionDescription: 'Причина отклонения',
       gosStandard: 'ГОС стандарт (НД)',
       boolean_true: 'Да',
       boolean_false: 'Нет',
@@ -34,7 +35,7 @@ export default {
       male: 'Муж',
       female: 'Жен',
       pol: 'Пол',
-      add: 'добавление',
+      add: 'добавить',
       save: 'сохранение',
       clear: 'очистить',
       update: 'обновить',
@@ -67,13 +68,14 @@ export default {
       planCount: 'количество по плану',
       planKv: 'квартал',
       planYear: 'год плана',
-      regionJSON: 'адрес',
+      regionJSON: 'Адрес',
       regionFullPath: 'полный адрес',
       departmentDataJSON: 'Дополнительная информация о департамента',
       sOtdeleniaId: 'Принадлежит к группе отдела',
       otdelId: 'Отдел',
       toOtdel: 'Направляется в отдел',
       opPokazatelId: 'Определяемый показатель',
+      opPokazatelShort: 'Опр показатели',
       opPokazatelIdJSON: 'Определяемые показатели',
       probyNapravilJSON: 'Пробу направил',
       probyDostavilJSON: 'Пробу доставил',
@@ -82,7 +84,7 @@ export default {
       kemOtobranJSON: 'Кем отобран',
       lechenieInfo: 'Сведение о лечении',
       sMaterialId: 'Проба материал',
-      materialCount: 'Количество проб (материал)',
+      materialCount: 'Количество проб',
       sMeraId: 'Мера измерения',
       vozrast: 'Возраст животного',
       dateZabolivanie: 'Дата заболивания животного',
@@ -114,6 +116,7 @@ export default {
       afterProcess: 'После обработки',
       napravlenieEpic: 'Поступившие направление',
       vnytNapravlenie: 'Отправленные направление',
+      probaCustomView: 'Пробы',
       sendStatusCustomView: 'Отправил&Принял',
       posMaterialCustomView: 'Обьект исследования',
       vnytNapravlenieOptionalCustomView: 'Доп. данные',
@@ -125,6 +128,10 @@ export default {
       roles: 'Роли доступа',
     },
     placeholder: {
+      roles: 'Роль доступа',
+      sDoljnostId: 'Должность',
+      subOtdelId: 'Под отдел',
+      rejectionDescription: 'Поле написания причины отклонения',
       gosStandard: 'ГОС стандарт или НД документ',
       boolean_true: 'Да',
       boolean_false: 'Нет',
@@ -144,7 +151,12 @@ export default {
       filter_on: 'фильтр по',
       per_page: 'количество',
       address: 'адрес',
-      phone_1: 'телефон',
+      phone_1: 'телефон 1',
+      phone_2: 'телефон 2',
+      phone_3: 'телефон 3',
+      phone_4: 'телефон 4',
+      phone_5: 'телефон 5',
+      phone_6: 'телефон 6',
       sMaterialTypeId: 'вид матриала',
       sMaterialAnimalTypeId: '(КРС, МРС, собаки, кошки)',
       sMaterialColor: 'цвет матриала',
@@ -213,7 +225,7 @@ export default {
       kemOtobranJSON: 'Кем отобран',
       lechenieInfo: 'Сведение о лечении',
       sMaterialId: 'Проба материал',
-      materialCount: 'Количество проб (материал)',
+      materialCount: 'Количество проб',
       sMeraId: 'Мера измерения',
       vozrast: 'Возраст животного',
       napravlenieEpic: 'Поступившие направление',
@@ -223,6 +235,11 @@ export default {
       vnytNapravlenieOptionalCustomView: 'Доп. данные',
     },
     description: {
+      roles: 'Роль доступа',
+      sDoljnostId: 'Должность персонала',
+      subOtdelId: 'Под отдел',
+      rejectionDescription: 'Напишите по подробнее причину отклонения',
+      fullName: 'полное имя отчество',
       boolean_true: 'Да',
       boolean_false: 'Нет',
       description: 'Примечание',
@@ -239,7 +256,12 @@ export default {
       filter_on: 'фильтры по выбранным полям',
       per_page: 'количество элементов на странице',
       address: 'адрес нахождения обьекта',
-      phone_1: 'телефонный номер',
+      phone_1: 'телефон 1',
+      phone_2: 'телефон 2',
+      phone_3: 'телефон 3',
+      phone_4: 'телефон 4',
+      phone_5: 'телефон 5',
+      phone_6: 'телефон 6',
       sMaterialTypeId: 'Кал, Кровь, Мясо, Молочный продукт и.т.д',
       sMaterialAnimalTypeId: '(КРС, МРС, собаки, кошки)',
       sMaterialColor: 'красный, белый, черный',
@@ -310,7 +332,7 @@ export default {
       kemOtobranJSON: 'Кем отобран',
       lechenieInfo: 'Сведение о лечении',
       sMaterialId: 'Проба материал',
-      materialCount: 'Количество проб (материал)',
+      materialCount: 'Количество проб',
       sMeraId: 'Мера измерения',
       napravlenieEpic: 'Поступившие направление',
       vnytNapravlenie: 'Отправленные направление',
@@ -362,6 +384,9 @@ export default {
   },
   s_region: {
     title: 'Регионы',
+    label: {
+      napravlenieRegionFullPath: 'Адрес направления'
+    }
   },
   s_region_type: {
     title: 'Вид региона',
@@ -384,9 +409,9 @@ export default {
     title: 'План работы',
   },
   pos_material: {
-    title: 'Поступившие материалы',
+    title: 'Пробы',
     label: {
-      one: 'Поступивший материал',
+      one: 'Проба',
       dateVremyaOtbora: 'Дата отбора пробы',
       dateDostavki: 'Дата доставки пробы',
     },
@@ -409,6 +434,35 @@ export default {
       subOtdel: 'Под отдел',
     },
   },
+  probyNapravil: {
+    label: {
+      fullName: 'Пробу направил ФИО',
+      phone_1: 'Телефон направителя'
+    }
+  },
+  probyDostavil: {
+    label: {
+      fullName: 'Пробу доставил ФИО',
+      phone_1: 'Телефон доставщика'
+    }
+  },
+  owner: {
+    label: {
+      fullName: 'Владелец ФИО',
+      phone_1: 'Телефон владельца'
+    }
+  },
+  kemOtobran: {
+    label: {
+      fullName: 'Кем отобран ФИО',
+      phone_1: 'Кем отобрат телефон'
+    }
+  },
+  mestoOtbora: {
+    label: {
+      regionFullPath: 'Место отбора'
+    }
+  },
   napravlenie: {
     title: 'Направление',
     epic: {
@@ -428,10 +482,16 @@ export default {
     title: 'Поступившие внешнее Направление',
     label: {
       nomerNapravlenia: '№ Заказа',
+      sendToOtdelSuccess: 'Направление успешно направлен'
     }
   },
   vnytNapravlenie: {
+    error: {
+      rejectDescriptionNotWritten: 'Пожалуйста напишите причину отклонения'
+    },
     pub: {
+      researchStart: 'К исследованию',
+      researchFinish: 'Завершить исследование',
       accept: 'Принять',
       reject: 'Отклонить',
       status: {
@@ -439,6 +499,7 @@ export default {
         pending: 'Новый',
         research: 'Исследуется',
         completed: 'Завершили',
+        rejected: 'Отклонен'
       },
     },
     epic: {
@@ -455,9 +516,19 @@ export default {
         title: 'Подтверждение',
         message: 'Принять направление ?',
       },
+      reject: {
+        title: 'Подвердите причину отклонения',
+        message: 'Напишите причину отклонения'
+      },
+      researchStart: {
+        title: 'Начала исследование, пожалуйста выберите НД документ для исследованиий'
+      }
     },
     title: 'Внутреннее Направление',
     label: {
+      rejectionDescription: 'Причина отклонения',
+      count: 'Кол-во',
+      outerNomerNapravlenia: 'Внешний №',
       nomerNapravlenia: '№ Заказа',
       napravilPersonal: 'Направил',
       napravlenOtdel: 'Направлен в отдел',
@@ -467,7 +538,14 @@ export default {
       prinyalOtdel: 'Принял',
       prinyalDate: 'Дата приема',
       prinyalTime: 'Время приема',
+
+      rejectPersonal: 'Отклонил',
+      rejectOtdel: 'Отклонил',
+      rejectDate: 'Дата',
+      rejectTime: 'Время',
+
       opPokazatel: 'Опр-е показатели',
+      probaCustomView: 'Пробы',
       posMaterialCount: 'Количество проб',
       posMaterialId: 'Обьект исследования',
       posMaterialCheckVid: 'Соответствие внешнего вида',
@@ -582,6 +660,12 @@ export default {
     plan_raboty: {
       index: 'план работы',
       add: '',
+    },
+    proby: {
+      index: 'пробы'
+    },
+    posNapravlenia: {
+      index: 'поступившие направления'
     },
     isledovanie: {
       index: 'исследование',

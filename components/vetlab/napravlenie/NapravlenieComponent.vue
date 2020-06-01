@@ -1,8 +1,6 @@
 <template>
   <div class="crud">
-    <div
-      class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30"
-    >
+    <div class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
       <div>
         <h4 class="mg-b-0 tx-spacing--1 mg-b-7">
           {{ $t(`${restName}.title`) }}
@@ -12,7 +10,7 @@
     </div>
     <b-row class="mg-t-20 row-xs">
       <b-col cols="12">
-        <crud-form
+        <napravlenie-form
           v-if="selectedRecord"
           :crud-data="crudData"
           :record="selectedRecord"
@@ -24,7 +22,7 @@
     </b-row>
     <b-row class="mg-t-10 row-xs">
       <b-col cols="12">
-        <crud-list
+        <napravlenie-list
           v-if="crudListRecords"
           v-model="crudListRecords"
           :crud-data="crudData"
@@ -37,39 +35,23 @@
           @on-page="onCrudListChangePage"
           @on-page-size="onCrudListChangePageSize"
           @on-search="onCrudListSearch"
+          @on-action="onListAction"
         />
       </b-col>
     </b-row>
-    <div class="crud-dialogs">
-      <template v-for="(modal, index) in modals">
-        <template v-if="modal.type === modalTypes.form">
-          <crud-form-modal
-            :key="index"
-            :id="modal.id"
-            :title="$t(modal.title)"
-            :size="modal.size"
-            :crud-data="crudData"
-            :modal="modal"
-            :form-data="modalFormDataByRestName"
-            @on-action="onModalAction"
-          />
-        </template>
-      </template>
-    </div>
   </div>
 </template>
 <script>
-import CrudMixins from '~/components/crud/CrudComponentMixin'
-import CrudForm from '~/components/crud/CrudForm'
-import CrudList from '~/components/crud/CrudList'
-import CrudFormModal from '~/components/crud/CrudFormModal'
+import NapravlenieList from './NapravlenieList'
+import NapravlenieForm from './NapravlenieForm'
+import NapravlenieComponentMixin from './NapravlenieComponentMixin'
+import toastMixin from '~/mixins/toastMixin'
 
 export default {
   components: {
-    CrudForm,
-    CrudList,
-    CrudFormModal,
+    NapravlenieList,
+    NapravlenieForm
   },
-  mixins: [CrudMixins],
+  mixins: [toastMixin, NapravlenieComponentMixin],
 }
 </script>

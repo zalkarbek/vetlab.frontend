@@ -124,6 +124,12 @@ const vnytNapravlenieFields = {
       key: 'dateVremyaOtpravki',
       disabled: false,
       hidden: false,
+      col: {
+        sm: 12,
+        xs: 12,
+        md: 10,
+        lg: 5,
+      }
     },
 
     // Направляется в отдел (одно значение)
@@ -138,6 +144,12 @@ const vnytNapravlenieFields = {
       foreign_attributes: ['name', 'id'],
       disabled: false,
       hidden: false,
+      col: {
+        sm: 12,
+        xs: 12,
+        md: 10,
+        lg: 5,
+      }
     },
 
     // Обьект исследования (одно зачение)
@@ -147,6 +159,12 @@ const vnytNapravlenieFields = {
       key: 'posMaterialId',
       disabled: false,
       hidden: false,
+      col: {
+        sm: 12,
+        xs: 12,
+        md: 10,
+        lg: 5,
+      }
     },
 
     // Количество пробы цифра (одно зачение)
@@ -156,23 +174,11 @@ const vnytNapravlenieFields = {
       key: 'postMaterialCount',
       disabled: false,
       hidden: false,
-    },
-
-    // Определяемые показатели (несколько значений)
-    // отдел: общий
-    {
-      type: 'select-multi',
-      key: 'opPokazatelIdJSON',
-      foreign_crud: 's_pokazatel',
-      foreign_dataset: 'pokazatel',
-      foreign_label: 'name',
-      foreign_value: 'id',
-      foreign_attributes: ['name', 'id'],
-      disabled: false,
-      hidden: false,
       col: {
-        md: 8,
-        lg: 6
+        sm: 12,
+        xs: 12,
+        md: 10,
+        lg: 5,
       }
     },
 
@@ -181,6 +187,12 @@ const vnytNapravlenieFields = {
     {
       type: 'select-multi:own',
       key: 'isledovanieProvoditsaJSON',
+      col: {
+        sm: 12,
+        xs: 12,
+        md: 10,
+        lg: 5,
+      },
       foreign_label: 'label',
       foreign_value: 'value',
       foreign_values: [
@@ -205,6 +217,27 @@ const vnytNapravlenieFields = {
           value: 'afterProcess',
         },
       ],
+    },
+
+    // Определяемые показатели (несколько значений)
+    // отдел: общий
+    {
+      type: 'select-multi',
+      key: 'opPokazatelIdJSON',
+      foreign_crud: 's_pokazatel',
+      foreign_dataset: 'pokazatel',
+      foreign_label: 'name',
+      foreign_value: 'id',
+      foreign_attributes: ['name', 'id'],
+      disabled: false,
+      hidden: false,
+      col: {
+        md: 12,
+        sm: 12,
+        xs: 12,
+        lg: 9,
+        xl: 9
+      }
     },
 
     // Соответствие внешнего вида пробы
@@ -249,4 +282,61 @@ const vnytNapravlenieFields = {
   ],
 }
 
-export { vnytNapravlenieFields, otdelFields }
+const researchStartFields = {
+  fields: [
+    {
+      type: 'select:preload',
+      key: 'posMaterialId',
+      disabled: false,
+      hidden: false,
+      col: {
+        md: 12,
+        lg: 6,
+        sm: 12,
+        xs: 12,
+        xl: 6
+      }
+    },
+    {
+      type: 'select-multi',
+      key: 'opPokazatelIdJSON',
+      foreign_crud: 's_pokazatel',
+      foreign_dataset: 'pokazatel',
+      foreign_label: 'name',
+      foreign_value: 'id',
+      foreign_attributes: ['name', 'id'],
+      disabled: false,
+      hidden: false,
+      col: {
+        md: 12,
+        lg: 9,
+        sm: 12,
+        xs: 12,
+        xl: 9
+      }
+    },
+    {
+      type: 'select-multi',
+      key: 'metodIdJSON',
+      foreign_crud: 's_metod',
+      foreign_dataset: 'metod',
+      foreign_label: 'name',
+      foreign_value: 'name',
+      disabled: false,
+      hidden: false,
+      col: {
+        md: 12,
+        lg: 9,
+        sm: 12,
+        xs: 12,
+        xl: 9
+      }
+    },
+  ]
+}
+
+export {
+  vnytNapravlenieFields,
+  otdelFields,
+  researchStartFields
+}

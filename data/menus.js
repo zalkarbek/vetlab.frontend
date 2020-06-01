@@ -198,68 +198,51 @@ export default [
   {
     _t: 'menu.epidemiology.index',
     text: 'эпидемиология',
-    type: 'flex',
+    type: 'children',
     class: '',
     icon: '',
     active: false,
     children: [
       {
+        _t: 'menu.napravlenie.index',
+        text: 'Направление',
         class: '',
-        flex: [
-          {
-            _t: 'menu.divider',
-            text: '#',
-            class: '',
-            items: [
-              {
-                _t: 'menu.napravlenie.index',
-                text: 'Направление',
-                class: '',
-                icon: '',
-                to: '/epic/napravlenie',
-              },
-              {
-                _t: 'menu.isledovanie.index',
-                text: 'Исследование',
-                class: '',
-                icon: '',
-                to: '/',
-              },
-              {
-                _t: 'menu.protocol_isledovanie.index',
-                text: 'Заключение',
-                class: '',
-                icon: '',
-                to: '/',
-              },
-              {
-                _t: 'menu.proby_isledovanie.index',
-                text: 'пробы на исследовании',
-                class: '',
-                icon: '',
-                to: '/',
-              },
-              {
-                _t: 'menu.proby_postup.index',
-                text: 'поступившие пробы',
-                class: '',
-                icon: '',
-                to: '/',
-              },
-            ],
-          },
-        ],
-      },
+        icon: '',
+        to: '/epic/napravlenie',
+      }
     ],
   },
   {
-    _t: 'menu.isledovanie.index',
-    text: 'Исследование',
-    type: 'single',
+    _t: 'menu.proby.index',
+    text: 'Пробы',
+    type: 'children',
     class: '',
     icon: '',
     active: false,
-    to: '/isledovanie',
+    children: [
+      {
+        _t: 'menu.posNapravlenia.index',
+        text: 'поступившие направления',
+        class: '',
+        icon: '',
+        to: '/pos-proby',
+      },
+      {
+        _t: 'menu.isledovanie.index',
+        text: 'Исследование',
+        class: '',
+        icon: '',
+        active: false,
+        to: '/isledovanie',
+      },
+      {
+        _t: 'menu.protocol_isledovanie.index',
+        text: 'Заключение',
+        class: '',
+        icon: '',
+        to: '/',
+      }
+    ],
   },
   {
     _t: 'menu.reports',

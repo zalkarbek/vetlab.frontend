@@ -14,6 +14,12 @@ export default {
     }
     state.dataset[datasetName].push(data)
   },
+  PUSH_TO_DATASET_FIRST(state, { datasetName, data }) {
+    if (!state.dataset[datasetName]) {
+      state.dataset[datasetName] = []
+    }
+    state.dataset[datasetName] = [data, ...state.dataset[datasetName]]
+  },
   UPDATE_ITEM_IN_DATASET(state, { datasetName, id, data }) {
     const elementIndex = this.$lodash.findIndex(state.dataset[datasetName], {
       id,

@@ -13,6 +13,7 @@
     <b-row class="mg-t-20 row-xs">
       <b-col cols="12">
         <crud-form
+          v-if="selectedRecord"
           :crud-data="crudData"
           :record="selectedRecord"
           @on-create="onCreate"
@@ -59,7 +60,7 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import CrudMixins from '~/components/crud/CrudComponentMixin'
+import CrudComponentMixin from '~/components/crud/CrudComponentMixin'
 import CrudForm from '~/components/crud/CrudForm'
 import CrudFormModal from '~/components/crud/CrudFormModal'
 import CrudList from '~/components/crud/CrudList'
@@ -71,7 +72,7 @@ export default {
     CrudList,
     CrudFormModal,
   },
-  mixins: [toastMixin, CrudMixins],
+  mixins: [toastMixin, CrudComponentMixin],
 
   computed: {
     modals() {

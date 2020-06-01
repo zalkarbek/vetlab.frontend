@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div :id="`${vnytNapravlenieCrudDataName}_page_id`"
-         class="mg-t-30"
-    >
+    <div :id="`${vnytNapravlenieCrudDataName}_page_id`" class="mg-t-30">
       <vnyt-napravlenie-component
         :crud="crud"
         :crud-data-name="vnytNapravlenieCrudDataName"

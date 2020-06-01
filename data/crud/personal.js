@@ -169,6 +169,7 @@ export default {
         {
           type: 'autocomplete',
           key: 'regionFullPath',
+          label: 'personal.label.addressLiveRegionJSON',
           // col настраивает макет сетки ввода (ширина поля ввода) md, sm, xs, lg
           col: {
             md: 8,
@@ -231,6 +232,7 @@ export default {
         {
           type: 'autocomplete',
           key: 'regionFullPath',
+          label: 'personal.label.addressBirthRegionJSON',
           // col настраивает макет сетки ввода (ширина поля ввода) md, sm, xs, lg
           col: {
             md: 8,

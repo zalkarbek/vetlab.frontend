@@ -3,117 +3,71 @@
     :id="id"
     :title="$t(title)"
     :size="size"
+    :header-bg-variant="headerBgVariant"
+    :header-text-variant="headerTextVariant"
+    :body-bg-variant="bodyBgVariant"
+    :body-text-variant="bodyTextVariant"
+    :footer-bg-variant="footerBgVariant"
+    :footer-text-variant="footerTextVariant"
     @ok="handleOk"
     @hidden="handleCancel"
   >
     <b-col cols="12">
-      <crud-form
-        :crud-buttons-enabled="false"
-        :crud-data="crudModalData"
-        :record="modalFormData"
-      >
-        <template v-slot:posMaterialId="props">
-          <v-select
-            v-model.trim="modalFormData[props.field.key]"
-            :reduce="(item) => item.id"
-            :placeholder="
-              $t(
-                props.field.placeholder || `form.placeholder.${props.field.key}`
-              )
-            "
-            :options="props.item.posMaterials"
-            label="id"
-          >
-            <template #option="option">
-              <span>
-                {{ option.sMaterial.name }}
-              </span>
-            </template>
-            <template #selected-option="option">
-              <strong>{{ option.sMaterial.name }}</strong>
-            </template>
-          </v-select>
-        </template>
-        <template v-slot:napravlenOtdelId="props">
-          <v-select
-            v-model.trim="modalFormData[props.field.key]"
-            :reduce="(item) => item[props.field.foreign_value]"
-            :label="props.field.foreign_label"
-            :placeholder="
-              $t(
-                props.field.placeholder || `form.placeholder.${props.field.key}`
-              )
-            "
-            :options="datasetList[props.field.foreign_dataset]"
-            @search:focus="storageLoadDataSet(props.field)"
-            @input="selectOtdel"
-          />
-        </template>
-      </crud-form>
+      <template v-if="modal.type === modalTypes.form && modalFormData">
+        <crud-form
+          v-if="modalFormData"
+          :crud-buttons-enabled="false"
+          :crud-data="crudModalData"
+          :record="modalFormData"
+        >
+          <template v-slot:posMaterialId="props">
+            <v-select
+              v-model.trim="modalFormData[props.field.key]"
+              :reduce="(item) => item.id"
+              :placeholder="$t(props.field.placeholder || `form.placeholder.${props.field.key}`)"
+              :options="props.item.posMaterials"
+              label="id"
+            >
+              <template #option="option">
+              <span>{{ option.sMaterial.name }}</span>
+              </template>
+              <template #selected-option="option">
+                <strong>{{ option.sMaterial.name }}</strong>
+              </template>
+            </v-select>
+          </template>
+          <template v-slot:napravlenOtdelId="props">
+            <v-select
+              v-model.trim="modalFormData[props.field.key]"
+              :reduce="(item) => item[props.field.foreign_value]"
+              :label="props.field.foreign_label"
+              :placeholder="$t(props.field.placeholder || `form.placeholder.${props.field.key}`)"
+              :options="datasetList[props.field.foreign_dataset]"
+              @search:focus="storageLoadDataSet(props.field)"
+              @input="selectOtdel"
+            />
+          </template>
+        </crud-form>
+      </template>
+      <template v-if="modal.type === modalTypes.confirm">
+        <p v-if="modal.message && modal.message.length >= 1" class="h5">
+          {{ $t(modal.message) }}
+        </p>
+        <p v-if="modal.messageWithTranslate && modal.messageWithTranslate.length >= 1"
+         class="h5"
+        >
+          {{ $t(modal.messageWithTranslate) }}
+        </p>
+      </template>
     </b-col>
   </b-modal>
 </template>
 <script>
-import CrudForm from '~/components/crud/CrudForm'
-import toastMixin from '~/mixins/toastMixin'
-import loadDatasetMixin from '~/mixins/loadDatasetMixin'
+import CrudFormModalMixin from '~/components/crud/CrudFormModalMixin'
 import { vnytNapravlenieFields, otdelFields } from '~/data/fields'
 
 export default {
-  components: {
-    CrudForm,
-  },
-  mixins: [toastMixin, loadDatasetMixin],
-  props: {
-    id: {
-      type: String,
-      default() {
-        return ''
-      },
-    },
-    title: {
-      type: String,
-      default() {
-        return ''
-      },
-    },
-    size: {
-      type: String,
-      default() {
-        return 'md'
-      },
-    },
-    formData: {
-      type: Object,
-      default() {
-        return {}
-      },
-    },
-    crudData: {
-      type: Object,
-      default() {
-        return {}
-      },
-    },
-    modal: {
-      type: Object,
-      default() {
-        return {}
-      },
-    },
-    selectData: {
-      type: Object,
-      default() {
-        return {}
-      },
-    },
-  },
-  data() {
-    return {
-      test: true,
-      formDataItem: {},
-    }
-  },
+  mixins: [CrudFormModalMixin],
   computed: {
     modalCrud() {
       return this.modal.modalCrud
@@ -130,6 +84,7 @@ export default {
     },
   },
 
+  mounted() {},
   methods: {
     async selectOtdel(id) {
       const otdel = await this.$api
@@ -159,34 +114,6 @@ export default {
         }
       }
     },
-
-    handleOk(event) {
-      this.$emit('on-action', {
-        actionMethod: this.modal.okAction,
-        data: this.modalFormData,
-        modalCrud: this.modalCrud,
-        cb: (validated, { message }) => {
-          if (!validated) {
-            event.preventDefault()
-            this.toastDanger(message, 'error.title')
-          } else {
-            this.toastSuccess(message)
-          }
-        },
-      })
-    },
-    handleCancel(event) {
-      this.$emit('on-action', {
-        actionMethod: this.modal.hiddenAction,
-        data: this.modalFormData,
-        modalCrud: this.modalCrud,
-        cb: (validated) => {
-          if (!validated) {
-            event.preventDefault()
-          }
-        },
-      })
-    },
-  },
+  }
 }
 </script>

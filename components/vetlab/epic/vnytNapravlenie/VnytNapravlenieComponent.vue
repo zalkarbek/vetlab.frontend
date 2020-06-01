@@ -64,7 +64,7 @@ export default {
   methods: {
     sendNapravlenieSuccess(response) {
       if(response && !response.error) {
-        this.pushItemInDataset(response.data)
+        this.pushItemInDatasetFirst(response.data)
       }
     },
   },
