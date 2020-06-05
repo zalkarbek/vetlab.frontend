@@ -101,7 +101,8 @@
     <template v-else-if="!form.disabled && form.type === fieldTypes.select">
       <v-select
         v-model.trim="formValue"
-        :reduce="(item) => item[form.foreign_value]"
+        :reduce="
+          (item) => form.foreign_value ? item[form.foreign_value] : item"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :label="form.foreign_label"
         :options="datasetList[form.foreign_dataset]"
@@ -117,7 +118,8 @@
     >
       <v-select
         v-model.trim="formValue"
-        :reduce="(item) => item[form.foreign_value]"
+        :reduce="
+          (item) => form.foreign_value ? item[form.foreign_value] : item"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :label="form.foreign_label"
         :options="datasetList[form.foreign_dataset]"
@@ -131,7 +133,8 @@
     <template v-else-if="!form.disabled && form.type === fieldTypes.select_own">
       <v-select
         v-model.trim="formValue"
-        :reduce="(item) => item[form.foreign_value]"
+        :reduce="
+          (item) => form.foreign_value ? item[form.foreign_value] : item"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :label="form.foreign_label"
         :options="translateForeignValues(form.foreign_values)"
@@ -145,7 +148,8 @@
     >
       <v-select
         v-model.trim="formValue"
-        :reduce="(item) => item[form.foreign_value]"
+        :reduce="
+          (item) => form.foreign_value ? item[form.foreign_value] : item"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :label="form.foreign_label"
         :options="translateForeignValues(form.foreign_values)"
@@ -160,7 +164,8 @@
     >
       <v-select
         v-model.trim="formValue"
-        :reduce="(item) => item[form.foreign_value]"
+        :reduce="
+          (item) => form.foreign_value ? item[form.foreign_value] : item"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :label="form.foreign_label"
         :options="localDatasetList[form.foreign_dataset]"
@@ -175,7 +180,8 @@
     >
       <v-select
         v-model.trim="formValue"
-        :reduce="(item) => item[form.foreign_value]"
+        :reduce="
+          (item) => form.foreign_value ? item[form.foreign_value] : item"
         :placeholder="placeholder || defaultPlaceholder(form)"
         :label="form.foreign_label"
         :options="searchDataset[form.foreign_dataset]"
