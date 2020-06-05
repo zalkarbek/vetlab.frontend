@@ -2,12 +2,13 @@ import { mapState } from 'vuex'
 import CrudForm from '~/components/crud/CrudForm'
 import toastMixin from '~/mixins/toastMixin'
 import loadDatasetMixin from '~/mixins/loadDatasetMixin'
+import utilMixin from '~/mixins/utilMixin'
 
 export default {
   components: {
     CrudForm,
   },
-  mixins: [toastMixin, loadDatasetMixin],
+  mixins: [utilMixin, toastMixin, loadDatasetMixin],
   props: {
     id: {
       type: String,
@@ -69,6 +70,10 @@ export default {
       modalTypes: (state) => state.modalTypes,
     }),
 
+    ...mapState('api', {
+      crud: (state) => state.crud,
+    }),
+
     modalCrud() {
       return this.modal.modalCrud
     },
@@ -83,10 +88,7 @@ export default {
 
     modalFormData() {
       let formData = this.formData
-      if (this.modalCrud
-          && this.modalCrud.modalRequireField
-          && this.formData
-          && this.formData[this.modalCrud.modalRequireField]) {
+      if (formData && this.modalCrud && this.modalCrud.modalRequireField) {
         formData = this.formData[this.modalCrud.modalRequireField]
       }
       return formData
