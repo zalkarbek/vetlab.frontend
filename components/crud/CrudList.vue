@@ -167,7 +167,6 @@
           :sort-direction="sortDirection"
           show-empty
           small
-          stacked="md"
           responsive
           bordered
           hover

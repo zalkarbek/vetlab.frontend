@@ -1,5 +1,6 @@
 import CrudComponentMixin from '~/components/crud/CrudComponentMixin'
+import loadDatasetMixin from '~/mixins/loadDatasetMixin'
 
 export default {
-  mixins: [CrudComponentMixin],
+  mixins: [loadDatasetMixin, CrudComponentMixin],
 }

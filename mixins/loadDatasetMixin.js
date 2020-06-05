@@ -8,13 +8,19 @@ export default {
   },
   computed: {
     ...mapState('api', {
-      crud: (state) => state.crud,
       fieldTypes: (state) => state.fieldTypes,
       inputMask: (state) => state.inputMask,
       datasetList: (state) => state.dataset,
     }),
   },
   methods: {
+    request({ req, params = {}, data = {} }) {
+      return this.$store.dispatch('api/req', {
+        req,
+        params,
+        data,
+      })
+    },
     async storageLoadDataSet({
       foreign_dataset: datasetName,
       foreign_crud: datasetCrudName,
@@ -86,5 +92,31 @@ export default {
         this.$set(this.searchDataset, field.foreign_dataset, [])
       }
     },
+
+    pushItemInStoreDataset(data, datasetName) {
+      return this.$store.dispatch('api/pushItemToDataset', {
+        data,
+        datasetName,
+      })
+    },
+    pushItemInStoreDatasetFirst(data, datasetName) {
+      return this.$store.dispatch('api/pushItemToDatasetFirst', {
+        data,
+        datasetName,
+      })
+    },
+    updateItemInStoreDataset(id, data, datasetName) {
+      return this.$store.dispatch('api/updateItemInDataset', {
+        id,
+        data,
+        datasetName,
+      })
+    },
+    removeItemInStoreDataset(data, datasetName) {
+      return this.$store.dispatch('api/removeItemInDataset', {
+        data,
+        datasetName,
+      })
+    }
   },
 }

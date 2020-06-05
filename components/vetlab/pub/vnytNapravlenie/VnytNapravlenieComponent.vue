@@ -82,7 +82,7 @@ export default {
 
     this.$eventBus.$on(
       this.busEvents.VNYT_NAPRAVLENIE_START_ISLEDOVANIE_RESPONSE,
-      this.reSearchResponse
+      this.reSearchStartResponse
     )
 
   },
@@ -99,7 +99,7 @@ export default {
 
     this.$eventBus.$off(
       this.busEvents.VNYT_NAPRAVLENIE_START_ISLEDOVANIE_RESPONSE,
-      this.reSearchResponse
+      this.reSearchStartResponse
     )
   },
   methods: {
@@ -148,12 +148,12 @@ export default {
       const {
         id:vnytNapravlenieId,
         napravlenieId,
-        metodIdJSON,
-        opPokazatelIdJSON,
+        metodJSON,
+        opPokazatelJSON,
       } = data
 
       let success = false
-      if(!metodIdJSON || Array.isArray(metodIdJSON) && metodIdJSON.length === 0) {
+      if(!metodJSON || Array.isArray(metodJSON) && metodJSON.length === 0) {
         success = false
         cb(success, {
           ok: success,
@@ -162,7 +162,7 @@ export default {
         return false
       }
 
-      if(!opPokazatelIdJSON || Array.isArray(opPokazatelIdJSON) && opPokazatelIdJSON.length === 0) {
+      if(!opPokazatelJSON || Array.isArray(opPokazatelJSON) && opPokazatelJSON.length === 0) {
         success = false
         cb(success, {
           ok: success,
@@ -174,14 +174,15 @@ export default {
       this.$store.dispatch('emit/vnytNapravlenieStartIsledovanie', {
         vnytNapravlenieId,
         napravlenieId,
-        metodIdJSON,
-        opPokazatelIdJSON
+        metodJSON,
+        opPokazatelJSON
       })
     },
 
-    reSearchResponse(data) {
+    reSearchStartResponse(data) {
       if(data && data.id && data.vnytNapravlenieId) {
         this.pushValueToItemInDataset(data.vnytNapravlenieId, 'isledovanies', data)
+        this.updateVnytNapravlenieStatus(data.vnytNapravlenieId, 'research')
         this.toastSuccess('Проба успешно перемещен на исследование')
       }
     }

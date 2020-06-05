@@ -55,17 +55,26 @@
 .bg-primary-light { background-color: rgba($blue, .15); }
 .bg-success-light { background-color: rgba($green, .18); }
 .bg-warning-light { background-color: rgba($orange, .18); }
+.bg-teal-light { background-color: rgba($teal, .18); }
+.bg-lightblue-light { background-color: rgba($light-blue, .18); }
+.bg-red-light { background-color: rgba($red, .18); }
 .bg-pink-light { background-color: rgba($pink, .18); }
 .bg-indigo-light { background-color: rgba($indigo, .18); }
+.bg-purple-light { background-color: rgba($purple, .18); }
+.bg-cyan-light { background-color: rgba($cyan, .18); }
+
 
 // Extra background colors
-.bg-indigo { background-color: $indigo; }
-.bg-purple { background-color: $purple; }
-.bg-pink { background-color: $pink; }
+.bg-primary { background-color: $blue; }
+.bg-success { background-color: $green; }
 .bg-orange { background-color: $orange; }
 .bg-teal { background-color: $teal; }
-.bg-lightblue { background-color: #a5d7fd; }
-
+.bg-lightblue { background-color: $light-blue; }
+.bg-red { background-color: $red; }
+.bg-pink { background-color: $pink; }
+.bg-indigo { background-color: $indigo; }
+.bg-purple { background-color: $purple; }
+.bg-cуan { background-color: $cyan; }
 .bg-transparent { background-color: transparent; }
 
 // Brand background colors

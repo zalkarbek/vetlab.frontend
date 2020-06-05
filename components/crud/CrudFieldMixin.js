@@ -1,8 +1,10 @@
 import _ from 'lodash'
 import { createNamespacedHelpers } from 'vuex'
+import loadDatasetMixin from '~/mixins/loadDatasetMixin'
 const { mapState } = createNamespacedHelpers('api')
 
 export default {
+  mixins: [loadDatasetMixin],
   props: {
     crudData: {
       type: Object,
@@ -81,6 +83,47 @@ export default {
     }
   },
   methods: {
+    async addNewTag(newTag, field) {
+      const data = {}
+      data[field.foreign_label] = newTag
+      const req = this.crud[field.foreign_crud].rest.create
+      try {
+        const result = await this.request({ req, data })
+        let res = result
+        if(result.data)
+          res = result.data
+
+        if(res.data && !res.error) {
+          this.pushItemInStoreDatasetFirst(res.data, field.foreign_dataset)
+          let tagArr = []
+
+          if(field.foreign_attributes && Array.isArray(field.foreign_attributes)) {
+            const itemOnAttr = {}
+            field.foreign_attributes.forEach((attr) => {
+              itemOnAttr[attr] = res.data[attr]
+            })
+            tagArr.push(itemOnAttr)
+          } else {
+            tagArr.push({
+              [field.foreign_label]: res.data[field.foreign_label],
+              id: res.data.id
+            })
+          }
+
+          if(this.formValue && Array.isArray(this.formValue)) {
+            this.formValue = [...tagArr, ...this.formValue]
+          } else {
+            this.formValue = [...tagArr]
+          }
+
+        } else {
+          this.toastDanger(this.$t(`${field.foreign_crud}.error.notAdd.${field.key}`))
+        }
+      }catch (e) {
+        this.toastDanger(this.$t(`${field.foreign_crud}.error.notAdd.${field.key}`))
+      }
+    },
+
     translateForeignValues(values = []) {
       if (values && Array.isArray(values) && values.length >= 1) {
         return values.map((val) => {

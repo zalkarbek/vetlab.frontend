@@ -13,7 +13,7 @@
     @hidden="handleCancel"
   >
     <b-col cols="12">
-      <template v-if="modal.type === modalTypes.form">
+      <template v-if="modal.type === modalTypes.form && modalFormData">
         <crud-form
           v-if="modalFormData"
           :crud-buttons-enabled="false"
@@ -22,17 +22,23 @@
         >
           <template v-slot:posMaterialId="props">
             <v-select
-              v-model.trim="modalFormData[props.field.key]"
+              v-model="modalFormData[props.field.key]"
               :reduce="(item) => item.id"
               :placeholder="$t(props.field.placeholder || `form.placeholder.${props.field.key}`)"
               :options="[props.item.posMaterial]"
               label="id"
             >
               <template #option="option">
-                <span>{{ option.sMaterial.name }}</span>
+                <span v-for="(material, index) in getProp(option, 'sMaterialJSON', [])">
+                  {{ material.name }}
+                  <b v-if="index < option.sMaterialJSON.length - 1">,</b>
+                </span>
               </template>
               <template #selected-option="option">
-                <strong>{{ option.sMaterial.name }}</strong>
+                <strong v-for="(material, index) in getProp(option, 'sMaterialJSON', [])">
+                  {{ material.name }}
+                  <b v-if="index < option.sMaterialJSON.length - 1">,</b>
+                </strong>
               </template>
             </v-select>
           </template>

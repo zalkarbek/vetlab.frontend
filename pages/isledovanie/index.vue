@@ -1,7 +1,7 @@
 <template>
   <div>
     <div :id="`${vnytNapravlenieCrudDataName}_page_id`" class="mg-t-30">
-      <vnyt-napravlenie-component
+      <isledovanie-component
         :crud="crud"
         :crud-data-name="vnytNapravlenieCrudDataName"
       />
@@ -9,16 +9,16 @@
   </div>
 </template>
 <script>
-import VnytNapravlenieComponent from '~/components/vetlab/pub/vnytNapravlenie/VnytNapravlenieComponent'
+import IsledovanieComponent from '~/components/vetlab/pub/isledovanie/IsedovanieComponent'
 import CrudData from '~/data/crud'
 
 export default {
   components: {
-    VnytNapravlenieComponent,
+    IsledovanieComponent,
   },
   data() {
     return {
-      vnytNapravlenieCrudDataName: 'vnytNapravleniePub',
+      vnytNapravlenieCrudDataName: 'isledovaniePub',
     }
   },
   computed: {

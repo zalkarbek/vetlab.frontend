@@ -64,12 +64,22 @@ export default {
             type: 'text',
             key: 'email',
             label: 'personal.label.email',
+            col: {
+              md: 5,
+              lg: 5,
+              xl: 5
+            },
             hidden: true,
           },
           {
             type: 'password',
             key: 'password',
             label: 'personal.label.password',
+            col: {
+              md: 5,
+              lg: 5,
+              xl: 5
+            },
             hidden: true,
           },
         ],

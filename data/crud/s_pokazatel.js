@@ -21,6 +21,17 @@ export default {
   fields: [
     ...baseFields,
     {
+      type: 'select',
+      key: 'sOtdeleniaId',
+      foreign_crud: 's_otdelenia',
+      foreign_dataset: 'otdelenia',
+      foreign_label: 'name',
+      foreign_value: 'id',
+      foreign_attributes: ['name', 'id'],
+      disabled: false,
+      hidden: false,
+    },
+    {
       type: 'text',
       key: 'pokazatel',
     },

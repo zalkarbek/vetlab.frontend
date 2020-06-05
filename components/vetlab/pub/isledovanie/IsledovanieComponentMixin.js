@@ -3,8 +3,9 @@ import _ from 'lodash'
 
 export default {
   mixins: [CrudComponentMixin],
+
   methods: {
-    updateNapravlenieStatus(id, status) {
+    updateIsledovanieStatus(id, status) {
       const elementIndex = _.findIndex(this.crudListRecords, { id })
       if (elementIndex >= 0) {
         this.crudListRecords[elementIndex]['status'] = status

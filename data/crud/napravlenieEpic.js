@@ -184,15 +184,13 @@ export default {
       hidden: true,
     },
     {
-      type: 'select-multi',
-      key: 'opPokazatelIdJSON',
+      type: 'multi-select-tag',
+      key: 'opPokazatelJSON',
       foreign_crud: 's_pokazatel',
       foreign_dataset: 'pokazatel',
       foreign_label: 'name',
-      foreign_value: 'id',
-      foreign_attributes: ['name', 'id'],
-      disabled: false,
-      hidden: false,
+      foreign_value: 'name',
+      foreign_attributes: ['name', 'id']
     },
     {
       type: 'json',

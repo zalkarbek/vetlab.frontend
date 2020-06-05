@@ -1,4 +1,3 @@
-
 export default {
   methods: {
     renderJSONArrayToList(array = []) {
@@ -21,5 +20,15 @@ export default {
       }
       return listText
     },
+
+    renderObjectArrayToTextList(objectArray = [], key) {
+      let listText = ''
+      if (objectArray && Array.isArray(objectArray) && objectArray.length >= 1) {
+        objectArray.forEach((object) => {
+          listText = `${listText} ${object[key]}`
+        })
+      }
+      return listText
+    }
   }
 }

@@ -145,7 +145,6 @@
           :sort-direction="sortDirection"
           show-empty
           small
-          stacked="md"
           responsive
           bordered
           class="mg-t-20"
@@ -198,19 +197,22 @@
               class="tx-16 badge badge-warning"
             >
               {{ $t(`vnytNapravlenie.epic.status.${cellData.value}`) }}
+               <i class="fa-2x fal fa-question"></i>
             </span>
             <span
               v-if="toLowerCase(cellData.value) === toLowerCase('accepted')"
               class="tx-16 badge badge-primary"
             >
               {{ $t(`vnytNapravlenie.epic.status.${cellData.value}`) }}
+              <i class="fa-2x fal fa-check"></i>
             </span>
 
             <span
               v-if="toLowerCase(cellData.value) === toLowerCase('research')"
-              class="tx-16 badge badge-light"
+              class="tx-16 badge badge-info"
             >
               {{ $t(`vnytNapravlenie.epic.status.${cellData.value}`) }}
+              <i class="fa-2x fas fa-radiation fa-spin text-warning"></i>
             </span>
 
             <span
@@ -218,6 +220,7 @@
               class="tx-16 badge badge-success"
             >
               {{ $t(`vnytNapravlenie.epic.status.${cellData.value}`) }}
+               <i class="fa-2x fal fa-check-circle"></i>
             </span>
 
             <span
@@ -225,6 +228,7 @@
               class="tx-16 badge badge-danger"
             >
               {{ $t(`vnytNapravlenie.epic.status.${cellData.value}`) }}
+              <i class="fa-2x fal fa-ban"></i>
             </span>
           </template>
 
@@ -472,22 +476,15 @@
 
           <template v-slot:cell(posMaterialCustomView)="cellData">
             <b-list-group class="list-group-flush">
-              <b-list-group-item v-if="cellData.item.opPokazatelIdJSON">
+              <b-list-group-item v-if="cellData.item.opPokazatelJSON">
                 <span class="tx-bold">
                   {{ $t("vnytNapravlenie.label.opPokazatel") }}:
                 </span>
                 <ul>
                   <template
-                    v-for="pokazatelId in getProp(cellData.item,'opPokazatelIdJSON',[])"
+                    v-for="pokazatel in getProp(cellData.item,'opPokazatelJSON',[])"
                   >
-                    <li :key="pokazatelId">
-                      {{
-                        viewForeignData(
-                          cellData.field.fields.opPokazatelIdJSON,
-                          pokazatelId
-                        )
-                      }}
-                    </li>
+                    <li>{{ pokazatel.name }}</li>
                   </template>
                 </ul>
               </b-list-group-item>
@@ -495,8 +492,13 @@
                 <span class="tx-bold">
                   {{ $t("vnytNapravlenie.label.posMaterialId") }}:
                 </span>
-                <span>
-                  {{ getProp(cellData.item, "posMaterial.sMaterial.name", "") }}
+                <span v-for="(material, index) in
+                        getProp(cellData.item.posMaterial, 'sMaterialJSON', [])">
+                  {{ material.name }}
+                  <span
+                    v-if="index < getProp(cellData.item.posMaterial, 'sMaterialJSON', []).length - 1">
+                    ,
+                  </span>
                 </span>
               </b-list-group-item>
               <b-list-group-item v-if="cellData.item.posMaterial">
@@ -508,7 +510,43 @@
                   {{ getProp(cellData.item, "posMaterial.sMera.name", "") }}
                 </span>
               </b-list-group-item>
-              <b-list-group-item v-if="getProp(cellData.item, 'posMaterial.dateVremyaOtbora', null)">
+
+              <b-list-group-item
+                  v-if="getProp(cellData.item, 'posMaterial.dateZabolivanie', null)">
+                <span class="tx-bold">
+                  {{ $t("pos_material.label.dateZabolivanie") }}:
+                </span>
+                <span>
+                  {{
+                    formatDate(
+                      getProp(
+                        cellData.item,
+                        "posMaterial.dateZabolivanie",
+                        null
+                      )
+                    )
+                  }}
+                </span>
+              </b-list-group-item>
+              <b-list-group-item
+                  v-if="getProp(cellData.item, 'posMaterial.dateZaboya', null)">
+                <span class="tx-bold">
+                  {{ $t("pos_material.label.dateZaboya") }}:
+                </span>
+                <span>
+                  {{
+                    formatDate(
+                      getProp(
+                        cellData.item,
+                        "posMaterial.dateZaboya",
+                        null
+                      )
+                    )
+                  }}
+                </span>
+              </b-list-group-item>
+              <b-list-group-item
+                  v-if="getProp(cellData.item, 'posMaterial.dateVremyaOtbora', null)">
                 <span class="tx-bold">
                   {{ $t("pos_material.label.dateVremyaOtbora") }}:
                 </span>
@@ -538,6 +576,7 @@
                   }}
                 </span>
               </b-list-group-item>
+
               <b-list-group-item>
                 <span
                     v-if="

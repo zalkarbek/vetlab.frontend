@@ -21,6 +21,7 @@ export default {
   select_multi: 'select-multi',
   select_multi_own: 'select-multi:own',
   multi_select: 'multi-select',
+  multi_select_tag: 'multi-select-tag',
   autocomplete: 'autocomplete',
   tag: 'tag',
 

@@ -24,12 +24,12 @@ export default {
       disabled: true,
     },
     {
-      type: 'select',
-      key: 'sMaterialId',
+      type: 'multi-select-tag',
+      key: 'sMaterialJSON',
       foreign_crud: 's_material',
       foreign_dataset: 'materials',
       foreign_label: 'name',
-      foreign_value: 'id',
+      foreign_value: 'name',
       foreign_attributes: ['name', 'id'],
       col: {
         md: 5,
@@ -61,14 +61,13 @@ export default {
       },
     },
     {
-      type: 'select-multi',
-      key: 'opPokazatelIdJSON',
+      type: 'multi-select-tag',
+      key: 'opPokazatelJSON',
       foreign_crud: 's_pokazatel',
       foreign_dataset: 'pokazatel',
       foreign_label: 'name',
-      foreign_value: 'id',
+      foreign_value: 'name',
       foreign_attributes: ['name', 'id'],
-      // col настраивает макет сетки ввода (ширина поля ввода) md, sm, xs, lg
       col: {
         md: 11,
         lg: 9,

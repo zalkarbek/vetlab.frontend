@@ -28,7 +28,7 @@ export default {
       paginate: 'server',
       pageSize: 3,
       methodIfPaginateServer: 'getAllVnytNapravlenieRel',
-      searchColumn: ['napravlenieId'],
+      searchColumn: ['id'],
     },
   },
 
@@ -125,14 +125,13 @@ export default {
   foreign: [],
   fields: [
     {
-      type: 'select-multi',
-      key: 'opPokazatelIdJSON',
+      type: 'multi-select-tag',
+      key: 'opPokazatelJSON',
       foreign_crud: 's_pokazatel',
       foreign_dataset: 'pokazatel',
       foreign_label: 'name',
-      foreign_value: 'id',
-      disabled: false,
-      hidden: false,
+      foreign_value: 'name',
+      foreign_attributes: ['name', 'id']
     },
   ],
   fieldsForTable: [
@@ -209,13 +208,14 @@ export default {
       type: 'text',
       key: 'posMaterialCustomView',
       fields: {
-        opPokazatelIdJSON: {
+        opPokazatelJSON: {
           type: 'number',
-          key: 'opPokazatelIdJSON',
+          key: 'opPokazatelJSON',
           foreign_crud: 's_pokazatel',
           foreign_dataset: 'pokazatel',
           foreign_label: 'name',
-          foreign_value: 'id',
+          foreign_value: 'name',
+          foreign_attributes: ['name', 'id']
         },
         posMaterialId: {
           type: 'number',

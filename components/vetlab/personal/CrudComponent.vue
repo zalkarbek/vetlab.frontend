@@ -93,7 +93,6 @@ export default {
     onModalAction({ actionMethod, ...other }) {
       this[actionMethod]({ ...other })
     },
-
     changePassword({ modalId }, data) {
       if (modalId) {
         this.$bvModal.show(modalId)

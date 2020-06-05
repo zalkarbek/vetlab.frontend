@@ -17,7 +17,26 @@
           @on-create="onCreate"
           @on-update="onUpdate"
           @on-clear="onClear"
-        />
+        >
+          <template v-slot:opPokazatelJSON="prop">
+            <multiselect
+              v-model="prop.item[prop.field.key]"
+              :options="datasetList[prop.field.foreign_dataset]"
+              :label="prop.field.foreign_label"
+              :placeholder="$t(prop.field.placeholder || `form.label.${prop.field.key}`)"
+              :selectLabel="$t('form.label.selectItem')"
+              :selectedLabel="$t('form.label.selectedItem')"
+              :deselectLabel="$t('form.label.deselectItem')"
+              :tagPlaceholder="$t('form.label.addNewPokazatel')"
+              multiple
+              taggable
+              track-by="name"
+              @open="storageLoadDataSet(prop.field)"
+              @select="(selectedItem) => onSelectPokazatel(selectedItem, prop.item, prop.field.key)"
+              @tag="(pokazatel) => addPokazatel(pokazatel, prop.item, prop.field)"
+            />
+          </template>
+        </napravlenie-form>
       </b-col>
     </b-row>
     <b-row class="mg-t-10 row-xs">
@@ -53,5 +72,27 @@ export default {
     NapravlenieForm
   },
   mixins: [toastMixin, NapravlenieComponentMixin],
+  methods: {
+    async addPokazatel(pokazatel, item, field) {
+      const res = await this.$api.getApi('pokazatel')
+        .create({
+          name: pokazatel,
+          pokazatel
+        })
+      if(res && !res.error) {
+        this.pushItemInStoreDatasetFirst(res.data, field.foreign_dataset)
+        if(!item[field.key]) {
+          item[field.key] = []
+        }
+        item[field.key].push({
+          name: res.data.name,
+          id: res.data.id
+        })
+      } else {
+        this.toastDanger('Ошибка не могу добавить новый показатель')
+      }
+    },
+    onSelectPokazatel(selected, item, key) {}
+  }
 }
 </script>

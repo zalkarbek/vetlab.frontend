@@ -245,12 +245,38 @@
         :options="datasetList[form.foreign_dataset]"
         :label="form.foreign_label"
         :value="form.foreign_value"
+        :selectLabel="$t('form.label.selectItem')"
+        :selectedLabel="$t('form.label.selectedItem')"
+        :deselectLabel="$t('form.label.deselectItem')"
+        :tagPlaceholder="$t('form.label.addNewPokazatel')"
         multiple
         track-by="name"
         @open="storageLoadDataSet(form)"
       />
     </template>
     <!-- -----------------------/ FORM MULTI-SELECT /----------------------- -->
+
+    <!-- ----------------------- FORM MULTI-SELECT-TAG ----------------------- -->
+    <template
+      v-else-if="!form.disabled && form.type === fieldTypes.multi_select_tag"
+    >
+      <multiselect
+        v-model="formValue"
+        :options="datasetList[form.foreign_dataset]"
+        :label="form.foreign_label"
+        :placeholder="placeholder || defaultPlaceholder(form)"
+        :selectLabel="$t('form.label.selectItem')"
+        :selectedLabel="$t('form.label.selectedItem')"
+        :deselectLabel="$t('form.label.deselectItem')"
+        :tagPlaceholder="$t('form.label.addNewPokazatel')"
+        multiple
+        taggable
+        track-by="name"
+        @open="storageLoadDataSet(form)"
+        @tag="(tag) => addNewTag(tag, form)"
+      />
+    </template>
+    <!-- -----------------------/ FORM MULTI-SELECT-TAG /----------------------- -->
 
     <!-- ----------------------- FORM MULTI-SELECT:PRELOAD ----------------------- -->
     <template
@@ -264,6 +290,10 @@
         :options="localDatasetList[form.foreign_dataset]"
         :label="form.foreign_label"
         :value="form.foreign_value"
+        :selectLabel="$t('form.label.selectItem')"
+        :selectedLabel="$t('form.label.selectedItem')"
+        :deselectLabel="$t('form.label.deselectItem')"
+        :tagPlaceholder="$t('form.label.addNewPokazatel')"
         multiple
         track-by="name"
         @open="localLoadDataset(form)"

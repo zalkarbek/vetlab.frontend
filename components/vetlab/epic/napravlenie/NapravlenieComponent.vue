@@ -101,7 +101,7 @@ export default {
 
     sendNapravlenieSuccess(response) {
       if(response && !response.error) {
-        this.toastSuccess('napravlenieEpic.label.sendToOtdelSuccess')
+        this.toastSuccess(this.$t('napravlenieEpic.label.sendToOtdelSuccess'))
         const datasetName = this.crudData.datasetName
         const napravlenie = this.findInDataset(response.data.napravlenieId, ['id'], datasetName)
         if(napravlenie && napravlenie[0])

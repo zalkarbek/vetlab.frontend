@@ -22,6 +22,10 @@ export default {
       return _.get(object, path, defaultValue)
     },
 
+    cloneDeep(object) {
+      return _.cloneDeep(object)
+    },
+
     toLowerCase(value) {
       return _.toLower(value)
     },

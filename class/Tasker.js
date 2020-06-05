@@ -74,11 +74,6 @@ class Tasker {
     }
   }
 
-  runAllTasksByGroupParallelWithPause(taskGroupName, pause) {
-    if (this.taskGroupExists(taskGroupName)) {
-      this.tasksGroup.get(taskGroupName).runAllTasksParallelWithPause(pause)
-    }
-  }
 
   runAllTasksByGroupOneByOne(taskGroupName) {
     if (this.taskGroupExists(taskGroupName)) {

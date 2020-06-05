@@ -22,17 +22,23 @@
         >
           <template v-slot:posMaterialId="props">
             <v-select
-              v-model.trim="modalFormData[props.field.key]"
+              v-model="modalFormData[props.field.key]"
               :reduce="(item) => item.id"
               :placeholder="$t(props.field.placeholder || `form.placeholder.${props.field.key}`)"
               :options="props.item.posMaterials"
               label="id"
             >
               <template #option="option">
-              <span>{{ option.sMaterial.name }}</span>
+                <span v-for="(material, index) in getProp(option, 'sMaterialJSON', [])">
+                  {{ material.name }}
+                  <b v-if="index < option.sMaterialJSON.length - 1">,</b>
+                </span>
               </template>
               <template #selected-option="option">
-                <strong>{{ option.sMaterial.name }}</strong>
+                <strong v-for="(material, index) in getProp(option, 'sMaterialJSON', [])">
+                  {{ material.name }}
+                  <b v-if="index < option.sMaterialJSON.length - 1">,</b>
+                </strong>
               </template>
             </v-select>
           </template>
@@ -45,6 +51,23 @@
               :options="datasetList[props.field.foreign_dataset]"
               @search:focus="storageLoadDataSet(props.field)"
               @input="selectOtdel"
+            />
+          </template>
+          <template v-slot:opPokazatelJSON="prop">
+            <multiselect
+              v-model="prop.item[prop.field.key]"
+              :options="datasetList[prop.field.foreign_dataset]"
+              :label="prop.field.foreign_label"
+              :placeholder="$t(prop.field.placeholder || `form.label.${prop.field.key}`)"
+              :selectLabel="$t('form.label.selectItem')"
+              :selectedLabel="$t('form.label.selectedItem')"
+              :deselectLabel="$t('form.label.deselectItem')"
+              :tagPlaceholder="$t('form.label.addNewPokazatel')"
+              multiple
+              taggable
+              track-by="name"
+              @open="storageLoadDataSet(prop.field)"
+              @tag="(pokazatel) => addPokazatel(pokazatel, prop.item, prop.field)"
             />
           </template>
         </crud-form>
@@ -65,9 +88,10 @@
 <script>
 import CrudFormModalMixin from '~/components/crud/CrudFormModalMixin'
 import { vnytNapravlenieFields, otdelFields } from '~/data/fields'
+import utilMixin from '~/mixins/utilMixin'
 
 export default {
-  mixins: [CrudFormModalMixin],
+  mixins: [CrudFormModalMixin, utilMixin],
   computed: {
     modalCrud() {
       return this.modal.modalCrud
@@ -114,6 +138,25 @@ export default {
         }
       }
     },
+    async addPokazatel(pokazatel, item, field) {
+      const res = await this.$api.getApi('pokazatel')
+        .create({
+          name: pokazatel,
+          pokazatel
+        })
+      if(res && !res.error) {
+        this.pushItemInStoreDatasetFirst(res.data, field.foreign_dataset)
+        if(!item[field.key]) {
+          item[field.key] = []
+        }
+        item[field.key].push({
+          name: res.data.name,
+          id: res.data.id
+        })
+      } else {
+        this.toastDanger('Ошибка не могу добавить новый показатель')
+      }
+    }
   }
 }
 </script>

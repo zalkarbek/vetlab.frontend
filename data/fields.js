@@ -122,8 +122,6 @@ const vnytNapravlenieFields = {
     {
       type: 'datetime',
       key: 'dateVremyaOtpravki',
-      disabled: false,
-      hidden: false,
       col: {
         sm: 12,
         xs: 12,
@@ -142,8 +140,6 @@ const vnytNapravlenieFields = {
       foreign_label: 'name',
       foreign_value: 'id',
       foreign_attributes: ['name', 'id'],
-      disabled: false,
-      hidden: false,
       col: {
         sm: 12,
         xs: 12,
@@ -157,8 +153,6 @@ const vnytNapravlenieFields = {
     {
       type: 'select:preload',
       key: 'posMaterialId',
-      disabled: false,
-      hidden: false,
       col: {
         sm: 12,
         xs: 12,
@@ -222,12 +216,12 @@ const vnytNapravlenieFields = {
     // Определяемые показатели (несколько значений)
     // отдел: общий
     {
-      type: 'select-multi',
-      key: 'opPokazatelIdJSON',
+      type: 'multi-select-tag',
+      key: 'opPokazatelJSON',
       foreign_crud: 's_pokazatel',
       foreign_dataset: 'pokazatel',
       foreign_label: 'name',
-      foreign_value: 'id',
+      foreign_value: 'name',
       foreign_attributes: ['name', 'id'],
       disabled: false,
       hidden: false,
@@ -287,8 +281,6 @@ const researchStartFields = {
     {
       type: 'select:preload',
       key: 'posMaterialId',
-      disabled: false,
-      hidden: false,
       col: {
         md: 12,
         lg: 6,
@@ -298,15 +290,13 @@ const researchStartFields = {
       }
     },
     {
-      type: 'select-multi',
-      key: 'opPokazatelIdJSON',
+      type: 'multi-select-tag',
+      key: 'opPokazatelJSON',
       foreign_crud: 's_pokazatel',
       foreign_dataset: 'pokazatel',
       foreign_label: 'name',
-      foreign_value: 'id',
+      foreign_value: 'name',
       foreign_attributes: ['name', 'id'],
-      disabled: false,
-      hidden: false,
       col: {
         md: 12,
         lg: 9,
@@ -316,8 +306,8 @@ const researchStartFields = {
       }
     },
     {
-      type: 'select-multi',
-      key: 'metodIdJSON',
+      type: 'multi-select-tag',
+      key: 'metodJSON',
       label: 'vnytNapravlenie.label.researchMetodJSON',
       description: 'vnytNapravlenie.description.researchMetodJSON',
       placeholder: 'vnytNapravlenie.placeholder.researchMetodJSON',
@@ -325,6 +315,7 @@ const researchStartFields = {
       foreign_dataset: 'metod',
       foreign_label: 'name',
       foreign_value: 'name',
+      foreign_attributes: ['id', 'name', 'shortName', 'gosStandard'],
       disabled: false,
       hidden: false,
       col: {
@@ -338,8 +329,39 @@ const researchStartFields = {
   ]
 }
 
+const isledovanieFields = {
+  fields: [
+    {
+      type: 'multi-select-tag',
+      key: 'opPokazatelJSON',
+      foreign_crud: 's_pokazatel',
+      foreign_dataset: 'pokazatel',
+      foreign_label: 'name',
+      foreign_value: 'name',
+      foreign_attributes: ['name', 'id'],
+      col: {
+        md: 12,
+        lg: 9,
+        sm: 12,
+        xs: 12,
+        xl: 9
+      }
+    },
+
+    {
+      type: 'text',
+      key: 'indexNomberProby'
+    },
+    {
+      type: 'text',
+      key: 'resultIsledovanieJSON'
+    }
+  ]
+}
+
 export {
   vnytNapravlenieFields,
   otdelFields,
-  researchStartFields
+  researchStartFields,
+   isledovanieFields
 }

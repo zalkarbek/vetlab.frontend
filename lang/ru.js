@@ -23,6 +23,11 @@ export default {
       id: 'id',
     },
     label: {
+      isledovanieResultCustomView: 'Результат исследованиий',
+      deselectItem: 'Исключить из выбора',
+      addNewPokazatel: 'Добавить новый показатель',
+      selectItem: 'Выбрать',
+      selectedItem: 'Выбран',
       rejectionDescription: 'Причина отклонения',
       gosStandard: 'ГОС стандарт (НД)',
       boolean_true: 'Да',
@@ -76,14 +81,14 @@ export default {
       toOtdel: 'Направляется в отдел',
       opPokazatelId: 'Определяемый показатель',
       opPokazatelShort: 'Опр показатели',
-      opPokazatelIdJSON: 'Определяемые показатели',
+      opPokazatelJSON: 'Определяемые показатели',
       probyNapravilJSON: 'Пробу направил',
       probyDostavilJSON: 'Пробу доставил',
       ownerJSON: 'Владелец пробы',
       mestoOtboraRegionJSON: 'Место отбора пробы',
       kemOtobranJSON: 'Кем отобран',
       lechenieInfo: 'Сведение о лечении',
-      sMaterialId: 'Проба материал',
+      sMaterialJSON: 'Проба материал',
       materialCount: 'Количество проб',
       sMeraId: 'Мера измерения',
       vozrast: 'Возраст животного',
@@ -217,14 +222,14 @@ export default {
       regionParentAutocomplete: 'входит в состав',
       toOtdel: 'Направляется в отдел',
       opPokazatelId: 'Определяемый показатель',
-      opPokazatelIdJSON: 'Определяемые показатели',
+      opPokazatelJSON: 'Определяемые показатели',
       probyNapravilJSON: 'Пробу направил',
       probyDostavilJSON: 'Пробу доставил',
       ownerJSON: 'Владелец пробы',
       mestoOtboraRegionJSON: 'Место отбора пробы',
       kemOtobranJSON: 'Кем отобран',
       lechenieInfo: 'Сведение о лечении',
-      sMaterialId: 'Проба материал',
+      sMaterialJSON: 'Проба материал',
       materialCount: 'Количество проб',
       sMeraId: 'Мера измерения',
       vozrast: 'Возраст животного',
@@ -324,14 +329,14 @@ export default {
       regionFullText: 'Полный адрес',
       toOtdel: 'Направляется в отдел',
       opPokazatelId: 'Определяемый показатель',
-      opPokazatelIdJSON: 'Определяемые показатели',
+      opPokazatelJSON: 'Определяемые показатели',
       probyNapravilJSON: 'Пробу направил',
       probyDostavilJSON: 'Пробу доставил',
       ownerJSON: 'Владелец пробы',
       mestoOtboraRegionJSON: 'Место отбора пробы',
       kemOtobranJSON: 'Кем отобран',
       lechenieInfo: 'Сведение о лечении',
-      sMaterialId: 'Проба материал',
+      sMaterialJSON: 'Проба материал или Под. Материал',
       materialCount: 'Количество проб',
       sMeraId: 'Мера измерения',
       napravlenieEpic: 'Поступившие направление',
@@ -374,7 +379,7 @@ export default {
     title: 'Виды животных',
   },
   s_metod: {
-    title: 'Методы исследовании',
+    title: 'НД на методы исследовании',
   },
   s_pokazatel: {
     title: 'Определяемые показатели',
@@ -414,6 +419,8 @@ export default {
       one: 'Проба',
       dateVremyaOtbora: 'Дата отбора пробы',
       dateDostavki: 'Дата доставки пробы',
+      dateZaboya: 'Дата забоя',
+      dateZabolivanie: 'Дата заболивания животного'
     },
   },
   subOtdel: {
@@ -422,6 +429,8 @@ export default {
   personal: {
     title: 'Персоналы',
     label: {
+      email: 'Почта или Логин',
+      password: 'Пароль',
       firstName: 'Имя',
       lastName: 'Отчество',
       fullName: 'ФИО',
@@ -577,13 +586,44 @@ export default {
     }
   },
   isledovanie: {
+    title: 'Страница исследования',
     label: {
+      probaCustomView: 'Данные о пробе',
       primary: 'Первичный',
       notApply: 'Не применимо',
       beforeProcess: 'До обработки',
       afterProcess: 'После обработки',
       secondary: 'Вторичный',
+      nomerProby: '№ пробы',
+      nomerIsledovania: '№ Исследования',
+      isledObject: 'Исследуемый обьект',
+      materialCount: 'Количество',
+      dateStart: 'Дата начала исследования',
+      dateFinish: 'Дата завершения исследования',
+      nomerZakaza: '№ Заказа',
+      isledovanieND: 'НД на метод\n выполнения исследования',
+      finishIsledovanieButton: 'Завершить исследование',
+      finishIsledovanieTitle: 'Завершение исследования',
+
+      opPokazatel: 'Определяемые показатели',
+      isledovanieResultTableHead: 'Для успешнего завершения должны быть заполнены все поля',
+      isledovanieResultDesc: 'Все данные выводится в протокол исследований',
+      researchMetodJSON: 'НД на метод исследования',
+      indexProby: 'Порядковый № пробы',
+      resultJSON: 'Результаты исследовании'
     },
+    placeholder: {
+      opPokazatel: 'Определяемые показатели',
+      researchMetodJSON: 'НД на метод исследования',
+      indexProby: 'Порядковый № пробы',
+      resultJSON: 'Результаты исследовании'
+    },
+     description: {
+       opPokazatel: 'Определяемый показатель',
+       researchMetodJSON: 'Метадическое указания на исследование (НД)',
+       indexProby: 'Порядковый номер пробы',
+       resultJSON: 'Результат исследований (обнажен, или не обнаружен)'
+     }
   },
   user: {
     title: 'Данные о пользователе',
@@ -647,7 +687,7 @@ export default {
       add: '',
     },
     metod: {
-      index: 'методы ииследование',
+      index: 'НД на методы ииследование',
       add: '',
     },
     personal: {

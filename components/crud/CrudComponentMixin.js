@@ -122,13 +122,13 @@ export default {
       }
       return []
     },
-
     findItemInDataset(query, columnName, datasetName) {
       const items = this.findInDataset(query, columnName, datasetName)
       if(items && items[0])
         return items[0]
       return null
     },
+
     pushItemInDataset(data, datasetName) {
       datasetName = this.getStandDatasetName(datasetName)
       if (this.getPaginationType() === this.PAGINATION_TYPES.STORAGE) {
@@ -148,7 +148,6 @@ export default {
         return false
       }
     },
-
     pushItemInDatasetFirst(data, datasetName) {
       datasetName = this.getStandDatasetName(datasetName)
       if (this.getPaginationType() === this.PAGINATION_TYPES.STORAGE) {
@@ -170,7 +169,6 @@ export default {
         return false
       }
     },
-
     updateItemInDataset(id, data, datasetName) {
       datasetName = this.getStandDatasetName(datasetName)
       if (this.getPaginationType() === this.PAGINATION_TYPES.STORAGE) {
@@ -213,6 +211,32 @@ export default {
       }
     },
 
+    pushItemInStoreDataset(data, datasetName) {
+      return this.$store.dispatch('api/pushItemToDataset', {
+        data,
+        datasetName,
+      })
+    },
+    pushItemInStoreDatasetFirst(data, datasetName) {
+      return this.$store.dispatch('api/pushItemToDatasetFirst', {
+        data,
+        datasetName,
+      })
+    },
+    updateItemInStoreDataset(id, data, datasetName) {
+      return this.$store.dispatch('api/updateItemInDataset', {
+        id,
+        data,
+        datasetName,
+      })
+    },
+    removeItemInStoreDataset(data, datasetName) {
+      return this.$store.dispatch('api/removeItemInDataset', {
+        data,
+        datasetName,
+      })
+    },
+
     pushValueToItemInDataset(id, key, value, datasetName) {
       const dtName = datasetName || this.crudData.datasetName
       const item = this.findItemInDataset(id, 'id', dtName)
@@ -226,7 +250,6 @@ export default {
       item[key].push(value)
       return item
     },
-
     pushValuesToItemInDataset(id, key, values, datasetName) {
       const dtName = datasetName || this.crudData.datasetName
       const item = this.findItemInDataset(id, 'id', dtName)
@@ -243,7 +266,6 @@ export default {
       }
       return item
     },
-
     updateValueToItemInDataset(id, key, value, datasetName) {
       const dtName = datasetName || this.crudData.datasetName
       const item = this.findItemInDataset(id, 'id', dtName)

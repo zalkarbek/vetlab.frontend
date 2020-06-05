@@ -169,7 +169,6 @@
           :sort-direction="sortDirection"
           show-empty
           small
-          stacked="md"
           responsive
           bordered
           hover
@@ -211,41 +210,40 @@
             </template>
           </template>
 
-          <template v-slot:cell(opPokazatelIdJSON)="cellData">
+          <template v-slot:cell(opPokazatelJSON)="cellData">
             <span class="tx-bold">
               {{ $t("vnytNapravlenie.label.posMaterialId") }}:
             </span>
             <ul>
-              <template v-for="posMaterial in cellData.item.posMaterials">
-                <li v-if="getProp(posMaterial, 'sMaterial.name', '')">
-                  <span>
-                    {{ getProp(posMaterial, "sMaterial.name", "") }}
-                  </span>
-                  <br>
-                  <span v-if="posMaterial.materialCount">
-                    <span class="tx-bold">{{ $t("vnytNapravlenie.label.count") }}:</span>
-                    {{ getProp(posMaterial, 'materialCount', '') }}
-                    {{ getProp(posMaterial, 'sMera.name', '') }}
-                  </span>
-                  <br>
-                  <span class="tx-bolder">
-                    {{ $t('form.label.opPokazatelShort') }}:
-                  </span>
-                  <template
-                    v-if="posMaterial.opPokazatelIdJSON
-                      && Array.isArray(posMaterial.opPokazatelIdJSON)">
-                    <ul>
-                      <template v-for="(item, index) in posMaterial.opPokazatelIdJSON">
-                        <li :key="index">
-                          {{ viewForeignData(cellData.field, item) }}
-                        </li>
-                      </template>
-                    </ul>
-                  </template>
-                </li>
+              <template v-if="cellData.item.posMaterials && Array.isArray(cellData.item.posMaterials)">
+                <template v-for="posMaterial in cellData.item.posMaterials">
+                  <li v-if="getProp(posMaterial, 'sMaterialJSON', null)">
+                    <span v-for="(material, index) in getProp(posMaterial, 'sMaterialJSON', [])">
+                      {{ material.name }}
+                      <span v-if="index < posMaterial.sMaterialJSON.length - 1">,</span>
+                    </span>
+                    <br>
+                    <span v-if="posMaterial.materialCount">
+                      <span class="tx-bold">{{ $t("vnytNapravlenie.label.count") }}:</span>
+                      {{ getProp(posMaterial, 'materialCount', '') }}
+                      {{ getProp(posMaterial, 'sMera.name', '') }}
+                    </span>
+                    <br>
+                    <span class="tx-bolder">
+                      {{ $t('form.label.opPokazatelShort') }}:
+                    </span>
+                    <template v-if="posMaterial.opPokazatelJSON
+                      && Array.isArray(posMaterial.opPokazatelJSON)">
+                      <ul>
+                        <template v-for="item in posMaterial.opPokazatelJSON">
+                          <li>{{ item.name }}</li>
+                        </template>
+                      </ul>
+                    </template>
+                  </li>
+                </template>
               </template>
             </ul>
-
           </template>
 
           <template v-slot:cell(status)="cellData">

@@ -2,6 +2,8 @@ import AuthApi from './auth'
 import OtdelApi from './otdel'
 import { DepartmentRepository } from './DepartmentRepository'
 import { OptionRepository } from '~/api/OptionRepository'
+import { PokazatelRepository } from '~/api/PokazatelRepository'
+import { IsledovanieResultRepository } from '~/api/IsledovanieResultRepository'
 
 class Api {
   constructor(context) {
@@ -12,7 +14,13 @@ class Api {
       otdel: OtdelApi(context),
       department: new DepartmentRepository(context, crudApi.department),
       option: new OptionRepository(context, crudApi.option),
+      pokazatel: new PokazatelRepository(context, crudApi.s_pokazatel),
+      isledovanieResultNames: new IsledovanieResultRepository(context, crudApi['isledovanie_result_names'])
     }
+  }
+
+  getApi(name) {
+    return this.apiServices[name]
   }
 
   req(req, { params, data }) {
@@ -38,10 +46,6 @@ class Api {
 
   delete(url, params) {
     return this.context.$axios.$delete(url, { params })
-  }
-
-  getApi(name) {
-    return this.apiServices[name]
   }
 
   setHeader(name, value, scopes = []) {

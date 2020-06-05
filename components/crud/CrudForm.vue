@@ -28,7 +28,8 @@
               "
             >
               <slot
-                :name="field.key" :field="field"
+                :name="field.key"
+                :field="field"
                 :item="recordItem"
               >
                 <crud-field
@@ -52,22 +53,22 @@
             && isObject(recordItem[field.key])
             && toLowerCase(field.type) === fieldTypes.json"
           >
-            <template v-for="(form, index) in field.json">
-              <b-col
-                v-if="!form.disabled && isObject(recordItem[field.key])"
-                :sm="(form.col && form.col.sm) || 12"
-                :md="(form.col && form.col.md) || 4"
-                :xs="(form.col && form.col.xs) || 12"
-                :lg="(form.col && form.col.lg) || 3"
-                :xl="(form.col && form.col.xl) || 3"
-                class="mg-lg-r-10 mg-xl-r-10"
-              >
-                <b-form-group
-                  :label="$t(form.label || `form.label.${form.key}`)"
-                  :label-for="`${modelData.restName}_${field.key}_${form.key}_crud_json_${index}`"
-                  :description="$t(form.description || `form.description.${form.key}`)"
+            <slot :name="field.key" :field="field" :item="recordItem">
+              <template v-for="(form, index) in field.json">
+                <b-col
+                  v-if="!form.disabled && isObject(recordItem[field.key])"
+                  :sm="(form.col && form.col.sm) || 12"
+                  :md="(form.col && form.col.md) || 4"
+                  :xs="(form.col && form.col.xs) || 12"
+                  :lg="(form.col && form.col.lg) || 3"
+                  :xl="(form.col && form.col.xl) || 3"
+                  class="mg-lg-r-10 mg-xl-r-10"
                 >
-                  <slot :name="form.key" :field="form" :item="recordItem[field.key]">
+                  <b-form-group
+                    :label="$t(form.label || `form.label.${form.key}`)"
+                    :label-for="`${modelData.restName}_${field.key}_${form.key}_crud_json_${index}`"
+                    :description="$t(form.description || `form.description.${form.key}`)"
+                  >
                     <crud-field
                       v-model="recordItem[field.key][form.key]"
                       :field="form"
@@ -75,10 +76,10 @@
                       :placeholder="$t(form.placeholder || `form.placeholder.${form.key}`)"
                       @multi-input="(multiValues) => onMultiInputItem(recordItem[field.key], multiValues)"
                     />
-                  </slot>
-                </b-form-group>
-              </b-col>
-            </template>
+                  </b-form-group>
+                </b-col>
+              </template>
+            </slot>
           </template>
           <!--==================================================================-->
         </template>
