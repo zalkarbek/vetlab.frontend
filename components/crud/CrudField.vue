@@ -19,7 +19,7 @@
         :unchecked-value="form.checkbox_unchecked_value"
         :size="form.size"
       >
-        {{ $t(form.checkbox_label) }}
+        <span class="cursor-pointer">{{ $t(form.checkbox_label) }}</span>
       </b-form-checkbox>
     </template>
     <!-- -----------------------/ FORM CHECKBOX /----------------------- -->

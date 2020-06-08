@@ -161,6 +161,7 @@
           :sort-by.sync="sortBy"
           :sort-desc.sync="sortDesc"
           :sort-direction="sortDirection"
+          head-variant="dark"
           show-empty
           small
           responsive
@@ -233,9 +234,11 @@
 
           <template v-slot:cell(opPokazatelJSON)="cellData">
             <template v-if="cellData.value && Array.isArray(cellData.value)">
-              <template v-for="item in cellData.value">
-                <span>{{ item.name }}<br></span>
-              </template>
+              <ul style="padding-left:15px;">
+                <template v-for="item in cellData.value">
+                  <li>{{ item.name }}</li>
+                </template>
+              </ul>
             </template>
           </template>
 

@@ -167,6 +167,7 @@
           :sort-by.sync="sortBy"
           :sort-desc.sync="sortDesc"
           :sort-direction="sortDirection"
+          head-variant="dark"
           show-empty
           small
           responsive
@@ -214,7 +215,7 @@
             <span class="tx-bold">
               {{ $t("vnytNapravlenie.label.posMaterialId") }}:
             </span>
-            <ul>
+            <ul style="padding-left:15px;">
               <template v-if="cellData.item.posMaterials && Array.isArray(cellData.item.posMaterials)">
                 <template v-for="posMaterial in cellData.item.posMaterials">
                   <li v-if="getProp(posMaterial, 'sMaterialJSON', null)">

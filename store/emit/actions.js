@@ -27,7 +27,7 @@ export default {
 
   napravlenieSendToOtdel({ rootState }, data) {
     const user = rootState.user
-    const events = rootState.busEvents
+    const clientEvents = rootState.busEvents
     const sendData = {
       ...data,
       userId: user.id,
@@ -35,7 +35,7 @@ export default {
       otdelId: user.personal.otdelId,
       subOtdelId: user.personal.subOtdelId,
     }
-    this.$eventBus.$emit(events.NAPRAVLENIE_SEND_TO_OTDEL, sendData)
+    this.$eventBus.$emit(clientEvents.NAPRAVLENIE_SEND_TO_OTDEL, sendData)
   },
 
   vnytNapravlenieStartIsledovanie({ rootState }, data) {
@@ -49,5 +49,18 @@ export default {
       subOtdelId: user.personal.subOtdelId,
     }
     this.$eventBus.$emit(clientEvents.VNYT_NAPRAVLENIE_START_ISLEDOVANIE, sendData)
+  },
+
+  isledovanieFinish({ rootState }, data) {
+    const user = rootState.user
+    const clientEvents = rootState.busEvents
+    const sendData = {
+      ...data,
+      userId: user.id,
+      personalId: user.personal.id,
+      otdelId: user.personal.otdelId,
+      subOtdelId: user.personal.subOtdelId,
+    }
+    this.$eventBus.$emit(clientEvents.ISLEDOVANIE_FINISH, sendData)
   }
 }

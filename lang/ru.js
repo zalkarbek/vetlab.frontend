@@ -23,6 +23,7 @@ export default {
       id: 'id',
     },
     label: {
+      objectIsledovanie: 'Обьект исследования',
       isledovanieResultCustomView: 'Результат исследованиий',
       deselectItem: 'Исключить из выбора',
       addNewPokazatel: 'Добавить новый показатель',
@@ -396,6 +397,9 @@ export default {
   s_region_type: {
     title: 'Вид региона',
   },
+  department: {
+    title: 'Департаменты'
+  },
   otdel: {
     title: 'Отдел',
     label: {
@@ -532,12 +536,12 @@ export default {
         message: 'Напишите причину отклонения'
       },
       researchStart: {
-        title: 'Начала исследование, пожалуйста выберите НД документ для исследованиий'
+        title: 'Начала исследование, пожалуйста выберите МУ на методы исследованиий'
       }
     },
     title: 'Внутреннее Направление',
     label: {
-      researchMetodJSON: 'Методическое указание (НД)',
+      researchMetodJSON: 'Методическое указание (или НД)',
       rejectionDescription: 'Причина отклонения',
       count: 'Кол-во',
       outerNomerNapravlenia: 'Внешний №',
@@ -576,6 +580,7 @@ export default {
         accepted: 'Принят',
         research: 'На иследовании',
         completed: 'Завершен',
+        finished: 'Завершен'
       },
     },
     description: {
@@ -588,41 +593,59 @@ export default {
   isledovanie: {
     title: 'Страница исследования',
     label: {
+      otdel: 'Отдел',
+      isPersonal: 'Исследует',
+      isledovanieResult: 'Результат исследования',
+      isledovanieResults: 'Результаты исследовании',
+      result: 'Результат',
+      pdk: 'ПДК',
       probaCustomView: 'Данные о пробе',
       primary: 'Первичный',
       notApply: 'Не применимо',
       beforeProcess: 'До обработки',
       afterProcess: 'После обработки',
       secondary: 'Вторичный',
+      regNomerProby: 'Регистрационный № пробы',
       nomerProby: '№ пробы',
+      nomerProbs: '№ проб',
       nomerIsledovania: '№ Исследования',
       isledObject: 'Исследуемый обьект',
       materialCount: 'Количество',
       dateStart: 'Дата начала исследования',
       dateFinish: 'Дата завершения исследования',
       nomerZakaza: '№ Заказа',
-      isledovanieND: 'НД на метод\n выполнения исследования',
+      isledovanieND: 'МУ(НД) на методы исследований',
       finishIsledovanieButton: 'Завершить исследование',
       finishIsledovanieTitle: 'Завершение исследования',
-
       opPokazatel: 'Определяемые показатели',
       isledovanieResultTableHead: 'Для успешнего завершения должны быть заполнены все поля',
       isledovanieResultDesc: 'Все данные выводится в протокол исследований',
-      researchMetodJSON: 'НД на метод исследования',
+      researchMetodJSON: 'НД на методы исследований',
       indexProby: 'Порядковый № пробы',
-      resultJSON: 'Результаты исследовании'
+      resultJSON: 'Результаты исследовании',
+      nomberProbyTiny: '№ пробы',
+      pdkJSON: 'ПДК',
+      status: {
+        pending: 'Ожидание принятии',
+        accepted: 'Принят',
+        research: 'На иследовании',
+        completed: 'Завершен',
+        finish: 'Завершен'
+      },
     },
     placeholder: {
       opPokazatel: 'Определяемые показатели',
-      researchMetodJSON: 'НД на метод исследования',
+      researchMetodJSON: '№ МУ или НД',
       indexProby: 'Порядковый № пробы',
-      resultJSON: 'Результаты исследовании'
+      resultJSON: 'Результаты исследовании',
+      pdkJSON: 'Выберите ПДК'
     },
      description: {
        opPokazatel: 'Определяемый показатель',
-       researchMetodJSON: 'Метадическое указания на исследование (НД)',
+       researchMetodJSON: 'Методическое указания на методы исследований ( или НД)',
        indexProby: 'Порядковый номер пробы',
-       resultJSON: 'Результат исследований (обнажен, или не обнаружен)'
+       resultJSON: 'Результат исследований (обнажен, или не обнаружен)',
+       pdkJSON: 'Предел допустимой нормы'
      }
   },
   user: {
@@ -687,12 +710,12 @@ export default {
       add: '',
     },
     metod: {
-      index: 'НД на методы ииследование',
+      index: 'МУ (НД) на методы исследований',
       add: '',
     },
     personal: {
       add: 'Добавление персонала',
-      index: 'персонал',
+      index: 'персоналы',
     },
     otdel: {
       index: 'отделы',
@@ -703,7 +726,7 @@ export default {
       add: '',
     },
     departments: {
-      index: 'департамент',
+      index: 'департаменты',
       add: '',
     },
     plan_raboty: {
@@ -739,6 +762,8 @@ export default {
     },
     napravlenie: {
       index: 'направление',
+      add: 'добавить',
+      route: 'внутреннее направление'
     },
     role: {
       index: 'роли пользователей',

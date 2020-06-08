@@ -26,24 +26,24 @@
       <template v-for="modal in modals">
         <template v-if="modal.type === modalTypes.form">
           <crud-form-modal
-              :id="modal.id"
-              :title="$t(modal.title)"
-              :size="modal.size"
-              :crud-data="crudData"
-              :modal="modal"
-              :form-data="modalFormDataByRestName"
-              @on-action="onModalAction"
+            :id="modal.id"
+            :title="$t(modal.title)"
+            :size="modal.size"
+            :crud-data="crudData"
+            :modal="modal"
+            :form-data="modalFormDataByRestName"
+            @on-action="onModalAction"
           />
         </template>
         <template v-if="modal.type === modalTypes.confirm">
           <crud-form-modal
-              :id="modal.id"
-              :title="$t(modal.title)"
-              :size="modal.size"
-              :crud-data="crudData"
-              :modal="modal"
-              :form-data="modalFormDataByRestName"
-              @on-action="onModalAction"
+            :id="modal.id"
+            :title="$t(modal.title)"
+            :size="modal.size"
+            :crud-data="crudData"
+            :modal="modal"
+            :form-data="modalFormDataByRestName"
+            @on-action="onModalAction"
           />
         </template>
       </template>
@@ -70,7 +70,16 @@
       }),
     },
     created() {
-
+      this.$eventBus.$on(
+        this.busEvents.ISLEDOVANIE_FINISH_RESPONSE,
+        this.isledovanieFinishResponse
+      )
+    },
+    beforeDestroy() {
+      this.$eventBus.$off(
+        this.busEvents.ISLEDOVANIE_FINISH_RESPONSE,
+        this.isledovanieFinishResponse
+      )
     },
     methods: {
       openDialog({ modalId }, data) {
@@ -80,6 +89,27 @@
         const cloneData = _.cloneDeep(data)
         this.$set(this.modalFormData, this.crudData.restName, cloneData)
       },
+
+      isledovanieFinishOk({ data }) {
+        const {
+          id,
+          vnytNapravlenieId,
+          isResult,
+        } = data
+        this.$store.dispatch('emit/isledovanieFinish', {
+          id,
+          vnytNapravlenieId,
+          isResult
+        })
+      },
+
+      isledovanieFinishResponse(data) {
+        if(data && data.id) {
+          this.toastSuccess('Исследование успешно завершено')
+          this.updateItemInDataset(data.id, data, this.crudData.datasetName)
+          console.log('finished', data)
+        }
+      }
     },
   }
 </script>

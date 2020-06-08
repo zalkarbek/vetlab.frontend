@@ -1,5 +1,6 @@
 const otdelFields = [
   {
+    id: 4,
     name: 'паразитология',
     key: 'parasitology',
     fields: [
@@ -14,7 +15,7 @@ const otdelFields = [
       // Вид антигельминтика (несколько значений)
       // отдел: паразитология
       {
-        type: 'select-multi',
+        type: 'multi-select-tag',
         key: 'anthelminticTypeJSON',
         foreign_crud: 's_preparat',
         foreign_dataset: 'preparat',
@@ -28,6 +29,7 @@ const otdelFields = [
   },
 
   {
+    id: 1,
     name: 'бактериология',
     key: 'bacteriology',
     fields: [
@@ -43,7 +45,7 @@ const otdelFields = [
       // Вид антибиотика (Какой антибиотик использован при лечении) (несколько значений)
       // отдел: бактериология
       {
-        type: 'select-multi',
+        type: 'multi-select-tag',
         key: 'antibioticTypeJSON',
         foreign_crud: 's_preparat',
         foreign_dataset: 'preparat',
@@ -64,7 +66,7 @@ const otdelFields = [
       // Вид дезинфектанта (несколько значений)
       // отдел: бактериология
       {
-        type: 'select-multi',
+        type: 'multi-select-tag',
         key: 'disinfectantTypeJSON',
         foreign_crud: 's_preparat',
         foreign_dataset: 'preparat',
@@ -79,6 +81,7 @@ const otdelFields = [
   },
 
   {
+    id: 3,
     name: 'серология',
     key: 'serology',
     fields: [
@@ -93,7 +96,7 @@ const otdelFields = [
       // Вид вакцины (несколько значений)
       // отдел: серология, вирусология
       {
-        type: 'select-multi',
+        type: 'multi-select-tag',
         key: 'vaccineTypeJSON',
         foreign_crud: 's_preparat',
         foreign_dataset: 'preparat',

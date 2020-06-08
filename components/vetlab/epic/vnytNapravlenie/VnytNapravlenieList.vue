@@ -143,6 +143,7 @@
           :sort-by.sync="sortBy"
           :sort-desc.sync="sortDesc"
           :sort-direction="sortDirection"
+          head-variant="dark"
           show-empty
           small
           responsive
@@ -197,7 +198,7 @@
               class="tx-16 badge badge-warning"
             >
               {{ $t(`vnytNapravlenie.epic.status.${cellData.value}`) }}
-               <i class="fa-2x fal fa-question"></i>
+               <i class="fa-2x fal fa-question fa-beat"></i>
             </span>
             <span
               v-if="toLowerCase(cellData.value) === toLowerCase('accepted')"
@@ -257,7 +258,7 @@
 
           <template v-slot:cell(sendStatusCustomView)="cellData">
             <div v-if="cellData.item.napravilPersonal">
-              <h6>
+              <h6 class="tx-primary tx-bold">
                 {{ $t("vnytNapravlenie.label.napravilPersonal") }}
               </h6>
               <ul class="list-group list-group-flush tx-13">
@@ -330,7 +331,7 @@
             </div>
 
             <div v-if="cellData.item.prinyalPersonal">
-              <h6>
+              <h6 class="tx-success tx-bold">
                 {{ $t("vnytNapravlenie.label.prinyalPersonal") }}
               </h6>
               <ul class="list-group list-group-flush tx-13">
@@ -364,7 +365,7 @@
                   </div>
                 </li>
               </ul>
-              <table class="table table-responsive">
+              <table class="table table-responsive table-sm">
                 <tbody>
                 <tr>
                   <td>
@@ -409,7 +410,7 @@
             </div>
 
             <div v-if="cellData.item.rejectPersonal">
-              <h6>
+              <h6 class="tx-danger tx-bold">
                 {{ $t("vnytNapravlenie.label.rejectPersonal") }}
               </h6>
               <ul class="list-group list-group-flush tx-13">
@@ -437,7 +438,7 @@
                   </div>
                 </li>
               </ul>
-              <table class="table table-responsive">
+              <table class="table table-responsive table-sm">
                 <tbody>
                 <tr>
                   <td>
@@ -471,6 +472,7 @@
                 </tr>
                 </tbody>
               </table>
+
             </div>
           </template>
 
@@ -646,6 +648,7 @@
                   {{
                     renderJSONArrayToList(
                       getProp(cellData.item, "anthelminticTypeJSON", [])
+                      ,'name'
                     )
                   }}
                 </span>
@@ -670,6 +673,7 @@
                   {{
                     renderJSONArrayToList(
                       getProp(cellData.item, "vaccineTypeJSON", [])
+                      ,'name'
                     )
                   }}
                 </span>
@@ -692,6 +696,7 @@
                   {{
                     renderJSONArrayToList(
                       getProp(cellData.item, "antibioticTypeJSON", [])
+                      ,'name'
                     )
                   }}
                 </span>
@@ -714,6 +719,7 @@
                   {{
                     renderJSONArrayToList(
                       getProp(cellData.item, "disinfectantTypeJSON", [])
+                      ,'name'
                     )
                   }}
                 </span>

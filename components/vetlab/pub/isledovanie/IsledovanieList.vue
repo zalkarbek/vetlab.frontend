@@ -132,19 +132,16 @@
               <b-button-group class="mr-1" size="sm">
                 <template v-for="(button, index) in actionButtons">
                   <b-button
-                      :key="index"
-                      :variant="button.variant || 'secondary'"
-                      :disabled="
-                      (button.action === 'accept' || button.action === 'reject')
-                      &&
-                      (row.item.status === 'accepted' || row.item.status === 'rejected')
-                    "
+                    v-if="row.item.status !== 'finish'"
+                    :key="index"
+                    :variant="button.variant || 'secondary'"
+                    :disabled="(row.item.status === 'finish')"
                       @click="onActionButton(button, row.item)"
                   >
                     <i
-                        :class="button.icon"
-                        class="cursor-pointer"
-                        aria-hidden="true"
+                      :class="button.icon"
+                      class="cursor-pointer"
+                      aria-hidden="true"
                     />
                     {{ $t(button.label) }}
                   </b-button>
@@ -162,30 +159,31 @@
             </span>
 
             <span
-                v-if="toLowerCase(cellData.value) === toLowerCase('accepted')"
-                class="tx-16 badge badge-secondary"
+              v-if="toLowerCase(cellData.value) === toLowerCase('accepted')"
+              class="tx-16 badge badge-secondary"
             >
               {{ $t(`vnytNapravlenie.pub.status.${cellData.value}`) }}
             </span>
 
             <span
-                v-if="toLowerCase(cellData.value) === toLowerCase('research')"
-                class="tx-16 badge badge-info"
+              v-if="toLowerCase(cellData.value) === toLowerCase('research')"
+              class="tx-16 badge badge-info"
             >
               {{ $t(`vnytNapravlenie.pub.status.${cellData.value}`) }}
               <i class="fa-2x fas fa-radiation fa-spin text-warning"></i>
             </span>
 
             <span
-                v-if="toLowerCase(cellData.value) === toLowerCase('completed')"
-                class="tx-16 badge badge-success"
+              v-if="toLowerCase(cellData.value) === toLowerCase('finish')"
+              class="tx-16 badge badge-success"
             >
-              {{ $t(`vnytNapravlenie.pub.status.${cellData.value}`) }}
+              {{ $t(`isledovanie.label.status.${cellData.value}`) }}
+              <i class="fa-2x fas fa-check-circle"></i>
             </span>
 
             <span
-                v-if="toLowerCase(cellData.value) === toLowerCase('rejected')"
-                class="tx-16 badge badge-danger"
+              v-if="toLowerCase(cellData.value) === toLowerCase('rejected')"
+              class="tx-16 badge badge-danger"
             >
               {{ $t(`vnytNapravlenie.pub.status.${cellData.value}`) }}
             </span>
@@ -199,7 +197,7 @@
             <table class="table">
               <tbody>
                 <tr class="bg-cyan-light">
-                  <td style="width: 40%">
+                  <td style="width: 30%">
                     <b>{{ $t('isledovanie.label.nomerIsledovania') }}:</b>
                   </td>
                   <td>
@@ -207,66 +205,68 @@
                   </td>
                 </tr>
                 <tr class="bg-warning-light">
-                  <td style="width: 40%">
+                  <td style="width: 30%">
                     <b>{{ $t('isledovanie.label.nomerProby') }}:</b>
                   </td>
                   <td>
-                    <b class="tx-16">{{ getProp(cellData.item, 'vnytNapravlenie.posMaterial.id') }}</b>
+                    <b>{{ getProp(cellData.item, 'vnytNapravlenie.posMaterial.id') }}</b>
                   </td>
                 </tr>
                 <tr>
-                  <td style="width: 40%">
+                  <td style="width: 30%">
+                    <b>{{ $t('isledovanie.label.otdel') }}:</b>
+                  </td>
+                  <td>
+                    <b>{{ getProp(cellData.item, 'otdel.name') }}</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 30%">
+                    <b>{{ $t('isledovanie.label.isPersonal') }}:</b>
+                  </td>
+                  <td>
+                    <b>{{ getProp(cellData.item, 'personal.fullName') }}</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 30%">
                     <b>{{ $t('isledovanie.label.isledObject') }}:</b>
                   </td>
                   <td>
-                    <span v-for="(material, index)
-                      in getProp(
-                        cellData.item,
-                        'vnytNapravlenie.posMaterial.sMaterialJSON', []
-                      )"
-                          >
+                    <ul style="padding-left: 15px;">
+                      <li v-for="material
+                        in getProp(
+                          cellData.item,
+                          'vnytNapravlenie.posMaterial.sMaterialJSON', []
+                        )"
+                      >
                       {{ material.name }}
-                        <span
-                            v-if="index < getProp(
-                            cellData.item,
-                            'vnytNapravlenie.posMaterial.sMaterialJSON',
-                            []
-                          ).length - 1"
-                        >,
-                        </span>
-                    </span>
+                      </li>
+                    </ul>
                   </td>
                 </tr>
                 <tr>
-                  <td style="width: 40%">
+                  <td style="width: 30%">
                     <b>{{ $t('isledovanie.label.materialCount') }}:</b>
                   </td>
                   <td>
-                    {{ getProp(cellData.item, 'vnytNapravlenie.posMaterial.materialCount') }}
+                    {{ getProp(cellData.item, 'vnytNapravlenie.postMaterialCount') }}
                     <b>{{ getProp(cellData.item, 'vnytNapravlenie.posMaterial.sMera.shortName') }}</b>
                   </td>
                 </tr>
                 <tr>
-                  <td style="width: 40%">
+                  <td style="width: 30%">
                     <b>{{ $t('isledovanie.label.opPokazatel') }}:</b>
                   </td>
                   <td>
                     <ul style="padding-left: 15px;">
-                      <li v-for="(pokazatel, index)
+                      <li v-for="pokazatel
                         in getProp(
                           cellData.item,
                           'opPokazatelJSON', []
                         )"
                       >
                         {{ pokazatel.name }}
-                          <span
-                            v-if="index < getProp(
-                              cellData.item,
-                              'opPokazatelJSON',
-                              []
-                            ).length - 1"
-                          >,<br>
-                          </span>
                       </li>
                     </ul>
                   </td>
@@ -306,35 +306,154 @@
           </template>
 
           <template v-slot:cell(isledovanieResultCustomView)="cellData">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-sm">
+              <template v-if="isFinishedFoodSafetyOtdel(cellData.item)">
+              <thead>
+                <tr>
+                  <th>{{ $t('isledovanie.label.nomerProby') }}</th>
+                  <th class="tx-center">{{ $t('isledovanie.label.result') }}</th>
+                </tr>
+              </thead>
               <tbody>
                 <tr>
-                  <td style="width: 40%">
-                    <b>{{ $t('isledovanie.label.isledovanieND') }}:</b>
+
+                  <td class="tx-center align-middle">
+                    <b>{{ getProp(cellData.item, 'isResultJSON[0].nomerProby', '') }}</b>
                   </td>
+
                   <td>
-                    <ul style="padding-left: 15px;">
-                      <li v-for="(ndDoc, index)
-                        in getProp(
-                          cellData.item,
-                          'metodJSON', []
-                        )"
-                      >
-                        {{ ndDoc.name }}({{ ndDoc.gosStandard }})
-                        <span
-                          v-if="index < getProp(
-                            cellData.item,
-                            'metodJSON',
-                            []
-                          ).length - 1"
-                        >,<br>
-                          </span>
-                      </li>
-                    </ul>
+                    <table class="table table-bordered">
+                      <template v-for="result in getProp(cellData.item, 'isResultJSON', [])">
+                        <tr>
+                          <td style="width: 30%">
+                            <b>{{ $t('isledovanie.label.opPokazatel') }}:</b>
+                          </td>
+                          <td>
+                            <ul style="padding-left: 15px;">
+                              <li v-for="pokazatel in getProp(result,'opPokazatelJSON', [])">
+                                {{ pokazatel.name }}
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                        <tr class="bg-cyan-light">
+                          <td style="width: 30%">
+                            <b>{{ $t('isledovanie.label.result') }}:</b>
+                          </td>
+                          <td>
+                            <ul style="padding-left: 15px;">
+                              <li v-for="res in getProp(result,'resultJSON', [])">
+                                <span class=" tx-bold tx-primary">{{ res.name }}</span>
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                        <tr class="bg-warning-light">
+                          <td style="width: 30%">
+                            <b>{{ $t('isledovanie.label.pdk') }}:</b>
+                          </td>
+                          <td>
+                            <ul style="padding-left: 15px;">
+                              <li v-for="pdk in getProp(result,'pdkJSON', [])">
+                                <span class="tx-bold">{{ pdk.name }}</span>
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="width: 30%">
+                            <b>{{ $t('isledovanie.label.isledovanieND') }}:</b>
+                          </td>
+                          <td>
+                            <ul style="padding-left: 15px;">
+                              <li v-for="pokazatel in getProp(result,'metodJSON', [])">
+                                {{ pokazatel.name }}
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="2">
+                            <hr>
+                          </td>
+                        </tr>
+                      </template>
+                    </table>
                   </td>
+
                 </tr>
               </tbody>
+              </template>
+
+              <template v-else>
+              <tbody>
+
+                <template v-for="result in getProp(cellData.item, 'isResultJSON', [])">
+                  <tr>
+                    <td style="width: 30%">
+                      <b>{{ $t('isledovanie.label.opPokazatel') }}:</b>
+                    </td>
+                    <td>
+                      <ul style="padding-left: 15px;">
+                        <li v-for="pokazatel in getProp(result,'opPokazatelJSON', [])">
+                          {{ pokazatel.name }}
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width: 30%">
+                      <b>{{ $t('isledovanie.label.isledovanieND') }}:</b>
+                    </td>
+                    <td>
+                      <ul style="padding-left: 15px;">
+                        <li v-for="pokazatel in getProp(result,'metodJSON', [])">
+                          {{ pokazatel.name }}
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <h6 class="tx-center">
+                        {{ $t('isledovanie.label.isledovanieResults') }}:
+                      </h6>
+                      <table class="table table-bordered table-sm">
+                        <thead>
+                          <tr>
+                            <th>
+                              <b>{{ $t('isledovanie.label.nomerProby') }}:</b>
+                            </th>
+                            <th>
+                              <b>{{ $t('isledovanie.label.result') }}:</b>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <template v-for="proba in getProp(result, 'proby', [])">
+                          <tr class="bg-cyan-light">
+                            <td style="width: 30%">
+                              <b>{{ getProp(proba, 'indexProby') }}</b>
+                            </td>
+                            <td>
+                              <ul style="padding-left: 15px;">
+                                <li v-for="probaResult in getProp(proba,'resultJSON', [])">
+                                  {{ probaResult.name }}
+                                </li>
+                              </ul>
+                            </td>
+                          </tr>
+                        </template>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </template>
+
+              </tbody>
+              </template>
             </table>
+
           </template>
         </b-table>
       </template>
@@ -343,6 +462,7 @@
 </template>
 <script>
   import CrudListMixin from '~/components/crud/CrudListMixin'
+  import { mapState } from 'vuex'
   export default {
     mixins: [CrudListMixin],
     data() {
@@ -352,7 +472,25 @@
         pageOptions: [1, 2, 3, 5, 7, 10],
       }
     },
+    computed: {
+      ...mapState({
+        user: (state) => state.user,
+      }),
+      ...mapState('vet', {
+        otdelList: (state) => state.otdelList,
+      })
+    },
     methods: {
+      isFinishedFoodSafetyOtdel(data) {
+        const id = this.getProp(data, 'finishedOtdel.sOtdeleniaId', false)
+        return id === this.otdelList.FOOD_SAFETY.ID
+      },
+
+      isFoodSafetyOtdel(data) {
+        const id = this.getProp(data, 'otdel.sOtdeleniaId', false)
+        return id === this.otdelList.FOOD_SAFETY.ID
+      },
+
       rowStatusBasedColor(item, type) {
         if (!item || type !== 'row') return false
       }

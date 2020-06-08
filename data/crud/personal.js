@@ -319,5 +319,17 @@ export default {
       disabled: false,
       hidden: false,
     },
+
+    {
+      type: 'select',
+      key: 'departmentId',
+      foreign_crud: 'department',
+      foreign_dataset: 'departments',
+      foreign_label: 'name',
+      foreign_value: 'id',
+      foreign_attributes: ['name', 'id'],
+      disabled: false,
+      hidden: false,
+    },
   ],
 }

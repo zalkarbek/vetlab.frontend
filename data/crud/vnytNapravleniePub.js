@@ -16,9 +16,9 @@ export default {
   datasetName,
   rest: {
     ...baseApi,
-    getAllVnytNapravlenieRel: {
+    getAllPubRel: {
       method: 'GET',
-      url: `/api/v1/${routePrefix}/rel/paginate`,
+      url: `/api/v1/${routePrefix}/pub/rel/paginate`,
     },
   },
 
@@ -27,7 +27,7 @@ export default {
       datasetName: 'vnytNapravlenie',
       paginate: 'server',
       pageSize: 3,
-      methodIfPaginateServer: 'getAllVnytNapravlenieRel',
+      methodIfPaginateServer: 'getAllPubRel',
       searchColumn: ['id'],
     },
   },

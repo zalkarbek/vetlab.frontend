@@ -1,6 +1,7 @@
 import userSocket from './user/user.socket'
 import vnytNapravlenieSocket from './vnytNapravlenie/vnyt.socket'
 import naSocket from './napravlenie/na.socket'
+import isSocket from './isledovanie/is.socket'
 
 export default ({ socket, context, socks }) => {
   socket.on('connect', () => {
@@ -31,4 +32,5 @@ export default ({ socket, context, socks }) => {
   userSocket({ socket, context, socks })
   vnytNapravlenieSocket({ socket, context, socks })
   naSocket({ socket, context, socks })
+  isSocket({ socket, context, socks })
 }

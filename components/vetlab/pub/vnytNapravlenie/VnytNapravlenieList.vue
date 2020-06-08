@@ -267,7 +267,7 @@
 
           <template v-slot:cell(sendStatusCustomView)="cellData">
             <div v-if="cellData.item.napravilPersonal">
-              <h6>
+              <h6 class="tx-primary tx-bold">
                 {{ $t("vnytNapravlenie.label.napravilPersonal") }}
               </h6>
               <ul class="list-group list-group-flush tx-13">
@@ -286,16 +286,16 @@
                   <div class="pd-l-10">
                     <p class="tx-medium mg-b-0">
                       {{
-                        getProp(cellData.item, "napravilPersonal.fullName", "")
+                      getProp(cellData.item, "napravilPersonal.fullName", "")
                       }}
                     </p>
                     <small class="tx-12 tx-color-03 mg-b-0">
                       {{
-                        getProp(
-                          cellData.item,
-                          "napravilPersonal.sDoljnost.name",
-                          ""
-                        )
+                      getProp(
+                      cellData.item,
+                      "napravilPersonal.sDoljnost.name",
+                      ""
+                      )
                       }}
                     </small>
                   </div>
@@ -303,7 +303,7 @@
               </ul>
               <b-list-group class="list-group-flush">
                 <b-list-group-item
-                  v-if="getProp(cellData.item, 'napravlenOtdel.name', '')"
+                    v-if="getProp(cellData.item, 'napravlenOtdel.name', '')"
                 >
                   <span class="tx-bold">
                     {{ $t("vnytNapravlenie.label.napravlenOtdel") }}:
@@ -340,7 +340,7 @@
             </div>
 
             <div v-if="cellData.item.prinyalPersonal">
-              <h6>
+              <h6 class="tx-success tx-bold">
                 {{ $t("vnytNapravlenie.label.prinyalPersonal") }}
               </h6>
               <ul class="list-group list-group-flush tx-13">
@@ -359,67 +359,67 @@
                   <div class="pd-l-10">
                     <p class="tx-medium mg-b-0">
                       {{
-                        getProp(cellData.item, "prinyalPersonal.fullName", "")
+                      getProp(cellData.item, "prinyalPersonal.fullName", "")
                       }}
                     </p>
                     <small class="tx-12 tx-color-03 mg-b-0">
                       {{
-                        getProp(
-                          cellData.item,
-                          "prinyalPersonal.sDoljnost.name",
-                          ""
-                        )
+                      getProp(
+                      cellData.item,
+                      "prinyalPersonal.sDoljnost.name",
+                      ""
+                      )
                       }}
                     </small>
                   </div>
                 </li>
               </ul>
-              <table class="table table-responsive">
+              <table class="table table-responsive table-sm">
                 <tbody>
-                  <tr>
-                    <td>
+                <tr>
+                  <td>
                       <span class="tx-bold">
                         {{ $t("vnytNapravlenie.label.prinyalOtdel") }}:
                       </span>
-                    </td>
-                    <td>
-                      {{ getProp(cellData.item, "prinyalOtdel.name", "") }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
+                  </td>
+                  <td>
+                    {{ getProp(cellData.item, "prinyalOtdel.name", "") }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
                       <span class="tx-bold">
                         {{ $t("vnytNapravlenie.label.prinyalDate") }}:
                       </span>
-                    </td>
-                    <td>
-                      {{
-                        formatDate(
-                          getProp(cellData.item, "prinyalDate", "")
-                        )
-                      }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
+                  </td>
+                  <td>
+                    {{
+                    formatDate(
+                    getProp(cellData.item, "prinyalDate", "")
+                    )
+                    }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
                       <span class="tx-bold">
                         {{ $t("vnytNapravlenie.label.prinyalTime") }}:
                       </span>
-                    </td>
-                    <td>
-                      {{
-                      formatTime(
-                      getProp(cellData.item, "prinyalDate", "")
-                      )
-                      }}
-                    </td>
-                  </tr>
+                  </td>
+                  <td>
+                    {{
+                    formatTime(
+                    getProp(cellData.item, "prinyalDate", "")
+                    )
+                    }}
+                  </td>
+                </tr>
                 </tbody>
               </table>
             </div>
 
             <div v-if="cellData.item.rejectPersonal">
-              <h6>
+              <h6 class="tx-danger tx-bold">
                 {{ $t("vnytNapravlenie.label.rejectPersonal") }}
               </h6>
               <ul class="list-group list-group-flush tx-13">
@@ -438,7 +438,7 @@
                   <div class="pd-l-10">
                     <p class="tx-medium mg-b-0">
                       {{
-                        getProp(cellData.item, "rejectPersonal.fullName", "")
+                      getProp(cellData.item, "rejectPersonal.fullName", "")
                       }}
                     </p>
                     <small class="tx-12 tx-color-03 mg-b-0">
@@ -447,7 +447,7 @@
                   </div>
                 </li>
               </ul>
-              <table class="table table-responsive">
+              <table class="table table-responsive table-sm">
                 <tbody>
                 <tr>
                   <td>
@@ -481,6 +481,7 @@
                 </tr>
                 </tbody>
               </table>
+
             </div>
           </template>
 
@@ -656,6 +657,7 @@
                   {{
                     renderJSONArrayToList(
                       getProp(cellData.item, "anthelminticTypeJSON", [])
+                      ,'name'
                     )
                   }}
                 </span>
@@ -680,6 +682,7 @@
                   {{
                     renderJSONArrayToList(
                       getProp(cellData.item, "vaccineTypeJSON", [])
+                      ,'name'
                     )
                   }}
                 </span>
@@ -702,6 +705,7 @@
                   {{
                     renderJSONArrayToList(
                       getProp(cellData.item, "antibioticTypeJSON", [])
+                      ,'name'
                     )
                   }}
                 </span>
@@ -724,6 +728,7 @@
                   {{
                     renderJSONArrayToList(
                       getProp(cellData.item, "disinfectantTypeJSON", [])
+                      ,'name'
                     )
                   }}
                 </span>

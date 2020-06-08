@@ -3,7 +3,6 @@ class BaseRepository {
     this.ctx = ctx
     this.restApi = restApi.rest
   }
-
   all() {
     return this.ctx.$axios.$get(this.restApi.all.url)
   }

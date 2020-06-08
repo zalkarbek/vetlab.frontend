@@ -186,6 +186,7 @@ export default {
     {
       type: 'multi-select-tag',
       key: 'opPokazatelJSON',
+      label: 'form.label.objectIsledovanie',
       foreign_crud: 's_pokazatel',
       foreign_dataset: 'pokazatel',
       foreign_label: 'name',

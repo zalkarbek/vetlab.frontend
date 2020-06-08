@@ -8,7 +8,7 @@
       @onLogin="login"
     >
       <template v-slot:title>
-        Южняя ветеринарная лаборатория<i class="fal fa-registered" />
+        Южная ветеринарная лаборатория<i class="fal fa-registered" />
       </template>
       <template v-slot:description>
         Авторизация

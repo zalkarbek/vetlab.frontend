@@ -1,9 +1,9 @@
 import AuthApi from './auth'
-import OtdelApi from './otdel'
 import { DepartmentRepository } from './DepartmentRepository'
 import { OptionRepository } from '~/api/OptionRepository'
 import { PokazatelRepository } from '~/api/PokazatelRepository'
 import { IsledovanieResultRepository } from '~/api/IsledovanieResultRepository'
+import { OtdelRepository } from '~/api/OtdelRepository'
 
 class Api {
   constructor(context) {
@@ -11,7 +11,7 @@ class Api {
     this.context = context
     this.apiServices = {
       auth: AuthApi(context),
-      otdel: OtdelApi(context),
+      otdel: new OtdelRepository(context, crudApi.otdel),
       department: new DepartmentRepository(context, crudApi.department),
       option: new OptionRepository(context, crudApi.option),
       pokazatel: new PokazatelRepository(context, crudApi.s_pokazatel),

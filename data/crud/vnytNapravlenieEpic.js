@@ -15,9 +15,9 @@ export default {
   datasetName,
   rest: {
     ...baseApi,
-    getAllVnytNapravlenieRel: {
+    getAllEpicRel: {
       method: 'GET',
-      url: `/api/v1/${routePrefix}/rel/paginate`,
+      url: `/api/v1/${routePrefix}/epic/rel/paginate`,
     },
   },
 
@@ -26,8 +26,8 @@ export default {
       datasetName: 'vnytNapravlenie',
       paginate: 'server',
       pageSize: 3,
-      methodIfPaginateServer: 'getAllVnytNapravlenieRel',
-      methodOnSearch: 'getAllVnytNapravlenieRel',
+      methodIfPaginateServer: 'getAllEpicRel',
+      methodOnSearch: 'getAllEpicRel',
       earchColumn: ['id'],
     },
   },

@@ -118,8 +118,7 @@ export default {
       if (otdel && otdel.sOtdelenia && otdel.sOtdelenia.name) {
         const findedOtdelField = otdelFields.find((otField) => {
           return (
-            this.$toLowerCase(otField.name) ===
-            this.$toLowerCase(otdel.sOtdelenia.name)
+            Number(otField.id) === Number(otdel.sOtdelenia.id)
           )
         })
         if (findedOtdelField) {

@@ -1,17 +1,20 @@
 <template>
   <div>
     <template v-if="viewType === viewTypes.inline">
-      <template v-for="field in showedFields">
+      <template v-for="(field, index) in showedFields">
         <template v-if="dataItem && dataItem[field.key]">
-          <span :key="field.key"> {{ dataItem[field.key] }},&nbsp; </span>
+          <span :key="field.key"> {{ dataItem[field.key] }}
+            <span v-if="index < showedFields.length - 1">,&nbsp;</span>
+          </span>
         </template>
       </template>
     </template>
 
     <template v-if="viewType === viewTypes.inlineWithKey">
-      <template v-for="field in showedFields">
+      <template v-for="(field, index) in showedFields">
         <span :key="field.key">
-          {{ field.key }}: {{ dataItem[field.key] }},&nbsp;
+          {{ field.key }}: {{ dataItem[field.key] }}
+          <span v-if="index < showedFields.length - 1">,&nbsp;</span>
         </span>
       </template>
     </template>
