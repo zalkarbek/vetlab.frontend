@@ -55,21 +55,28 @@
                     </span>
                   </td>
                   <td class="bg-success-light">
-                  <span class="tx-primary tx-16 tx-bold">
-                    {{ $t('isledovanie.label.isledovanieResult') }}
-                    ### {{ index + 1 }} ###
-                  </span>
+                    <span class="tx-16 tx-bold">
+                      {{
+                        renderJSONArrayToList(
+                          getProp(result, 'posMaterial.sMaterialJSON', [])
+                          , 'name'
+                        )
+                      }}
+                    </span>
+                    <span class="tx-primary tx-16 tx-bold">
+                      ### {{ index + 1 }} ###
+                    </span>
                     <span class="float-right">
-                    <b-button
+                      <b-button
                         v-if="index >= 1"
                         @click="removeResultByIndex(index, isResult)"
                         class="badge"
                         variant="flat"
                         size="xs"
-                    >
-                      <i class="fas fa-times cursor-pointer tx-16"></i>
-                    </b-button>
-                  </span>
+                      >
+                        <i class="fas fa-times cursor-pointer tx-16"></i>
+                      </b-button>
+                    </span>
                   </td>
                 </tr>
                 <tr>
@@ -105,23 +112,23 @@
                       </b-col>
                       <b-col cols="4">
                         <b-form-group
-                            :label='$t(methodField.label)'
-                            :description='$t(methodField.description)'
+                          :label='$t(methodField.label)'
+                          :description='$t(methodField.description)'
                         >
                           <multiselect
-                              v-model="result.metodJSON"
-                              :options="datasetList[methodField.foreign_dataset]"
-                              :label="methodField.foreign_label"
-                              :placeholder="$t(methodField.placeholder || `form.label.${methodField.key}`)"
-                              :selectLabel="$t('form.label.selectItem')"
-                              :selectedLabel="$t('form.label.selectedItem')"
-                              :deselectLabel="$t('form.label.deselectItem')"
-                              :tagPlaceholder="$t('form.label.addNewPokazatel')"
-                              multiple
-                              taggable
-                              track-by="name"
-                              @open="storageLoadDataSet(methodField)"
-                              @tag="(metod) => addNewTag(metod, result.metodJSON, methodField)"
+                            v-model="result.metodJSON"
+                            :options="datasetList[methodField.foreign_dataset]"
+                            :label="methodField.foreign_label"
+                            :placeholder="$t(methodField.placeholder || `form.label.${methodField.key}`)"
+                            :selectLabel="$t('form.label.selectItem')"
+                            :selectedLabel="$t('form.label.selectedItem')"
+                            :deselectLabel="$t('form.label.deselectItem')"
+                            :tagPlaceholder="$t('form.label.addNewPokazatel')"
+                            multiple
+                            taggable
+                            track-by="name"
+                            @open="storageLoadDataSet(methodField)"
+                            @tag="(metod) => addNewTag(metod, result.metodJSON, methodField)"
                           />
                         </b-form-group>
                       </b-col>
@@ -129,23 +136,23 @@
                     <b-row>
                       <b-col cols="6">
                         <b-form-group
-                            :label="$t(isledovanieResultNamesField.label)"
-                            :description="$t(isledovanieResultNamesField.description)"
+                          :label="$t(isledovanieResultNamesField.label)"
+                          :description="$t(isledovanieResultNamesField.description)"
                         >
                           <multiselect
-                              v-model="result.resultJSON"
-                              :options="datasetList[isledovanieResultNamesField.foreign_dataset]"
-                              :label="isledovanieResultNamesField.foreign_label"
-                              :placeholder="$t(isledovanieResultNamesField.placeholder)"
-                              :selectLabel="$t('form.label.selectItem')"
-                              :selectedLabel="$t('form.label.selectedItem')"
-                              :deselectLabel="$t('form.label.deselectItem')"
-                              :tagPlaceholder="$t('form.label.addNewPokazatel')"
-                              multiple
-                              taggable
-                              track-by="name"
-                              @open="storageLoadDataSet(isledovanieResultNamesField)"
-                              @tag="(name) => addNewTag(name, result.resultJSON, isledovanieResultNamesField)"
+                            v-model="result.resultJSON"
+                            :options="datasetList[isledovanieResultNamesField.foreign_dataset]"
+                            :label="isledovanieResultNamesField.foreign_label"
+                            :placeholder="$t(isledovanieResultNamesField.placeholder)"
+                            :selectLabel="$t('form.label.selectItem')"
+                            :selectedLabel="$t('form.label.selectedItem')"
+                            :deselectLabel="$t('form.label.deselectItem')"
+                            :tagPlaceholder="$t('form.label.addNewPokazatel')"
+                            multiple
+                            taggable
+                            track-by="name"
+                            @open="storageLoadDataSet(isledovanieResultNamesField)"
+                            @tag="(name) => addNewTag(name, result.resultJSON, isledovanieResultNamesField)"
                           />
                         </b-form-group>
                       </b-col>
@@ -462,18 +469,25 @@
       initFoodSafetyFields(formData) {
         this.isResult = []
         if(formData) {
-          const resultItem = {
-            nomerProby: this.getProp(formData, 'vnytNapravlenie.posMaterialId'),
-            opPokazatelJSON: [
-              ...this.getProp(formData, 'opPokazatelJSON', [])
-            ],
-            metodJSON: [
-              ...this.getProp(formData, 'metodJSON', [])
-            ],
-            resultJSON: [],
-            pdkJSON: [],
-          }
-          this.$set(this.isResult, 0, resultItem)
+          const posMaterials = this.getProp(formData, 'vnytNapravlenie.posMaterials', [])
+          posMaterials.forEach((posMaterial, index) => {
+            const resultItem = {
+              posMaterial: {
+                id: posMaterial.id,
+                sMaterialJSON: posMaterial.sMaterialJSON
+              },
+              nomerProby: posMaterial.indexNumber || posMaterial.id,
+              opPokazatelJSON: [
+                ...this.getProp(formData, 'opPokazatelJSON', [])
+              ],
+              metodJSON: [
+                ...this.getProp(formData, 'metodJSON', [])
+              ],
+              resultJSON: [],
+              pdkJSON: [],
+            }
+            this.$set(this.isResult, index, resultItem)
+          })
         }
       },
 

@@ -207,25 +207,25 @@
 
           <template v-slot:cell(probaCustomView)="cellData">
             <template v-if="cellData.item.posMaterials && Array.isArray(cellData.item.posMaterials)">
+              <span class="tx-bold">
+                {{ $t("vnytNapravlenie.label.posMaterialId") }}:
+              </span>
               <template v-for="posMaterial in cellData.item.posMaterials">
                 <b-list-group class="list-group-flush">
                   <b-list-group-item v-if="getProp(posMaterial, 'sMaterialJSON', '')">
-                    <span class="tx-bold">
-                      {{ $t("vnytNapravlenie.label.posMaterialId") }}:
-                    </span>
+                    <b class="bg-cyan-light">
+                      ({{ posMaterial.indexNumber || posMaterial.id }})
+                    </b>-
                     <span v-for="(material, index) in getProp(posMaterial, 'sMaterialJSON', [])">
                       <span>{{ material.name }}</span>
+                      <span>
+                        {{ getProp(posMaterial, 'materialCount', '') }}
+                        <span>{{ getProp(posMaterial, 'sMera.name', '') }}</span>
+                      </span>
                       <span v-if="index < posMaterial.sMaterialJSON.length - 1">, </span>
                     </span>
                   </b-list-group-item>
                   <b-list-group-item v-if="posMaterial.materialCount">
-                  <span class="tx-bold">
-                    {{ $t('vnytNapravlenie.label.posMaterialCount') }}:
-                  </span>
-                    <span>
-                    {{ getProp(posMaterial, 'materialCount', '') }}
-                    <span>{{ getProp(posMaterial, 'sMera.name', '') }}</span>
-                  </span>
                   </b-list-group-item>
                 </b-list-group>
               </template>

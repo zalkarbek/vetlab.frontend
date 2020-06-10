@@ -94,6 +94,7 @@ export default {
       modalCrud.fields.forEach((field) => {
         postData[field.key] = data[field.key]
       })
+
       postData.napravlenieId = data.id
       await this.$store.dispatch('emit/napravlenieSendToOtdel', postData)
       return false

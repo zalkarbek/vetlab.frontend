@@ -212,8 +212,11 @@
           </template>
 
           <template v-slot:cell(opPokazatelJSON)="cellData">
-            <span class="tx-bold">
-              {{ $t("vnytNapravlenie.label.posMaterialId") }}:
+            <span>
+              <span>{{ $t("vnytNapravlenie.label.probCount") }}:</span>
+              <span class="tx-bold">
+                {{ getProp(cellData.item, 'posMaterials', []).length }}
+              </span>
             </span>
             <ul style="padding-left:15px;">
               <template v-if="cellData.item.posMaterials && Array.isArray(cellData.item.posMaterials)">
@@ -221,13 +224,9 @@
                   <li v-if="getProp(posMaterial, 'sMaterialJSON', null)">
                     <span v-for="(material, index) in getProp(posMaterial, 'sMaterialJSON', [])">
                       {{ material.name }}
-                      <span v-if="index < posMaterial.sMaterialJSON.length - 1">,</span>
-                    </span>
-                    <br>
-                    <span v-if="posMaterial.materialCount">
-                      <span class="tx-bold">{{ $t("vnytNapravlenie.label.count") }}:</span>
                       {{ getProp(posMaterial, 'materialCount', '') }}
                       {{ getProp(posMaterial, 'sMera.name', '') }}
+                      <span v-if="index < posMaterial.sMaterialJSON.length - 1">,</span>
                     </span>
                     <br>
                     <span class="tx-bolder">
@@ -242,6 +241,7 @@
                       </ul>
                     </template>
                   </li>
+                  <li class="list-unstyled"><hr></li>
                 </template>
               </template>
             </ul>

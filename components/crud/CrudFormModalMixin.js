@@ -3,12 +3,13 @@ import CrudForm from '~/components/crud/CrudForm'
 import toastMixin from '~/mixins/toastMixin'
 import loadDatasetMixin from '~/mixins/loadDatasetMixin'
 import utilMixin from '~/mixins/utilMixin'
+import renderFunctionMixin from '~/mixins/renderFunctionMixin'
 
 export default {
   components: {
     CrudForm,
   },
-  mixins: [utilMixin, toastMixin, loadDatasetMixin],
+  mixins: [utilMixin, toastMixin, loadDatasetMixin, renderFunctionMixin],
   props: {
     id: {
       type: String,

@@ -23,6 +23,10 @@ export default {
       id: 'id',
     },
     label: {
+      pieces: 'Штук',
+      probs: 'Проб',
+      sendPosMaterials: 'Обьекты исследования',
+      posMaterials: 'Обьекты исследования',
       objectIsledovanie: 'Обьект исследования',
       isledovanieResultCustomView: 'Результат исследованиий',
       deselectItem: 'Исключить из выбора',
@@ -134,6 +138,8 @@ export default {
       roles: 'Роли доступа',
     },
     placeholder: {
+      sendPosMaterials: 'Обьекты исследования',
+      posMaterials: 'Обьекты исследования',
       roles: 'Роль доступа',
       sDoljnostId: 'Должность',
       subOtdelId: 'Под отдел',
@@ -241,6 +247,7 @@ export default {
       vnytNapravlenieOptionalCustomView: 'Доп. данные',
     },
     description: {
+      sendPosMaterials: 'Обьекты исследования',
       roles: 'Роль доступа',
       sDoljnostId: 'Должность персонала',
       subOtdelId: 'Под отдел',
@@ -291,6 +298,7 @@ export default {
       dateVremyaOtpravki: 'Дата и время доставки',
       napravlenOtdelId: 'Направляется в отдел',
       posMaterialId: 'Обьект исследования',
+      posMaterials: 'Обьекты исследования',
       postMaterialCount: 'Количество проб',
       isledovanieProvoditsaJSON: 'Исследование проводятся',
       posMaterialCheckVid: 'Соответствие внешнего вида',
@@ -544,6 +552,7 @@ export default {
       researchMetodJSON: 'Методическое указание (или НД)',
       rejectionDescription: 'Причина отклонения',
       count: 'Кол-во',
+      probCount: 'Количество проб',
       outerNomerNapravlenia: 'Внешний №',
       nomerNapravlenia: '№ Заказа',
       napravilPersonal: 'Направил',

@@ -7,25 +7,25 @@
           <b-row>
             <b-col lg="6">
               <b-form-group
-                  :label="$t('form.label.search')"
-                  :description="$t('form.description.search')"
-                  label-cols-sm="2"
-                  label-align-sm="right"
-                  label-size="sm"
-                  label-for="filterInput"
-                  label-class="tx-bold"
-                  class="mb-0"
+                :label="$t('form.label.search')"
+                :description="$t('form.description.search')"
+                label-cols-sm="2"
+                label-align-sm="right"
+                label-size="sm"
+                label-for="filterInput"
+                label-class="tx-bold"
+                class="mb-0"
               >
                 <b-input-group size="sm">
                   <b-form-input
-                      v-model="searchItem"
-                      :placeholder="$t('form.placeholder.search')"
-                      @input="changeSearchInput"
+                    v-model="searchItem"
+                    :placeholder="$t('form.placeholder.search')"
+                    @input="changeSearchInput"
                   />
                   <b-input-group-append>
                     <b-button
-                        :disabled="searchItem && searchItem.trim().length < 1"
-                        @click="onAction('clear')"
+                      :disabled="searchItem && searchItem.trim().length < 1"
+                      @click="onAction('clear')"
                     >
                       {{ $t("form.label.clear") }}
                     </b-button>
@@ -102,9 +102,9 @@
           <template v-slot:cell()="data">
             <template v-if="data.field.type === fieldTypes.json">
               <crud-list-view-json
-                  :field-data="data.field"
-                  :data="data.item[data.field.key]"
-                  view-type="inline"
+                :field-data="data.field"
+                :data="data.item[data.field.key]"
+                view-type="inline"
               />
             </template>
 
@@ -204,14 +204,6 @@
                     <b>{{ getProp(cellData.item, 'id') }}</b>
                   </td>
                 </tr>
-                <tr class="bg-warning-light">
-                  <td style="width: 30%">
-                    <b>{{ $t('isledovanie.label.nomerProby') }}:</b>
-                  </td>
-                  <td>
-                    <b>{{ getProp(cellData.item, 'vnytNapravlenie.posMaterial.id') }}</b>
-                  </td>
-                </tr>
                 <tr>
                   <td style="width: 30%">
                     <b>{{ $t('isledovanie.label.otdel') }}:</b>
@@ -234,13 +226,15 @@
                   </td>
                   <td>
                     <ul style="padding-left: 15px;">
-                      <li v-for="material
-                        in getProp(
-                          cellData.item,
-                          'vnytNapravlenie.posMaterial.sMaterialJSON', []
-                        )"
-                      >
-                      {{ material.name }}
+                      <li v-for="posMaterial in getProp(cellData.item, 'vnytNapravlenie.posMaterials')">
+                        (<span class="tx-bold bg-lightblue-light">
+                          {{ posMaterial.indexNumber || posMaterial.id }}
+                        </span>) -
+                        <span v-for="material in getProp(posMaterial, 'sMaterialJSON', [])">
+                          {{ material.name }}
+                          {{ getProp(posMaterial, 'materialCount', '') }}
+                          {{ getProp(posMaterial, 'sMera.name', '') }}
+                        </span>
                       </li>
                     </ul>
                   </td>
@@ -250,8 +244,7 @@
                     <b>{{ $t('isledovanie.label.materialCount') }}:</b>
                   </td>
                   <td>
-                    {{ getProp(cellData.item, 'vnytNapravlenie.postMaterialCount') }}
-                    <b>{{ getProp(cellData.item, 'vnytNapravlenie.posMaterial.sMera.shortName') }}</b>
+                    {{ getProp(cellData.item, 'vnytNapravlenie.posMaterials', []).length }}
                   </td>
                 </tr>
                 <tr>

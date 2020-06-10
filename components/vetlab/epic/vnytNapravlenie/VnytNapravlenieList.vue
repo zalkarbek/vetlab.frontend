@@ -482,7 +482,7 @@
                 <span class="tx-bold">
                   {{ $t("vnytNapravlenie.label.opPokazatel") }}:
                 </span>
-                <ul>
+                <ul style="padding-left: 15px;">
                   <template
                     v-for="pokazatel in getProp(cellData.item,'opPokazatelJSON',[])"
                   >
@@ -490,26 +490,45 @@
                   </template>
                 </ul>
               </b-list-group-item>
-              <b-list-group-item v-if="cellData.item.posMaterial">
-                <span class="tx-bold">
-                  {{ $t("vnytNapravlenie.label.posMaterialId") }}:
-                </span>
-                <span v-for="(material, index) in
-                        getProp(cellData.item.posMaterial, 'sMaterialJSON', [])">
-                  {{ material.name }}
-                  <span
-                    v-if="index < getProp(cellData.item.posMaterial, 'sMaterialJSON', []).length - 1">
-                    ,
-                  </span>
-                </span>
-              </b-list-group-item>
-              <b-list-group-item v-if="cellData.item.posMaterial">
+              <b-list-group-item v-if="cellData.item.posMaterials">
                 <span class="tx-bold">
                   {{ $t("vnytNapravlenie.label.posMaterialCount") }}:
                 </span>
                 <span>
-                  {{ getProp(cellData.item, "postMaterialCount", "") }}
-                  {{ getProp(cellData.item, "posMaterial.sMera.name", "") }}
+                  {{ getProp(cellData.item, 'posMaterials', []).length }}
+                </span>
+              </b-list-group-item>
+              <b-list-group-item v-if="cellData.item.posMaterials">
+                <span class="tx-bold">
+                  {{ $t("vnytNapravlenie.label.posMaterialId") }}:
+                </span>
+                <br>
+                <template v-for="posMaterial in cellData.item.posMaterials">
+                  <b class="bg-cyan-light">
+                    ({{ posMaterial.indexNumber || posMaterial.id }})
+                  </b>
+                  <span v-if="getProp(posMaterial, 'sMaterialJSON', null)">
+                    -
+                    <span v-for="(material, index) in getProp(posMaterial, 'sMaterialJSON', [])">
+                      {{ material.name }}
+                      {{ getProp(posMaterial, 'materialCount', '') }}
+                      {{ getProp(posMaterial, 'sMera.name', '') }}
+                      <span v-if="index < posMaterial.sMaterialJSON.length - 1">,</span>
+                    </span>
+                  </span>
+                  <br>
+                </template>
+                <span v-for="(material, index) in getProp(cellData.item.posMaterial, 'sMaterialJSON', [])">
+                  {{ material.name }}
+                  <span
+                    v-if="index <
+                      getProp(
+                        cellData.item.posMaterial,
+                        'sMaterialJSON',
+                        []
+                      ).length - 1">
+                    ,
+                  </span>
                 </span>
               </b-list-group-item>
 
@@ -565,7 +584,7 @@
                 </span>
               </b-list-group-item>
               <b-list-group-item
-                  v-if="getProp(cellData.item, 'posMaterial.dateDostavki', null)"
+                v-if="getProp(cellData.item, 'posMaterial.dateDostavki', null)"
               >
                 <span class="tx-bold">
                   {{ $t("pos_material.label.dateDostavki") }}:
@@ -581,10 +600,8 @@
 
               <b-list-group-item>
                 <span
-                    v-if="
-                    getProp(cellData.item, 'posMaterialCheckVid', null) === true
-                  "
-                    class="tx-bold"
+                  v-if="getProp(cellData.item, 'posMaterialCheckVid', null) === true"
+                  class="tx-bold"
                 >
                   {{ $t("vnytNapravlenie.label.posMaterialCheckVid") }}:
                   <i class="fas fa-check-circle tx-success" />
@@ -605,10 +622,8 @@
               </b-list-group-item>
               <b-list-group-item>
                 <span
-                    v-if="
-                    getProp(cellData.item, 'postMaterialCheck', null) === true
-                  "
-                    class="tx-bold"
+                  v-if="getProp(cellData.item, 'postMaterialCheck', null) === true"
+                  class="tx-bold"
                 >
                   {{ $t("vnytNapravlenie.label.postMaterialCheck") }}:
                   <i class="fas fa-check-circle tx-success" />
@@ -616,10 +631,8 @@
                 </span>
 
                 <span
-                    v-if="
-                    getProp(cellData.item, 'postMaterialCheck', null) === false
-                  "
-                    class="tx-bold"
+                  v-if="getProp(cellData.item, 'postMaterialCheck', null) === false"
+                  class="tx-bold"
                 >
                   {{ $t("vnytNapravlenie.label.postMaterialCheck") }}:
                   <i class="fas fa-check-circle tx-success" />

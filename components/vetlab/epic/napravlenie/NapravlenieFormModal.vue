@@ -20,21 +20,28 @@
           :crud-data="crudModalData"
           :record="modalFormData"
         >
-          <template v-slot:posMaterialId="props">
+          <template v-slot:posMaterials="props">
             <v-select
               v-model="modalFormData[props.field.key]"
-              :reduce="(item) => item.id"
+              :reduce="(item) => item"
               :placeholder="$t(props.field.placeholder || `form.placeholder.${props.field.key}`)"
               :options="props.item.posMaterials"
+              multiple
               label="id"
             >
               <template #option="option">
+                (<span class="tx-bold tx-primary">
+                  {{ option.indexNumber || option.id }}
+                </span>)
                 <span v-for="(material, index) in getProp(option, 'sMaterialJSON', [])">
                   {{ material.name }}
                   <b v-if="index < option.sMaterialJSON.length - 1">,</b>
                 </span>
               </template>
               <template #selected-option="option">
+                (<span class="tx-bold tx-primary">
+                  {{ option.indexNumber || option.id }}
+                </span>)
                 <strong v-for="(material, index) in getProp(option, 'sMaterialJSON', [])">
                   {{ material.name }}
                   <b v-if="index < option.sMaterialJSON.length - 1">,</b>

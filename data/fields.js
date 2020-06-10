@@ -154,8 +154,13 @@ const vnytNapravlenieFields = {
     // Обьект исследования (одно зачение)
     // отдел: общий
     {
-      type: 'select:preload',
-      key: 'posMaterialId',
+      type: 'multi-select-tag',
+      key: 'posMaterials',
+      foreign_crud: 'pos_material',
+      foreign_dataset: 'posMaterials',
+      foreign_label: 'name',
+      foreign_value: 'name',
+      foreign_attributes: ['name', 'id'],
       col: {
         sm: 12,
         xs: 12,
@@ -282,8 +287,8 @@ const vnytNapravlenieFields = {
 const researchStartFields = {
   fields: [
     {
-      type: 'select:preload',
-      key: 'posMaterialId',
+      type: 'multi-select-tag',
+      key: 'posMaterials',
       col: {
         md: 12,
         lg: 6,
