@@ -19,11 +19,6 @@ export default {
 
   fields: [
     {
-      type: 'number',
-      key: 'napravlenieId',
-      disabled: true,
-    },
-    {
       type: 'multi-select-tag',
       key: 'sMaterialJSON',
       foreign_crud: 's_material',
@@ -99,118 +94,6 @@ export default {
           },
         },
       ],
-    },
-    {
-      type: 'json',
-      key: 'kemOtobranJSON',
-      json: [
-        {
-          type: 'text',
-          key: 'fullName',
-          label: 'kemOtobran.label.fullName',
-          col: {
-            md: 5,
-            lg: 4,
-            xl: 3
-          },
-        },
-        {
-          type: 'text',
-          key: 'phone_1',
-          label: 'kemOtobran.label.phone_1',
-          col: {
-            md: 4,
-            lg: 4,
-            xl: 2
-          },
-        },
-      ],
-    },
-    {
-      type: 'json',
-      key: 'mestoOtboraRegionJSON',
-      json: [
-        {
-          type: 'number',
-          key: 'id',
-          disabled: true,
-          hidden: true,
-        },
-        {
-          type: 'textarea',
-          key: 'regionFullPath',
-          label: 'mestoOtbora.label.regionFullPath',
-          col: {
-            md: 4,
-            lg: 4,
-            xl: 3
-          },
-        },
-        {
-          type: 'array',
-          key: 'regionIds',
-          disabled: true,
-          hidden: true,
-        },
-      ],
-    },
-    {
-      type: 'textarea',
-      key: 'lechenieInfo',
-      col: {
-        md: 4,
-        lg: 4,
-        xl: 3
-      },
-    },
-    {
-      type: 'date',
-      key: 'dateZabolivanie',
-      col: {
-        md: 4,
-        lg: 3,
-        xl: 3
-      },
-    },
-    {
-      type: 'number',
-      key: 'vozrast',
-      col: {
-        md: 4,
-        lg: 3,
-        xl: 2
-      },
-    },
-    {
-      type: 'date',
-      key: 'dateZaboya',
-      col: {
-        md: 4,
-        lg: 3,
-        xl: 3
-      },
-    },
-    {
-      type: 'date',
-      key: 'dateDostavki',
-      col: {
-        md: 4,
-        lg: 3,
-        xl: 3
-      },
-    },
-    {
-      type: 'datetime',
-      key: 'dateVremyaOtbora',
-      col: {
-        md: 4,
-        lg: 3,
-        xl: 3
-      },
-    },
-    {
-      type: 'textarea',
-      key: 'description',
     },
   ],
 }
