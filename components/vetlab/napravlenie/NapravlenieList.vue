@@ -214,7 +214,7 @@
                 <b-list-group class="list-group-flush">
                   <b-list-group-item v-if="getProp(posMaterial, 'sMaterialJSON', '')">
                     <b class="bg-cyan-light">
-                      ({{ posMaterial.indexNumber || posMaterial.id }})
+                      ({{ posMaterial.nomer || posMaterial.id }})
                     </b>-
                     <span v-for="(material, index) in getProp(posMaterial, 'sMaterialJSON', [])">
                       <span>{{ material.name }}</span>

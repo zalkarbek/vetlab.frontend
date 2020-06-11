@@ -476,7 +476,7 @@
                 id: posMaterial.id,
                 sMaterialJSON: posMaterial.sMaterialJSON
               },
-              nomerProby: posMaterial.indexNumber || posMaterial.id,
+              nomerProby: posMaterial.nomer || posMaterial.id,
               opPokazatelJSON: [
                 ...this.getProp(formData, 'opPokazatelJSON', [])
               ],

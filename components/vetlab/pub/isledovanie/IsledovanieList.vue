@@ -228,7 +228,7 @@
                     <ul style="padding-left: 15px;">
                       <li v-for="posMaterial in getProp(cellData.item, 'vnytNapravlenie.posMaterials')">
                         (<span class="tx-bold bg-lightblue-light">
-                          {{ posMaterial.indexNumber || posMaterial.id }}
+                          {{ posMaterial.nomer || posMaterial.id }}
                         </span>) -
                         <span v-for="material in getProp(posMaterial, 'sMaterialJSON', [])">
                           {{ material.name }}

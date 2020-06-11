@@ -31,7 +31,7 @@
             >
               <template #option="option">
                 (<span class="tx-bold tx-primary">
-                  {{ option.indexNumber || option.id }}
+                  {{ option.nomer || option.id }}
                 </span>)
                 <span v-for="(material, index) in getProp(option, 'sMaterialJSON', [])">
                   {{ material.name }}
@@ -40,7 +40,7 @@
               </template>
               <template #selected-option="option">
                 (<span class="tx-bold tx-primary">
-                  {{ option.indexNumber || option.id }}
+                  {{ option.nomer || option.id }}
                 </span>)
                 <strong v-for="(material, index) in getProp(option, 'sMaterialJSON', [])">
                   {{ material.name }}

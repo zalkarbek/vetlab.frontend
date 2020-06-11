@@ -505,7 +505,7 @@
                 <br>
                 <template v-for="posMaterial in cellData.item.posMaterials">
                   <b class="bg-cyan-light">
-                    ({{ posMaterial.indexNumber || posMaterial.id }})
+                    ({{ posMaterial.nomer || posMaterial.id }})
                   </b>
                   <span v-if="getProp(posMaterial, 'sMaterialJSON', null)">
                     -
