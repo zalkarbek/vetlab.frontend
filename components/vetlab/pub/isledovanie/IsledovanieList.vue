@@ -303,21 +303,18 @@
               <template v-if="isFinishedFoodSafetyOtdel(cellData.item)">
               <thead>
                 <tr>
-                  <th>{{ $t('isledovanie.label.nomerProby') }}</th>
                   <th class="tx-center">{{ $t('isledovanie.label.result') }}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-
-                  <td class="tx-center align-middle">
-                    <b>{{ getProp(cellData.item, 'isResultJSON[0].nomerProby', '') }}</b>
-                  </td>
-
                   <td>
                     <table class="table table-bordered">
                       <template v-for="result in getProp(cellData.item, 'isResultJSON', [])">
                         <tr>
+                          <td rowspan="4" class="tx-center align-middle">
+                            <b>{{ getProp(result, 'nomerProby', '') }}</b>
+                          </td>
                           <td style="width: 30%">
                             <b>{{ $t('isledovanie.label.opPokazatel') }}:</b>
                           </td>
@@ -366,21 +363,19 @@
                           </td>
                         </tr>
                         <tr>
-                          <td colspan="2">
+                          <td colspan="3">
                             <hr>
                           </td>
                         </tr>
                       </template>
                     </table>
                   </td>
-
                 </tr>
               </tbody>
               </template>
 
               <template v-else>
               <tbody>
-
                 <template v-for="result in getProp(cellData.item, 'isResultJSON', [])">
                   <tr>
                     <td style="width: 30%">
@@ -442,7 +437,6 @@
                     </td>
                   </tr>
                 </template>
-
               </tbody>
               </template>
             </table>

@@ -44,8 +44,9 @@ export default {
       disabled: false,
       hidden: false,
       col: {
-        md: 6,
-        lg: 4,
+        md: 8,
+        lg: 6,
+        xl: 4
       },
     },
     {
