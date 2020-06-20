@@ -9,7 +9,9 @@
         <template v-for="(field, index) in modelData.fields">
           <!--==============================FIELD TYPE OTHER====================================-->
           <b-col
-            v-if="!field.disabled && toLowerCase(field.type) !== fieldTypes.json"
+            v-if="!field.disabled
+              && notIn(notEqual, field.notIn)
+              && toLowerCase(field.type) !== fieldTypes.json"
             :key="field.key"
             :sm="(field.col && field.col.sm) || 12"
             :md="(field.col && field.col.md) || 6"
@@ -45,6 +47,7 @@
           <template
             v-if="!field.disabled
               && recordItem[field.key]
+              && notIn(notEqual, field.notIn)
               && toLowerCase(field.type) === fieldTypes.json"
           >
             <slot :name="field.key" :field="field" :item="recordItem">
@@ -142,6 +145,7 @@
             <crud-form-array
               v-model="recordItem[foreignCrud.datasetName || foreignCrud.crudName]"
               :crud-data="crud[foreignCrud.crudName]"
+              :not-equal="notEqual"
               @remove-element="
               (index) =>recordItem[foreignCrud.datasetName || foreignCrud.crudName].splice(index, 1)"
             />
@@ -157,8 +161,9 @@
               {{ $t(`${foreignCrud.crudName}.title`) }}
             </div>
             <crud-form-object
-                v-model="recordItem[foreignCrud.crudName]"
-                :crud-data="crud[foreignCrud.crudName]"
+              v-model="recordItem[foreignCrud.crudName]"
+              :crud-data="crud[foreignCrud.crudName]"
+              :not-equal="notEqual"
             />
           </div>
           <!--==================================================================-->
@@ -187,6 +192,9 @@
 import CrudFormMixin from '~/components/crud/CrudFormMixin'
 
 export default {
+  props: {
+    notEqual: [Number, Object, String, Array]
+  },
   mixins: [CrudFormMixin],
   methods: {}
 }

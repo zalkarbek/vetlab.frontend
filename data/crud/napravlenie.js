@@ -80,6 +80,7 @@ export default {
     {
       type: 'select',
       key: 'otdelId',
+      placeholder: 'form.label.otdelId',
       col: {
         md: 5,
         lg: 5,

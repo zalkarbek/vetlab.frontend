@@ -1,4 +1,5 @@
 import baseApiRoutes from './baseApiRoutes'
+import otdelList from '~/data/otdelList'
 // Имя модели к которому привязан этот API
 const restName = 'pos_material'
 // Превикс API маршрута
@@ -94,6 +95,125 @@ export default {
           },
         },
       ],
+    },
+    {
+      type: 'json',
+      key: 'kemOtobranJSON',
+      notIn: [otdelList.FOOD_SAFETY.ID],
+      json: [
+        {
+          type: 'text',
+          key: 'fullName',
+          label: 'kemOtobran.label.fullName',
+          col: {
+            md: 5,
+            lg: 4,
+            xl: 3
+          },
+        },
+        {
+          type: 'text',
+          key: 'phone_1',
+          label: 'kemOtobran.label.phone_1',
+          col: {
+            md: 4,
+            lg: 4,
+            xl: 2
+          },
+        },
+      ],
+    },
+    {
+      type: 'json',
+      key: 'mestoOtboraRegionJSON',
+      notIn: [otdelList.FOOD_SAFETY.ID],
+      json: [
+        {
+          type: 'number',
+          key: 'id',
+          disabled: true,
+          hidden: true,
+        },
+        {
+          type: 'textarea',
+          key: 'regionFullPath',
+          label: 'mestoOtbora.label.regionFullPath',
+          col: {
+            md: 4,
+            lg: 4,
+            xl: 3
+          },
+        },
+        {
+          type: 'array',
+          key: 'regionIds',
+          disabled: true,
+          hidden: true,
+        },
+      ],
+    },
+    {
+      type: 'textarea',
+      key: 'lechenieInfo',
+      notIn: [otdelList.FOOD_SAFETY.ID],
+      col: {
+        md: 4,
+        lg: 4,
+        xl: 3
+      },
+    },
+    {
+      type: 'date',
+      key: 'dateZabolivanie',
+      notIn: [otdelList.FOOD_SAFETY.ID],
+      col: {
+        md: 4,
+        lg: 3,
+        xl: 3
+      },
+    },
+    {
+      type: 'number',
+      key: 'vozrast',
+      notIn: [otdelList.FOOD_SAFETY.ID],
+      col: {
+        md: 4,
+        lg: 3,
+        xl: 2
+      },
+    },
+    {
+      type: 'date',
+      key: 'dateZaboya',
+      notIn: [otdelList.FOOD_SAFETY.ID],
+      col: {
+        md: 4,
+        lg: 3,
+        xl: 3
+      },
+    },
+    {
+      type: 'date',
+      key: 'dateDostavki',
+      col: {
+        md: 4,
+        lg: 3,
+        xl: 3
+      },
+    },
+    {
+      type: 'datetime',
+      key: 'dateVremyaOtbora',
+      notIn: [otdelList.FOOD_SAFETY.ID],
+      col: {
+        md: 4,
+        lg: 3,
+        xl: 3
+      },
+    },
+    {
+      type: 'textarea',
+      key: 'description',
     },
   ],
 }

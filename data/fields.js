@@ -371,5 +371,5 @@ export {
   vnytNapravlenieFields,
   otdelFields,
   researchStartFields,
-   isledovanieFields
+  isledovanieFields
 }

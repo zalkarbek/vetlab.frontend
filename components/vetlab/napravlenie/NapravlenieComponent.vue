@@ -14,6 +14,7 @@
           v-if="selectedRecord"
           :crud-data="crudData"
           :record="selectedRecord"
+          :not-equal="selectedOtdel"
           @on-create="onCreate"
           @on-update="onUpdate"
           @on-clear="onClear"
@@ -35,6 +36,20 @@
               @select="(selectedItem) => onSelectPokazatel(selectedItem, prop.item, prop.field.key)"
               @tag="(pokazatel) => addPokazatel(pokazatel, prop.item, prop.field)"
             />
+          </template>
+
+          <template v-slot:otdelId="prop">
+            <v-select
+              v-model.trim="prop.item[prop.field.key]"
+              :reduce="
+                (item) => prop.field.foreign_value ? item[prop.field.foreign_value] : item"
+              :placeholder="$t(prop.field.placeholder)"
+              :label="prop.field.foreign_label"
+              :options="datasetList[prop.field.foreign_dataset]"
+              @search:focus="storageLoadDataSet(prop.field)"
+              @input="onSelectOtdel"
+            >
+            </v-select>
           </template>
         </napravlenie-form>
       </b-col>
@@ -72,6 +87,11 @@ export default {
     NapravlenieForm
   },
   mixins: [toastMixin, NapravlenieComponentMixin],
+  data() {
+    return {
+      selectedOtdel: null
+    }
+  },
   methods: {
     async addPokazatel(pokazatel, item, field) {
       const res = await this.$api.getApi('pokazatel')
@@ -92,7 +112,11 @@ export default {
         this.toastDanger('Ошибка не могу добавить новый показатель')
       }
     },
-    onSelectPokazatel(selected, item, key) {}
+    onSelectPokazatel(selected, item, key) {},
+
+    onSelectOtdel(selectOtdel) {
+      this.selectedOtdel = selectOtdel
+    }
   }
 }
 </script>

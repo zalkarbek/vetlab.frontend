@@ -40,6 +40,17 @@ export default {
 
     isObject(prop) {
       return _.isObject(prop)
+    },
+
+    notIn(item, arr = [], itemKey, arrayKey) {
+      if(!arr || arr.length === 0)
+        return true
+
+      const queryItem = itemKey ? item[itemKey] : item
+      return !arr.find((arrItem) => {
+        const currentItem = arrayKey ? arrItem[arrayKey] : arrItem
+        return queryItem === currentItem
+      })
     }
   },
 }

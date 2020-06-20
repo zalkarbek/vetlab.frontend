@@ -17,7 +17,9 @@
         <template v-for="(field) in modelData.fields">
           <!--==================================================================-->
           <b-col
-            v-if="!field.disabled && toLowerCase(field.type) !== fieldTypes.json"
+            v-if="!field.disabled
+              && notIn(notEqual, field.notIn)
+              && toLowerCase(field.type) !== fieldTypes.json"
             :key="field.key"
             :sm="(field.col && field.col.sm) || 12"
             :md="(field.col && field.col.md) || 4"
@@ -50,6 +52,7 @@
           <template
             v-if="!field.disabled
             && item[field.key]
+            && notIn(notEqual, field.notIn)
             && toLowerCase(field.type) === fieldTypes.json"
           >
             <template v-for="(form, index) in field.json">
@@ -112,6 +115,7 @@ export default {
         return []
       },
     },
+    notEqual: [Number, Object, String, Array]
   },
   data() {
     return {
