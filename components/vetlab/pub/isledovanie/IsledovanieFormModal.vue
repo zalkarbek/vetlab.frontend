@@ -192,11 +192,11 @@
                   </span>
                     <span class="float-right">
                     <b-button
-                        v-if="index >= 1"
-                        @click="removeResultByIndex(index, isResult)"
-                        class="badge"
-                        variant="flat"
-                        size="xs"
+                      v-if="index >= 1"
+                      @click="removeResultByIndex(index, isResult)"
+                      class="badge"
+                      variant="flat"
+                      size="xs"
                     >
                       <i class="fas fa-times cursor-pointer tx-16"></i>
                     </b-button>
