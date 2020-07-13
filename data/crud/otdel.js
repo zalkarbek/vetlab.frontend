@@ -61,6 +61,17 @@ export default {
       hidden: false,
     },
     {
+      type: 'select',
+      key: 'headPersonalId',
+      foreign_crud: 'personal',
+      foreign_dataset: 'personal',
+      foreign_label: 'fullName',
+      foreign_value: 'id',
+      foreign_attributes: ['fullName', 'id'],
+      disabled: false,
+      hidden: false,
+    },
+    {
       type: 'checkbox',
       key: 'nonSpecOtdel',
       label: 'otdel.label.nonSpecOtdel',

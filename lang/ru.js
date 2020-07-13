@@ -23,6 +23,7 @@ export default {
       id: 'id',
     },
     label: {
+      headPersonalId: 'Заведующий отдела',
       pieces: 'Штук',
       probs: 'Проб',
       sendPosMaterials: 'Обьекты исследования',
@@ -138,6 +139,7 @@ export default {
       roles: 'Роли доступа',
     },
     placeholder: {
+      headPersonalId: 'ФИО зав. отдела',
       sendPosMaterials: 'Обьекты исследования',
       posMaterials: 'Обьекты исследования',
       roles: 'Роль доступа',
@@ -247,6 +249,7 @@ export default {
       vnytNapravlenieOptionalCustomView: 'Доп. данные',
     },
     description: {
+      headPersonalId: 'ФИО Заведующего отдела',
       sendPosMaterials: 'Обьекты исследования',
       roles: 'Роль доступа',
       sDoljnostId: 'Должность персонала',
@@ -444,7 +447,7 @@ export default {
       email: 'Почта или Логин',
       password: 'Пароль',
       firstName: 'Имя',
-      lastName: 'Отчество',
+      lastName: 'Фамилия',
       fullName: 'ФИО',
       pol: 'Пол',
       personalDataJSON: 'Дополнительная инфо-я',

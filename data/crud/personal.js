@@ -112,6 +112,13 @@ export default {
 
     {
       type: 'text',
+      key: 'patronymicName',
+      label: 'personal.label.patronymicName',
+      hidden: true,
+    },
+
+    {
+      type: 'text',
       key: 'fullName',
       label: 'personal.label.fullName',
       disabled: true,
