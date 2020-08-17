@@ -85,6 +85,11 @@ export default {
       this.reSearchStartResponse
     )
 
+    this.$eventBus.$on(
+      this.busEvents.VNYT_NAPRAVLENIE_UPDATED,
+      this.napravlenieUpdated
+    )
+
   },
   beforeDestroy() {
     this.$eventBus.$off(
@@ -101,6 +106,11 @@ export default {
       this.busEvents.VNYT_NAPRAVLENIE_START_ISLEDOVANIE_RESPONSE,
       this.reSearchStartResponse
     )
+
+    this.$eventBus.$off(
+      this.busEvents.VNYT_NAPRAVLENIE_UPDATED,
+      this.napravlenieUpdated
+    )
   },
   methods: {
     openDialog({ modalId }, data) {
@@ -116,6 +126,10 @@ export default {
         id,
         napravlenieId,
       })
+    },
+    napravlenieUpdated(data) {
+      console.log(data)
+      this.updateItemInDataset(data.id, data, this.crudData.datasetName)
     },
     acceptSuccess(data) {
       this.toastSuccess('Направление принято')

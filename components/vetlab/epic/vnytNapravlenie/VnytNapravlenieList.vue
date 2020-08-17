@@ -154,8 +154,14 @@
             {{ data.index + 1 }}
           </template>
 
-          <template v-slot:cell(id)="cellData">
+          <!--outerNomerNapravlenie-->
+          <template v-slot:cell(napravlenieId)="cellData">
             <span class="tx-24 tx-bold">{{ cellData.value }}</span>
+          </template>
+
+          <!--nomerNapravlenie-->
+          <template v-slot:cell(id)="cellData">
+            <span class="tx-24 tx-bold">{{ cellData.item.nomer || cellData.value }}</span>
           </template>
 
           <template v-slot:cell()="data">
@@ -186,10 +192,6 @@
             <template v-else>
               {{ data.value }}
             </template>
-          </template>
-
-          <template v-slot:cell(napravlenieId)="cellData">
-            <span class="tx-24 tx-bold">{{ cellData.value }}</span>
           </template>
 
           <template v-slot:cell(status)="cellData">
@@ -235,11 +237,10 @@
 
           <template v-slot:cell(actions)="row">
             <b-button-toolbar>
-              <b-button-group class="mr-1"
-                              size="sm"
-              >
+              <b-button-group class="mr-1" size="sm">
                 <template v-for="(button, index) in actionButtons">
                   <b-button
+                    v-if="Array.isArray(button.status) && button.status.includes(row.item.status)"
                     :key="index"
                     :variant="button.variant || 'secondary'"
                     @click="onActionButton(button, row.item)"
@@ -803,6 +804,7 @@ export default {
       })
       return [...list, actions]
     },
-  }
+  },
+  methods: {}
 }
 </script>

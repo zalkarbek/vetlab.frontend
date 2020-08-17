@@ -1,9 +1,14 @@
 import AuthApi from './auth'
 import { DepartmentRepository } from './DepartmentRepository'
 import { OptionRepository } from '~/api/OptionRepository'
-import { PokazatelRepository } from '~/api/PokazatelRepository'
 import { IsledovanieResultRepository } from '~/api/IsledovanieResultRepository'
 import { OtdelRepository } from '~/api/OtdelRepository'
+import { PosMaterialRepository } from '~/api/PosMaterialRepository'
+import { PokazatelRepository } from '~/api/PokazatelRepository'
+import { PokazatelPdkRepository } from '~/api/PokazatelPdkRepository'
+import { ReportRepository } from '~/api/ReportRepository'
+import { PersonalRepository } from '~/api/PersonalRepository'
+
 
 class Api {
   constructor(context) {
@@ -15,7 +20,11 @@ class Api {
       department: new DepartmentRepository(context, crudApi.department),
       option: new OptionRepository(context, crudApi.option),
       pokazatel: new PokazatelRepository(context, crudApi.s_pokazatel),
-      isledovanieResultNames: new IsledovanieResultRepository(context, crudApi['isledovanie_result_names'])
+      pokazatelPdk: new PokazatelPdkRepository(context, crudApi.s_pokazatel_pdk),
+      isledovanieResultNames: new IsledovanieResultRepository(context, crudApi.isledovanie_result_names),
+      posMaterial: new PosMaterialRepository(context, crudApi.pos_material),
+      report: new ReportRepository(context),
+      personal: new PersonalRepository(context, crudApi.personal)
     }
   }
 

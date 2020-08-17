@@ -95,11 +95,13 @@
           id,
           vnytNapravlenieId,
           isResult,
+          isledovanieDataJSON
         } = data
         this.$store.dispatch('emit/isledovanieFinish', {
           id,
           vnytNapravlenieId,
-          isResult
+          isResult,
+          isledovanieDataJSON
         })
       },
 
@@ -107,7 +109,6 @@
         if(data && data.id) {
           this.toastSuccess('Исследование успешно завершено')
           this.updateItemInDataset(data.id, data, this.crudData.datasetName)
-          console.log('finished', data)
         }
       }
     },

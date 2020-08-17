@@ -16,4 +16,14 @@ export default ({ socket, context, socks }) => {
     EVENTS.CLIENT_START_ISLEDOVANIE,
     handler.onStartIsledovanieResponse({ socket, context, socks })
   )
+
+  socket.on(
+    EVENTS.CLIENT_START_ISLEDOVANIE_SHARE,
+    handler.onStartIsledovanieResponse({ socket, context, socks })
+  )
+
+  socket.on(
+    EVENTS.CLIENT_VNYT_NAPRAVLENIE_STATUS_UPDATED,
+    handler.onNapravlenieUpdated({ socket, context, socks })
+  )
 }

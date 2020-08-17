@@ -80,13 +80,14 @@ export default {
     {
       type: 'select',
       key: 'otdelId',
-      placeholder: 'form.label.otdelId',
+      label: 'form.label.toOtdel',
+      placeholder: 'form.placeholder.toOtdel',
+      description: 'form.description.toOtdel',
       col: {
         md: 5,
         lg: 5,
         xl: 3
       },
-      label: 'form.label.toOtdel',
       foreign_crud: 'otdel',
       foreign_dataset: 'otdel',
       foreign_label: 'name',
@@ -199,6 +200,32 @@ export default {
     },
     {
       type: 'json',
+      key: 'ownerJSON',
+      json: [
+        {
+          type: 'text',
+          key: 'fullName',
+          label: 'owner.label.fullName',
+          col: {
+            md: 5,
+            lg: 4,
+            xl: 3
+          },
+        },
+        {
+          type: 'text',
+          key: 'phone_1',
+          label: 'owner.label.phone_1',
+          col: {
+            md: 4,
+            lg: 4,
+            xl: 3
+          },
+        },
+      ],
+    },
+    {
+      type: 'json',
       key: 'probyNapravilJSON',
       json: [
         {
@@ -257,6 +284,18 @@ export default {
             name: 'mask_phone',
             custom: null,
           },
+        },
+      ],
+    },
+
+    {
+      type: 'json',
+      key: 'napravlenieDataJSON',
+      json: [
+        {
+          type: 'text',
+          key: 'napravlenieZakazNomer',
+          label: 'napravlenie.label.napravlenieZakazNomer'
         },
       ],
     },

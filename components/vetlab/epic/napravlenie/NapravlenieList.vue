@@ -179,7 +179,9 @@
           </template>
 
           <template v-slot:cell(id)="cellData">
-            <span class="tx-24 tx-bold">{{ cellData.value }}</span>
+            <span class="tx-24 tx-bold">
+              {{ cellData.value }}
+            </span>
           </template>
 
           <template v-slot:cell()="data">

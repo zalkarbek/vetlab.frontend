@@ -37,4 +37,19 @@ export default {
   CRUD_FIELDS_REPLACE(state, { crud, fields = [] }) {
     crud.fields = fields
   },
+
+  CRUD_FIELDS_REPLACE_ONE(state, { crud, oldField, newField }) {
+    const oldIndex = crud.fields.indexOf(oldField)
+    if(oldIndex !== -1) {
+      crud.fields[oldIndex] = newField
+    }
+  },
+
+  CRUD_FIELDS_JSON_REPLACE(state, { field, json }) {
+    field.json = json
+  },
+
+  CRUD_FIELDS_ADD(state, { crud, field }) {
+    crud.fields.push(field)
+  }
 }

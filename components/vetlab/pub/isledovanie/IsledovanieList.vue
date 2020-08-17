@@ -96,7 +96,7 @@
           </template>
 
           <template v-slot:cell(id)="cellData">
-            <span class="tx-24 tx-bold">{{ cellData.value }}</span>
+            <span class="tx-24 tx-bold">{{ cellData.item.nomer || cellData.value }}</span>
           </template>
 
           <template v-slot:cell()="data">
@@ -152,8 +152,8 @@
 
           <template v-slot:cell(status)="cellData">
             <span
-                v-if="toLowerCase(cellData.value) === toLowerCase('pending')"
-                class="tx-16 badge badge-primary"
+              v-if="toLowerCase(cellData.value) === toLowerCase('pending')"
+              class="tx-16 badge badge-primary"
             >
               {{ $t(`vnytNapravlenie.pub.status.${cellData.value}`) }}
             </span>
@@ -190,18 +190,28 @@
           </template>
 
           <template v-slot:cell(vnytNapravlenieId)="cellData">
-            <span class="tx-24 tx-bold">{{ cellData.item.vnytNapravlenieId }}</span>
+            <span class="tx-24 tx-bold">
+              {{ cellData.item.vnytNapravlenie.nomer || cellData.item.vnytNapravlenieId }}
+            </span>
           </template>
 
           <template v-slot:cell(probaCustomView)="cellData">
             <table class="table">
               <tbody>
+                <tr class="bg-primary-light">
+                  <td style="width: 30%">
+                    <b>{{ $t('isledovanie.label.uniqueNomerIsledovanie') }}:</b>
+                  </td>
+                  <td>
+                    <b>{{ getProp(cellData.item, 'id') }}</b>
+                  </td>
+                </tr>
                 <tr class="bg-cyan-light">
                   <td style="width: 30%">
                     <b>{{ $t('isledovanie.label.nomerIsledovania') }}:</b>
                   </td>
                   <td>
-                    <b>{{ getProp(cellData.item, 'id') }}</b>
+                    <b>{{ getProp(cellData.item, 'nomer') }}</b>
                   </td>
                 </tr>
                 <tr>
@@ -301,81 +311,110 @@
           <template v-slot:cell(isledovanieResultCustomView)="cellData">
             <table class="table table-bordered table-sm">
               <template v-if="isFinishedFoodSafetyOtdel(cellData.item)">
-              <thead>
-                <tr>
-                  <th class="tx-center">{{ $t('isledovanie.label.result') }}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <table class="table table-bordered">
-                      <template v-for="result in getProp(cellData.item, 'isResultJSON', [])">
-                        <tr>
-                          <td rowspan="4" class="tx-center align-middle">
-                            <b>{{ getProp(result, 'nomerProby', '') }}</b>
-                          </td>
-                          <td style="width: 30%">
-                            <b>{{ $t('isledovanie.label.opPokazatel') }}:</b>
-                          </td>
-                          <td>
-                            <ul style="padding-left: 15px;">
-                              <li v-for="pokazatel in getProp(result,'opPokazatelJSON', [])">
-                                {{ pokazatel.name }}
-                              </li>
-                            </ul>
-                          </td>
-                        </tr>
-                        <tr class="bg-cyan-light">
-                          <td style="width: 30%">
-                            <b>{{ $t('isledovanie.label.result') }}:</b>
-                          </td>
-                          <td>
-                            <ul style="padding-left: 15px;">
-                              <li v-for="res in getProp(result,'resultJSON', [])">
-                                <span class=" tx-bold tx-primary">{{ res.name }}</span>
-                              </li>
-                            </ul>
-                          </td>
-                        </tr>
-                        <tr class="bg-warning-light">
-                          <td style="width: 30%">
-                            <b>{{ $t('isledovanie.label.pdk') }}:</b>
-                          </td>
-                          <td>
-                            <ul style="padding-left: 15px;">
-                              <li v-for="pdk in getProp(result,'pdkJSON', [])">
-                                <span class="tx-bold">{{ pdk.name }}</span>
-                              </li>
-                            </ul>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td style="width: 30%">
-                            <b>{{ $t('isledovanie.label.isledovanieND') }}:</b>
-                          </td>
-                          <td>
-                            <ul style="padding-left: 15px;">
-                              <li v-for="pokazatel in getProp(result,'metodJSON', [])">
-                                {{ pokazatel.name }}
-                              </li>
-                            </ul>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td colspan="3">
-                            <hr>
-                          </td>
-                        </tr>
-                      </template>
-                    </table>
-                  </td>
-                </tr>
-              </tbody>
+                <thead>
+                  <tr>
+                    <th class="tx-center">
+                      <b>{{ $t('isledovanie.label.result') }}</b>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <table class="table table-bordered">
+                        <template v-for="result in getProp(cellData.item, 'isResultJSON', [])">
+                          <tr class="bg-cyan-light">
+                            <td colspan="2" class="tx-center align-middle tx-bolder">
+                              ({{ getProp(result, 'nomerProby', '') }}) -
+                              {{ getProp(result, 'posMaterial.sMaterialJSON[0].name', '') }}
+                            </td>
+                          </tr>
+                          <tr v-for="resultat in getProp(result, 'result', [])">
+                            <td>
+                              <b>{{ getProp(resultat.opPokazatel, 'name', null) }}</b>
+                            </td>
+                            <td colspan="2">
+                              <table class="table table-bordered table-sm">
+                                <tr>
+                                  <td style="width: 30%">
+                                    <b>{{ $t('isledovanie.label.result') }}:</b>
+                                  </td>
+                                  <td>
+                                    <b class="tx-primary">{{ resultat.value }}</b>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="width: 30%">
+                                    <b>{{ $t('isledovanie.label.fault') }}:</b>
+                                  </td>
+                                  <td>
+                                    <b class="tx-primary">{{ resultat.fault }}</b>
+                                  </td>
+                                </tr>
+                                <tr class="bg-lightblue-light">
+                                  <td style="width: 30%">
+                                    <b>{{ $t('isledovanie.label.pdk') }}:</b>
+                                  </td>
+                                  <td>
+                                    <template v-if="resultat.pdk">
+                                      <template v-if="getProp(resultat.pdk, 'pdkType', null) === 'range'">
+                                        <span class="tx-bold">
+                                          {{`
+                                            ${ getProp(resultat.pdk, 'shortName') }
+                                            (
+                                              ${ $t('form.label.from') }
+                                              ${ getProp(resultat.pdk, 'pdkJSON.rangeMin') }
+                                              ${ $t('form.label.to') }
+                                              ${ getProp(resultat.pdk, 'pdkJSON.rangeMax') }
+                                              ${ getProp(resultat.pdk, 'pdkMera') }
+                                            )
+                                          `}}
+                                        </span>
+                                      </template>
+                                      <template v-else>
+                                        <span class="tx-bold">
+                                          {{`
+                                            ${ getProp(resultat.pdk, 'shortName') }
+                                            (
+                                              ${ $t(`form.label.${ getProp(resultat.pdk, 'pdkType') }`) }
+                                              ${ getProp(resultat.pdk, `pdkJSON[${ getProp(resultat.pdk, 'pdkType') }]`) }
+                                              ${ getProp(resultat.pdk, 'pdkMera') }
+                                            )
+                                          `}}
+                                        </span>
+                                      </template>
+                                    </template>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width: 30%">
+                              <b>{{ $t('isledovanie.label.isledovanieND') }}:</b>
+                            </td>
+                            <td>
+                              <ul style="padding-left: 15px;">
+                                <li v-for="pokazatel in getProp(result,'metodJSON', [])">
+                                  {{ pokazatel.name }}
+                                </li>
+                              </ul>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="3">
+                              <hr>
+                            </td>
+                          </tr>
+                        </template>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
               </template>
 
               <template v-else>
-              <tbody>
+                <tbody>
                 <template v-for="result in getProp(cellData.item, 'isResultJSON', [])">
                   <tr>
                     <td style="width: 30%">
@@ -406,8 +445,8 @@
                       <h6 class="tx-center">
                         {{ $t('isledovanie.label.isledovanieResults') }}:
                       </h6>
-                      <table class="table table-bordered table-sm">
-                        <thead>
+                      <table class="table table-bordered table-sm table-hover">
+                        <thead class="bg-cyan-light">
                           <tr>
                             <th>
                               <b>{{ $t('isledovanie.label.nomerProby') }}:</b>
@@ -418,20 +457,20 @@
                           </tr>
                         </thead>
                         <tbody>
-                        <template v-for="proba in getProp(result, 'proby', [])">
-                          <tr class="bg-cyan-light">
-                            <td style="width: 30%">
-                              <b>{{ getProp(proba, 'indexProby') }}</b>
-                            </td>
-                            <td>
-                              <ul style="padding-left: 15px;">
-                                <li v-for="probaResult in getProp(proba,'resultJSON', [])">
-                                  {{ probaResult.name }}
-                                </li>
-                              </ul>
-                            </td>
-                          </tr>
-                        </template>
+                          <template v-for="proba in getProp(result, 'proby', [])">
+                            <tr>
+                              <td style="width: 30%">
+                                <b>{{ getProp(proba, 'indexProby') }}</b>
+                              </td>
+                              <td>
+                                <ul style="padding-left: 15px;">
+                                  <li v-for="probaResult in getProp(proba,'result', [])">
+                                    <b>{{ probaResult.name }}</b>
+                                  </li>
+                                </ul>
+                              </td>
+                            </tr>
+                          </template>
                         </tbody>
                       </table>
                     </td>

@@ -76,6 +76,40 @@ export default {
       key: 'nonSpecOtdel',
       label: 'otdel.label.nonSpecOtdel',
       description: 'otdel.description.nonSpecOtdel'
-    }
+    },
+    {
+      type: 'json',
+      key: 'otdelDataJSON',
+      json: [
+        {
+          type: 'text',
+          key: 'address',
+        },
+        {
+          type: 'text',
+          key: 'phone_1',
+        },
+        {
+          type: 'text',
+          key: 'phone_2',
+        },
+        {
+          type: 'text',
+          key: 'phone_3',
+        },
+        {
+          type: 'text',
+          key: 'fax'
+        },
+        {
+          type: 'text',
+          key: 'postcode'
+        },
+        {
+          type: 'text',
+          key: 'email'
+        }
+      ],
+    },
   ],
 }

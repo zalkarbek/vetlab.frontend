@@ -2,8 +2,7 @@
   <div :class="containerClass"
        class="sign-wrapper"
   >
-    <b-img-lazy center
-                src="~/assets/img/test_tube.svg" width="140%"
+    <b-img-lazy center src="~/assets/img/test_tube.svg" width="140%"
     />
     <div class="wd-100p">
       <h4 class="tx-color-01 mg-b-5 text-center">

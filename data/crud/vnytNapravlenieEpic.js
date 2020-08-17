@@ -33,7 +33,17 @@ export default {
   },
 
   actionButtons: {
-    crudList: [],
+    crudList: [
+      {
+        action: 'generate-protocol',
+        actionMethod: 'generateProtocol',
+        modalId: '',
+        label: 'vnytNapravlenie.epic.label.generateProtocol',
+        icon: 'fas fa-file-pdf',
+        variant: 'primary',
+        status: ['completed']
+      }
+    ],
     crudForm: [],
   },
 

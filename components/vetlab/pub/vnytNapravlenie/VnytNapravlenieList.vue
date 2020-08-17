@@ -164,7 +164,7 @@
           </template>
 
           <template v-slot:cell(id)="cellData">
-            <span class="tx-24 tx-bold">{{ cellData.value }}</span>
+            <span class="tx-24 tx-bold">{{ cellData.item.nomer || cellData.value }}</span>
           </template>
 
           <template v-slot:cell()="data">
@@ -244,6 +244,11 @@
               <b-button-group class="mr-1" size="sm">
                 <template v-for="(button, index) in actionButtons">
                   <b-button
+                    v-if="
+                      (row.item.status === 'pending' && button.action !== 'research')
+                      ||
+                      (row.item.status === 'accepted' && button.action !== 'reject')
+                    "
                     :key="index"
                     :variant="button.variant || 'secondary'"
                     :disabled="

@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import CrudComponent from '~/components/vetlab/personal/CrudComponent'
+import CrudComponent from '~/components/vetlab/personal/PersonalComponent'
 import CrudData from '~/data/crud'
 
 export default {

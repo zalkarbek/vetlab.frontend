@@ -63,7 +63,7 @@ import { mapState } from 'vuex'
 import CrudComponentMixin from '~/components/crud/CrudComponentMixin'
 import CrudForm from '~/components/crud/CrudForm'
 import CrudFormModal from '~/components/crud/CrudFormModal'
-import CrudList from '~/components/crud/CrudList'
+import CrudList from '~/components/vetlab/personal/PersonalList'
 import toastMixin from '~/mixins/toastMixin'
 
 export default {

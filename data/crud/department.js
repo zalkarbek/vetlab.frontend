@@ -93,6 +93,18 @@ export default {
         {
           type: 'text',
           key: 'phone_3',
+        },
+        {
+          type: 'text',
+          key: 'fax'
+        },
+        {
+          type: 'text',
+          key: 'postcode'
+        },
+        {
+          type: 'text',
+          key: 'email'
         }
       ],
     },

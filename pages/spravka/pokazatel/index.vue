@@ -1,8 +1,6 @@
 <template>
   <div :id="`${crudDataName}_page_id`">
-    <crud-component :crud="crud"
-                    :crud-data-name="crudDataName"
-    />
+    <crud-component :crud="crud" :crud-data-name="crudDataName"/>
   </div>
 </template>
 <script>

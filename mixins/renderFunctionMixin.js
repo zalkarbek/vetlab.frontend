@@ -11,7 +11,7 @@ export default {
             separator = ''
           }
           if(column) {
-            listText = `${listText} ${item.name}${separator}`
+            listText = `${listText} ${item[column] || item.name}${separator}`
             return
           }
           listText = `${listText} ${item}${separator}`

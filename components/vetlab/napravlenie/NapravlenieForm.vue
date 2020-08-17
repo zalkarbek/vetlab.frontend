@@ -142,7 +142,7 @@
             <div class="divider-text">
               {{ $t(`${foreignCrud.crudName}.title`) }}
             </div>
-            <crud-form-array
+            <napravlenie-crud-form-array
               v-model="recordItem[foreignCrud.datasetName || foreignCrud.crudName]"
               :crud-data="crud[foreignCrud.crudName]"
               :not-equal="notEqual"
@@ -189,13 +189,34 @@
   </div>
 </template>
 <script>
-import CrudFormMixin from '~/components/crud/CrudFormMixin'
+import NapravlenieCrudFormMixin from '~/components/vetlab/napravlenie/NapravlenieCrudFormMixin'
+import NapravlenieCrudFormArray from '~/components/vetlab/napravlenie/NapravlenieCrudFormArray'
 
 export default {
+  components: { NapravlenieCrudFormArray },
   props: {
     notEqual: [Number, Object, String, Array]
   },
-  mixins: [CrudFormMixin],
-  methods: {}
+  mixins: [NapravlenieCrudFormMixin],
+  methods: {
+    async addNewToForeignArray(record, foreignCrud, count = 1) {
+      const lastPosMateial = await this.$api
+        .getApi('posMaterial')
+        .getLastByNomerToOtdel({
+          otdelId: record.otdelId
+        })
+
+      const crudName = foreignCrud.datasetName || foreignCrud.crudName
+      const newArray = record[crudName] || []
+      const lastArray = newArray[newArray.length - 1]
+      for (let i = 0; i < count; i++) {
+        const newForeignItem = this.initFields({}, this.crud[foreignCrud.crudName])
+        newForeignItem.nomer = (lastArray && lastArray.nomer || lastPosMateial.nomer) + i + 1;
+        newForeignItem.indexNomer = newArray.length + 1;
+        newArray.push(newForeignItem)
+      }
+      this.$set(record, crudName, newArray)
+    },
+  }
 }
 </script>

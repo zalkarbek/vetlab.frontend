@@ -46,7 +46,6 @@
           </thead>
           <tbody>
             <template v-for="(result, index) in isResult">
-
               <template v-if="isFoodSafetyOtdel">
                 <tr>
                   <td class="bg-success-light">
@@ -87,30 +86,141 @@
                   </td>
                   <td>
                     <b-row>
-                      <b-col cols="8">
-                        <b-form-group
-                          :label='$t(opPokazatelField.label)'
-                          :description='$t(opPokazatelField.description)'
-                        >
-                          <multiselect
-                            v-model="result.opPokazatelJSON"
-                            :value="result.opPokazatelJSON"
-                            :options="datasetList[opPokazatelField.foreign_dataset]"
-                            :label="opPokazatelField.foreign_label"
-                            :placeholder="$t(opPokazatelField.placeholder || `form.label.${opPokazatelField.key}`)"
-                            :selectLabel="$t('form.label.selectItem')"
-                            :selectedLabel="$t('form.label.selectedItem')"
-                            :deselectLabel="$t('form.label.deselectItem')"
-                            :tagPlaceholder="$t('form.label.addNewPokazatel')"
-                            multiple
-                            taggable
-                            track-by="name"
-                            @open="storageLoadDataSet(opPokazatelField)"
-                            @tag="(pokazatel) => addNewTag(pokazatel, result.opPokazatelJSON, opPokazatelField)"
-                          />
-                        </b-form-group>
+                      <b-col cols="12">
+                        <table class="table table-sm table-bordered">
+                          <tbody>
+                            <tr v-for="(pokazatel, index) in result.opPokazatelJSON">
+                              <td style="width: 20%">
+                                <b-form-group
+                                  class="mb-0"
+                                  :label="$t(opPokazatelField.label)"
+                                  :description="$t(opPokazatelField.description)"
+                                >
+                                  <b-form-textarea :value="pokazatel.name" disabled></b-form-textarea>
+                                </b-form-group>
+                              </td>
+
+                              <td style="width: 20%">
+                                <b-form-group
+                                  class="mb-0"
+                                  :label="$t(isledovanieResultNamesField.label)"
+                                  :description="$t(isledovanieResultNamesField.description)"
+                                >
+                                  <b-form-input
+                                    type="text"
+                                    v-model="result.result[index].value"
+                                    :placeholder="$t(isledovanieResultNamesField.placeholder)"
+                                  >
+                                  </b-form-input>
+                                </b-form-group>
+                              </td>
+
+                              <td style="width: 10%">
+                                <b-form-group
+                                  class="mb-0"
+                                  :label="$t('isledovanie.label.fault')"
+                                  :description="$t('isledovanie.description.fault')"
+                                >
+                                  <b-form-input
+                                    type="number"
+                                    v-model="result.result[index].fault"
+                                    :placeholder="$t('isledovanie.placeholder.fault')"
+                                  >
+                                  </b-form-input>
+                                </b-form-group>
+                              </td>
+
+                              <td>
+                                <b-form-group
+                                  class="mb-0"
+                                  :label="$t(isledovaniePdkJSONField.label)"
+                                  :description="$t(isledovaniePdkJSONField.description)"
+                                >
+                                  <multiselect
+                                    v-model="result.result[index].pdk"
+                                    :options="pokazatelPdks"
+                                    :label="isledovaniePdkJSONField.foreign_label"
+                                    :placeholder="$t(isledovaniePdkJSONField.placeholder)"
+                                    :selectLabel="$t('form.label.selectItem')"
+                                    :selectedLabel="$t('form.label.selectedItem')"
+                                    :deselectLabel="$t('form.label.deselectItem')"
+                                    :tagPlaceholder="$t('form.label.addNewPokazatel')"
+                                    :show-labels="false"
+                                    :custom-label="pokazatelPdkCustomLabel"
+                                    taggable
+                                    track-by="name"
+                                    @open="getPokazatelPdks(
+                                      pokazatel,
+                                      getProp(result, 'posMaterial.sMaterialJSON', [])[0]
+                                    )"
+                                  >
+                                    <template slot="singleLabel" slot-scope="props">
+                                      <span class="option__desc">
+                                        <span class="option__title">
+                                          <template v-if="getProp(props, 'option.pdkType') === 'range'">
+                                            {{`
+                                              ${ getProp(props, 'option.shortName') }
+                                              (
+                                                ${ $t('form.label.from') }
+                                                ${ getProp(props, 'option.pdkJSON.rangeMin') }
+                                                ${ $t('form.label.to') }
+                                                ${ getProp(props, 'option.pdkJSON.rangeMax') }
+                                                ${ getProp(props, 'option.pdkMera') }
+                                              )
+                                            `}}
+                                          </template>
+                                          <template v-else>
+                                            {{`
+                                              ${ getProp(props, 'option.shortName') }
+                                              (
+                                                ${ $t(`form.label.${props.option.pdkType}`) }
+                                                ${ props.option.pdkJSON[props.option.pdkType] }
+                                                ${ props.option.pdkMera }
+                                              )
+                                            `}}
+                                          </template>
+
+                                        </span>
+                                      </span>
+                                    </template>
+
+                                    <template slot="option" slot-scope="props">
+                                      <div class="option__desc">
+                                        <span class="option__title">
+                                          <template v-if="getProp(props, 'option.pdkType') === 'range'">
+                                            {{`
+                                              ${ getProp(props, 'option.shortName') }
+                                              (
+                                                ${ $t('form.label.from') }
+                                                ${ getProp(props, 'option.pdkJSON.rangeMin') }
+                                                ${ $t('form.label.to') }
+                                                ${ getProp(props, 'option.pdkJSON.rangeMax') }
+                                                ${ getProp(props, 'option.pdkMera') }
+                                              )
+                                            `}}
+                                          </template>
+                                          <template v-else>
+                                            {{`
+                                              ${ getProp(props, 'option.shortName') }
+                                              (
+                                                ${ $t(`form.label.${props.option.pdkType}`) }
+                                                ${ props.option.pdkJSON[props.option.pdkType] }
+                                                ${ props.option.pdkMera }
+                                              )
+                                            `}}
+                                          </template>
+                                        </span>
+                                      </div>
+                                    </template>
+                                  </multiselect>
+                                </b-form-group>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+
                       </b-col>
-                      <b-col cols="4">
+                      <b-col cols="12">
                         <b-form-group
                           :label='$t(methodField.label)'
                           :description='$t(methodField.description)'
@@ -129,52 +239,6 @@
                             track-by="name"
                             @open="storageLoadDataSet(methodField)"
                             @tag="(metod) => addNewTag(metod, result.metodJSON, methodField)"
-                          />
-                        </b-form-group>
-                      </b-col>
-                    </b-row>
-                    <b-row>
-                      <b-col cols="6">
-                        <b-form-group
-                          :label="$t(isledovanieResultNamesField.label)"
-                          :description="$t(isledovanieResultNamesField.description)"
-                        >
-                          <multiselect
-                            v-model="result.resultJSON"
-                            :options="datasetList[isledovanieResultNamesField.foreign_dataset]"
-                            :label="isledovanieResultNamesField.foreign_label"
-                            :placeholder="$t(isledovanieResultNamesField.placeholder)"
-                            :selectLabel="$t('form.label.selectItem')"
-                            :selectedLabel="$t('form.label.selectedItem')"
-                            :deselectLabel="$t('form.label.deselectItem')"
-                            :tagPlaceholder="$t('form.label.addNewPokazatel')"
-                            multiple
-                            taggable
-                            track-by="name"
-                            @open="storageLoadDataSet(isledovanieResultNamesField)"
-                            @tag="(name) => addNewTag(name, result.resultJSON, isledovanieResultNamesField)"
-                          />
-                        </b-form-group>
-                      </b-col>
-                      <b-col cols="6">
-                        <b-form-group
-                          :label="$t(isledovaniePdkNamesField.label)"
-                          :description="$t(isledovaniePdkNamesField.description)"
-                        >
-                          <multiselect
-                            v-model="result.pdkJSON"
-                            :options="datasetList[isledovaniePdkNamesField.foreign_dataset]"
-                            :label="isledovaniePdkNamesField.foreign_label"
-                            :placeholder="$t(isledovaniePdkNamesField.placeholder)"
-                            :selectLabel="$t('form.label.selectItem')"
-                            :selectedLabel="$t('form.label.selectedItem')"
-                            :deselectLabel="$t('form.label.deselectItem')"
-                            :tagPlaceholder="$t('form.label.addNewPokazatel')"
-                            multiple
-                            taggable
-                            track-by="name"
-                            @open="storageLoadDataSet(isledovaniePdkNamesField)"
-                            @tag="(name) => addNewTag(name, result.pdkJSON, isledovaniePdkNamesField)"
                           />
                         </b-form-group>
                       </b-col>
@@ -276,6 +340,32 @@
                         </b-button>
                       </b-button-group>
                       <b-row>
+
+                        <b-col cols="6">
+                          <b-form-group
+                            :label="$t(resultProbyField.label)"
+                            :description="$t(resultProbyField.description)"
+                          >
+                            <multiselect
+                              v-model="proba.posMaterials"
+                              :options="posMaterials"
+                              :label="resultProbyField.foreign_label"
+                              :placeholder="$t(resultProbyField.placeholder)"
+                              :selectLabel="$t('form.label.selectItem')"
+                              :selectedLabel="$t('form.label.selectedItem')"
+                              :deselectLabel="$t('form.label.deselectItem')"
+                              :tagPlaceholder="$t('form.label.addNewPokazatel')"
+                              :show-labels="false"
+                              :custom-label="posMaterialCustomLabel"
+                              multiple
+                              track-by="id"
+                              @open="setPosMaterials(formData.vnytNapravlenie.posMaterials)"
+                            >
+
+                            </multiselect>
+                          </b-form-group>
+                        </b-col>
+
                         <b-col cols="4">
                           <b-form-group
                             :label="$t('isledovanie.label.indexProby')"
@@ -287,13 +377,14 @@
                             />
                           </b-form-group>
                         </b-col>
-                        <b-col>
+
+                        <b-col cols="6">
                           <b-form-group
                             :label="$t(isledovanieResultNamesField.label)"
                             :description="$t(isledovanieResultNamesField.description)"
                           >
                             <multiselect
-                              v-model="proba.resultJSON"
+                              v-model="proba.result"
                               :options="datasetList[isledovanieResultNamesField.foreign_dataset]"
                               :label="isledovanieResultNamesField.foreign_label"
                               :placeholder="$t(isledovanieResultNamesField.placeholder)"
@@ -305,10 +396,11 @@
                               taggable
                               track-by="name"
                               @open="storageLoadDataSet(isledovanieResultNamesField)"
-                              @tag="(name) => addNewTag(name, proba.resultJSON, isledovanieResultNamesField)"
+                              @tag="(name) => addNewTag(name, proba.result, isledovanieResultNamesField)"
                             />
                           </b-form-group>
                         </b-col>
+
                       </b-row>
                     </td>
                   </tr>
@@ -318,6 +410,74 @@
             </template>
           </tbody>
         </table>
+        <b-row>
+          <!--CHEMIST SELECT-->
+          <b-col cols="6">
+            <b-form-group
+              :label='$t(seniorField.label)'
+              :description='$t(seniorField.description)'
+            >
+              <multiselect
+                v-model="isledovanieDataJSON.seniors"
+                :options="seniors"
+                :label="seniorField.foreign_label"
+                :placeholder="$t(seniorField.placeholder)"
+                :selectLabel="$t('form.label.selectItem')"
+                :selectedLabel="$t('form.label.selectedItem')"
+                :deselectLabel="$t('form.label.deselectItem')"
+                :tagPlaceholder="$t('form.label.addNewPokazatel')"
+                multiple
+                taggable
+                track-by="id"
+                @open="getSeniors()"
+              />
+            </b-form-group>
+          </b-col>
+          <!--LABORANT SELECT-->
+          <b-col cols="6">
+            <b-form-group
+              :label='$t(laborantField.label)'
+              :description='$t(laborantField.description)'
+            >
+              <multiselect
+                v-model="isledovanieDataJSON.laborants"
+                :options="laborants"
+                :label="laborantField.foreign_label"
+                :placeholder="$t(laborantField.placeholder)"
+                :selectLabel="$t('form.label.selectItem')"
+                :selectedLabel="$t('form.label.selectedItem')"
+                :deselectLabel="$t('form.label.deselectItem')"
+                :tagPlaceholder="$t('form.label.addNewPokazatel')"
+                multiple
+                taggable
+                track-by="id"
+                @open="getLaborants()"
+              />
+            </b-form-group>
+          </b-col>
+          <!--CHEMIST SELECT-->
+          <b-col cols="6">
+            <b-form-group
+              :label='$t(chemistField.label)'
+              :description='$t(chemistField.description)'
+            >
+              <multiselect
+                v-model="isledovanieDataJSON.chemists"
+                :options="chemists"
+                :label="chemistField.foreign_label"
+                :placeholder="$t(chemistField.placeholder)"
+                :selectLabel="$t('form.label.selectItem')"
+                :selectedLabel="$t('form.label.selectedItem')"
+                :deselectLabel="$t('form.label.deselectItem')"
+                :tagPlaceholder="$t('form.label.addNewPokazatel')"
+                multiple
+                taggable
+                track-by="id"
+                @open="getChemists()"
+              />
+            </b-form-group>
+          </b-col>
+        </b-row>
       </template>
     </b-col>
   </b-modal>
@@ -325,28 +485,33 @@
 <script>
   import IsledovanieFormModalMixin from './IsledovanieFormModalMixin'
   import { mapState } from 'vuex'
+
   export default {
     mixins: [IsledovanieFormModalMixin],
     data() {
       return {
         isResult: [],
+        chemists: [],
+        laborants: [],
+        seniors: [],
+        pokazatelPdks: [],
+        posMaterials: [],
+        isledovanieDataJSON: {
+          seniors: [],
+          laborants: [],
+          chemists: [],
+        },
         resultItem: {
           opPokazatelJSON: [],
           metodJSON: [],
           proby: [
             {
               indexProby: '',
-              resultJSON: [],
+              posMaterials: [],
+              result: [],
               stepenInfection: ''
             }
           ],
-        },
-        foodSafetyResultItem: {
-          nomerProby: '',
-          opPokazatelJSON: [],
-          resultJSON: [],
-          pdkJSON: [],
-          metodJSON: []
         },
         opPokazatelField: {
           key: 'opPokazatelJSON',
@@ -369,6 +534,14 @@
           foreign_value: 'name',
           foreign_attributes: ['id', 'name', 'shortName', 'gosStandard']
         },
+        resultProbyField: {
+          label: 'isledovanie.label.posMaterials',
+          description: 'isledovanie.description.posMaterials',
+          placeholder: 'isledovanie.placeholder.posMaterials',
+          foreign_label: 'nomer',
+          foreign_value: 'id',
+          foreign_attributes: ['id', 'name', 'shortName']
+        },
         isledovanieResultNamesField: {
           key: 'resultJSON',
           label: 'isledovanie.label.resultJSON',
@@ -380,17 +553,41 @@
           foreign_value: 'name',
           foreign_attributes: ['id', 'name', 'shortName']
         },
-        isledovaniePdkNamesField: {
+        isledovanieFaultField: {
+          key: 'fault',
+          label: 'isledovanie.label.fault',
+          description: 'isledovanie.description.fault',
+          placeholder: 'isledovanie.placeholder.fault',
+        },
+        isledovaniePdkJSONField: {
           key: 'pdkJSON',
           label: 'isledovanie.label.pdkJSON',
           description: 'isledovanie.description.pdkJSON',
           placeholder: 'isledovanie.placeholder.pdkJSON',
-          foreign_crud: 'isledovanie_pdk_names',
-          foreign_dataset: 'isledovaniePdkNames',
+          foreign_crud: 's_pokazatel_pdk',
+          foreign_dataset: 'pokazatelPdk',
           foreign_label: 'name',
           foreign_value: 'name',
-          foreign_attributes: ['id', 'name', 'shortName']
-        }
+          foreign_attributes: []
+        },
+        laborantField: {
+          label: 'isledovanie.label.laborantFullName',
+          description: 'isledovanie.description.laborantFullName',
+          placeholder: 'isledovanie.placeholder.laborantFullName',
+          foreign_label: 'fullName',
+        },
+        chemistField: {
+          label: 'isledovanie.label.chemistFullName',
+          description: 'isledovanie.description.chemistFullName',
+          placeholder: 'isledovanie.placeholder.chemistFullName',
+          foreign_label: 'fullName',
+        },
+        seniorField: {
+          label: 'isledovanie.label.seniorFullName',
+          description: 'isledovanie.description.seniorFullName',
+          placeholder: 'isledovanie.placeholder.seniorFullName',
+          foreign_label: 'fullName',
+        },
       }
     },
     computed: {
@@ -413,10 +610,47 @@
         } else {
           this.initResultFields(newData)
         }
-
       }
     },
     methods: {
+      posMaterialCustomLabel(material) {
+        return `
+          (${ material.nomer || material.id })
+          ${ this.getProp(material, 'sMaterialJSON[0].name', '') }
+        `
+      },
+
+      pokazatelPdkCustomLabel(pokazatel) {
+        return `
+          ${this.getProp(pokazatel, 'shortName')}
+           (
+            ${this.$t(`form.label.${pokazatel.pdkType}`)}
+            ${pokazatel.pdkJSON[pokazatel.pdkType]}
+          )
+        `
+      },
+
+      async getLaborants() {
+        const personalService = this.$api.getApi('personal')
+        const isOtdelId = this.modalFormData.isOtdelId || null
+        this.laborants = await personalService.getLaborantsByOtdelId({ otdelId: isOtdelId })
+      },
+      async getChemists() {
+        const personalService = this.$api.getApi('personal')
+        const isOtdelId = this.modalFormData.isOtdelId || null
+        this.chemists = await personalService.getChemistsByOtdelId({ otdelId: isOtdelId })
+      },
+      async getSeniors() {
+        const personalService = this.$api.getApi('personal')
+        const isOtdelId = this.modalFormData.isOtdelId || null
+        this.seniors = await personalService.getSeniorsByOtdelId({ otdelId: isOtdelId })
+      },
+
+      async getPokazatelPdks(pokazatel, material) {
+        const pdkService = this.$api.getApi('pokazatelPdk')
+        this.pokazatelPdks = await pdkService.getPdkByPokazatelAndMaterial(pokazatel.id, material.id)
+      },
+
       handleOk(event) {
         if(this.isFoodSafetyOtdel && !this.checkFoodSafetyResult()) {
           event.preventDefault()
@@ -427,8 +661,8 @@
           event.preventDefault()
           return false
         }
-
         this.modalFormData.isResult = this.cloneDeep(this.isResult)
+        this.modalFormData.isledovanieDataJSON = this.cloneDeep(this.isledovanieDataJSON)
         this.$emit('on-action', {
           actionMethod: this.modal.okAction,
           data: this.modalFormData,
@@ -444,6 +678,22 @@
         })
       },
 
+      setPosMaterials(posMaterials = []) {
+        let posMat = []
+        if(posMaterials && Array.isArray(posMaterials)) {
+          posMaterials.forEach((mat) => {
+            posMat.push({
+              id: mat.id,
+              nomer: mat.nomer,
+              indexNumber: mat.indexNumber,
+              napravlenieId: mat.napravlenieId,
+              sMaterialJSON: mat.sMaterialJSON,
+            })
+          })
+        }
+        this.posMaterials = posMat
+      },
+
       initResultFields(formData) {
         this.isResult = []
         if(formData) {
@@ -455,10 +705,15 @@
             metodJSON: [
               ...this.getProp(formData, 'metodJSON', [])
             ],
+            isledovanieDataJSON: {
+              laborants: [],
+              chemists: []
+            },
             proby: [
               {
                 indexProby: '',
-                resultJSON: [],
+                posMaterials: [],
+                result: [],
                 stepenInfection: ''
               }
             ],
@@ -466,6 +721,7 @@
           this.$set(this.isResult, 0, resultItem)
         }
       },
+
       initFoodSafetyFields(formData) {
         this.isResult = []
         if(formData) {
@@ -474,6 +730,9 @@
             const resultItem = {
               posMaterial: {
                 id: posMaterial.id,
+                nomer: posMaterial.nomer,
+                indexNumber: posMaterial.indexNumber,
+                napravlenieId: posMaterial.napravlenieId,
                 sMaterialJSON: posMaterial.sMaterialJSON
               },
               nomerProby: posMaterial.nomer || posMaterial.id,
@@ -483,9 +742,21 @@
               metodJSON: [
                 ...this.getProp(formData, 'metodJSON', [])
               ],
-              resultJSON: [],
-              pdkJSON: [],
+              isledovanieDataJSON: {
+                laborants: [],
+                chemists: []
+              },
+              result: []
             }
+            this.getProp(formData, 'opPokazatelJSON', [])
+              .forEach((pokazatel) => {
+                resultItem.result.push({
+                  opPokazatel: pokazatel,
+                  value: null,
+                  fault: 0,
+                  pdk: null
+                })
+              })
             this.$set(this.isResult, index, resultItem)
           })
         }
@@ -531,48 +802,69 @@
           this.toastDanger(this.$t(`${field.foreign_crud}.error.notAdd.${field.key}`))
         }
       },
+
       addResult() {
         if(this.isFoodSafetyOtdel) {
-          this.addFoodSafetyResult(this.isResult, this.isResult.length, this.formData)
           return false
         }
         this.$set(this.isResult, this.isResult.length, this.resultItem)
         return false
       },
+
       removeResultByIndex(index, result) {
         if(index >= 1) {
           result.splice(index, 1)
         }
       },
-      clearResultExceptFirst() {
-        this.isResult = [this.isResult[0]]
+
+      clearVal(value) {
+        value = null
       },
 
-      addFoodSafetyResult(isResults, index, formData) {
+      clearResultExceptFirst() {
+        if(this.isFoodSafetyOtdel) {
+          return false
+        } else {
+          this.isResult = [this.isResult[0]]
+        }
+      },
+
+      addFoodSafetyResult(isResult, index, formData) {
         if(formData) {
-          const resultItem = {
-            nomerProby: this.getProp(formData, 'vnytNapravlenie.posMaterialId'),
-            opPokazatelJSON: [
-              ...this.getProp(formData, 'opPokazatelJSON', [])
-            ],
-            metodJSON: [
-              ...this.getProp(formData, 'metodJSON', [])
-            ],
-            resultJSON: [],
-            pdkJSON: [],
-          }
-          this.$set(isResults, index, resultItem)
+          const posMaterials = this.getProp(formData, 'vnytNapravlenie.posMaterials', [])
+          posMaterials.forEach((posMaterial, index) => {
+            const resultItem = {
+              nomerProby: this.getProp(formData, 'vnytNapravlenie.posMaterialId'),
+              posMaterial: {
+                id: posMaterial.id,
+                nomer: posMaterial.nomer,
+                indexNumber: posMaterial.indexNumber,
+                napravlenieId: posMaterial.napravlenieId,
+                sMaterialJSON: posMaterial.sMaterialJSON
+              },
+              opPokazatelJSON: [
+                ...this.getProp(formData, 'opPokazatelJSON', [])
+              ],
+              metodJSON: [
+                ...this.getProp(formData, 'metodJSON', [])
+              ],
+              result: [],
+            }
+            this.$set(isResult, index, resultItem)
+          });
         }
       },
 
       addProbaResult(proby) {
         const proba = {
           indexProby: '',
-          resultJSON: [],
-          stepenInfection: ''
+          posMaterials: [],
+          result: [],
+          stepenInfection: '',
         }
         this.$set(proby, proby.length, proba)
       },
+
       removeProbaByIndex(index, proby) {
         if(index >= 1) {
           proby.splice(index, 1)
@@ -605,7 +897,7 @@
             return false
           }
 
-          if(!this.isResult[0].proby || !this.isResult[0].proby[0].resultJSON[0]) {
+          if(!this.isResult[0].proby || !this.isResult[0].proby[0].result[0]) {
             this.toastDanger('Не выбрали ни один результат исследований!')
             return false
           }
@@ -614,28 +906,29 @@
       },
 
       checkFoodSafetyResult() {
-        if(!this.isResult[0].opPokazatelJSON || this.isResult[0].opPokazatelJSON.length === 0) {
-          this.toastDanger('Не выбран определяемый показатель!')
-          return false
-        }
-
-        if(!this.isResult[0].resultJSON || this.isResult[0].resultJSON.length === 0) {
+        if(
+          this.isResult[0].result
+          &&
+          this.isResult[0].result[0]
+          &&
+          !this.isResult[0].result[0].value
+        ) {
           this.toastDanger('Результат исследований не должен быть пустым!')
           return false
         }
 
-        if(!this.isResult[0].pdkJSON || this.isResult[0].pdkJSON.length === 0) {
-          this.toastDanger('ПДК не должен быть пустым!')
-          return false
-        }
-
-        if(!this.isResult[0].metodJSON || this.isResult[0].metodJSON.length === 0) {
+        if(
+          this.isResult[0]
+          &&
+          Array.isArray(this.isResult[0].metodJSON)
+          && this.isResult[0].metodJSON.length === 0
+        ) {
           this.toastDanger('МУ (НД) не должен быть пустым!')
           return false
         }
-
         return true
       }
+
     }
   }
 </script>

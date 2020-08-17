@@ -13,6 +13,56 @@ export default {
       },
     },
   },
+  vet: {
+    department: {
+      o_2_reportHeaderKGText: `ТУШТУК РЕГИОН БОЮНЧА
+                              ВЕТЕРИНАРДЫК ДИАГНОСТИКА ЖАНА
+                              ЭКСПЕРТИЗА БОРБОРУ`,
+      o_2_reportHeaderRUText: `ЦЕНТР ВЕТЕРИНАРНОЙ ДИАГНОСТИКИ И ЭКСПЕРТИЗЫ
+                              ПО ЮЖНОМУ РЕГИОНУ`
+    },
+    GosKGText: `КЫРГЫЗ РЕСПУБЛИКАСЫНЫН ӨКМӨТҮНӨ
+                        КАРАШТУУ ВЕТЕРИНАРДЫК ЖАНА
+                        ФИТОСАНИТАРДЫК КООПСУЗДУК
+                        БОЮНЧА МАМЛЕКЕТТИК ИНСПЕКЦИЯСЫ`,
+    GosRUText: `ГОСУДАРСТВЕННАЯ ИНСПЕКЦИЯ ПО ВЕТЕРИНАРНОЙ
+                        И ФИТОСАНИТАРНОЙ БЕЗОПАСНОСТИ ПРИ ПРАВИТЕЛЬСТВЕ
+                        КЫРГЫЗСКОЙ РЕСПУБЛИКИ`,
+
+    svdieReportHeaderKGText: `ТУШТУК РЕГИОН БОЮНЧА
+                              ВЕТЕРИНАРДЫК ДИАГНОСТИКА ЖАНА
+                              ЭКСПЕРТИЗА БОРБОРУ`,
+    svdieReportHeaderRUText: `ЦЕНТР ВЕТЕРИНАРНОЙ ДИАГНОСТИКИ И ЭКСПЕРТИЗЫ
+                              ПО ЮЖНОМУ РЕГИОНУ`,
+
+    protocolTest: 'Протокол испытаний',
+    testObject: 'Обьект испытаний',
+    materialCount: 'Количество образцов',
+    customer: 'Заказчик',
+    nomerZakaza: '№ Заказа',
+    dataPostup: 'Дата поступления образов',
+    dataProvedenia: 'Дата проведения испытаний',
+    proba: 'проба',
+    regNomerProby: 'Регистрационный № пробы',
+    pokazatelEd: 'Определяемый показатель, ед. изм.',
+    resultatIsledovanie: 'Результаты испытаний',
+    pdk: 'ПДК',
+    gosStandard: 'Обозначение на методы испытаний'
+  },
+  report: {
+    protocol: {
+      senior: 'Старший специалист',
+      chemist: 'Химик',
+      laborant: 'Лаборант',
+      headDescTitle: 'Лицо утвердившее протокол испытаний',
+      headOPB: 'Заведующий ОПБ',
+      note: 'Примечание',
+      footerNoteOpb: `результаты испытаний относятся только к образцам, представленным для испытаний.
+        Размножение настоящего протокола, без разрешения ОПБ запрещается.`,
+      theEnd: 'Конец протокола испытаний',
+      testPerformers: 'Исполнители испытаний'
+    }
+  },
   form: {
     add: 'добавление',
     save: 'сохранение',
@@ -23,6 +73,30 @@ export default {
       id: 'id',
     },
     label: {
+      napravlenieZakazNomer: '№ заказа',
+      otdelDataJSON: 'Дополнительная информация о отделе',
+      fax: 'Факс',
+      postcode: 'Почтовый индекс',
+      fault: 'Погрешность',
+      from: 'от',
+      to: 'до',
+      materialJSON: 'Исследуемые материалы',
+      patronymicName: 'Отчество',
+      equal: 'равно',
+      smaller: 'меньше',
+      more: 'больше',
+      range: 'диапазон',
+      rangeMin: 'мин. значение',
+      rangeMax: 'макс. значение',
+      notLess: 'не менее',
+      notMore: 'не более',
+      sMaterialAnimalTypeJSON: 'Типы животных',
+      materialTypeJSON: 'Типы материалов',
+      pdkMera: 'ПДК мера',
+      pdkType: 'ПДК тип',
+      pdkJSON: 'ПДК значение',
+      pdk: 'ПДК значение',
+      sPokazatelId: 'Показатель',
       headPersonalId: 'Заведующий отдела',
       pieces: 'Штук',
       probs: 'Проб',
@@ -51,7 +125,7 @@ export default {
       clear: 'очистить',
       update: 'обновить',
       name: 'Название',
-      email: 'Почта',
+      email: 'Электронная почта',
       password: 'Пароль',
       fullName: 'ФИО',
       shortName: 'короткое навание',
@@ -139,6 +213,28 @@ export default {
       roles: 'Роли доступа',
     },
     placeholder: {
+      napravlenieZakazNomer: '№ заказа',
+      otdelDataJSON: 'Дополнительная информация о отделе',
+      postcode: 'Почтовый индекс',
+      fax: 'Факс',
+      fault: 'Погрешность',
+      materialJSON: 'Исследуемые материалы',
+      patronymicName: 'Отчество',
+      equal: 'равно',
+      smaller: 'меньше',
+      more: 'больше',
+      range: 'диапазон',
+      rangeMin: 'мин. значение',
+      rangeMax: 'макс. значение',
+      notLess: 'не менее',
+      notMore: 'не более',
+      sMaterialAnimalTypeJSON: 'Типы животных',
+      materialTypeJSON: 'Типы материалов',
+      pdkMera: 'ПДК мера',
+      pdkType: 'ПДК тип',
+      pdkJSON: 'ПДК значение',
+      pdk: 'ПДК значение',
+      sPokazatelId: 'Определяемый показатель',
       headPersonalId: 'ФИО зав. отдела',
       sendPosMaterials: 'Обьекты исследования',
       posMaterials: 'Обьекты исследования',
@@ -225,7 +321,7 @@ export default {
       save: 'сохранение',
       clear: 'очистить',
       update: 'обновить',
-      email: 'Почта',
+      email: 'Электронная почта',
       password: 'Пароль',
       regionFullText: 'Полный адрес',
       regionParentAutocomplete: 'входит в состав',
@@ -249,6 +345,27 @@ export default {
       vnytNapravlenieOptionalCustomView: 'Доп. данные',
     },
     description: {
+      napravlenieZakazNomer: '№ заказа',
+      otdelDataJSON: 'Дополнительная информация о отделе',
+      postcode: 'Почтовый индекс',
+      fax: 'Факс',
+      fault: 'Погрешность',
+      materialJSON: 'Исследуемые материалы',
+      patronymicName: 'Отчество',
+      equal: 'равно',
+      smaller: 'меньше',
+      more: 'больше',
+      rangeMin: 'мин. значение',
+      rangeMax: 'макс. значение',
+      notLess: 'не менее',
+      notMore: 'не более',
+      sMaterialAnimalTypeJSON: 'Типы животных к ПДК',
+      materialTypeJSON: 'Типы материалы относящийся к ПДК',
+      pdkMera: 'ПДК мера',
+      pdkType: 'Тип: не менее или не более',
+      pdk: 'Предел допустимой нормы(ПДК)',
+      pdkJSON: 'ПДК значение',
+      sPokazatelId: 'Выберите определяемый показатель',
       headPersonalId: 'ФИО Заведующего отдела',
       sendPosMaterials: 'Обьекты исследования',
       roles: 'Роль доступа',
@@ -336,7 +453,7 @@ export default {
       save: 'сохранение',
       clear: 'очистить',
       update: 'обновить',
-      email: 'Почта',
+      email: 'Электронная почта',
       password: 'Пароль',
       regionFullText: 'Полный адрес',
       toOtdel: 'Направляется в отдел',
@@ -396,6 +513,9 @@ export default {
   s_pokazatel: {
     title: 'Определяемые показатели',
   },
+  s_pokazatel_pdk: {
+    title: 'Пределы допустимых норм показателей'
+  },
   s_preparat: {
     title: 'Антибиотики, вакцины, антигельмитики',
   },
@@ -444,10 +564,11 @@ export default {
   personal: {
     title: 'Персоналы',
     label: {
-      email: 'Почта или Логин',
+      email: 'Email или Логин',
       password: 'Пароль',
       firstName: 'Имя',
       lastName: 'Фамилия',
+      patronymicName: 'Отчество',
       fullName: 'ФИО',
       pol: 'Пол',
       personalDataJSON: 'Дополнительная инфо-я',
@@ -489,6 +610,9 @@ export default {
   },
   napravlenie: {
     title: 'Направление',
+    label: {
+      napravlenieZakazNomer: '№ заказа'
+    },
     epic: {
       sendToOtdel: 'направить',
       sendToOtdelTitle: 'Отправить внутреннее направление',
@@ -529,6 +653,9 @@ export default {
       },
     },
     epic: {
+      label: {
+        generateProtocol: 'Протокол'
+      },
       status: {
         pending: 'Ожидание принятии',
         accepted: 'Принят',
@@ -605,8 +732,13 @@ export default {
   isledovanie: {
     title: 'Страница исследования',
     label: {
+      laborantFullName: 'Лаборант',
+      chemistFullName: 'Химик',
+      seniorFullName: 'Старший специалист',
+      fault: 'Погрешность',
       otdel: 'Отдел',
       isPersonal: 'Исследует',
+      uniqueNomerIsledovanie: 'ID исследования',
       isledovanieResult: 'Результат исследования',
       isledovanieResults: 'Результаты исследовании',
       result: 'Результат',
@@ -633,8 +765,9 @@ export default {
       isledovanieResultTableHead: 'Для успешнего завершения должны быть заполнены все поля',
       isledovanieResultDesc: 'Все данные выводится в протокол исследований',
       researchMetodJSON: 'НД на методы исследований',
-      indexProby: 'Порядковый № пробы',
-      resultJSON: 'Результаты исследовании',
+      indexProby: 'Порядковый диапазон № проб',
+      posMaterials: 'Перечислите № номера проб',
+      resultJSON: 'Результат',
       nomberProbyTiny: '№ пробы',
       pdkJSON: 'ПДК',
       status: {
@@ -646,17 +779,27 @@ export default {
       },
     },
     placeholder: {
+      laborantFullName: 'Лаборант',
+      chemistFullName: 'Химик',
+      seniorFullName: 'Старший специалист',
+      fault: 'Погрешность',
       opPokazatel: 'Определяемые показатели',
       researchMetodJSON: '№ МУ или НД',
-      indexProby: 'Порядковый № пробы',
-      resultJSON: 'Результаты исследовании',
+      indexProby: 'Порядковый диапазон № пробы',
+      posMaterials: 'Порядковые номера каждой пробы',
+      resultJSON: 'Результат',
       pdkJSON: 'Выберите ПДК'
     },
      description: {
+       laborantFullName: 'Лаборант',
+       chemistFullName: 'Химик',
+       seniorFullName: 'Старший специалист',
+       fault: 'Погрешность +-',
        opPokazatel: 'Определяемый показатель',
        researchMetodJSON: 'Методическое указания на методы исследований ( или НД)',
-       indexProby: 'Порядковый номер пробы',
-       resultJSON: 'Результат исследований (обнажен, или не обнаружен)',
+       indexProby: 'Диапазон номеров проб',
+       posMaterials: 'Порядковые номера каждой пробы',
+       resultJSON: 'Результат',
        pdkJSON: 'Предел допустимой нормы'
      }
   },
@@ -675,6 +818,9 @@ export default {
     spravka: 'справочник',
     divider: '#######',
     admin: 'админ',
+    pdk: {
+      index: 'ПДК'
+    },
     mera: {
       index: 'меры',
     },

@@ -67,6 +67,57 @@ export default {
         this.pushItemInDatasetFirst(response.data)
       }
     },
+    async generateProtocol(button, vnytNapravlenie) {
+      console.log(vnytNapravlenie)
+      if(
+        vnytNapravlenie
+        && vnytNapravlenie.status === 'completed'
+        && vnytNapravlenie.isledovanies
+        && vnytNapravlenie.isledovanies[0]
+        && vnytNapravlenie.isledovanies[0].status === 'finish'
+      ) {
+        const vnytNapravlenieId = vnytNapravlenie.id
+        const napravlenieId = vnytNapravlenie.napravlenieId
+        const isledovanieId = vnytNapravlenie.isledovanies[0].id
+
+        if(
+          vnytNapravlenie && vnytNapravlenie.prinyalOtdel
+        ) {
+          const prinyalOtdel = vnytNapravlenie.prinyalOtdel
+          const params = { vnytNapravlenieId, napravlenieId, isledovanieId }
+
+          if(prinyalOtdel.sOtdeleniaId === this.$store.state.vet.otdelList.FOOD_SAFETY.ID) {
+            console.log('ПРОТОКОЛ ОПБ')
+            this.go('/reports/opb/protocol', params)
+          }
+
+          if(prinyalOtdel.sOtdeleniaId === this.$store.state.vet.otdelList.SEROLOGY.ID) {
+            console.log('ПРОТОКОЛ СЕРОЛОГИИ')
+            this.go('/reports/serology/protocol', params)
+          }
+
+          if(prinyalOtdel.sOtdeleniaId === this.$store.state.vet.otdelList.BACTERIOLOGY.ID) {
+            console.log('ПРОТОКОЛ БАКТЕРИОЛОГИИ')
+            this.go('/reports/bakteriology/protocol', params)
+          }
+
+          if(prinyalOtdel.sOtdeleniaId === this.$store.state.vet.otdelList.VIROLOGY.ID) {
+            console.log('ПРОТОКОЛ ВИРУСОЛОГИИ')
+            this.go('/reports/virology/protocol', params)
+          }
+
+          if(prinyalOtdel.sOtdeleniaId === this.$store.state.vet.otdelList.PARASITOLOGY.ID) {
+            console.log('ПРОТОКОЛ ПАРАЗИТОЛОГИИ')
+            this.go('/reports/parasitology/protocol', params)
+          }
+        }
+
+      }
+    },
+
+    go(path, query) {
+      this.$router.push({ path, query })
+    }
   },
 }
 </script>

@@ -13,4 +13,5 @@ export default {
 
   longDateFormat: 'DD MMMM YYYY',
   longDateTimeFormat: 'DD MMMM YYYY HH:mm:ss',
+  longTimeFormat: 'HH:mm:ss',
 }

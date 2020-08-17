@@ -127,11 +127,11 @@
                 class="mb-0"
               >
                 <b-form-select
-                    id="perPageSelect"
-                    v-model="perPageCount"
-                    :options="pageOptions"
-                    size="sm"
-                    @change="changePageSize"
+                  id="perPageSelect"
+                  v-model="perPageCount"
+                  :options="pageOptions"
+                  size="sm"
+                  @change="changePageSize"
                 />
               </b-form-group>
             </b-col>
@@ -173,15 +173,17 @@
           </template>
 
           <template v-slot:cell(id)="cellData">
-            <span class="tx-24 tx-bold">{{ cellData.value }}</span>
+            <span class="tx-24 tx-bold">
+              {{ cellData.value }}
+            </span>
           </template>
 
           <template v-slot:cell()="data">
             <template v-if="data.field.type === fieldTypes.json">
               <crud-list-view-json
-                  :field-data="data.field"
-                  :data="data.item[data.field.key]"
-                  view-type="inline"
+                :field-data="data.field"
+                :data="data.item[data.field.key]"
+                view-type="inline"
               />
             </template>
 
@@ -293,7 +295,12 @@
 <script>
   import CrudListMixin from '~/components/crud/CrudListMixin'
   export default {
-    mixins: [CrudListMixin]
+    mixins: [CrudListMixin],
+    computed: {
+      otdelList() {
+        return this.$store.state.vet.otdelList
+      }
+    }
   }
 </script>
 <style>

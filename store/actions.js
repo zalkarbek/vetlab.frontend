@@ -46,6 +46,7 @@ export default {
     localStorage.setItem('token', payload.token)
     const socks = await this.$api.getApi('option').getSocks()
     dispatch('openSocketConnection', { socks, token: payload.token })
+    dispatch('dash/setMenuToRoleFilter', { user: payload.user })
   },
   logout({ commit }) {
     commit(types.SET_USER_LOGOUT)

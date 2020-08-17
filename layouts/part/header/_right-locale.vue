@@ -6,9 +6,7 @@
     no-caret
   >
     <template v-slot:button-content>
-      <b-img :src="getLocaleFlagImage(currentLocale)"
-             width="32"
-      />
+      <b-img :src="getLocaleFlagImage(currentLocale)" width="32"/>
       <b>{{ currentLocale | upper }}</b>
     </template>
     <b-dropdown-item
@@ -17,9 +15,7 @@
       :to="switchLocalePath(locale.code)"
       @click="setLocale(locale.code)"
     >
-      <b-img :src="getLocaleFlagImage(locale.code)"
-             width="32"
-      />
+      <b-img :src="getLocaleFlagImage(locale.code)" width="32"/>
       <b>{{ locale.name }}</b>
     </b-dropdown-item>
   </b-dropdown>
@@ -46,8 +42,8 @@ export default {
     },
   },
   methods: {
-    async setLocale(locale) {
-      await this.$store.dispatch('setCurrentLocale', { locale })
+    setLocale(locale) {
+      this.$store.dispatch('setCurrentLocale', { locale })
     },
     getLocaleFlagImage(locale) {
       return `/img/${locale}.svg`

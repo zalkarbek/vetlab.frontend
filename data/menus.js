@@ -7,6 +7,7 @@ export default [
     icon: '',
     active: false,
     to: '/',
+    roles: ['vetAdmin', 'admin', 'super', 'developer', 'director']
   },
   {
     _t: 'menu.spravka',
@@ -15,6 +16,7 @@ export default [
     class: '',
     icon: '',
     active: false,
+    roles: ['vetAdmin', 'admin', 'super', 'developer'],
     children: [
       {
         class: '',
@@ -79,6 +81,14 @@ export default [
                 icon: '',
                 active: false,
                 to: '/spravka/pokazatel',
+              },
+              {
+                _t: 'menu.pdk.index',
+                text: 'ПДК',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/spravka/pokazatel-pdk',
               },
               {
                 _t: 'menu.preparat.index',
@@ -193,6 +203,7 @@ export default [
     class: '',
     icon: '',
     active: false,
+    roles: ['vetAdmin', 'admin', 'super', 'developer', 'dispatcher'],
     children: [
       {
         _t: 'menu.napravlenie.add',
