@@ -15,10 +15,10 @@ export default {
   },
   vet: {
     department: {
-      o_2_reportHeaderKGText: `ТУШТУК РЕГИОН БОЮНЧА
+      d_2_reportHeaderKGText: `ТУШТУК РЕГИОН БОЮНЧА
                               ВЕТЕРИНАРДЫК ДИАГНОСТИКА ЖАНА
                               ЭКСПЕРТИЗА БОРБОРУ`,
-      o_2_reportHeaderRUText: `ЦЕНТР ВЕТЕРИНАРНОЙ ДИАГНОСТИКИ И ЭКСПЕРТИЗЫ
+      d_2_reportHeaderRUText: `ЦЕНТР ВЕТЕРИНАРНОЙ ДИАГНОСТИКИ И ЭКСПЕРТИЗЫ
                               ПО ЮЖНОМУ РЕГИОНУ`
     },
     GosKGText: `КЫРГЫЗ РЕСПУБЛИКАСЫНЫН ӨКМӨТҮНӨ

@@ -3,7 +3,7 @@
     <b-col cols="12">
       <div class="tx-center">
         <b>{{ $t('vet.svdieReportHeaderRUText') }}</b><br>
-        <span>Адрес:</span>
+        <span>Адрес:г.Ош</span>
       </div>
     </b-col>
   </b-row>
@@ -16,7 +16,16 @@
       }
     },
     props: {
-
+      department: Object,
+      otdel:Object
+    },
+    computed: {
+      departmentComputed() {
+        return this.department || {}
+      },
+      otdelComputed() {
+        return this.otdel || {}
+      }
     }
   }
 </script>
