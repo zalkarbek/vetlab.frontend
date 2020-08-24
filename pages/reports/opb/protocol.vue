@@ -7,19 +7,22 @@
             :department="isledovanieDepartment"
           />
         </div>
+
         <div class="report-title">
           <protocol-title
             :otdel="isledovanieOtdel"
             :napravlenie="napravlenie"
           />
         </div>
+
         <div class="clearfix mg-b-15"></div>
         <div class="report-body">
           <protocol-body
             :data="isledovanieComputed"
           />
         </div>
-        <div class="report-result-table">
+
+        <div class="report-table">
           <protocol-table
             :data="isledovanieComputed"
           />

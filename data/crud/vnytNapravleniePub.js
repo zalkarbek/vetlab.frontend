@@ -28,7 +28,7 @@ export default {
       paginate: 'server',
       pageSize: 3,
       methodIfPaginateServer: 'getAllPubRel',
-      searchColumn: ['id'],
+      searchColumn: ['nomer'],
     },
   },
 

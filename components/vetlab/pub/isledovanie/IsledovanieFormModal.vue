@@ -477,6 +477,20 @@
               />
             </b-form-group>
           </b-col>
+          <!--ПРИМЕЧАНИЕ-->
+          <b-col cols="6">
+            <b-form-group
+              :label='$t(noteField.label)'
+              :description='$t(noteField.description)'
+            >
+              <b-form-textarea
+                type="text"
+                v-model="isledovanieDataJSON.note"
+                :placeholder="$t(noteField.placeholder)"
+              >
+              </b-form-textarea>
+            </b-form-group>
+          </b-col>
         </b-row>
       </template>
     </b-col>
@@ -500,6 +514,7 @@
           seniors: [],
           laborants: [],
           chemists: [],
+          note: ''
         },
         resultItem: {
           opPokazatelJSON: [],
@@ -587,6 +602,11 @@
           description: 'isledovanie.description.seniorFullName',
           placeholder: 'isledovanie.placeholder.seniorFullName',
           foreign_label: 'fullName',
+        },
+        noteField: {
+          label: 'isledovanie.label.note',
+          description: 'isledovanie.description.note',
+          placeholder: 'isledovanie.placeholder.note',
         },
       }
     },
@@ -707,7 +727,8 @@
             ],
             isledovanieDataJSON: {
               laborants: [],
-              chemists: []
+              chemists: [],
+              note: ''
             },
             proby: [
               {
@@ -744,7 +765,9 @@
               ],
               isledovanieDataJSON: {
                 laborants: [],
-                chemists: []
+                chemists: [],
+                seniors: [],
+                note: ''
               },
               result: []
             }

@@ -46,7 +46,7 @@
               </tr>
 
               <tr>
-                <th>3</th>
+                <th>4</th>
                 <td>
                   <span class="tx-bold">
                     {{ $t('vet.nomerZakaza') }}:
@@ -58,7 +58,7 @@
               </tr>
 
               <tr>
-                <th>3</th>
+                <th>5</th>
                 <td>
                   <span class="tx-bold">
                     {{ $t('vet.dataPostup') }}:
@@ -70,7 +70,7 @@
               </tr>
 
               <tr>
-                <th>3</th>
+                <th>6</th>
                 <td>
                   <span class="tx-bold">
                     {{ $t('vet.dataProvedenia') }}:
@@ -78,10 +78,10 @@
                 </td>
                 <td>
                   <b>с</b>
-                  {{ formatDateBase(napravlenie.dateStart) }}
+                  {{ formatDateBase(dataComputed.dateStart) }}
                   &nbsp;
                   <b>по</b>
-                  {{ formatDateBase(napravlenie.dateFinish) }}
+                  {{ formatDateBase(dataComputed.dateFinish) }}
                 </td>
               </tr>
             </tbody>

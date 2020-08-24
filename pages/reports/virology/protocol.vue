@@ -2,14 +2,41 @@
   <b-container fluid class="page-report">
     <b-row>
       <b-col cols="12">
+
         <div class="report-header">
           <protocol-header
             :department="isledovanieDepartment"
             :otdel="isledovanieOtdel"
           />
         </div>
+
+        <div class="report-title">
+          <protocol-title
+            :otdel="isledovanieOtdel"
+            :napravlenie="napravlenie"
+          />
+        </div>
+
+        <div class="clearfix mg-b-15"></div>
+        <div class="report-body">
+          <protocol-body
+            :data="isledovanieComputed"
+          />
+        </div>
+
+        <div class="report-table">
+          <protocol-table
+            :data="isledovanieComputed"
+          />
+        </div>
+
         <div class="report-footer">
-          <protocol-footer></protocol-footer>
+          <protocol-footer
+            :data = isledovanieComputed
+            :head-personal="headPersonalComputed"
+          >
+
+          </protocol-footer>
         </div>
         <footer class="footer">
           Южная ветеринарная лаборатория КР
@@ -22,13 +49,19 @@
 <script>
   import ProtocolHeader from '~/components/protocol/virology/Header'
   import ProtocolFooter from '~/components/protocol/virology/Footer'
+  import ProtocolTitle from '~/components/protocol/virology/Title'
+  import ProtocolBody from '~/components/protocol/virology/Body'
+  import ProtocolTable from '~/components/protocol/virology/Table'
   import utilMixin from '~/mixins/utilMixin'
 
   export default {
     layout: 'ReportLayout',
     components: {
       ProtocolHeader,
-      ProtocolFooter
+      ProtocolFooter,
+      ProtocolTitle,
+      ProtocolBody,
+      ProtocolTable
     },
     mixins: [utilMixin],
 
@@ -45,10 +78,11 @@
       })
       const otdelId = isledovanie.finishedOtdelId
       const headPersonals = await personalService.getHeadsByOtdelId({ otdelId })
+      const headPersonal = app.$lodash.get(headPersonals, '[0]', {})
 
       return {
         isledovanie,
-        headPersonal: app.$lodash.get(headPersonals, '[0]', {})
+        headPersonal
       }
     },
 

@@ -28,7 +28,7 @@ export default {
       pageSize: 3,
       methodIfPaginateServer: 'getAllEpicRel',
       methodOnSearch: 'getAllEpicRel',
-      earchColumn: ['id'],
+      searchColumn: ['nomer'],
     },
   },
 

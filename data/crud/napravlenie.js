@@ -48,7 +48,7 @@ export default {
       // rest метод для поиска региона
       methodOnSearch: 'getNapravlenieWithPaginateAndVnyt',
       // поля по которым разрешен поиск (текст или массив полей)
-      searchColumn: ['id'],
+      searchColumn: ['nomer'],
     },
     getEditRecord: {
       crud: 'napravlenie',

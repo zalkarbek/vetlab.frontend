@@ -1,10 +1,10 @@
 export default {
-  shortDateFormat: 'DD-MM-YY',
-  shortDateTimeFormat: 'DD-MM-YY',
+  shortDateFormat: 'DD.MM.YY',
+  shortDateTimeFormat: 'DD.MM.YY HH:mm',
   shortTimeFormat: 'HH:mm',
 
-  baseDateFormat: 'DD-MM-YYYY',
-  baseDateTimeFormat: 'DD-MM-YYYY HH:mm:ss',
+  baseDateFormat: 'DD.MM.YYYY',
+  baseDateTimeFormat: 'DD.MM.YYYY HH:mm',
   baseTimeFormat: 'HH:mm',
 
   mediumDateFormat: 'DD MMM YYYY',

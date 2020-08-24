@@ -36,18 +36,29 @@ export default {
                               ПО ЮЖНОМУ РЕГИОНУ`,
 
     protocolTest: 'Протокол испытаний',
+    protocolTest2: 'Протокол исследований',
     testObject: 'Обьект испытаний',
+    testObject2: 'Наименование проб',
     materialCount: 'Количество образцов',
+    materialCount2: 'Количество проб',
     customer: 'Заказчик',
     nomerZakaza: '№ Заказа',
+    mestoOtbora: 'Место отбора проб',
     dataPostup: 'Дата поступления образов',
+    dataTimePostup: 'Дата и время поступления пробы',
+    dataTimeOtbora: 'Дата и время отбора проб',
     dataProvedenia: 'Дата проведения испытаний',
+    dataProvedenia2: 'Дата проведения исследований',
     proba: 'проба',
     regNomerProby: 'Регистрационный № пробы',
     pokazatelEd: 'Определяемый показатель, ед. изм.',
+    pokazatel: 'Определяемый показатель',
     resultatIsledovanie: 'Результаты испытаний',
+    result: 'Результат',
     pdk: 'ПДК',
-    gosStandard: 'Обозначение на методы испытаний'
+    resultIndex: 'Порядковый номер',
+    gosStandard: 'Обозначение на методы испытаний',
+    noteIsledovanie: 'Примечание/описание образца'
   },
   report: {
     protocol: {
@@ -59,8 +70,12 @@ export default {
       note: 'Примечание',
       footerNoteOpb: `результаты испытаний относятся только к образцам, представленным для испытаний.
         Размножение настоящего протокола, без разрешения ОПБ запрещается.`,
+      footerNoteOther: `Результаты исследований распространяются только на те образцы которые представлены 
+      и подвергнуты исследованию настоящий протокол исследований не может быть частично или полностью воспроизведен 
+      (скопирован или перепечатан) без письменного разрешения отдела вирусологии`,
       theEnd: 'Конец протокола испытаний',
-      testPerformers: 'Исполнители испытаний'
+      testPerformers: 'Исполнители испытаний',
+      testPerformers2: 'Исследование проводил/и'
     }
   },
   form: {
@@ -732,6 +747,7 @@ export default {
   isledovanie: {
     title: 'Страница исследования',
     label: {
+      note: 'Примечание',
       laborantFullName: 'Лаборант',
       chemistFullName: 'Химик',
       seniorFullName: 'Старший специалист',
@@ -779,6 +795,7 @@ export default {
       },
     },
     placeholder: {
+      note: 'Примечание',
       laborantFullName: 'Лаборант',
       chemistFullName: 'Химик',
       seniorFullName: 'Старший специалист',
@@ -791,6 +808,7 @@ export default {
       pdkJSON: 'Выберите ПДК'
     },
      description: {
+       note: 'Примечание',
        laborantFullName: 'Лаборант',
        chemistFullName: 'Химик',
        seniorFullName: 'Старший специалист',

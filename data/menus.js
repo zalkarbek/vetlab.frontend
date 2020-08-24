@@ -244,13 +244,6 @@ export default [
         icon: '',
         active: false,
         to: '/isledovanie',
-      },
-      {
-        _t: 'menu.protocol_isledovanie.index',
-        text: 'Заключение',
-        class: '',
-        icon: '',
-        to: '/',
       }
     ],
   },
