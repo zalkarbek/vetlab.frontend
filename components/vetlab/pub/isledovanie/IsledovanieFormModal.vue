@@ -46,6 +46,8 @@
           </thead>
           <tbody>
             <template v-for="(result, index) in isResult">
+
+              <!--FOOD SAFETY OTDEL FORM-->
               <template v-if="isFoodSafetyOtdel">
                 <tr>
                   <td class="bg-success-light">
@@ -247,6 +249,7 @@
                 </tr>
               </template>
 
+              <!--OTHER OTDEL FORM-->
               <template v-else>
                 <tr>
                   <td colspan="2" class="bg-success-light">
@@ -340,33 +343,7 @@
                         </b-button>
                       </b-button-group>
                       <b-row>
-
                         <b-col cols="6">
-                          <b-form-group
-                            :label="$t(resultProbyField.label)"
-                            :description="$t(resultProbyField.description)"
-                          >
-                            <multiselect
-                              v-model="proba.posMaterials"
-                              :options="posMaterials"
-                              :label="resultProbyField.foreign_label"
-                              :placeholder="$t(resultProbyField.placeholder)"
-                              :selectLabel="$t('form.label.selectItem')"
-                              :selectedLabel="$t('form.label.selectedItem')"
-                              :deselectLabel="$t('form.label.deselectItem')"
-                              :tagPlaceholder="$t('form.label.addNewPokazatel')"
-                              :show-labels="false"
-                              :custom-label="posMaterialCustomLabel"
-                              multiple
-                              track-by="id"
-                              @open="setPosMaterials(formData.vnytNapravlenie.posMaterials)"
-                            >
-
-                            </multiselect>
-                          </b-form-group>
-                        </b-col>
-
-                        <b-col cols="4">
                           <b-form-group
                             :label="$t('isledovanie.label.indexProby')"
                             :description="$t('isledovanie.description.indexProby')"
@@ -374,6 +351,7 @@
                             <b-form-input
                               v-model="proba.indexProby"
                               :placeholder="$t('isledovanie.placeholder.indexProby')"
+                              @input="(value) => proba.posMaterials = indexProbyTextParser(value)"
                             />
                           </b-form-group>
                         </b-col>
@@ -632,7 +610,38 @@
         }
       }
     },
+    mounted() {
+      console.log('mounted')
+    },
     methods: {
+      indexProbyTextParser(value) {
+        const re = /\s*,|\.|;|:\s*/
+        const text = String(value)
+        const splitted = text.split(re)
+        let splitArray = []
+        if(splitted && Array.isArray(splitted) && splitted.length >= 1) {
+          splitted.forEach((splitItem) => {
+            const splitItemTrimmed = this.$lodash.trim(splitItem)
+            if(splitItemTrimmed.search(/^\d+-\d+$/) !== -1) {
+              const rangeSplitArray = splitItemTrimmed.split(/-|_/)
+              if(rangeSplitArray && Array.isArray(rangeSplitArray) && rangeSplitArray.length >= 1) {
+                const start = this.$lodash.toNumber(this.$lodash.trim(rangeSplitArray[0]))
+                const end = this.$lodash.toNumber(this.$lodash.trim(rangeSplitArray[1]))
+                if(!Number.isNaN(start) && !Number.isNaN(end)) {
+                  splitArray = [...splitArray, ...this.range(start, end)]
+                }
+              }
+              return
+            }
+            const splitItemNumber = this.$lodash.toNumber(splitItemTrimmed)
+            if(splitItemNumber !== 0 && !Number.isNaN(splitItemNumber)) {
+              splitArray.push(splitItemNumber)
+            }
+          })
+        }
+        return splitArray
+      },
+
       posMaterialCustomLabel(material) {
         return `
           (${ material.nomer || material.id })

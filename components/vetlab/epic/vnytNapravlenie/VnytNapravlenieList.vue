@@ -495,8 +495,11 @@
                 <span class="tx-bold">
                   {{ $t("vnytNapravlenie.label.posMaterialCount") }}:
                 </span>
-                <span>
+                <span v-if="isFoodSafetyOtdel(cellData.item.napravlenOtdelId)">
                   {{ getProp(cellData.item, 'posMaterials', []).length }}
+                </span>
+                <span v-else>
+                  {{ posMaterialsTotalCount(getProp(cellData.item, 'posMaterials', [])) }}
                 </span>
               </b-list-group-item>
               <b-list-group-item v-if="cellData.item.posMaterials">
@@ -769,6 +772,7 @@
 </template>
 <script>
 import CrudListMixin from '~/components/crud/CrudListMixin'
+import { mapState } from 'vuex'
 
 export default {
   mixins: [CrudListMixin],
@@ -804,7 +808,21 @@ export default {
       })
       return [...list, actions]
     },
+    ...mapState('vet', {
+      otdelList: (state) => state.otdelList,
+    }),
   },
-  methods: {}
+  methods: {
+    isFoodSafetyOtdel(otdelId) {
+      return otdelId === this.otdelList.FOOD_SAFETY.ID
+    },
+    posMaterialsTotalCount(posMaterials = []) {
+      let totalCount = 0
+      posMaterials.forEach((material) => {
+        totalCount = totalCount + (material && material.materialCount || 0)
+      })
+      return totalCount
+    }
+  }
 }
 </script>

@@ -254,7 +254,12 @@
                     <b>{{ $t('isledovanie.label.materialCount') }}:</b>
                   </td>
                   <td>
-                    {{ getProp(cellData.item, 'vnytNapravlenie.posMaterials', []).length }}
+                    <span v-if="isFoodSafetyOtdelById(cellData.item.isOtdelId)">
+                      {{ getProp(cellData.item, 'vnytNapravlenie.posMaterials', []).length }}
+                    </span>
+                    <span v-else>
+                      {{ posMaterialsTotalCount(getProp(cellData.item, 'vnytNapravlenie.posMaterials', [])) }}
+                    </span>
                   </td>
                 </tr>
                 <tr>
@@ -515,6 +520,18 @@
       isFoodSafetyOtdel(data) {
         const id = this.getProp(data, 'otdel.sOtdeleniaId', false)
         return id === this.otdelList.FOOD_SAFETY.ID
+      },
+
+      isFoodSafetyOtdelById(otdelId) {
+        return otdelId === this.otdelList.FOOD_SAFETY.ID
+      },
+
+      posMaterialsTotalCount(posMaterials = []) {
+        let totalCount = 0
+        posMaterials.forEach((material) => {
+          totalCount = totalCount + (material && material.materialCount || 0)
+        })
+        return totalCount
       },
 
       rowStatusBasedColor(item, type) {

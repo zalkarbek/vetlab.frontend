@@ -101,9 +101,7 @@
           </b-row>
         </b-col>
 
-        <b-col lg="9"
-               class="mg-t-20"
-        >
+        <b-col lg="9" class="mg-t-20">
           <b-row>
             <b-col lg="4">
               <b-form-group
@@ -492,6 +490,7 @@
 
           <template v-slot:cell(posMaterialCustomView)="cellData">
             <b-list-group class="list-group-flush">
+
               <b-list-group-item v-if="cellData.item.opPokazatelJSON">
                 <span class="tx-bold">
                   {{ $t("vnytNapravlenie.label.opPokazatel") }}:
@@ -504,14 +503,19 @@
                   </template>
                 </ul>
               </b-list-group-item>
+
               <b-list-group-item v-if="cellData.item.posMaterials">
                 <span class="tx-bold">
                   {{ $t("vnytNapravlenie.label.posMaterialCount") }}:
                 </span>
-                <span>
+                <span v-if="isFoodSafetyOtdel(cellData.item.napravlenOtdelId)">
                   {{ getProp(cellData.item, 'posMaterials', []).length }}
                 </span>
+                <span v-else>
+                  {{ posMaterialsTotalCount(getProp(cellData.item, 'posMaterials', [])) }}
+                </span>
               </b-list-group-item>
+
               <b-list-group-item v-if="cellData.item.posMaterials">
                 <span class="tx-bold">
                   {{ $t("vnytNapravlenie.label.posMaterialId") }}:
@@ -636,8 +640,8 @@
               </b-list-group-item>
               <b-list-group-item>
                 <span
-                    v-if="getProp(cellData.item, 'postMaterialCheck', null) === true"
-                    class="tx-bold"
+                  v-if="getProp(cellData.item, 'postMaterialCheck', null) === true"
+                  class="tx-bold"
                 >
                   {{ $t("vnytNapravlenie.label.postMaterialCheck") }}:
                   <i class="fas fa-check-circle tx-success" />
@@ -645,8 +649,8 @@
                 </span>
 
                 <span
-                    v-if="getProp(cellData.item, 'postMaterialCheck', null) === false"
-                    class="tx-bold"
+                  v-if="getProp(cellData.item, 'postMaterialCheck', null) === false"
+                  class="tx-bold"
                 >
                   {{ $t("vnytNapravlenie.label.postMaterialCheck") }}:
                   <i class="fas fa-check-circle tx-success" />
@@ -782,6 +786,7 @@
 </template>
 <script>
 import CrudListMixin from '~/components/crud/CrudListMixin'
+import { mapState } from 'vuex'
 export default {
   mixins: [CrudListMixin],
   data() {
@@ -791,7 +796,22 @@ export default {
       pageOptions: [1, 2, 3, 5, 7, 10],
     }
   },
+  computed: {
+    ...mapState('vet', {
+      otdelList: (state) => state.otdelList,
+    }),
+  },
   methods: {
+    isFoodSafetyOtdel(otdelId) {
+      return otdelId === this.otdelList.FOOD_SAFETY.ID
+    },
+    posMaterialsTotalCount(posMaterials = []) {
+      let totalCount = 0
+      posMaterials.forEach((material) => {
+        totalCount = totalCount + (material && material.materialCount || 0)
+      })
+      return totalCount
+    },
     rowStatusBasedColor(item, type) {
       if (!item || type !== 'row') return false
     }
