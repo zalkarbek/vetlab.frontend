@@ -31,7 +31,7 @@
                 </span>
               </td>
               <td>
-                {{ `${ posMaterials.length }` }}
+                {{ posMaterialsTotalCount(posMaterials) }}
               </td>
             </tr>
 
@@ -120,6 +120,7 @@
 <script>
   import utilMixin from '~/mixins/utilMixin'
   import dateFormatMixin from '~/mixins/dateFormatMixin'
+  import { mapState } from 'vuex'
 
   export default {
     mixins: [
@@ -184,6 +185,18 @@
           }
         })
         return uniques
+      },
+      ...mapState('vet', {
+        otdelList: (state) => state.otdelList,
+      }),
+    },
+    methods: {
+      posMaterialsTotalCount(posMaterials = []) {
+        let totalCount = 0
+        posMaterials.forEach((material) => {
+          totalCount = totalCount + (material && material.materialCount || 0)
+        })
+        return totalCount
       }
     }
   }
