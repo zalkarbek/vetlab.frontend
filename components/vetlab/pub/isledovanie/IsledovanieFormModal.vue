@@ -610,9 +610,7 @@
         }
       }
     },
-    mounted() {
-      console.log('mounted')
-    },
+    mounted() {},
     methods: {
       indexProbyTextParser(value) {
         const re = /\s*,|\.|;|:\s*/
