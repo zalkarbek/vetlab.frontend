@@ -70,7 +70,7 @@ typings/
 
 # Nuxt generate
 dist
-
+yarn.lock
 # vuepress build output
 .vuepress/dist
 
@@ -89,4 +89,3 @@ sw.*
 
 *.swp
 
-yarn.lock
