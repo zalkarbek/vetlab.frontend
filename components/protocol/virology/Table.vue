@@ -80,10 +80,10 @@
         return this.data || {}
       },
       pokazatels() {
+        console.log(this.dataComputed.opPokazatelJSON)
         return this.dataComputed.opPokazatelJSON || []
       },
       results() {
-        console.log(this.dataComputed.isResultJSON)
         return this.dataComputed.isResultJSON || []
       },
       ndMetod() {

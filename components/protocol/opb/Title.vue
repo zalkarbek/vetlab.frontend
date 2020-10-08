@@ -4,12 +4,12 @@
       <b-col>
         <hr style="border-top-width: 3px;"/>
         <div class="tx-center">
-          <h2>{{ otdelToOtdeleniaName }}</h2>
-          <span>{{ $t('form.label.address') }}: {{ otdelAddress }}, тел: {{ otdelPhone }}</span>
+          <h2 class="font-weight-bold">{{ otdelToOtdeleniaName }}</h2>
+          <span class="">{{ $t('form.label.address') }}: {{ otdelAddress }}, тел: {{ otdelPhone }}</span>
         </div>
         <hr style="border-top-width: 3px;" />
         <div class="tx-center" style="font-size: 16px;">
-          <h3>{{ toUpperCase($t('vet.protocolTest')) }}</h3>
+          <h3 class="font-weight-bold">{{ toUpperCase($t('vet.protocolTest')) }}</h3>
           <span>
            <b>№</b>
             <span style="border-bottom: 1px solid #001737">
