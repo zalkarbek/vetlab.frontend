@@ -38,6 +38,7 @@ export default {
   async login({ commit, dispatch }, payload) {
     commit(types.SET_USER_LOGGED, { user: payload.user, token: payload.token })
     this.$api.setToken(payload.token, 'Bearer', [
+      'get',
       'post',
       'put',
       'patch',
