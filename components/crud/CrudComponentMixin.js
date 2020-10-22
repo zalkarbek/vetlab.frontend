@@ -277,6 +277,7 @@ export default {
 
     async onCreate(data) {
       try {
+        console.log(data)
         const res = await this.$store.dispatch('api/req', {
           req: this.crudData.rest.create,
           data,

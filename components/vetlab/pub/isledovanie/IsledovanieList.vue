@@ -255,7 +255,13 @@
                   </td>
                   <td>
                     <span v-if="isFoodSafetyOtdelById(cellData.item.isOtdelId)">
-                      {{ getProp(cellData.item, 'vnytNapravlenie.posMaterials', []).length }}
+                      {{
+                        forFoodSafetyPosMaterialsCount(
+                          getProp(
+                            cellData.item, 'vnytNapravlenie.posMaterials', []
+                          )
+                        )
+                      }}
                     </span>
                     <span v-else>
                       {{ posMaterialsTotalCount(getProp(cellData.item, 'vnytNapravlenie.posMaterials', [])) }}
@@ -532,6 +538,9 @@
           totalCount = totalCount + (material && material.materialCount || 0)
         })
         return totalCount
+      },
+      forFoodSafetyPosMaterialsCount(materials) {
+        return materials.length
       },
 
       rowStatusBasedColor(item, type) {

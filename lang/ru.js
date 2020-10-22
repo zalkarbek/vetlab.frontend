@@ -70,8 +70,8 @@ export default {
       note: 'Примечание',
       footerNoteOpb: `результаты испытаний относятся только к образцам, представленным для испытаний.
         Размножение настоящего протокола, без разрешения ОПБ запрещается.`,
-      footerNoteOther: `Результаты исследований распространяются только на те образцы которые представлены 
-      и подвергнуты исследованию настоящий протокол исследований не может быть частично или полностью воспроизведен 
+      footerNoteOther: `Результаты исследований распространяются только на те образцы которые представлены
+      и подвергнуты исследованию настоящий протокол исследований не может быть частично или полностью воспроизведен
       (скопирован или перепечатан) без письменного разрешения отдела вирусологии`,
       theEnd: 'Конец протокола испытаний',
       testPerformers: 'Исполнители испытаний',
@@ -88,6 +88,15 @@ export default {
       id: 'id',
     },
     label: {
+      costOneIsledovanie: 'Расход на одно исследование',
+      sRMetodId: 'Метод исследования',
+      sRMetodJSON: 'Метод исследования',
+      sRMaterialId: 'Название расходного материала',
+      sBoleznId: 'Болезни',
+      sBoleznJSON: 'Болезни',
+      sMaterialTypeJSON: 'Типы материалов',
+      count: 'Количество',
+
       napravlenieZakazNomer: '№ заказа',
       otdelDataJSON: 'Дополнительная информация о отделе',
       fax: 'Факс',
@@ -228,6 +237,15 @@ export default {
       roles: 'Роли доступа',
     },
     placeholder: {
+      costOneIsledovanie: 'Расход на одно исследование',
+      sRMetodId: 'Метод исследования',
+      sRMetodJSON: 'Метод исследования',
+      sRMaterialId: 'Название расходного материала',
+      sBoleznId: 'Болезни',
+      sBoleznJSON: 'Болезни',
+      sMaterialTypeJSON: 'Типы материалов',
+      count: 'Количество',
+
       napravlenieZakazNomer: '№ заказа',
       otdelDataJSON: 'Дополнительная информация о отделе',
       postcode: 'Почтовый индекс',
@@ -360,6 +378,15 @@ export default {
       vnytNapravlenieOptionalCustomView: 'Доп. данные',
     },
     description: {
+      costOneIsledovanie: 'Расход на одно исследование',
+      sRMetodId: 'Метод исследования',
+      sRMetodJSON: 'Метод исследования',
+      sRMaterialId: 'Название расходного материала',
+      sBoleznId: 'Болезни',
+      sBoleznJSON: 'Болезни',
+      sMaterialTypeJSON: 'Типы материалов',
+      count: 'Количество',
+
       napravlenieZakazNomer: '№ заказа',
       otdelDataJSON: 'Дополнительная информация о отделе',
       postcode: 'Почтовый индекс',
@@ -489,6 +516,18 @@ export default {
       posMaterialCustomView: 'Обьект исследования',
       vnytNapravlenieOptionalCustomView: 'Доп. данные',
     },
+  },
+  s_rmetod: {
+    title: 'Методы исследования'
+  },
+  s_rmaterial: {
+    title: 'Наименование расходных материалов'
+  },
+  rmaterial_kit: {
+    title: 'Расходные материалы'
+  },
+  otdel_rmaterial: {
+    title: 'Расходные материалы в отделах'
   },
   s_mera: {
     title: 'мера',
@@ -694,6 +733,7 @@ export default {
     },
     title: 'Внутреннее Направление',
     label: {
+      address: 'Адрес направления',
       researchMetodJSON: 'Методическое указание (или НД)',
       rejectionDescription: 'Причина отклонения',
       count: 'Кол-во',
@@ -738,6 +778,7 @@ export default {
       },
     },
     description: {
+      address: 'Адрес направления',
       researchMetodJSON: 'Какой ГОС стандарт(НД) используется для исследования',
     },
     placeholder: {
@@ -838,6 +879,18 @@ export default {
     admin: 'админ',
     pdk: {
       index: 'ПДК'
+    },
+    rmaterials: {
+      index: 'наименование расходные материалов'
+    },
+    rmetod: {
+      index: 'методы исследования'
+    },
+    rmaterials_kit: {
+      index: 'рассходные материалы'
+    },
+    otdel_rmaterials: {
+      index: 'расходных материалы в отделах'
     },
     mera: {
       index: 'меры',

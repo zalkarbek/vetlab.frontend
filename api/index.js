@@ -64,7 +64,7 @@ class Api {
   setToken(
     token,
     type = 'Bearer',
-    scopes = ['get', 'post', 'put', 'patch', 'delete', 'options']
+    scopes = ['get', 'post', 'put', 'patch', 'delete']
   ) {
     this.context.$axios.setToken(token, type, scopes)
   }

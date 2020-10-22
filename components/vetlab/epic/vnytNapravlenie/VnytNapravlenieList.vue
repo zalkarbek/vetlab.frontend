@@ -351,16 +351,16 @@
                   <div class="pd-l-10">
                     <p class="tx-medium mg-b-0">
                       {{
-                      getProp(cellData.item, "prinyalPersonal.fullName", "")
+                        getProp(cellData.item, "prinyalPersonal.fullName", "")
                       }}
                     </p>
                     <small class="tx-12 tx-color-03 mg-b-0">
                       {{
-                      getProp(
-                      cellData.item,
-                      "prinyalPersonal.sDoljnost.name",
-                      ""
-                      )
+                        getProp(
+                          cellData.item,
+                          "prinyalPersonal.sDoljnost.name",
+                          ""
+                        )
                       }}
                     </small>
                   </div>
@@ -496,7 +496,7 @@
                   {{ $t("vnytNapravlenie.label.posMaterialCount") }}:
                 </span>
                 <span v-if="isFoodSafetyOtdel(cellData.item.napravlenOtdelId)">
-                  {{ getProp(cellData.item, 'posMaterials', []).length }}
+                  {{ forFoodSafetyPosMaterialsCount(getProp(cellData.item, 'posMaterials', [])) }}
                 </span>
                 <span v-else>
                   {{ posMaterialsTotalCount(getProp(cellData.item, 'posMaterials', [])) }}
@@ -822,6 +822,9 @@ export default {
         totalCount = totalCount + (material && material.materialCount || 0)
       })
       return totalCount
+    },
+    forFoodSafetyPosMaterialsCount(materials) {
+      return materials.length
     }
   }
 }

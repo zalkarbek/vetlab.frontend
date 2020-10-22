@@ -217,7 +217,7 @@
             <span>
               <span>{{ $t("vnytNapravlenie.label.probCount") }}:</span>
               <span v-if="isFoodSafetyOtdel(cellData.item.otdelId)" class="tx-bold">
-                {{ getProp(cellData.item, 'posMaterials', []).length }}
+                {{ forFoodSafetyPosMaterialsCount(getProp(cellData.item, 'posMaterials', [])) }}
               </span>
               <span v-else class="tx-bold">
                 {{ posMaterialsTotalCount(getProp(cellData.item, 'posMaterials', [])) }}
@@ -319,6 +319,9 @@ export default {
         totalCount = totalCount + (material && material.materialCount || 0)
       })
       return totalCount
+    },
+    forFoodSafetyPosMaterialsCount(materials) {
+      return materials.length
     }
   }
 }

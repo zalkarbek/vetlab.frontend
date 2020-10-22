@@ -8,12 +8,13 @@ import CrudComponent from '~/components/crud/CrudComponent'
 import CrudData from '~/data/crud'
 
 export default {
+  name: 'PageRMetod',
   components: {
-    CrudComponent,
+    'crud-component': CrudComponent,
   },
   data() {
     return {
-      crudDataName: 's_bolezn',
+      crudDataName: 'otdel_rmaterial',
     }
   },
   computed: {

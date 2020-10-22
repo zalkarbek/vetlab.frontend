@@ -509,7 +509,7 @@
                   {{ $t("vnytNapravlenie.label.posMaterialCount") }}:
                 </span>
                 <span v-if="isFoodSafetyOtdel(cellData.item.napravlenOtdelId)">
-                  {{ getProp(cellData.item, 'posMaterials', []).length }}
+                  {{ forFoodSafetyPosMaterialsCount(getProp(cellData.item, 'posMaterials', [])) }}
                 </span>
                 <span v-else>
                   {{ posMaterialsTotalCount(getProp(cellData.item, 'posMaterials', [])) }}
@@ -662,6 +662,16 @@
 
           <template v-slot:cell(vnytNapravlenieOptionalCustomView)="cellData">
             <b-list-group class="list-group-flush">
+
+              <b-list-group-item v-if="getProp(cellData.item, 'napravlenie.regionJSON.regionFullPath', null)">
+                <span class="tx-bold">
+                  {{ $t("vnytNapravlenie.label.address") }}:
+                </span>
+                <span>
+                  {{ getProp(cellData.item, "napravlenie.regionJSON.regionFullPath", null) }}
+                </span>
+              </b-list-group-item>
+
               <b-list-group-item v-if="cellData.item.dateDeworming">
                 <span class="tx-bold">
                   {{ $t("vnytNapravlenie.label.dateDeworming") }}:
@@ -811,6 +821,9 @@ export default {
         totalCount = totalCount + (material && material.materialCount || 0)
       })
       return totalCount
+    },
+    forFoodSafetyPosMaterialsCount(materials) {
+      return materials.length
     },
     rowStatusBasedColor(item, type) {
       if (!item || type !== 'row') return false

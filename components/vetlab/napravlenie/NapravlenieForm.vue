@@ -81,9 +81,11 @@
           <!--==================================================================-->
         </template>
       </b-form-row>
+
       <!--================================FOREIGN MODELS==================================-->
       <template v-if="Array.isArray(modelData.foreign) && modelData.foreign.length >= 1">
         <template v-for="(foreignCrud, index) in modelData.foreign">
+
           <!-- ============================FOREIGN ARRAY======================================-->
           <div :key="index" v-if="foreignCrud.type === fieldTypes.array" class="mg-b-20">
             <h5>
@@ -200,6 +202,7 @@ export default {
   mixins: [NapravlenieCrudFormMixin],
   methods: {
     async addNewToForeignArray(record, foreignCrud, count = 1) {
+      console.log(record)
       const lastPosMateial = await this.$api
         .getApi('posMaterial')
         .getLastByNomerToOtdel({
@@ -208,11 +211,16 @@ export default {
 
       const crudName = foreignCrud.datasetName || foreignCrud.crudName
       const newArray = record[crudName] || []
+      console.log(newArray)
       const lastArray = newArray[newArray.length - 1]
       for (let i = 0; i < count; i++) {
         const newForeignItem = this.initFields({}, this.crud[foreignCrud.crudName])
         newForeignItem.nomer = (lastArray && lastArray.nomer || lastPosMateial.nomer) + i + 1;
-        newForeignItem.indexNomer = newArray.length + 1;
+        newForeignItem.indexNumber = newArray.length + 1;
+        newForeignItem.opPokazatelJSON = this.cloneDeep(this.getProp(record, 'opPokazatelJSON', {}))
+        newForeignItem.ownerJSON = this.cloneDeep(this.getProp(record, 'ownerJSON', {}))
+        newForeignItem.mestoOtboraRegionJSON = this.cloneDeep(this.getProp(record, 'regionJSON', {}))
+        newForeignItem.kemOtobranJSON = this.cloneDeep(this.getProp(record, 'probyNapravilJSON', {}))
         newArray.push(newForeignItem)
       }
       this.$set(record, crudName, newArray)

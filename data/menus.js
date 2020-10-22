@@ -26,14 +26,14 @@ export default [
             text: 'Справочник',
             class: '',
             items: [
-              // {
-              //   _t: 'menu.bolezn.index',
-              //   text: 'болезни',
-              //   class: '',
-              //   icon: '',
-              //   active: false,
-              //   to: '/spravka/bolezn'
-              // },
+              {
+                _t: 'menu.bolezn.index',
+                text: 'болезни',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/spravka/bolezn'
+              },
               {
                 _t: 'menu.mera.index',
                 text: 'мера измерения',
@@ -100,11 +100,27 @@ export default [
               },
               {
                 _t: 'menu.metod.index',
-                text: 'методы исследование',
+                text: 'НД',
                 class: '',
                 icon: '',
                 active: false,
                 to: '/spravka/metod',
+              },
+              {
+                _t: 'menu.rmetod.index',
+                text: 'методы исследование',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/spravka/rmetod',
+              },
+              {
+                _t: 'menu.rmaterials.index',
+                text: 'методы исследование',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/spravka/rmaterials',
               },
               {
                 _t: 'menu.otdelenia.index',
@@ -189,6 +205,24 @@ export default [
                 icon: '',
                 active: false,
                 to: '/spravka/planRaboty',
+              },
+
+              {
+                _t: 'menu.rmaterials_kit.index',
+                text: 'расходные материалы',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/spravka/rmaterialKit',
+              },
+
+              {
+                _t: 'menu.otdel_rmaterials.index',
+                text: 'остатки расходных материалов в отделах',
+                class: '',
+                icon: '',
+                active: false,
+                to: '/spravka/otdel-rmaterials',
               },
             ],
           },
