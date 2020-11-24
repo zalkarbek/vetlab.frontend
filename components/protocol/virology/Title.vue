@@ -17,6 +17,10 @@
               {{ formatDateLong(dataZapolnenia) }}
             </span>
           </span>
+
+          <span style="padding-left:250px;">
+                <img src="~/assets/img/qrcode.png" alt="" width="128">
+            </span>
         </div>
       </b-col>
     </b-row>
