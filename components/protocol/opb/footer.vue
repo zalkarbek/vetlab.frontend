@@ -67,6 +67,12 @@
           </div>
         </div>
       </b-col>
+      <b-col cols="3">
+        <span>
+          <b-img src="~/assets/img/qrcode.png" alt="" width="128" style="float: right" />
+        </span>
+      </b-col>
+
     </b-row>
     <b-row class="mg-t-20">
       <b-col>
