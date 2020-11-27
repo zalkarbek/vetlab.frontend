@@ -8,63 +8,58 @@
       :key="regionIndex"
       cols="12"
       sm="12"
-      md="6"
-      lg="5"
-      xl="3"
+      md="12"
+      lg="12"
+      xl="12"
       class="mg-t-5"
     >
-      <div class="card card-dashboard-table">
-        <div
-          class="card-header d-flex align-items-start justify-content-between"
-        >
-          <h5 class="mg-b-0">
-            <b-img left
-                   src="~/assets/img/marker.svg" width="28px"
-            />
-            {{ $t(`regions.${region.key}.text`) }}
-          </h5>
-          <div class="tx-13 d-flex align-items-center" style="font-size: 1rem;">
+      <b-row class="row-xs">
+        <b-col v-for="(department, index) in departments" :key="index" cols="4">
+          <div class="card card-dashboard-table">
+            <div class="card-header d-flex align-items-start justify-content-between">
+              <h5 class="mg-b-0">
+                <b-img left src="~/assets/img/marker.svg" width="28px"/>
+              </h5>
+              <div class="tx-13 d-flex align-items-center" style="font-size: 1rem;">
             <span class="mg-r-8 tx-success cursor-pointer">
               <span class="fal fa-file-excel fa-lg" />
             </span>
-            <span class="mg-r-8 tx-danger cursor-pointer">
+                <span class="mg-r-8 tx-danger cursor-pointer">
               <span class="fal fa-file-pdf fa-lg" />
             </span>
-            <span class="mg-r-8 tx-teal cursor-pointer">
+                <span class="mg-r-8 tx-teal cursor-pointer">
               <span class="fal fa-file-chart-line fa-lg" />
             </span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title tx-16 text-center">
+                {{ department.label }}
+              </h5>
+              <h6 class="bg-gray-1 pd-t-5 pd-b-5 pd-l-10 tx-bold">
+                Количество материалов:
+                <span class="tx-primary">{{ department.materialCount }}</span>
+              </h6>
+              <b-table
+                :fields="fields"
+                :items="items"
+                head-variant="light"
+                small
+                responsive
+                caption-top
+                hover
+              >
+                <template v-slot:head()="data">
+                  <b class="text-primary">{{ data.label }}</b>
+                </template>
+                <template v-slot:cell(researchDirection)="data">
+                  <span class="tx-bold">{{ data.value.label }}</span>
+                </template>
+              </b-table>
+            </div>
           </div>
-        </div>
-        <div
-          v-for="(department, index) in departments"
-          :key="index"
-          class="card-body"
-        >
-          <h5 class="card-title tx-16 text-center">
-            {{ department.label }}({{ $t(`regions.${region.key}.tinyText`) }})
-          </h5>
-          <h6 class="bg-gray-1 pd-t-5 pd-b-5 pd-l-10 tx-bold">
-            Количество материалов:
-            <span class="tx-primary">18000</span>
-          </h6>
-          <b-table
-            :fields="fields"
-            :items="items"
-            head-variant="light"
-            small
-            responsive
-            caption-top
-            hover
-          >
-            <template v-slot:head()="data">
-              <span class="text-primary">{{ data.label }}</span>
-            </template>
-            <template v-slot:cell(researchDirection)="data">
-              <span class="tx-bold">{{ data.value.label }}</span>
-            </template>
-          </b-table>
-        </div>
-      </div>
+        </b-col>
+      </b-row>
     </b-col>
   </b-row>
 </template>
@@ -73,25 +68,29 @@ export default {
   data() {
     return {
       regions: [
-        { key: 'osh' },
-        { key: 'jalal-abad' },
-        { key: 'batken' },
-        { key: 'south-region' },
+        { key: 'osh' }
       ],
       departments: [
-        { label: 'Түштүк РБВДжЭБ' },
-        { label: 'Бактериология' },
-        { label: 'Вирусология' },
-        { label: 'Серология' },
-        { label: 'Паразитология' },
-        { label: 'Лептоспироз' },
-        { label: 'Микология' },
-        { label: 'Химтоксикология' },
-        { label: 'Тамак аш коопсуздук болуму' },
-        { label: 'Асколи' },
-        { label: 'Радиология' },
-        { label: 'Биохимия' },
-        { label: 'Лейкоз' },
+        {
+          label: 'Бактериология',
+          materialCount: 18,
+        },
+        {
+          label: 'Вирусология',
+          materialCount: 6,
+        },
+        {
+          label: 'Серология',
+          materialCount: 7,
+        },
+        {
+          label: 'Паразитология',
+          materialCount: 4,
+        },
+        {
+          label: 'ОПБ',
+          materialCount: 18,
+        }
       ],
       fields: [
         { key: 'researchDirection', label: 'Исследование' },
@@ -103,77 +102,77 @@ export default {
             key: 'pathologist',
             label: 'Патологоанатомиялык',
           },
-          researchCount: 658,
+          researchCount: 3,
         },
         {
           researchDirection: {
             key: 'organoleptic',
             label: 'Органолептикалык',
           },
-          researchCount: 452,
+          researchCount: 1,
         },
         {
           researchDirection: {
             key: 'microscopy',
             label: 'Микроскопиялык',
           },
-          researchCount: 789,
+          researchCount: 0,
         },
         {
           researchDirection: {
             key: 'bacteriology',
             label: 'Бактериологиялык',
           },
-          researchCount: 653,
+          researchCount: 0,
         },
         {
           researchDirection: {
             key: 'microbiology',
             label: 'Микробиологиялык',
           },
-          researchCount: 523,
+          researchCount: 4,
         },
         {
           researchDirection: {
             key: 'serology',
             label: 'Серологиялык',
           },
-          researchCount: 189,
+          researchCount: 2,
         },
         {
           researchDirection: {
             key: 'caprology',
             label: 'Капрологиялык',
           },
-          researchCount: 862,
+          researchCount: 0,
         },
         {
           researchDirection: {
             key: 'mycology',
             label: 'Микологиялык',
           },
-          researchCount: 623,
+          researchCount: 3,
         },
         {
           researchDirection: {
             key: 'biochemistry',
             label: 'Биохимиялык',
           },
-          researchCount: 321,
+          researchCount: 1,
         },
         {
           researchDirection: {
             key: 'chemToxicology',
             label: 'Химтоксикологиялык',
           },
-          researchCount: 523,
+          researchCount: 1,
         },
         {
           researchDirection: {
             key: 'radioLab',
             label: 'Радиологиялык',
           },
-          researchCount: 469,
+          researchCount: 3,
         },
       ],
       // fields: [

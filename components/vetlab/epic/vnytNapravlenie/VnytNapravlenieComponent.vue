@@ -111,7 +111,6 @@ export default {
             this.go('/reports/parasitology/protocol', params)
           }
         }
-
       }
     },
 

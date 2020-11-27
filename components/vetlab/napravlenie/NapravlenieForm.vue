@@ -202,7 +202,6 @@ export default {
   mixins: [NapravlenieCrudFormMixin],
   methods: {
     async addNewToForeignArray(record, foreignCrud, count = 1) {
-      console.log(record)
       const lastPosMateial = await this.$api
         .getApi('posMaterial')
         .getLastByNomerToOtdel({
@@ -211,7 +210,6 @@ export default {
 
       const crudName = foreignCrud.datasetName || foreignCrud.crudName
       const newArray = record[crudName] || []
-      console.log(newArray)
       const lastArray = newArray[newArray.length - 1]
       for (let i = 0; i < count; i++) {
         const newForeignItem = this.initFields({}, this.crud[foreignCrud.crudName])

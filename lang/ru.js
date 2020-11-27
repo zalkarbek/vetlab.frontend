@@ -1018,6 +1018,7 @@ export default {
     osh: {
       text: 'Ошская область',
       tinyText: 'Ош',
+      departmentName: 'ЦВДиЭ'
     },
     'jalal-abad': {
       text: 'Джалал-Абадская область',
