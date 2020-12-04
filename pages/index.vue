@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid page-home">
     <main-plan-percent />
-    <plan-of-region />
+<!--    <plan-of-region />-->
     <main-positive-material />
     <main-forma4 />
     <div class="footer-full-content" />
@@ -12,14 +12,14 @@
 import MainPositiveMaterial from '~/components/vetlab/MainPositiveMaterial.vue'
 import MainPlanPercent from '~/components/vetlab/MainPlanPercent.vue'
 import MainForma4 from '~/components/vetlab/MainForma4.vue'
-import PlanOfRegion from '~/components/vetlab/PlanOfRegion.vue'
+// import PlanOfRegion from '~/components/vetlab/PlanOfRegion.vue'
 
 export default {
   components: {
     MainPositiveMaterial,
     MainPlanPercent,
     MainForma4,
-    PlanOfRegion,
+    // PlanOfRegion,
   },
 
   mounted() {
